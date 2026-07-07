@@ -1,0 +1,423 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "mail.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "MailService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/mail.MailService/CreateTemplate": {
+      "post": {
+        "operationId": "MailService_CreateTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mailCreateTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mailCreateTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MailService"
+        ]
+      }
+    },
+    "/mail.MailService/GetEmail": {
+      "post": {
+        "operationId": "MailService_GetEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mailGetEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mailGetEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MailService"
+        ]
+      }
+    },
+    "/mail.MailService/GetTemplate": {
+      "post": {
+        "operationId": "MailService_GetTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mailGetTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mailGetTemplateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MailService"
+        ]
+      }
+    },
+    "/mail.MailService/SendEmail": {
+      "post": {
+        "operationId": "MailService_SendEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mailSendEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mailSendEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MailService"
+        ]
+      }
+    },
+    "/mail.MailService/SendTemplateEmail": {
+      "post": {
+        "operationId": "MailService_SendTemplateEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mailSendEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mailSendTemplateEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MailService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "mailCreateTemplateRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subjectTemplate": {
+          "type": "string"
+        },
+        "textBodyTemplate": {
+          "type": "string"
+        },
+        "htmlBodyTemplate": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        }
+      }
+    },
+    "mailCreateTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "$ref": "#/definitions/mailEmailTemplate"
+        }
+      }
+    },
+    "mailEmailMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "from": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "textBody": {
+          "type": "string"
+        },
+        "htmlBody": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "attempts": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastError": {
+          "type": "string"
+        },
+        "queuedAt": {
+          "type": "string"
+        },
+        "sentAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "templateCode": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mailEmailTemplate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "subjectTemplate": {
+          "type": "string"
+        },
+        "textBodyTemplate": {
+          "type": "string"
+        },
+        "htmlBodyTemplate": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "mailGetEmailRequest": {
+      "type": "object",
+      "properties": {
+        "emailId": {
+          "type": "string"
+        }
+      }
+    },
+    "mailGetEmailResponse": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "$ref": "#/definitions/mailEmailMessage"
+        }
+      }
+    },
+    "mailGetTemplateRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "mailGetTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "$ref": "#/definitions/mailEmailTemplate"
+        }
+      }
+    },
+    "mailSendEmailRequest": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subject": {
+          "type": "string"
+        },
+        "textBody": {
+          "type": "string"
+        },
+        "htmlBody": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        }
+      }
+    },
+    "mailSendEmailResponse": {
+      "type": "object",
+      "properties": {
+        "emailId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "mailSendTemplateEmailRequest": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "templateCode": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "from": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
