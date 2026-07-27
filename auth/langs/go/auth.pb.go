@@ -7,6 +7,7 @@
 package auth
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -770,7 +771,7 @@ var File_auth_proto protoreflect.FileDescriptor
 const file_auth_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"auth.proto\x12\x04auth\"C\n" +
+	"auth.proto\x12\x04auth\x1a\x1cgoogle/api/annotations.proto\"C\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"C\n" +
@@ -807,16 +808,16 @@ const file_auth_proto_rawDesc = "" +
 	"\x14ValidateTokenRequest\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\"0\n" +
 	"\x15ValidateTokenResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId2\xa7\x04\n" +
-	"\vAuthService\x129\n" +
-	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x12B\n" +
-	"\vVerifyEmail\x12\x18.auth.VerifyEmailRequest\x1a\x19.auth.VerifyEmailResponse\x12c\n" +
-	"\x16ResendVerificationCode\x12#.auth.ResendVerificationCodeRequest\x1a$.auth.ResendVerificationCodeResponse\x120\n" +
-	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x12E\n" +
-	"\fRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x1a.auth.RefreshTokenResponse\x123\n" +
-	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\x12<\n" +
-	"\tLogoutAll\x12\x16.auth.LogoutAllRequest\x1a\x17.auth.LogoutAllResponse\x12H\n" +
-	"\rValidateToken\x12\x1a.auth.ValidateTokenRequest\x1a\x1b.auth.ValidateTokenResponseB6Z4github.com/HockeyNights/contracts/auth/langs/go;authb\x06proto3"
+	"\auser_id\x18\x01 \x01(\tR\x06userId2\x9c\x06\n" +
+	"\vAuthService\x12T\n" +
+	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/auth/register\x12a\n" +
+	"\vVerifyEmail\x12\x18.auth.VerifyEmailRequest\x1a\x19.auth.VerifyEmailResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/auth/verify-email\x12\x8e\x01\n" +
+	"\x16ResendVerificationCode\x12#.auth.ResendVerificationCodeRequest\x1a$.auth.ResendVerificationCodeResponse\")\x82\xd3\xe4\x93\x02#:\x01*\"\x1e/auth/resend-verification-code\x12H\n" +
+	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/auth/login\x12e\n" +
+	"\fRefreshToken\x12\x19.auth.RefreshTokenRequest\x1a\x1a.auth.RefreshTokenResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/auth/refresh-token\x12L\n" +
+	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/auth/logout\x12Y\n" +
+	"\tLogoutAll\x12\x16.auth.LogoutAllRequest\x1a\x17.auth.LogoutAllResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/auth/logout-all\x12i\n" +
+	"\rValidateToken\x12\x1a.auth.ValidateTokenRequest\x1a\x1b.auth.ValidateTokenResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/auth/validate-tokenB6Z4github.com/HockeyNights/contracts/auth/langs/go;authb\x06proto3"
 
 var (
 	file_auth_proto_rawDescOnce sync.Once

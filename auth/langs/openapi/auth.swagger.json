@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/auth.AuthService/Login": {
+    "/auth/login": {
       "post": {
         "operationId": "AuthService_Login",
         "responses": {
@@ -48,7 +48,7 @@
         ]
       }
     },
-    "/auth.AuthService/Logout": {
+    "/auth/logout": {
       "post": {
         "operationId": "AuthService_Logout",
         "responses": {
@@ -80,7 +80,7 @@
         ]
       }
     },
-    "/auth.AuthService/LogoutAll": {
+    "/auth/logout-all": {
       "post": {
         "operationId": "AuthService_LogoutAll",
         "responses": {
@@ -112,7 +112,7 @@
         ]
       }
     },
-    "/auth.AuthService/RefreshToken": {
+    "/auth/refresh-token": {
       "post": {
         "operationId": "AuthService_RefreshToken",
         "responses": {
@@ -144,7 +144,7 @@
         ]
       }
     },
-    "/auth.AuthService/Register": {
+    "/auth/register": {
       "post": {
         "operationId": "AuthService_Register",
         "responses": {
@@ -176,7 +176,7 @@
         ]
       }
     },
-    "/auth.AuthService/ResendVerificationCode": {
+    "/auth/resend-verification-code": {
       "post": {
         "operationId": "AuthService_ResendVerificationCode",
         "responses": {
@@ -208,7 +208,7 @@
         ]
       }
     },
-    "/auth.AuthService/ValidateToken": {
+    "/auth/validate-token": {
       "post": {
         "operationId": "AuthService_ValidateToken",
         "responses": {
@@ -240,7 +240,7 @@
         ]
       }
     },
-    "/auth.AuthService/VerifyEmail": {
+    "/auth/verify-email": {
       "post": {
         "operationId": "AuthService_VerifyEmail",
         "responses": {

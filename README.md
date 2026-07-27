@@ -46,3 +46,19 @@ auth/langs/go/auth_grpc.pb.go
 auth/langs/go/auth.pb.gw.go
 auth/langs/openapi/auth.swagger.json
 ```
+
+## Auth HTTP paths
+
+Для auth в proto добавлены HTTP-аннотации, поэтому grpc-gateway и OpenAPI
+используют человекочитаемые пути:
+
+```text
+POST /auth/register
+POST /auth/verify-email
+POST /auth/resend-verification-code
+POST /auth/login
+POST /auth/refresh-token
+POST /auth/logout
+POST /auth/logout-all
+POST /auth/validate-token
+```

@@ -20,6 +20,8 @@ generate: codegen-image
 		$(CODEGEN_IMAGE) \
 		protoc \
 			-I . \
+			-I /googleapis \
+			-I /usr/include \
 			--go_out=langs/go \
 			--go_opt=paths=source_relative \
 			--go-grpc_out=langs/go \
