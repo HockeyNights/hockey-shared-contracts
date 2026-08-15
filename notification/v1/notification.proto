@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package notification.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/notification/gen/go/v1;notificationv1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Notification API"
+    version: "1.0.0"
+    description: "Внутренний сервис доставки. Отправка писем по шаблонам и управление самими шаблонами."
+  }
+};
+
+service NotificationService {
+  rpc SendEmail(SendEmailRequest) returns (SendEmailResponse);
+
+  rpc CreateTemplate(CreateTemplateRequest) returns (Template) {
+    option (google.api.http) = {
+      post: "/v1/templates"
+      body: "template"
+    };
+  }
+
+  rpc UpdateTemplate(UpdateTemplateRequest) returns (Template) {
+    option (google.api.http) = {
+      put: "/v1/templates/{template.key}"
+      body: "template"
+    };
+  }
+
+  rpc GetTemplate(GetTemplateRequest) returns (Template) {
+    option (google.api.http) = {get: "/v1/templates/{key}"};
+  }
+
+  rpc ListTemplates(ListTemplatesRequest) returns (ListTemplatesResponse) {
+    option (google.api.http) = {get: "/v1/templates"};
+  }
+
+  rpc DeleteTemplate(DeleteTemplateRequest) returns (DeleteTemplateResponse) {
+    option (google.api.http) = {delete: "/v1/templates/{key}"};
+  }
+
+  rpc RenderTemplate(RenderTemplateRequest) returns (RenderTemplateResponse) {
+    option (google.api.http) = {
+      post: "/v1/templates/{key}:render"
+      body: "*"
+    };
+  }
+}
+
+enum Channel {
+  CHANNEL_UNSPECIFIED = 0;
+  CHANNEL_EMAIL = 1;
+  CHANNEL_SMS = 2;
+  CHANNEL_PUSH = 3;
+}
+
+message Template {
+  string key = 1 [(buf.validate.field).string = {
+    pattern: "^[a-z][a-z0-9_]{2,63}$"
+    max_len: 64
+  }];
+
+  Channel channel = 2 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
+
+  string product = 3 [(buf.validate.field).string.max_len = 64];
+
+  string description = 4 [(buf.validate.field).string.max_len = 500];
+
+  string subject = 5 [(buf.validate.field).string.max_len = 300];
+
+  string body_text = 6 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 50000
+  }];
+
+  string body_html = 7 [(buf.validate.field).string.max_len = 200000];
+
+  bool builtin = 8;
+
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+message CreateTemplateRequest {
+  Template template = 1 [(buf.validate.field).required = true];
+}
+
+message UpdateTemplateRequest {
+  Template template = 1 [(buf.validate.field).required = true];
+}
+
+message GetTemplateRequest {
+  string key = 1 [(buf.validate.field).string.min_len = 1];
+  Channel channel = 2;
+}
+
+message ListTemplatesRequest {
+  Channel channel = 1;
+  string product = 2 [(buf.validate.field).string.max_len = 64];
+}
+
+message ListTemplatesResponse {
+  repeated Template templates = 1;
+}
+
+message DeleteTemplateRequest {
+  string key = 1 [(buf.validate.field).string.min_len = 1];
+  Channel channel = 2;
+}
+
+message DeleteTemplateResponse {}
+
+message RenderTemplateRequest {
+  string key = 1 [(buf.validate.field).string.min_len = 1];
+  Channel channel = 2;
+  map<string, string> data = 3;
+}
+
+message RenderTemplateResponse {
+  string subject = 1;
+  string body_text = 2;
+  string body_html = 3;
+}
+
+message SendEmailRequest {
+  string idempotency_key = 1 [(buf.validate.field).string.uuid = true];
+
+  string template_key = 2 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 64
+  }];
+
+  string email = 3 [(buf.validate.field).string.email = true];
+
+  map<string, string> data = 4;
+}
+
+message SendEmailResponse {}

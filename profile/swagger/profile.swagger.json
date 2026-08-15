@@ -1,0 +1,399 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HockeyNights Profile API",
+    "description": "Профиль пользователя: имя, фамилия, отчество.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "ProfileService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/profile": {
+      "get": {
+        "operationId": "ProfileService_GetProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Profile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProfileService"
+        ]
+      },
+      "post": {
+        "operationId": "ProfileService_CreateProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Profile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      },
+      "put": {
+        "operationId": "ProfileService_UpdateProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Profile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/profile/avatar": {
+      "delete": {
+        "operationId": "ProfileService_DeleteAvatar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Profile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProfileService"
+        ]
+      },
+      "put": {
+        "operationId": "ProfileService_SetAvatar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Profile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SetAvatarRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/profile/avatar:upload": {
+      "post": {
+        "operationId": "ProfileService_RequestAvatarUpload",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RequestAvatarUploadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RequestAvatarUploadRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreateProfileRequest": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "heightCm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weightKg": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "grip": {
+          "$ref": "#/definitions/v1Grip"
+        },
+        "position": {
+          "$ref": "#/definitions/v1Position"
+        },
+        "level": {
+          "type": "string"
+        },
+        "skillIndex": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1Grip": {
+      "type": "string",
+      "enum": [
+        "GRIP_UNSPECIFIED",
+        "GRIP_LEFT",
+        "GRIP_RIGHT"
+      ],
+      "default": "GRIP_UNSPECIFIED"
+    },
+    "v1Position": {
+      "type": "string",
+      "enum": [
+        "POSITION_UNSPECIFIED",
+        "POSITION_FORWARD",
+        "POSITION_DEFENDER",
+        "POSITION_GOALIE"
+      ],
+      "default": "POSITION_UNSPECIFIED"
+    },
+    "v1Profile": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "heightCm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weightKg": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "grip": {
+          "$ref": "#/definitions/v1Grip"
+        },
+        "position": {
+          "$ref": "#/definitions/v1Position"
+        },
+        "level": {
+          "type": "string"
+        },
+        "skillIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1RequestAvatarUploadRequest": {
+      "type": "object"
+    },
+    "v1RequestAvatarUploadResponse": {
+      "type": "object",
+      "properties": {
+        "uploadUrl": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1SetAvatarRequest": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UpdateProfileRequest": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "heightCm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weightKg": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "grip": {
+          "$ref": "#/definitions/v1Grip"
+        },
+        "position": {
+          "$ref": "#/definitions/v1Position"
+        },
+        "level": {
+          "type": "string"
+        },
+        "skillIndex": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

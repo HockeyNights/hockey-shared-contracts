@@ -1,0 +1,251 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/auth/gen/go/v1;authv1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Auth API"
+    version: "1.0.0"
+    description: "Регистрация, вход и управление сессиями."
+  }
+  security_definitions: {
+    security: {
+      key: "bearer"
+      value: {
+        type: TYPE_API_KEY
+        name: "Authorization"
+        in: IN_HEADER
+        description: "Access-токен в формате: Bearer <token>"
+      }
+    }
+  }
+
+  security: {
+    security_requirement: {
+      key: "bearer"
+      value: {}
+    }
+  }
+};
+
+service AuthService {
+  rpc Register(RegisterRequest) returns (RegisterResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/register"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/verify-email"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/login"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc VerifyLoginCode(VerifyLoginCodeRequest) returns (VerifyLoginCodeResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/verify-login"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc ResendCode(ResendCodeRequest) returns (ResendCodeResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/resend-code"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc RequestPasswordReset(RequestPasswordResetRequest) returns (RequestPasswordResetResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/password/reset-request"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/password/reset"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc Refresh(RefreshRequest) returns (RefreshResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/refresh"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {security: {}};
+  }
+
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/logout"
+      body: "*"
+    };
+  }
+
+  rpc LogoutAll(LogoutAllRequest) returns (LogoutAllResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/logout-all"
+      body: "*"
+    };
+  }
+
+  rpc GetMe(GetMeRequest) returns (GetMeResponse) {
+    option (google.api.http) = {get: "/v1/auth/me"};
+  }
+}
+
+enum CodePurpose {
+  CODE_PURPOSE_UNSPECIFIED = 0;
+  CODE_PURPOSE_REGISTRATION = 1;
+  CODE_PURPOSE_LOGIN = 2;
+  CODE_PURPOSE_PASSWORD_RESET = 3;
+}
+
+message Account {
+  string id = 1;
+  string email = 2;
+  bool email_verified = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+message TokenPair {
+  string access_token = 1;
+  string refresh_token = 2;
+  int64 expires_in = 3;
+}
+
+message RegisterRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string password = 2 [(buf.validate.field).string = {
+    min_len: 8
+    max_len: 72
+  }];
+}
+
+message CodeSent {
+  string masked_email = 1;
+  int64 expires_in = 2;
+  int64 resend_after = 3;
+}
+
+message RegisterResponse {
+  CodeSent code = 1;
+}
+
+message VerifyEmailRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string code = 2 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
+  string device_name = 3 [(buf.validate.field).string.max_len = 100];
+}
+
+message VerifyEmailResponse {
+  Account account = 1;
+  TokenPair tokens = 2;
+  string device_token = 3;
+}
+
+message LoginRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string password = 2 [(buf.validate.field).string.min_len = 1];
+  string device_token = 3 [(buf.validate.field).string.max_len = 512];
+  string device_name = 4 [(buf.validate.field).string.max_len = 100];
+}
+
+message LoginResponse {
+  CodeSent code = 1;
+  Account account = 2;
+  TokenPair tokens = 3;
+  bool code_required = 4;
+}
+
+message VerifyLoginCodeRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string code = 2 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
+  string device_name = 3 [(buf.validate.field).string.max_len = 100];
+}
+
+message VerifyLoginCodeResponse {
+  Account account = 1;
+  TokenPair tokens = 2;
+  string device_token = 3;
+}
+
+message ResendCodeRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  CodePurpose purpose = 2 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
+}
+
+message ResendCodeResponse {
+  CodeSent code = 1;
+}
+
+message RequestPasswordResetRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+}
+
+message RequestPasswordResetResponse {
+  CodeSent code = 1;
+}
+
+message ResetPasswordRequest {
+  string email = 1 [(buf.validate.field).string.email = true];
+  string code = 2 [(buf.validate.field).string.pattern = "^[0-9]{6}$"];
+
+  string new_password = 3 [(buf.validate.field).string = {
+    min_len: 8
+    max_len: 72
+  }];
+}
+
+message ResetPasswordResponse {}
+
+message RefreshRequest {
+  string refresh_token = 1 [(buf.validate.field).string.min_len = 1];
+}
+
+message RefreshResponse {
+  TokenPair tokens = 1;
+}
+
+message LogoutRequest {
+}
+
+message LogoutResponse {}
+
+message LogoutAllRequest {}
+
+message LogoutAllResponse {}
+
+message GetMeRequest {}
+
+message GetMeResponse {
+  Account account = 1;
+}

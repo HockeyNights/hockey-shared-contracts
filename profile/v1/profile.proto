@@ -1,0 +1,212 @@
+syntax = "proto3";
+
+package profile.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/profile/gen/go/v1;profilev1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Profile API"
+    version: "1.0.0"
+    description: "Профиль пользователя: имя, фамилия, отчество."
+  }
+};
+
+service ProfileService {
+  rpc CreateProfile(CreateProfileRequest) returns (Profile) {
+    option (google.api.http) = {
+      post: "/v1/profile"
+      body: "*"
+    };
+  }
+
+  rpc GetProfile(GetProfileRequest) returns (Profile) {
+    option (google.api.http) = {get: "/v1/profile"};
+  }
+
+  rpc UpdateProfile(UpdateProfileRequest) returns (Profile) {
+    option (google.api.http) = {
+      put: "/v1/profile"
+      body: "*"
+    };
+  }
+
+  rpc RequestAvatarUpload(RequestAvatarUploadRequest) returns (RequestAvatarUploadResponse) {
+    option (google.api.http) = {
+      post: "/v1/profile/avatar:upload"
+      body: "*"
+    };
+  }
+
+  rpc SetAvatar(SetAvatarRequest) returns (Profile) {
+    option (google.api.http) = {
+      put: "/v1/profile/avatar"
+      body: "*"
+    };
+  }
+
+  rpc DeleteAvatar(DeleteAvatarRequest) returns (Profile) {
+    option (google.api.http) = {delete: "/v1/profile/avatar"};
+  }
+}
+
+enum Grip {
+  GRIP_UNSPECIFIED = 0;
+  GRIP_LEFT = 1;
+  GRIP_RIGHT = 2;
+}
+
+enum Position {
+  POSITION_UNSPECIFIED = 0;
+  POSITION_FORWARD = 1;
+  POSITION_DEFENDER = 2;
+  POSITION_GOALIE = 3;
+}
+
+message Profile {
+  string user_id = 1;
+
+  string first_name = 2;
+  string middle_name = 3;
+  string last_name = 4;
+
+  string city = 5 [(buf.validate.field).string.max_len = 100];
+
+  string birth_date = 6 [(buf.validate.field).string = {
+    pattern: "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+  }];
+
+  int32 height_cm = 7 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 250
+  }];
+
+  int32 weight_kg = 8 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 200
+  }];
+
+  Grip grip = 9 [(buf.validate.field).enum.defined_only = true];
+
+  Position position = 10 [(buf.validate.field).enum.defined_only = true];
+
+  string level = 11 [(buf.validate.field).string.max_len = 50];
+
+  int32 skill_index = 12 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 10
+  }];
+
+  string avatar_url = 13;
+
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp updated_at = 15;
+}
+
+message RequestAvatarUploadRequest {}
+
+message RequestAvatarUploadResponse {
+  string upload_url = 1;
+  string key = 2;
+  google.protobuf.Timestamp expires_at = 3;
+}
+
+message SetAvatarRequest {
+  string key = 1 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 200
+  }];
+}
+
+message DeleteAvatarRequest {}
+
+message CreateProfileRequest {
+  string first_name = 1 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string middle_name = 2 [(buf.validate.field).string.max_len = 100];
+
+  string last_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string city = 4 [(buf.validate.field).string.max_len = 100];
+
+  string birth_date = 5 [(buf.validate.field).string = {
+    pattern: "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+  }];
+
+  int32 height_cm = 6 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 250
+  }];
+
+  int32 weight_kg = 7 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 200
+  }];
+
+  Grip grip = 8 [(buf.validate.field).enum.defined_only = true];
+
+  Position position = 9 [(buf.validate.field).enum.defined_only = true];
+
+  string level = 10 [(buf.validate.field).string.max_len = 50];
+
+  int32 skill_index = 11 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 10
+  }];
+
+}
+
+message GetProfileRequest {}
+
+message UpdateProfileRequest {
+  string first_name = 1 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string middle_name = 2 [(buf.validate.field).string.max_len = 100];
+
+  string last_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string city = 4 [(buf.validate.field).string.max_len = 100];
+
+  string birth_date = 5 [(buf.validate.field).string = {
+    pattern: "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+  }];
+
+  int32 height_cm = 6 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 250
+  }];
+
+  int32 weight_kg = 7 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 200
+  }];
+
+  Grip grip = 8 [(buf.validate.field).enum.defined_only = true];
+
+  Position position = 9 [(buf.validate.field).enum.defined_only = true];
+
+  string level = 10 [(buf.validate.field).string.max_len = 50];
+
+  int32 skill_index = 11 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 10
+  }];
+
+}
