@@ -1,0 +1,194 @@
+syntax = "proto3";
+
+package team.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/team/gen/go/v1;teamv1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Team API"
+    version: "1.0.0"
+    description: "Команды, состав и приглашения."
+  }
+};
+
+service TeamService {
+  rpc CreateTeam(CreateTeamRequest) returns (Team) {
+    option (google.api.http) = {
+      post: "/v1/teams"
+      body: "*"
+    };
+  }
+
+  rpc GetTeam(GetTeamRequest) returns (Team) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}"};
+  }
+
+  rpc UpdateTeam(UpdateTeamRequest) returns (Team) {
+    option (google.api.http) = {
+      patch: "/v1/teams/{team_id}"
+      body: "*"
+    };
+  }
+
+  rpc ListTeams(ListTeamsRequest) returns (ListTeamsResponse) {
+    option (google.api.http) = {get: "/v1/teams"};
+  }
+
+  rpc GetRoster(GetRosterRequest) returns (RosterList) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}/roster"};
+  }
+
+  rpc AddMember(AddMemberRequest) returns (RosterMember) {
+    option (google.api.http) = {
+      post: "/v1/teams/{team_id}/members"
+      body: "*"
+    };
+  }
+
+  rpc UpdateRosterStatus(UpdateRosterStatusRequest) returns (RosterMember) {
+    option (google.api.http) = {
+      patch: "/v1/teams/{team_id}/roster/{user_id}"
+      body: "*"
+    };
+  }
+
+  rpc UpdateTeamRole(UpdateTeamRoleRequest) returns (RosterMember) {
+    option (google.api.http) = {
+      patch: "/v1/teams/{team_id}/roles/{user_id}"
+      body: "*"
+    };
+  }
+
+  rpc ListInvites(ListInvitesRequest) returns (InviteList) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}/invites"};
+  }
+
+  rpc CreateEmailInvite(CreateEmailInviteRequest) returns (TeamInvite) {
+    option (google.api.http) = {
+      post: "/v1/teams/{team_id}/invites"
+      body: "*"
+    };
+  }
+}
+
+message Team {
+  string id = 1;
+  string name = 2;
+  string city = 3;
+  string skill_level = 4;
+  optional string description = 5;
+  string captain_user_id = 6;
+  string owner_user_id = 7;
+  optional string league_id = 8;
+  optional string home_arena_id = 9;
+  repeated string member_ids = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+}
+
+message RosterMember {
+  string team_id = 1;
+  string user_id = 2;
+  string display_name = 3;
+  string position = 4;
+  string team_role = 5;
+  string roster_status = 6;
+  google.protobuf.Timestamp joined_at = 7;
+}
+
+message TeamInvite {
+  string id = 1;
+  string team_id = 2;
+  optional string email = 3;
+  optional string user_id = 4;
+  optional string display_name = 5;
+  string invited_by_user_id = 6;
+  string status = 7;
+  google.protobuf.Timestamp created_at = 8;
+  optional google.protobuf.Timestamp updated_at = 9;
+}
+
+message CreateTeamRequest {
+  string name = 1;
+  string city = 2;
+  string skill_level = 3;
+  optional string description = 4;
+  optional string captain_user_id = 5;
+  optional string league_id = 6;
+  optional string home_arena_id = 7;
+}
+
+message GetTeamRequest {
+  string team_id = 1;
+}
+
+message UpdateTeamRequest {
+  string team_id = 1;
+  optional string name = 2;
+  optional string city = 3;
+  optional string skill_level = 4;
+  optional string description = 5;
+  optional string captain_user_id = 6;
+  optional string league_id = 7;
+  optional string home_arena_id = 8;
+}
+
+message ListTeamsRequest {
+  string q = 1;
+  string city = 2;
+  string skill_level = 3;
+  string user_id = 4;
+  int32 limit = 5;
+  int32 offset = 6;
+}
+
+message ListTeamsResponse {
+  repeated Team items = 1;
+  int64 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message GetRosterRequest {
+  string team_id = 1;
+  bool include_removed = 2;
+}
+
+message RosterList {
+  repeated RosterMember members = 1;
+}
+
+message AddMemberRequest {
+  string team_id = 1;
+  string user_id = 2;
+}
+
+message UpdateRosterStatusRequest {
+  string team_id = 1;
+  string user_id = 2;
+  string roster_status = 3;
+}
+
+message UpdateTeamRoleRequest {
+  string team_id = 1;
+  string user_id = 2;
+  string team_role = 3;
+}
+
+message ListInvitesRequest {
+  string team_id = 1;
+}
+
+message InviteList {
+  repeated TeamInvite invites = 1;
+}
+
+message CreateEmailInviteRequest {
+  string team_id = 1;
+  string email = 2;
+}
