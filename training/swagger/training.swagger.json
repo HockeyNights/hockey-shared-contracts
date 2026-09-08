@@ -1,0 +1,605 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HockeyNights Training API",
+    "description": "Черновики тренировок клуба: создание, согласование и публикация.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "TrainingService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/clubs/{clubId}/training-drafts": {
+      "get": {
+        "operationId": "TrainingService_ListTrainingDrafts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListTrainingDraftsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      },
+      "post": {
+        "operationId": "TrainingService_CreateTrainingDraft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TrainingDraft"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingServiceCreateTrainingDraftBody"
+            }
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      }
+    },
+    "/v1/clubs/{clubId}/training-drafts/{draftId}": {
+      "get": {
+        "operationId": "TrainingService_GetTrainingDraft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TrainingDraft"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      },
+      "patch": {
+        "operationId": "TrainingService_UpdateTrainingDraft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TrainingDraft"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingServiceUpdateTrainingDraftBody"
+            }
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      }
+    },
+    "/v1/clubs/{clubId}/training-drafts/{draftId}/approve": {
+      "post": {
+        "operationId": "TrainingService_ApproveTrainingDraft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TrainingDraft"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingServiceApproveTrainingDraftBody"
+            }
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      }
+    },
+    "/v1/clubs/{clubId}/training-drafts/{draftId}/publish": {
+      "post": {
+        "operationId": "TrainingService_PublishTrainingDraft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TrainingDraft"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingServicePublishTrainingDraftBody"
+            }
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      }
+    },
+    "/v1/clubs/{clubId}/training-drafts/{draftId}/reject": {
+      "post": {
+        "operationId": "TrainingService_RejectTrainingDraft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TrainingDraft"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingServiceRejectTrainingDraftBody"
+            }
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      }
+    },
+    "/v1/clubs/{clubId}/training-drafts/{draftId}/submit": {
+      "post": {
+        "operationId": "TrainingService_SubmitTrainingDraft",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TrainingDraft"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingServiceSubmitTrainingDraftBody"
+            }
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "TrainingServiceApproveTrainingDraftBody": {
+      "type": "object"
+    },
+    "TrainingServiceCreateTrainingDraftBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "skillLevel": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "pricePerPlayer": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requiredSlots": {
+          "type": "string"
+        },
+        "lineupAssignments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LineupAssignment"
+          }
+        }
+      }
+    },
+    "TrainingServicePublishTrainingDraftBody": {
+      "type": "object"
+    },
+    "TrainingServiceRejectTrainingDraftBody": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "TrainingServiceSubmitTrainingDraftBody": {
+      "type": "object"
+    },
+    "TrainingServiceUpdateTrainingDraftBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "skillLevel": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "pricePerPlayer": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requiredSlots": {
+          "type": "string"
+        },
+        "lineupAssignments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LineupAssignment"
+          }
+        },
+        "updateLineupAssignments": {
+          "type": "boolean"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1LineupAssignment": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "side": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ListTrainingDraftsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1TrainingDraft"
+          }
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1TrainingDraft": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "clubId": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "authorUserId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "skillLevel": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        },
+        "pricePerPlayer": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requiredSlots": {
+          "type": "string"
+        },
+        "lineupAssignments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LineupAssignment"
+          }
+        },
+        "rejectReason": {
+          "type": "string"
+        },
+        "publishedTrainingId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

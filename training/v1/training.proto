@@ -1,0 +1,167 @@
+syntax = "proto3";
+
+package training.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/training/gen/go/v1;trainingv1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Training API"
+    version: "1.0.0"
+    description: "Черновики тренировок клуба: создание, согласование и публикация."
+  }
+};
+
+service TrainingService {
+  rpc ListTrainingDrafts(ListTrainingDraftsRequest) returns (ListTrainingDraftsResponse) {
+    option (google.api.http) = {get: "/v1/clubs/{club_id}/training-drafts"};
+  }
+
+  rpc CreateTrainingDraft(CreateTrainingDraftRequest) returns (TrainingDraft) {
+    option (google.api.http) = {
+      post: "/v1/clubs/{club_id}/training-drafts"
+      body: "*"
+    };
+  }
+
+  rpc GetTrainingDraft(GetTrainingDraftRequest) returns (TrainingDraft) {
+    option (google.api.http) = {get: "/v1/clubs/{club_id}/training-drafts/{draft_id}"};
+  }
+
+  rpc UpdateTrainingDraft(UpdateTrainingDraftRequest) returns (TrainingDraft) {
+    option (google.api.http) = {
+      patch: "/v1/clubs/{club_id}/training-drafts/{draft_id}"
+      body: "*"
+    };
+  }
+
+  rpc SubmitTrainingDraft(SubmitTrainingDraftRequest) returns (TrainingDraft) {
+    option (google.api.http) = {
+      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/submit"
+      body: "*"
+    };
+  }
+
+  rpc ApproveTrainingDraft(ApproveTrainingDraftRequest) returns (TrainingDraft) {
+    option (google.api.http) = {
+      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/approve"
+      body: "*"
+    };
+  }
+
+  rpc RejectTrainingDraft(RejectTrainingDraftRequest) returns (TrainingDraft) {
+    option (google.api.http) = {
+      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/reject"
+      body: "*"
+    };
+  }
+
+  rpc PublishTrainingDraft(PublishTrainingDraftRequest) returns (TrainingDraft) {
+    option (google.api.http) = {
+      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/publish"
+      body: "*"
+    };
+  }
+}
+
+message LineupAssignment {
+  string user_id = 1;
+  string position = 2;
+  string side = 3;
+  optional int32 line = 4;
+}
+
+message TrainingDraft {
+  string id = 1;
+  string club_id = 2;
+  optional string team_id = 3;
+  string author_user_id = 4;
+  string status = 5;
+  string title = 6;
+  google.protobuf.Timestamp starts_at = 7;
+  google.protobuf.Timestamp ends_at = 8;
+  optional string arena_id = 9;
+  optional string skill_level = 10;
+  optional string format = 11;
+  optional int32 price_per_player = 12;
+  string required_slots = 13;
+  repeated LineupAssignment lineup_assignments = 14;
+  optional string reject_reason = 15;
+  optional string published_training_id = 16;
+  google.protobuf.Timestamp created_at = 17;
+  google.protobuf.Timestamp updated_at = 18;
+}
+
+message ListTrainingDraftsRequest {
+  string club_id = 1;
+  string status = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message ListTrainingDraftsResponse {
+  repeated TrainingDraft items = 1;
+  int64 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message CreateTrainingDraftRequest {
+  string club_id = 1;
+  string title = 2;
+  google.protobuf.Timestamp starts_at = 3;
+  google.protobuf.Timestamp ends_at = 4;
+  optional string team_id = 5;
+  optional string arena_id = 6;
+  optional string skill_level = 7;
+  optional string format = 8;
+  optional int32 price_per_player = 9;
+  string required_slots = 10;
+  repeated LineupAssignment lineup_assignments = 11;
+}
+
+message GetTrainingDraftRequest {
+  string club_id = 1;
+  string draft_id = 2;
+}
+
+message UpdateTrainingDraftRequest {
+  string club_id = 1;
+  string draft_id = 2;
+  optional string title = 3;
+  optional google.protobuf.Timestamp starts_at = 4;
+  optional google.protobuf.Timestamp ends_at = 5;
+  optional string team_id = 6;
+  optional string arena_id = 7;
+  optional string skill_level = 8;
+  optional string format = 9;
+  optional int32 price_per_player = 10;
+  optional string required_slots = 11;
+  repeated LineupAssignment lineup_assignments = 12;
+  bool update_lineup_assignments = 13;
+}
+
+message SubmitTrainingDraftRequest {
+  string club_id = 1;
+  string draft_id = 2;
+}
+
+message ApproveTrainingDraftRequest {
+  string club_id = 1;
+  string draft_id = 2;
+}
+
+message RejectTrainingDraftRequest {
+  string club_id = 1;
+  string draft_id = 2;
+  string reason = 3;
+}
+
+message PublishTrainingDraftRequest {
+  string club_id = 1;
+  string draft_id = 2;
+}
