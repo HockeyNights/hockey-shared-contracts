@@ -24,19 +24,1977 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type RequiredSlot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Position      string                 `protobuf:"bytes,1,opt,name=position,proto3" json:"position,omitempty"`
+	Count         int32                  `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	FilledCount   int32                  `protobuf:"varint,3,opt,name=filled_count,json=filledCount,proto3" json:"filled_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RequiredSlot) Reset() {
+	*x = RequiredSlot{}
+	mi := &file_training_v1_training_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RequiredSlot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RequiredSlot) ProtoMessage() {}
+
+func (x *RequiredSlot) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RequiredSlot.ProtoReflect.Descriptor instead.
+func (*RequiredSlot) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *RequiredSlot) GetPosition() string {
+	if x != nil {
+		return x.Position
+	}
+	return ""
+}
+
+func (x *RequiredSlot) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *RequiredSlot) GetFilledCount() int32 {
+	if x != nil {
+		return x.FilledCount
+	}
+	return 0
+}
+
+type Attendance struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	DisplayName   *string                `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3,oneof" json:"display_name,omitempty"`
+	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Attendance) Reset() {
+	*x = Attendance{}
+	mi := &file_training_v1_training_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Attendance) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Attendance) ProtoMessage() {}
+
+func (x *Attendance) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Attendance.ProtoReflect.Descriptor instead.
+func (*Attendance) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Attendance) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *Attendance) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *Attendance) GetDisplayName() string {
+	if x != nil && x.DisplayName != nil {
+		return *x.DisplayName
+	}
+	return ""
+}
+
+func (x *Attendance) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Attendance) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+type Event struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type                 string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Title                string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	StartsAt             *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
+	EndsAt               *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
+	ArenaId              string                 `protobuf:"bytes,6,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	ArenaName            *string                `protobuf:"bytes,7,opt,name=arena_name,json=arenaName,proto3,oneof" json:"arena_name,omitempty"`
+	OrganizerUserId      string                 `protobuf:"bytes,8,opt,name=organizer_user_id,json=organizerUserId,proto3" json:"organizer_user_id,omitempty"`
+	TeamId               *string                `protobuf:"bytes,9,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	RequiredSkillLevel   string                 `protobuf:"bytes,10,opt,name=required_skill_level,json=requiredSkillLevel,proto3" json:"required_skill_level,omitempty"`
+	RequiredSlots        []*RequiredSlot        `protobuf:"bytes,11,rep,name=required_slots,json=requiredSlots,proto3" json:"required_slots,omitempty"`
+	PricePerPlayer       *int32                 `protobuf:"varint,12,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
+	TrainingFormat       *string                `protobuf:"bytes,13,opt,name=training_format,json=trainingFormat,proto3,oneof" json:"training_format,omitempty"`
+	District             *string                `protobuf:"bytes,14,opt,name=district,proto3,oneof" json:"district,omitempty"`
+	RegistrationStatus   *string                `protobuf:"bytes,15,opt,name=registration_status,json=registrationStatus,proto3,oneof" json:"registration_status,omitempty"`
+	AccessScope          *string                `protobuf:"bytes,16,opt,name=access_scope,json=accessScope,proto3,oneof" json:"access_scope,omitempty"`
+	AllowedUserIds       []string               `protobuf:"bytes,17,rep,name=allowed_user_ids,json=allowedUserIds,proto3" json:"allowed_user_ids,omitempty"`
+	OrganizerDisplayName *string                `protobuf:"bytes,18,opt,name=organizer_display_name,json=organizerDisplayName,proto3,oneof" json:"organizer_display_name,omitempty"`
+	OrganizerPhone       *string                `protobuf:"bytes,19,opt,name=organizer_phone,json=organizerPhone,proto3,oneof" json:"organizer_phone,omitempty"`
+	Participation        []*Attendance          `protobuf:"bytes,20,rep,name=participation,proto3" json:"participation,omitempty"`
+	HasTeamRsvp          bool                   `protobuf:"varint,21,opt,name=has_team_rsvp,json=hasTeamRsvp,proto3" json:"has_team_rsvp,omitempty"`
+	ClubId               *string                `protobuf:"bytes,22,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
+	CreatedAt            *timestamppb.Timestamp `protobuf:"bytes,23,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,24,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *Event) Reset() {
+	*x = Event{}
+	mi := &file_training_v1_training_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Event) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Event) ProtoMessage() {}
+
+func (x *Event) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Event.ProtoReflect.Descriptor instead.
+func (*Event) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Event) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Event) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Event) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Event) GetStartsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartsAt
+	}
+	return nil
+}
+
+func (x *Event) GetEndsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndsAt
+	}
+	return nil
+}
+
+func (x *Event) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *Event) GetArenaName() string {
+	if x != nil && x.ArenaName != nil {
+		return *x.ArenaName
+	}
+	return ""
+}
+
+func (x *Event) GetOrganizerUserId() string {
+	if x != nil {
+		return x.OrganizerUserId
+	}
+	return ""
+}
+
+func (x *Event) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
+	}
+	return ""
+}
+
+func (x *Event) GetRequiredSkillLevel() string {
+	if x != nil {
+		return x.RequiredSkillLevel
+	}
+	return ""
+}
+
+func (x *Event) GetRequiredSlots() []*RequiredSlot {
+	if x != nil {
+		return x.RequiredSlots
+	}
+	return nil
+}
+
+func (x *Event) GetPricePerPlayer() int32 {
+	if x != nil && x.PricePerPlayer != nil {
+		return *x.PricePerPlayer
+	}
+	return 0
+}
+
+func (x *Event) GetTrainingFormat() string {
+	if x != nil && x.TrainingFormat != nil {
+		return *x.TrainingFormat
+	}
+	return ""
+}
+
+func (x *Event) GetDistrict() string {
+	if x != nil && x.District != nil {
+		return *x.District
+	}
+	return ""
+}
+
+func (x *Event) GetRegistrationStatus() string {
+	if x != nil && x.RegistrationStatus != nil {
+		return *x.RegistrationStatus
+	}
+	return ""
+}
+
+func (x *Event) GetAccessScope() string {
+	if x != nil && x.AccessScope != nil {
+		return *x.AccessScope
+	}
+	return ""
+}
+
+func (x *Event) GetAllowedUserIds() []string {
+	if x != nil {
+		return x.AllowedUserIds
+	}
+	return nil
+}
+
+func (x *Event) GetOrganizerDisplayName() string {
+	if x != nil && x.OrganizerDisplayName != nil {
+		return *x.OrganizerDisplayName
+	}
+	return ""
+}
+
+func (x *Event) GetOrganizerPhone() string {
+	if x != nil && x.OrganizerPhone != nil {
+		return *x.OrganizerPhone
+	}
+	return ""
+}
+
+func (x *Event) GetParticipation() []*Attendance {
+	if x != nil {
+		return x.Participation
+	}
+	return nil
+}
+
+func (x *Event) GetHasTeamRsvp() bool {
+	if x != nil {
+		return x.HasTeamRsvp
+	}
+	return false
+}
+
+func (x *Event) GetClubId() string {
+	if x != nil && x.ClubId != nil {
+		return *x.ClubId
+	}
+	return ""
+}
+
+func (x *Event) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Event) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+type EventList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Event               `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventList) Reset() {
+	*x = EventList{}
+	mi := &file_training_v1_training_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventList) ProtoMessage() {}
+
+func (x *EventList) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventList.ProtoReflect.Descriptor instead.
+func (*EventList) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *EventList) GetItems() []*Event {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *EventList) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *EventList) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *EventList) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListEventsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          *string                `protobuf:"bytes,1,opt,name=type,proto3,oneof" json:"type,omitempty"`
+	TeamId        *string                `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	ClubId        *string                `protobuf:"bytes,3,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
+	AccessScope   *string                `protobuf:"bytes,4,opt,name=access_scope,json=accessScope,proto3,oneof" json:"access_scope,omitempty"`
+	Limit         int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListEventsRequest) Reset() {
+	*x = ListEventsRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListEventsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListEventsRequest) ProtoMessage() {}
+
+func (x *ListEventsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListEventsRequest.ProtoReflect.Descriptor instead.
+func (*ListEventsRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ListEventsRequest) GetType() string {
+	if x != nil && x.Type != nil {
+		return *x.Type
+	}
+	return ""
+}
+
+func (x *ListEventsRequest) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
+	}
+	return ""
+}
+
+func (x *ListEventsRequest) GetClubId() string {
+	if x != nil && x.ClubId != nil {
+		return *x.ClubId
+	}
+	return ""
+}
+
+func (x *ListEventsRequest) GetAccessScope() string {
+	if x != nil && x.AccessScope != nil {
+		return *x.AccessScope
+	}
+	return ""
+}
+
+func (x *ListEventsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListEventsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type CreateEventRequest struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	Type                 string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Title                string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	StartsAt             *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
+	EndsAt               *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
+	ArenaId              string                 `protobuf:"bytes,5,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	TeamId               *string                `protobuf:"bytes,6,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	RequiredSkillLevel   string                 `protobuf:"bytes,7,opt,name=required_skill_level,json=requiredSkillLevel,proto3" json:"required_skill_level,omitempty"`
+	RequiredSlots        []*RequiredSlot        `protobuf:"bytes,8,rep,name=required_slots,json=requiredSlots,proto3" json:"required_slots,omitempty"`
+	PricePerPlayer       *int32                 `protobuf:"varint,9,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
+	AccessScope          *string                `protobuf:"bytes,10,opt,name=access_scope,json=accessScope,proto3,oneof" json:"access_scope,omitempty"`
+	ClubId               *string                `protobuf:"bytes,11,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
+	TrainingFormat       *string                `protobuf:"bytes,12,opt,name=training_format,json=trainingFormat,proto3,oneof" json:"training_format,omitempty"`
+	District             *string                `protobuf:"bytes,13,opt,name=district,proto3,oneof" json:"district,omitempty"`
+	AllowedUserIds       []string               `protobuf:"bytes,14,rep,name=allowed_user_ids,json=allowedUserIds,proto3" json:"allowed_user_ids,omitempty"`
+	ArenaName            *string                `protobuf:"bytes,15,opt,name=arena_name,json=arenaName,proto3,oneof" json:"arena_name,omitempty"`
+	OrganizerDisplayName *string                `protobuf:"bytes,16,opt,name=organizer_display_name,json=organizerDisplayName,proto3,oneof" json:"organizer_display_name,omitempty"`
+	OrganizerPhone       *string                `protobuf:"bytes,17,opt,name=organizer_phone,json=organizerPhone,proto3,oneof" json:"organizer_phone,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *CreateEventRequest) Reset() {
+	*x = CreateEventRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateEventRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateEventRequest) ProtoMessage() {}
+
+func (x *CreateEventRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateEventRequest.ProtoReflect.Descriptor instead.
+func (*CreateEventRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateEventRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetStartsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartsAt
+	}
+	return nil
+}
+
+func (x *CreateEventRequest) GetEndsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndsAt
+	}
+	return nil
+}
+
+func (x *CreateEventRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetRequiredSkillLevel() string {
+	if x != nil {
+		return x.RequiredSkillLevel
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetRequiredSlots() []*RequiredSlot {
+	if x != nil {
+		return x.RequiredSlots
+	}
+	return nil
+}
+
+func (x *CreateEventRequest) GetPricePerPlayer() int32 {
+	if x != nil && x.PricePerPlayer != nil {
+		return *x.PricePerPlayer
+	}
+	return 0
+}
+
+func (x *CreateEventRequest) GetAccessScope() string {
+	if x != nil && x.AccessScope != nil {
+		return *x.AccessScope
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetClubId() string {
+	if x != nil && x.ClubId != nil {
+		return *x.ClubId
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetTrainingFormat() string {
+	if x != nil && x.TrainingFormat != nil {
+		return *x.TrainingFormat
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetDistrict() string {
+	if x != nil && x.District != nil {
+		return *x.District
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetAllowedUserIds() []string {
+	if x != nil {
+		return x.AllowedUserIds
+	}
+	return nil
+}
+
+func (x *CreateEventRequest) GetArenaName() string {
+	if x != nil && x.ArenaName != nil {
+		return *x.ArenaName
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetOrganizerDisplayName() string {
+	if x != nil && x.OrganizerDisplayName != nil {
+		return *x.OrganizerDisplayName
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetOrganizerPhone() string {
+	if x != nil && x.OrganizerPhone != nil {
+		return *x.OrganizerPhone
+	}
+	return ""
+}
+
+type GetEventRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEventRequest) Reset() {
+	*x = GetEventRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEventRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEventRequest) ProtoMessage() {}
+
+func (x *GetEventRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEventRequest.ProtoReflect.Descriptor instead.
+func (*GetEventRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetEventRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+type UpdateEventRequest struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	EventId              string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Type                 *string                `protobuf:"bytes,2,opt,name=type,proto3,oneof" json:"type,omitempty"`
+	Title                *string                `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	StartsAt             *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=starts_at,json=startsAt,proto3,oneof" json:"starts_at,omitempty"`
+	EndsAt               *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=ends_at,json=endsAt,proto3,oneof" json:"ends_at,omitempty"`
+	ArenaId              *string                `protobuf:"bytes,6,opt,name=arena_id,json=arenaId,proto3,oneof" json:"arena_id,omitempty"`
+	TeamId               *string                `protobuf:"bytes,7,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	RequiredSkillLevel   *string                `protobuf:"bytes,8,opt,name=required_skill_level,json=requiredSkillLevel,proto3,oneof" json:"required_skill_level,omitempty"`
+	RequiredSlots        []*RequiredSlot        `protobuf:"bytes,9,rep,name=required_slots,json=requiredSlots,proto3" json:"required_slots,omitempty"`
+	UpdateRequiredSlots  bool                   `protobuf:"varint,10,opt,name=update_required_slots,json=updateRequiredSlots,proto3" json:"update_required_slots,omitempty"`
+	PricePerPlayer       *int32                 `protobuf:"varint,11,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
+	AccessScope          *string                `protobuf:"bytes,12,opt,name=access_scope,json=accessScope,proto3,oneof" json:"access_scope,omitempty"`
+	ClubId               *string                `protobuf:"bytes,13,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
+	TrainingFormat       *string                `protobuf:"bytes,14,opt,name=training_format,json=trainingFormat,proto3,oneof" json:"training_format,omitempty"`
+	District             *string                `protobuf:"bytes,15,opt,name=district,proto3,oneof" json:"district,omitempty"`
+	AllowedUserIds       []string               `protobuf:"bytes,16,rep,name=allowed_user_ids,json=allowedUserIds,proto3" json:"allowed_user_ids,omitempty"`
+	UpdateAllowedUserIds bool                   `protobuf:"varint,17,opt,name=update_allowed_user_ids,json=updateAllowedUserIds,proto3" json:"update_allowed_user_ids,omitempty"`
+	ArenaName            *string                `protobuf:"bytes,18,opt,name=arena_name,json=arenaName,proto3,oneof" json:"arena_name,omitempty"`
+	OrganizerDisplayName *string                `protobuf:"bytes,19,opt,name=organizer_display_name,json=organizerDisplayName,proto3,oneof" json:"organizer_display_name,omitempty"`
+	OrganizerPhone       *string                `protobuf:"bytes,20,opt,name=organizer_phone,json=organizerPhone,proto3,oneof" json:"organizer_phone,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *UpdateEventRequest) Reset() {
+	*x = UpdateEventRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateEventRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateEventRequest) ProtoMessage() {}
+
+func (x *UpdateEventRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateEventRequest.ProtoReflect.Descriptor instead.
+func (*UpdateEventRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UpdateEventRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetType() string {
+	if x != nil && x.Type != nil {
+		return *x.Type
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetStartsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartsAt
+	}
+	return nil
+}
+
+func (x *UpdateEventRequest) GetEndsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndsAt
+	}
+	return nil
+}
+
+func (x *UpdateEventRequest) GetArenaId() string {
+	if x != nil && x.ArenaId != nil {
+		return *x.ArenaId
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetRequiredSkillLevel() string {
+	if x != nil && x.RequiredSkillLevel != nil {
+		return *x.RequiredSkillLevel
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetRequiredSlots() []*RequiredSlot {
+	if x != nil {
+		return x.RequiredSlots
+	}
+	return nil
+}
+
+func (x *UpdateEventRequest) GetUpdateRequiredSlots() bool {
+	if x != nil {
+		return x.UpdateRequiredSlots
+	}
+	return false
+}
+
+func (x *UpdateEventRequest) GetPricePerPlayer() int32 {
+	if x != nil && x.PricePerPlayer != nil {
+		return *x.PricePerPlayer
+	}
+	return 0
+}
+
+func (x *UpdateEventRequest) GetAccessScope() string {
+	if x != nil && x.AccessScope != nil {
+		return *x.AccessScope
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetClubId() string {
+	if x != nil && x.ClubId != nil {
+		return *x.ClubId
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetTrainingFormat() string {
+	if x != nil && x.TrainingFormat != nil {
+		return *x.TrainingFormat
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetDistrict() string {
+	if x != nil && x.District != nil {
+		return *x.District
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetAllowedUserIds() []string {
+	if x != nil {
+		return x.AllowedUserIds
+	}
+	return nil
+}
+
+func (x *UpdateEventRequest) GetUpdateAllowedUserIds() bool {
+	if x != nil {
+		return x.UpdateAllowedUserIds
+	}
+	return false
+}
+
+func (x *UpdateEventRequest) GetArenaName() string {
+	if x != nil && x.ArenaName != nil {
+		return *x.ArenaName
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetOrganizerDisplayName() string {
+	if x != nil && x.OrganizerDisplayName != nil {
+		return *x.OrganizerDisplayName
+	}
+	return ""
+}
+
+func (x *UpdateEventRequest) GetOrganizerPhone() string {
+	if x != nil && x.OrganizerPhone != nil {
+		return *x.OrganizerPhone
+	}
+	return ""
+}
+
+type GetCalendarRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Type             *string                `protobuf:"bytes,1,opt,name=type,proto3,oneof" json:"type,omitempty"`
+	AttendanceStatus *string                `protobuf:"bytes,2,opt,name=attendance_status,json=attendanceStatus,proto3,oneof" json:"attendance_status,omitempty"`
+	From             *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=from,proto3,oneof" json:"from,omitempty"`
+	To               *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=to,proto3,oneof" json:"to,omitempty"`
+	Limit            int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset           int32                  `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetCalendarRequest) Reset() {
+	*x = GetCalendarRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCalendarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCalendarRequest) ProtoMessage() {}
+
+func (x *GetCalendarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCalendarRequest.ProtoReflect.Descriptor instead.
+func (*GetCalendarRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetCalendarRequest) GetType() string {
+	if x != nil && x.Type != nil {
+		return *x.Type
+	}
+	return ""
+}
+
+func (x *GetCalendarRequest) GetAttendanceStatus() string {
+	if x != nil && x.AttendanceStatus != nil {
+		return *x.AttendanceStatus
+	}
+	return ""
+}
+
+func (x *GetCalendarRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *GetCalendarRequest) GetTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.To
+	}
+	return nil
+}
+
+func (x *GetCalendarRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetCalendarRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListTeamCalendarRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListTeamCalendarRequest) Reset() {
+	*x = ListTeamCalendarRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTeamCalendarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTeamCalendarRequest) ProtoMessage() {}
+
+func (x *ListTeamCalendarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTeamCalendarRequest.ProtoReflect.Descriptor instead.
+func (*ListTeamCalendarRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListTeamCalendarRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *ListTeamCalendarRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListTeamCalendarRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListTeamTrainingEventsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListTeamTrainingEventsRequest) Reset() {
+	*x = ListTeamTrainingEventsRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListTeamTrainingEventsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTeamTrainingEventsRequest) ProtoMessage() {}
+
+func (x *ListTeamTrainingEventsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTeamTrainingEventsRequest.ProtoReflect.Descriptor instead.
+func (*ListTeamTrainingEventsRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListTeamTrainingEventsRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *ListTeamTrainingEventsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListTeamTrainingEventsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListClubCalendarRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ClubId        string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListClubCalendarRequest) Reset() {
+	*x = ListClubCalendarRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListClubCalendarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListClubCalendarRequest) ProtoMessage() {}
+
+func (x *ListClubCalendarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListClubCalendarRequest.ProtoReflect.Descriptor instead.
+func (*ListClubCalendarRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListClubCalendarRequest) GetClubId() string {
+	if x != nil {
+		return x.ClubId
+	}
+	return ""
+}
+
+func (x *ListClubCalendarRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListClubCalendarRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListPrivateClubTrainingsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ClubId        string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPrivateClubTrainingsRequest) Reset() {
+	*x = ListPrivateClubTrainingsRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPrivateClubTrainingsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPrivateClubTrainingsRequest) ProtoMessage() {}
+
+func (x *ListPrivateClubTrainingsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPrivateClubTrainingsRequest.ProtoReflect.Descriptor instead.
+func (*ListPrivateClubTrainingsRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ListPrivateClubTrainingsRequest) GetClubId() string {
+	if x != nil {
+		return x.ClubId
+	}
+	return ""
+}
+
+func (x *ListPrivateClubTrainingsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListPrivateClubTrainingsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type CreatePrivateClubTrainingRequest struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	ClubId               string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	Title                string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	StartsAt             *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
+	EndsAt               *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
+	ArenaId              string                 `protobuf:"bytes,5,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	TeamId               *string                `protobuf:"bytes,6,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	RequiredSkillLevel   *string                `protobuf:"bytes,7,opt,name=required_skill_level,json=requiredSkillLevel,proto3,oneof" json:"required_skill_level,omitempty"`
+	ArenaName            *string                `protobuf:"bytes,8,opt,name=arena_name,json=arenaName,proto3,oneof" json:"arena_name,omitempty"`
+	OrganizerDisplayName *string                `protobuf:"bytes,9,opt,name=organizer_display_name,json=organizerDisplayName,proto3,oneof" json:"organizer_display_name,omitempty"`
+	OrganizerPhone       *string                `protobuf:"bytes,10,opt,name=organizer_phone,json=organizerPhone,proto3,oneof" json:"organizer_phone,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *CreatePrivateClubTrainingRequest) Reset() {
+	*x = CreatePrivateClubTrainingRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreatePrivateClubTrainingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreatePrivateClubTrainingRequest) ProtoMessage() {}
+
+func (x *CreatePrivateClubTrainingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreatePrivateClubTrainingRequest.ProtoReflect.Descriptor instead.
+func (*CreatePrivateClubTrainingRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetClubId() string {
+	if x != nil {
+		return x.ClubId
+	}
+	return ""
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetStartsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartsAt
+	}
+	return nil
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetEndsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndsAt
+	}
+	return nil
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
+	}
+	return ""
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetRequiredSkillLevel() string {
+	if x != nil && x.RequiredSkillLevel != nil {
+		return *x.RequiredSkillLevel
+	}
+	return ""
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetArenaName() string {
+	if x != nil && x.ArenaName != nil {
+		return *x.ArenaName
+	}
+	return ""
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetOrganizerDisplayName() string {
+	if x != nil && x.OrganizerDisplayName != nil {
+		return *x.OrganizerDisplayName
+	}
+	return ""
+}
+
+func (x *CreatePrivateClubTrainingRequest) GetOrganizerPhone() string {
+	if x != nil && x.OrganizerPhone != nil {
+		return *x.OrganizerPhone
+	}
+	return ""
+}
+
+type UpdateAttendanceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	DisplayName   *string                `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3,oneof" json:"display_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateAttendanceRequest) Reset() {
+	*x = UpdateAttendanceRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAttendanceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAttendanceRequest) ProtoMessage() {}
+
+func (x *UpdateAttendanceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAttendanceRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAttendanceRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UpdateAttendanceRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *UpdateAttendanceRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *UpdateAttendanceRequest) GetDisplayName() string {
+	if x != nil && x.DisplayName != nil {
+		return *x.DisplayName
+	}
+	return ""
+}
+
+type GetRosterStatusRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRosterStatusRequest) Reset() {
+	*x = GetRosterStatusRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRosterStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRosterStatusRequest) ProtoMessage() {}
+
+func (x *GetRosterStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRosterStatusRequest.ProtoReflect.Descriptor instead.
+func (*GetRosterStatusRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetRosterStatusRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+type RosterStatusSummary struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Going         int32                  `protobuf:"varint,1,opt,name=going,proto3" json:"going,omitempty"`
+	NotGoing      int32                  `protobuf:"varint,2,opt,name=not_going,json=notGoing,proto3" json:"not_going,omitempty"`
+	Maybe         int32                  `protobuf:"varint,3,opt,name=maybe,proto3" json:"maybe,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RosterStatusSummary) Reset() {
+	*x = RosterStatusSummary{}
+	mi := &file_training_v1_training_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RosterStatusSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RosterStatusSummary) ProtoMessage() {}
+
+func (x *RosterStatusSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RosterStatusSummary.ProtoReflect.Descriptor instead.
+func (*RosterStatusSummary) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *RosterStatusSummary) GetGoing() int32 {
+	if x != nil {
+		return x.Going
+	}
+	return 0
+}
+
+func (x *RosterStatusSummary) GetNotGoing() int32 {
+	if x != nil {
+		return x.NotGoing
+	}
+	return 0
+}
+
+func (x *RosterStatusSummary) GetMaybe() int32 {
+	if x != nil {
+		return x.Maybe
+	}
+	return 0
+}
+
+type RosterStatus struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Deficits      []*RequiredSlot        `protobuf:"bytes,2,rep,name=deficits,proto3" json:"deficits,omitempty"`
+	Summary       *RosterStatusSummary   `protobuf:"bytes,3,opt,name=summary,proto3" json:"summary,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RosterStatus) Reset() {
+	*x = RosterStatus{}
+	mi := &file_training_v1_training_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RosterStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RosterStatus) ProtoMessage() {}
+
+func (x *RosterStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RosterStatus.ProtoReflect.Descriptor instead.
+func (*RosterStatus) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *RosterStatus) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *RosterStatus) GetDeficits() []*RequiredSlot {
+	if x != nil {
+		return x.Deficits
+	}
+	return nil
+}
+
+func (x *RosterStatus) GetSummary() *RosterStatusSummary {
+	if x != nil {
+		return x.Summary
+	}
+	return nil
+}
+
+type EventRsvpPlayer struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	Position      string                 `protobuf:"bytes,3,opt,name=position,proto3" json:"position,omitempty"`
+	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	DeclineReason *string                `protobuf:"bytes,5,opt,name=decline_reason,json=declineReason,proto3,oneof" json:"decline_reason,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventRsvpPlayer) Reset() {
+	*x = EventRsvpPlayer{}
+	mi := &file_training_v1_training_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventRsvpPlayer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventRsvpPlayer) ProtoMessage() {}
+
+func (x *EventRsvpPlayer) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventRsvpPlayer.ProtoReflect.Descriptor instead.
+func (*EventRsvpPlayer) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *EventRsvpPlayer) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *EventRsvpPlayer) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *EventRsvpPlayer) GetPosition() string {
+	if x != nil {
+		return x.Position
+	}
+	return ""
+}
+
+func (x *EventRsvpPlayer) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *EventRsvpPlayer) GetDeclineReason() string {
+	if x != nil && x.DeclineReason != nil {
+		return *x.DeclineReason
+	}
+	return ""
+}
+
+func (x *EventRsvpPlayer) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+type EventRsvpBoard struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	TeamName      string                 `protobuf:"bytes,3,opt,name=team_name,json=teamName,proto3" json:"team_name,omitempty"`
+	LeagueName    string                 `protobuf:"bytes,4,opt,name=league_name,json=leagueName,proto3" json:"league_name,omitempty"`
+	OpponentName  string                 `protobuf:"bytes,5,opt,name=opponent_name,json=opponentName,proto3" json:"opponent_name,omitempty"`
+	StartsAt      *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
+	ArenaName     string                 `protobuf:"bytes,7,opt,name=arena_name,json=arenaName,proto3" json:"arena_name,omitempty"`
+	Players       []*EventRsvpPlayer     `protobuf:"bytes,8,rep,name=players,proto3" json:"players,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventRsvpBoard) Reset() {
+	*x = EventRsvpBoard{}
+	mi := &file_training_v1_training_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventRsvpBoard) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventRsvpBoard) ProtoMessage() {}
+
+func (x *EventRsvpBoard) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventRsvpBoard.ProtoReflect.Descriptor instead.
+func (*EventRsvpBoard) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *EventRsvpBoard) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *EventRsvpBoard) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *EventRsvpBoard) GetTeamName() string {
+	if x != nil {
+		return x.TeamName
+	}
+	return ""
+}
+
+func (x *EventRsvpBoard) GetLeagueName() string {
+	if x != nil {
+		return x.LeagueName
+	}
+	return ""
+}
+
+func (x *EventRsvpBoard) GetOpponentName() string {
+	if x != nil {
+		return x.OpponentName
+	}
+	return ""
+}
+
+func (x *EventRsvpBoard) GetStartsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartsAt
+	}
+	return nil
+}
+
+func (x *EventRsvpBoard) GetArenaName() string {
+	if x != nil {
+		return x.ArenaName
+	}
+	return ""
+}
+
+func (x *EventRsvpBoard) GetPlayers() []*EventRsvpPlayer {
+	if x != nil {
+		return x.Players
+	}
+	return nil
+}
+
+type GetEventRsvpRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEventRsvpRequest) Reset() {
+	*x = GetEventRsvpRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEventRsvpRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEventRsvpRequest) ProtoMessage() {}
+
+func (x *GetEventRsvpRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEventRsvpRequest.ProtoReflect.Descriptor instead.
+func (*GetEventRsvpRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetEventRsvpRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+type UpdateEventRsvpRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	DeclineReason *string                `protobuf:"bytes,3,opt,name=decline_reason,json=declineReason,proto3,oneof" json:"decline_reason,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateEventRsvpRequest) Reset() {
+	*x = UpdateEventRsvpRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateEventRsvpRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateEventRsvpRequest) ProtoMessage() {}
+
+func (x *UpdateEventRsvpRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateEventRsvpRequest.ProtoReflect.Descriptor instead.
+func (*UpdateEventRsvpRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *UpdateEventRsvpRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *UpdateEventRsvpRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *UpdateEventRsvpRequest) GetDeclineReason() string {
+	if x != nil && x.DeclineReason != nil {
+		return *x.DeclineReason
+	}
+	return ""
+}
+
+type EventRsvp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Status        string                 `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	DeclineReason *string                `protobuf:"bytes,4,opt,name=decline_reason,json=declineReason,proto3,oneof" json:"decline_reason,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventRsvp) Reset() {
+	*x = EventRsvp{}
+	mi := &file_training_v1_training_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventRsvp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventRsvp) ProtoMessage() {}
+
+func (x *EventRsvp) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventRsvp.ProtoReflect.Descriptor instead.
+func (*EventRsvp) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *EventRsvp) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *EventRsvp) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *EventRsvp) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *EventRsvp) GetDeclineReason() string {
+	if x != nil && x.DeclineReason != nil {
+		return *x.DeclineReason
+	}
+	return ""
+}
+
+func (x *EventRsvp) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 type LineupAssignment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Position      string                 `protobuf:"bytes,2,opt,name=position,proto3" json:"position,omitempty"`
 	Side          string                 `protobuf:"bytes,3,opt,name=side,proto3" json:"side,omitempty"`
 	Line          *int32                 `protobuf:"varint,4,opt,name=line,proto3,oneof" json:"line,omitempty"`
+	DisplayName   *string                `protobuf:"bytes,5,opt,name=display_name,json=displayName,proto3,oneof" json:"display_name,omitempty"`
+	EventId       *string                `protobuf:"bytes,6,opt,name=event_id,json=eventId,proto3,oneof" json:"event_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LineupAssignment) Reset() {
 	*x = LineupAssignment{}
-	mi := &file_training_v1_training_proto_msgTypes[0]
+	mi := &file_training_v1_training_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +2006,7 @@ func (x *LineupAssignment) String() string {
 func (*LineupAssignment) ProtoMessage() {}
 
 func (x *LineupAssignment) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[0]
+	mi := &file_training_v1_training_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +2019,7 @@ func (x *LineupAssignment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LineupAssignment.ProtoReflect.Descriptor instead.
 func (*LineupAssignment) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{0}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *LineupAssignment) GetUserId() string {
@@ -92,33 +2050,206 @@ func (x *LineupAssignment) GetLine() int32 {
 	return 0
 }
 
+func (x *LineupAssignment) GetDisplayName() string {
+	if x != nil && x.DisplayName != nil {
+		return *x.DisplayName
+	}
+	return ""
+}
+
+func (x *LineupAssignment) GetEventId() string {
+	if x != nil && x.EventId != nil {
+		return *x.EventId
+	}
+	return ""
+}
+
+type TrainingLineup struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Assignments   []*LineupAssignment    `protobuf:"bytes,1,rep,name=assignments,proto3" json:"assignments,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TrainingLineup) Reset() {
+	*x = TrainingLineup{}
+	mi := &file_training_v1_training_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TrainingLineup) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TrainingLineup) ProtoMessage() {}
+
+func (x *TrainingLineup) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TrainingLineup.ProtoReflect.Descriptor instead.
+func (*TrainingLineup) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *TrainingLineup) GetAssignments() []*LineupAssignment {
+	if x != nil {
+		return x.Assignments
+	}
+	return nil
+}
+
+type GetTrainingLineupRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	EventId       string                 `protobuf:"bytes,2,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTrainingLineupRequest) Reset() {
+	*x = GetTrainingLineupRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTrainingLineupRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTrainingLineupRequest) ProtoMessage() {}
+
+func (x *GetTrainingLineupRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTrainingLineupRequest.ProtoReflect.Descriptor instead.
+func (*GetTrainingLineupRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetTrainingLineupRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *GetTrainingLineupRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+type ReplaceTrainingLineupRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	EventId       string                 `protobuf:"bytes,2,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Assignments   []*LineupAssignment    `protobuf:"bytes,3,rep,name=assignments,proto3" json:"assignments,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReplaceTrainingLineupRequest) Reset() {
+	*x = ReplaceTrainingLineupRequest{}
+	mi := &file_training_v1_training_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReplaceTrainingLineupRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReplaceTrainingLineupRequest) ProtoMessage() {}
+
+func (x *ReplaceTrainingLineupRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReplaceTrainingLineupRequest.ProtoReflect.Descriptor instead.
+func (*ReplaceTrainingLineupRequest) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ReplaceTrainingLineupRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *ReplaceTrainingLineupRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *ReplaceTrainingLineupRequest) GetAssignments() []*LineupAssignment {
+	if x != nil {
+		return x.Assignments
+	}
+	return nil
+}
+
 type TrainingDraft struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ClubId              string                 `protobuf:"bytes,2,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
-	TeamId              *string                `protobuf:"bytes,3,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
-	AuthorUserId        string                 `protobuf:"bytes,4,opt,name=author_user_id,json=authorUserId,proto3" json:"author_user_id,omitempty"`
-	Status              string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
-	Title               string                 `protobuf:"bytes,6,opt,name=title,proto3" json:"title,omitempty"`
-	StartsAt            *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
-	EndsAt              *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
-	ArenaId             *string                `protobuf:"bytes,9,opt,name=arena_id,json=arenaId,proto3,oneof" json:"arena_id,omitempty"`
-	SkillLevel          *string                `protobuf:"bytes,10,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
-	Format              *string                `protobuf:"bytes,11,opt,name=format,proto3,oneof" json:"format,omitempty"`
-	PricePerPlayer      *int32                 `protobuf:"varint,12,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
-	RequiredSlots       string                 `protobuf:"bytes,13,opt,name=required_slots,json=requiredSlots,proto3" json:"required_slots,omitempty"`
-	LineupAssignments   []*LineupAssignment    `protobuf:"bytes,14,rep,name=lineup_assignments,json=lineupAssignments,proto3" json:"lineup_assignments,omitempty"`
-	RejectReason        *string                `protobuf:"bytes,15,opt,name=reject_reason,json=rejectReason,proto3,oneof" json:"reject_reason,omitempty"`
-	PublishedTrainingId *string                `protobuf:"bytes,16,opt,name=published_training_id,json=publishedTrainingId,proto3,oneof" json:"published_training_id,omitempty"`
-	CreatedAt           *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt           *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ClubId           string                 `protobuf:"bytes,2,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	TeamId           *string                `protobuf:"bytes,3,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	CreatedByUserId  string                 `protobuf:"bytes,4,opt,name=created_by_user_id,json=createdByUserId,proto3" json:"created_by_user_id,omitempty"`
+	Status           string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	Title            string                 `protobuf:"bytes,6,opt,name=title,proto3" json:"title,omitempty"`
+	StartsAt         *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
+	EndsAt           *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
+	ArenaId          *string                `protobuf:"bytes,9,opt,name=arena_id,json=arenaId,proto3,oneof" json:"arena_id,omitempty"`
+	SkillLevel       *string                `protobuf:"bytes,10,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
+	Format           *string                `protobuf:"bytes,11,opt,name=format,proto3,oneof" json:"format,omitempty"`
+	PricePerPlayer   *int32                 `protobuf:"varint,12,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
+	RequiredSlots    string                 `protobuf:"bytes,13,opt,name=required_slots,json=requiredSlots,proto3" json:"required_slots,omitempty"`
+	Assignments      []*LineupAssignment    `protobuf:"bytes,14,rep,name=assignments,proto3" json:"assignments,omitempty"`
+	RejectedReason   *string                `protobuf:"bytes,15,opt,name=rejected_reason,json=rejectedReason,proto3,oneof" json:"rejected_reason,omitempty"`
+	EventId          *string                `protobuf:"bytes,16,opt,name=event_id,json=eventId,proto3,oneof" json:"event_id,omitempty"`
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	CreatedByIsCoach bool                   `protobuf:"varint,19,opt,name=created_by_is_coach,json=createdByIsCoach,proto3" json:"created_by_is_coach,omitempty"`
+	ApprovedByUserId *string                `protobuf:"bytes,20,opt,name=approved_by_user_id,json=approvedByUserId,proto3,oneof" json:"approved_by_user_id,omitempty"`
+	Note             *string                `protobuf:"bytes,21,opt,name=note,proto3,oneof" json:"note,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *TrainingDraft) Reset() {
 	*x = TrainingDraft{}
-	mi := &file_training_v1_training_proto_msgTypes[1]
+	mi := &file_training_v1_training_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -130,7 +2261,7 @@ func (x *TrainingDraft) String() string {
 func (*TrainingDraft) ProtoMessage() {}
 
 func (x *TrainingDraft) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[1]
+	mi := &file_training_v1_training_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -143,7 +2274,7 @@ func (x *TrainingDraft) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrainingDraft.ProtoReflect.Descriptor instead.
 func (*TrainingDraft) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{1}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *TrainingDraft) GetId() string {
@@ -167,9 +2298,9 @@ func (x *TrainingDraft) GetTeamId() string {
 	return ""
 }
 
-func (x *TrainingDraft) GetAuthorUserId() string {
+func (x *TrainingDraft) GetCreatedByUserId() string {
 	if x != nil {
-		return x.AuthorUserId
+		return x.CreatedByUserId
 	}
 	return ""
 }
@@ -237,23 +2368,23 @@ func (x *TrainingDraft) GetRequiredSlots() string {
 	return ""
 }
 
-func (x *TrainingDraft) GetLineupAssignments() []*LineupAssignment {
+func (x *TrainingDraft) GetAssignments() []*LineupAssignment {
 	if x != nil {
-		return x.LineupAssignments
+		return x.Assignments
 	}
 	return nil
 }
 
-func (x *TrainingDraft) GetRejectReason() string {
-	if x != nil && x.RejectReason != nil {
-		return *x.RejectReason
+func (x *TrainingDraft) GetRejectedReason() string {
+	if x != nil && x.RejectedReason != nil {
+		return *x.RejectedReason
 	}
 	return ""
 }
 
-func (x *TrainingDraft) GetPublishedTrainingId() string {
-	if x != nil && x.PublishedTrainingId != nil {
-		return *x.PublishedTrainingId
+func (x *TrainingDraft) GetEventId() string {
+	if x != nil && x.EventId != nil {
+		return *x.EventId
 	}
 	return ""
 }
@@ -272,10 +2403,31 @@ func (x *TrainingDraft) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *TrainingDraft) GetCreatedByIsCoach() bool {
+	if x != nil {
+		return x.CreatedByIsCoach
+	}
+	return false
+}
+
+func (x *TrainingDraft) GetApprovedByUserId() string {
+	if x != nil && x.ApprovedByUserId != nil {
+		return *x.ApprovedByUserId
+	}
+	return ""
+}
+
+func (x *TrainingDraft) GetNote() string {
+	if x != nil && x.Note != nil {
+		return *x.Note
+	}
+	return ""
+}
+
 type ListTrainingDraftsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ClubId        string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
-	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	Status        *string                `protobuf:"bytes,2,opt,name=status,proto3,oneof" json:"status,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -284,7 +2436,7 @@ type ListTrainingDraftsRequest struct {
 
 func (x *ListTrainingDraftsRequest) Reset() {
 	*x = ListTrainingDraftsRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[2]
+	mi := &file_training_v1_training_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -296,7 +2448,7 @@ func (x *ListTrainingDraftsRequest) String() string {
 func (*ListTrainingDraftsRequest) ProtoMessage() {}
 
 func (x *ListTrainingDraftsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[2]
+	mi := &file_training_v1_training_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -309,7 +2461,7 @@ func (x *ListTrainingDraftsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTrainingDraftsRequest.ProtoReflect.Descriptor instead.
 func (*ListTrainingDraftsRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{2}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ListTrainingDraftsRequest) GetClubId() string {
@@ -320,8 +2472,8 @@ func (x *ListTrainingDraftsRequest) GetClubId() string {
 }
 
 func (x *ListTrainingDraftsRequest) GetStatus() string {
-	if x != nil {
-		return x.Status
+	if x != nil && x.Status != nil {
+		return *x.Status
 	}
 	return ""
 }
@@ -352,7 +2504,7 @@ type ListTrainingDraftsResponse struct {
 
 func (x *ListTrainingDraftsResponse) Reset() {
 	*x = ListTrainingDraftsResponse{}
-	mi := &file_training_v1_training_proto_msgTypes[3]
+	mi := &file_training_v1_training_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -364,7 +2516,7 @@ func (x *ListTrainingDraftsResponse) String() string {
 func (*ListTrainingDraftsResponse) ProtoMessage() {}
 
 func (x *ListTrainingDraftsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[3]
+	mi := &file_training_v1_training_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -377,7 +2529,7 @@ func (x *ListTrainingDraftsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTrainingDraftsResponse.ProtoReflect.Descriptor instead.
 func (*ListTrainingDraftsResponse) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{3}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *ListTrainingDraftsResponse) GetItems() []*TrainingDraft {
@@ -409,25 +2561,26 @@ func (x *ListTrainingDraftsResponse) GetOffset() int32 {
 }
 
 type CreateTrainingDraftRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	ClubId            string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
-	Title             string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	StartsAt          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
-	EndsAt            *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
-	TeamId            *string                `protobuf:"bytes,5,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
-	ArenaId           *string                `protobuf:"bytes,6,opt,name=arena_id,json=arenaId,proto3,oneof" json:"arena_id,omitempty"`
-	SkillLevel        *string                `protobuf:"bytes,7,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
-	Format            *string                `protobuf:"bytes,8,opt,name=format,proto3,oneof" json:"format,omitempty"`
-	PricePerPlayer    *int32                 `protobuf:"varint,9,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
-	RequiredSlots     string                 `protobuf:"bytes,10,opt,name=required_slots,json=requiredSlots,proto3" json:"required_slots,omitempty"`
-	LineupAssignments []*LineupAssignment    `protobuf:"bytes,11,rep,name=lineup_assignments,json=lineupAssignments,proto3" json:"lineup_assignments,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ClubId         string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	Title          string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	StartsAt       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
+	EndsAt         *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
+	TeamId         *string                `protobuf:"bytes,5,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	ArenaId        *string                `protobuf:"bytes,6,opt,name=arena_id,json=arenaId,proto3,oneof" json:"arena_id,omitempty"`
+	SkillLevel     *string                `protobuf:"bytes,7,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
+	Format         *string                `protobuf:"bytes,8,opt,name=format,proto3,oneof" json:"format,omitempty"`
+	PricePerPlayer *int32                 `protobuf:"varint,9,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
+	RequiredSlots  *string                `protobuf:"bytes,10,opt,name=required_slots,json=requiredSlots,proto3,oneof" json:"required_slots,omitempty"`
+	Assignments    []*LineupAssignment    `protobuf:"bytes,11,rep,name=assignments,proto3" json:"assignments,omitempty"`
+	Note           *string                `protobuf:"bytes,12,opt,name=note,proto3,oneof" json:"note,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *CreateTrainingDraftRequest) Reset() {
 	*x = CreateTrainingDraftRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[4]
+	mi := &file_training_v1_training_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -439,7 +2592,7 @@ func (x *CreateTrainingDraftRequest) String() string {
 func (*CreateTrainingDraftRequest) ProtoMessage() {}
 
 func (x *CreateTrainingDraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[4]
+	mi := &file_training_v1_training_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -452,7 +2605,7 @@ func (x *CreateTrainingDraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTrainingDraftRequest.ProtoReflect.Descriptor instead.
 func (*CreateTrainingDraftRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{4}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *CreateTrainingDraftRequest) GetClubId() string {
@@ -519,17 +2672,24 @@ func (x *CreateTrainingDraftRequest) GetPricePerPlayer() int32 {
 }
 
 func (x *CreateTrainingDraftRequest) GetRequiredSlots() string {
-	if x != nil {
-		return x.RequiredSlots
+	if x != nil && x.RequiredSlots != nil {
+		return *x.RequiredSlots
 	}
 	return ""
 }
 
-func (x *CreateTrainingDraftRequest) GetLineupAssignments() []*LineupAssignment {
+func (x *CreateTrainingDraftRequest) GetAssignments() []*LineupAssignment {
 	if x != nil {
-		return x.LineupAssignments
+		return x.Assignments
 	}
 	return nil
+}
+
+func (x *CreateTrainingDraftRequest) GetNote() string {
+	if x != nil && x.Note != nil {
+		return *x.Note
+	}
+	return ""
 }
 
 type GetTrainingDraftRequest struct {
@@ -542,7 +2702,7 @@ type GetTrainingDraftRequest struct {
 
 func (x *GetTrainingDraftRequest) Reset() {
 	*x = GetTrainingDraftRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[5]
+	mi := &file_training_v1_training_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -554,7 +2714,7 @@ func (x *GetTrainingDraftRequest) String() string {
 func (*GetTrainingDraftRequest) ProtoMessage() {}
 
 func (x *GetTrainingDraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[5]
+	mi := &file_training_v1_training_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -567,7 +2727,7 @@ func (x *GetTrainingDraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTrainingDraftRequest.ProtoReflect.Descriptor instead.
 func (*GetTrainingDraftRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{5}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *GetTrainingDraftRequest) GetClubId() string {
@@ -585,27 +2745,28 @@ func (x *GetTrainingDraftRequest) GetDraftId() string {
 }
 
 type UpdateTrainingDraftRequest struct {
-	state                   protoimpl.MessageState `protogen:"open.v1"`
-	ClubId                  string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
-	DraftId                 string                 `protobuf:"bytes,2,opt,name=draft_id,json=draftId,proto3" json:"draft_id,omitempty"`
-	Title                   *string                `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
-	StartsAt                *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=starts_at,json=startsAt,proto3,oneof" json:"starts_at,omitempty"`
-	EndsAt                  *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=ends_at,json=endsAt,proto3,oneof" json:"ends_at,omitempty"`
-	TeamId                  *string                `protobuf:"bytes,6,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
-	ArenaId                 *string                `protobuf:"bytes,7,opt,name=arena_id,json=arenaId,proto3,oneof" json:"arena_id,omitempty"`
-	SkillLevel              *string                `protobuf:"bytes,8,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
-	Format                  *string                `protobuf:"bytes,9,opt,name=format,proto3,oneof" json:"format,omitempty"`
-	PricePerPlayer          *int32                 `protobuf:"varint,10,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
-	RequiredSlots           *string                `protobuf:"bytes,11,opt,name=required_slots,json=requiredSlots,proto3,oneof" json:"required_slots,omitempty"`
-	LineupAssignments       []*LineupAssignment    `protobuf:"bytes,12,rep,name=lineup_assignments,json=lineupAssignments,proto3" json:"lineup_assignments,omitempty"`
-	UpdateLineupAssignments bool                   `protobuf:"varint,13,opt,name=update_lineup_assignments,json=updateLineupAssignments,proto3" json:"update_lineup_assignments,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	ClubId            string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	DraftId           string                 `protobuf:"bytes,2,opt,name=draft_id,json=draftId,proto3" json:"draft_id,omitempty"`
+	Title             *string                `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	StartsAt          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=starts_at,json=startsAt,proto3,oneof" json:"starts_at,omitempty"`
+	EndsAt            *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=ends_at,json=endsAt,proto3,oneof" json:"ends_at,omitempty"`
+	TeamId            *string                `protobuf:"bytes,6,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	ArenaId           *string                `protobuf:"bytes,7,opt,name=arena_id,json=arenaId,proto3,oneof" json:"arena_id,omitempty"`
+	SkillLevel        *string                `protobuf:"bytes,8,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
+	Format            *string                `protobuf:"bytes,9,opt,name=format,proto3,oneof" json:"format,omitempty"`
+	PricePerPlayer    *int32                 `protobuf:"varint,10,opt,name=price_per_player,json=pricePerPlayer,proto3,oneof" json:"price_per_player,omitempty"`
+	RequiredSlots     *string                `protobuf:"bytes,11,opt,name=required_slots,json=requiredSlots,proto3,oneof" json:"required_slots,omitempty"`
+	Assignments       []*LineupAssignment    `protobuf:"bytes,12,rep,name=assignments,proto3" json:"assignments,omitempty"`
+	UpdateAssignments bool                   `protobuf:"varint,13,opt,name=update_assignments,json=updateAssignments,proto3" json:"update_assignments,omitempty"`
+	Note              *string                `protobuf:"bytes,14,opt,name=note,proto3,oneof" json:"note,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *UpdateTrainingDraftRequest) Reset() {
 	*x = UpdateTrainingDraftRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[6]
+	mi := &file_training_v1_training_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -617,7 +2778,7 @@ func (x *UpdateTrainingDraftRequest) String() string {
 func (*UpdateTrainingDraftRequest) ProtoMessage() {}
 
 func (x *UpdateTrainingDraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[6]
+	mi := &file_training_v1_training_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -630,7 +2791,7 @@ func (x *UpdateTrainingDraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTrainingDraftRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTrainingDraftRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{6}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *UpdateTrainingDraftRequest) GetClubId() string {
@@ -710,18 +2871,25 @@ func (x *UpdateTrainingDraftRequest) GetRequiredSlots() string {
 	return ""
 }
 
-func (x *UpdateTrainingDraftRequest) GetLineupAssignments() []*LineupAssignment {
+func (x *UpdateTrainingDraftRequest) GetAssignments() []*LineupAssignment {
 	if x != nil {
-		return x.LineupAssignments
+		return x.Assignments
 	}
 	return nil
 }
 
-func (x *UpdateTrainingDraftRequest) GetUpdateLineupAssignments() bool {
+func (x *UpdateTrainingDraftRequest) GetUpdateAssignments() bool {
 	if x != nil {
-		return x.UpdateLineupAssignments
+		return x.UpdateAssignments
 	}
 	return false
+}
+
+func (x *UpdateTrainingDraftRequest) GetNote() string {
+	if x != nil && x.Note != nil {
+		return *x.Note
+	}
+	return ""
 }
 
 type SubmitTrainingDraftRequest struct {
@@ -734,7 +2902,7 @@ type SubmitTrainingDraftRequest struct {
 
 func (x *SubmitTrainingDraftRequest) Reset() {
 	*x = SubmitTrainingDraftRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[7]
+	mi := &file_training_v1_training_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -746,7 +2914,7 @@ func (x *SubmitTrainingDraftRequest) String() string {
 func (*SubmitTrainingDraftRequest) ProtoMessage() {}
 
 func (x *SubmitTrainingDraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[7]
+	mi := &file_training_v1_training_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -759,7 +2927,7 @@ func (x *SubmitTrainingDraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubmitTrainingDraftRequest.ProtoReflect.Descriptor instead.
 func (*SubmitTrainingDraftRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{7}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *SubmitTrainingDraftRequest) GetClubId() string {
@@ -786,7 +2954,7 @@ type ApproveTrainingDraftRequest struct {
 
 func (x *ApproveTrainingDraftRequest) Reset() {
 	*x = ApproveTrainingDraftRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[8]
+	mi := &file_training_v1_training_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -798,7 +2966,7 @@ func (x *ApproveTrainingDraftRequest) String() string {
 func (*ApproveTrainingDraftRequest) ProtoMessage() {}
 
 func (x *ApproveTrainingDraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[8]
+	mi := &file_training_v1_training_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -811,7 +2979,7 @@ func (x *ApproveTrainingDraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApproveTrainingDraftRequest.ProtoReflect.Descriptor instead.
 func (*ApproveTrainingDraftRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{8}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *ApproveTrainingDraftRequest) GetClubId() string {
@@ -839,7 +3007,7 @@ type RejectTrainingDraftRequest struct {
 
 func (x *RejectTrainingDraftRequest) Reset() {
 	*x = RejectTrainingDraftRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[9]
+	mi := &file_training_v1_training_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -851,7 +3019,7 @@ func (x *RejectTrainingDraftRequest) String() string {
 func (*RejectTrainingDraftRequest) ProtoMessage() {}
 
 func (x *RejectTrainingDraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[9]
+	mi := &file_training_v1_training_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -864,7 +3032,7 @@ func (x *RejectTrainingDraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RejectTrainingDraftRequest.ProtoReflect.Descriptor instead.
 func (*RejectTrainingDraftRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{9}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *RejectTrainingDraftRequest) GetClubId() string {
@@ -898,7 +3066,7 @@ type PublishTrainingDraftRequest struct {
 
 func (x *PublishTrainingDraftRequest) Reset() {
 	*x = PublishTrainingDraftRequest{}
-	mi := &file_training_v1_training_proto_msgTypes[10]
+	mi := &file_training_v1_training_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -910,7 +3078,7 @@ func (x *PublishTrainingDraftRequest) String() string {
 func (*PublishTrainingDraftRequest) ProtoMessage() {}
 
 func (x *PublishTrainingDraftRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_training_v1_training_proto_msgTypes[10]
+	mi := &file_training_v1_training_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -923,7 +3091,7 @@ func (x *PublishTrainingDraftRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishTrainingDraftRequest.ProtoReflect.Descriptor instead.
 func (*PublishTrainingDraftRequest) Descriptor() ([]byte, []int) {
-	return file_training_v1_training_proto_rawDescGZIP(), []int{10}
+	return file_training_v1_training_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *PublishTrainingDraftRequest) GetClubId() string {
@@ -940,22 +3108,340 @@ func (x *PublishTrainingDraftRequest) GetDraftId() string {
 	return ""
 }
 
+type PublishTrainingDraftResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Draft         *TrainingDraft         `protobuf:"bytes,1,opt,name=draft,proto3" json:"draft,omitempty"`
+	Event         *Event                 `protobuf:"bytes,2,opt,name=event,proto3" json:"event,omitempty"`
+	MessageIds    []string               `protobuf:"bytes,3,rep,name=message_ids,json=messageIds,proto3" json:"message_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PublishTrainingDraftResponse) Reset() {
+	*x = PublishTrainingDraftResponse{}
+	mi := &file_training_v1_training_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PublishTrainingDraftResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublishTrainingDraftResponse) ProtoMessage() {}
+
+func (x *PublishTrainingDraftResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_training_v1_training_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublishTrainingDraftResponse.ProtoReflect.Descriptor instead.
+func (*PublishTrainingDraftResponse) Descriptor() ([]byte, []int) {
+	return file_training_v1_training_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *PublishTrainingDraftResponse) GetDraft() *TrainingDraft {
+	if x != nil {
+		return x.Draft
+	}
+	return nil
+}
+
+func (x *PublishTrainingDraftResponse) GetEvent() *Event {
+	if x != nil {
+		return x.Event
+	}
+	return nil
+}
+
+func (x *PublishTrainingDraftResponse) GetMessageIds() []string {
+	if x != nil {
+		return x.MessageIds
+	}
+	return nil
+}
+
 var File_training_v1_training_proto protoreflect.FileDescriptor
 
 const file_training_v1_training_proto_rawDesc = "" +
 	"\n" +
-	"\x1atraining/v1/training.proto\x12\vtraining.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"}\n" +
+	"\x1atraining/v1/training.proto\x12\vtraining.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"c\n" +
+	"\fRequiredSlot\x12\x1a\n" +
+	"\bposition\x18\x01 \x01(\tR\bposition\x12\x14\n" +
+	"\x05count\x18\x02 \x01(\x05R\x05count\x12!\n" +
+	"\ffilled_count\x18\x03 \x01(\x05R\vfilledCount\"\xcc\x01\n" +
+	"\n" +
+	"Attendance\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12&\n" +
+	"\fdisplay_name\x18\x03 \x01(\tH\x00R\vdisplayName\x88\x01\x01\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x129\n" +
+	"\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x0f\n" +
+	"\r_display_name\"\xc7\t\n" +
+	"\x05Event\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x127\n" +
+	"\tstarts_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x123\n" +
+	"\aends_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06endsAt\x12\x19\n" +
+	"\barena_id\x18\x06 \x01(\tR\aarenaId\x12\"\n" +
+	"\n" +
+	"arena_name\x18\a \x01(\tH\x00R\tarenaName\x88\x01\x01\x12*\n" +
+	"\x11organizer_user_id\x18\b \x01(\tR\x0forganizerUserId\x12\x1c\n" +
+	"\ateam_id\x18\t \x01(\tH\x01R\x06teamId\x88\x01\x01\x120\n" +
+	"\x14required_skill_level\x18\n" +
+	" \x01(\tR\x12requiredSkillLevel\x12@\n" +
+	"\x0erequired_slots\x18\v \x03(\v2\x19.training.v1.RequiredSlotR\rrequiredSlots\x12-\n" +
+	"\x10price_per_player\x18\f \x01(\x05H\x02R\x0epricePerPlayer\x88\x01\x01\x12,\n" +
+	"\x0ftraining_format\x18\r \x01(\tH\x03R\x0etrainingFormat\x88\x01\x01\x12\x1f\n" +
+	"\bdistrict\x18\x0e \x01(\tH\x04R\bdistrict\x88\x01\x01\x124\n" +
+	"\x13registration_status\x18\x0f \x01(\tH\x05R\x12registrationStatus\x88\x01\x01\x12&\n" +
+	"\faccess_scope\x18\x10 \x01(\tH\x06R\vaccessScope\x88\x01\x01\x12(\n" +
+	"\x10allowed_user_ids\x18\x11 \x03(\tR\x0eallowedUserIds\x129\n" +
+	"\x16organizer_display_name\x18\x12 \x01(\tH\aR\x14organizerDisplayName\x88\x01\x01\x12,\n" +
+	"\x0forganizer_phone\x18\x13 \x01(\tH\bR\x0eorganizerPhone\x88\x01\x01\x12=\n" +
+	"\rparticipation\x18\x14 \x03(\v2\x17.training.v1.AttendanceR\rparticipation\x12\"\n" +
+	"\rhas_team_rsvp\x18\x15 \x01(\bR\vhasTeamRsvp\x12\x1c\n" +
+	"\aclub_id\x18\x16 \x01(\tH\tR\x06clubId\x88\x01\x01\x129\n" +
+	"\n" +
+	"created_at\x18\x17 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\x18 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\r\n" +
+	"\v_arena_nameB\n" +
+	"\n" +
+	"\b_team_idB\x13\n" +
+	"\x11_price_per_playerB\x12\n" +
+	"\x10_training_formatB\v\n" +
+	"\t_districtB\x16\n" +
+	"\x14_registration_statusB\x0f\n" +
+	"\r_access_scopeB\x19\n" +
+	"\x17_organizer_display_nameB\x12\n" +
+	"\x10_organizer_phoneB\n" +
+	"\n" +
+	"\b_club_id\"y\n" +
+	"\tEventList\x12(\n" +
+	"\x05items\x18\x01 \x03(\v2\x12.training.v1.EventR\x05items\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"\xf0\x01\n" +
+	"\x11ListEventsRequest\x12\x17\n" +
+	"\x04type\x18\x01 \x01(\tH\x00R\x04type\x88\x01\x01\x12\x1c\n" +
+	"\ateam_id\x18\x02 \x01(\tH\x01R\x06teamId\x88\x01\x01\x12\x1c\n" +
+	"\aclub_id\x18\x03 \x01(\tH\x02R\x06clubId\x88\x01\x01\x12&\n" +
+	"\faccess_scope\x18\x04 \x01(\tH\x03R\vaccessScope\x88\x01\x01\x12\x14\n" +
+	"\x05limit\x18\x05 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x06 \x01(\x05R\x06offsetB\a\n" +
+	"\x05_typeB\n" +
+	"\n" +
+	"\b_team_idB\n" +
+	"\n" +
+	"\b_club_idB\x0f\n" +
+	"\r_access_scope\"\xf1\x06\n" +
+	"\x12CreateEventRequest\x12\x12\n" +
+	"\x04type\x18\x01 \x01(\tR\x04type\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x127\n" +
+	"\tstarts_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x123\n" +
+	"\aends_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x06endsAt\x12\x19\n" +
+	"\barena_id\x18\x05 \x01(\tR\aarenaId\x12\x1c\n" +
+	"\ateam_id\x18\x06 \x01(\tH\x00R\x06teamId\x88\x01\x01\x120\n" +
+	"\x14required_skill_level\x18\a \x01(\tR\x12requiredSkillLevel\x12@\n" +
+	"\x0erequired_slots\x18\b \x03(\v2\x19.training.v1.RequiredSlotR\rrequiredSlots\x12-\n" +
+	"\x10price_per_player\x18\t \x01(\x05H\x01R\x0epricePerPlayer\x88\x01\x01\x12&\n" +
+	"\faccess_scope\x18\n" +
+	" \x01(\tH\x02R\vaccessScope\x88\x01\x01\x12\x1c\n" +
+	"\aclub_id\x18\v \x01(\tH\x03R\x06clubId\x88\x01\x01\x12,\n" +
+	"\x0ftraining_format\x18\f \x01(\tH\x04R\x0etrainingFormat\x88\x01\x01\x12\x1f\n" +
+	"\bdistrict\x18\r \x01(\tH\x05R\bdistrict\x88\x01\x01\x12(\n" +
+	"\x10allowed_user_ids\x18\x0e \x03(\tR\x0eallowedUserIds\x12\"\n" +
+	"\n" +
+	"arena_name\x18\x0f \x01(\tH\x06R\tarenaName\x88\x01\x01\x129\n" +
+	"\x16organizer_display_name\x18\x10 \x01(\tH\aR\x14organizerDisplayName\x88\x01\x01\x12,\n" +
+	"\x0forganizer_phone\x18\x11 \x01(\tH\bR\x0eorganizerPhone\x88\x01\x01B\n" +
+	"\n" +
+	"\b_team_idB\x13\n" +
+	"\x11_price_per_playerB\x0f\n" +
+	"\r_access_scopeB\n" +
+	"\n" +
+	"\b_club_idB\x12\n" +
+	"\x10_training_formatB\v\n" +
+	"\t_districtB\r\n" +
+	"\v_arena_nameB\x19\n" +
+	"\x17_organizer_display_nameB\x12\n" +
+	"\x10_organizer_phone\",\n" +
+	"\x0fGetEventRequest\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\"\xe8\b\n" +
+	"\x12UpdateEventRequest\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x17\n" +
+	"\x04type\x18\x02 \x01(\tH\x00R\x04type\x88\x01\x01\x12\x19\n" +
+	"\x05title\x18\x03 \x01(\tH\x01R\x05title\x88\x01\x01\x12<\n" +
+	"\tstarts_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\bstartsAt\x88\x01\x01\x128\n" +
+	"\aends_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x06endsAt\x88\x01\x01\x12\x1e\n" +
+	"\barena_id\x18\x06 \x01(\tH\x04R\aarenaId\x88\x01\x01\x12\x1c\n" +
+	"\ateam_id\x18\a \x01(\tH\x05R\x06teamId\x88\x01\x01\x125\n" +
+	"\x14required_skill_level\x18\b \x01(\tH\x06R\x12requiredSkillLevel\x88\x01\x01\x12@\n" +
+	"\x0erequired_slots\x18\t \x03(\v2\x19.training.v1.RequiredSlotR\rrequiredSlots\x122\n" +
+	"\x15update_required_slots\x18\n" +
+	" \x01(\bR\x13updateRequiredSlots\x12-\n" +
+	"\x10price_per_player\x18\v \x01(\x05H\aR\x0epricePerPlayer\x88\x01\x01\x12&\n" +
+	"\faccess_scope\x18\f \x01(\tH\bR\vaccessScope\x88\x01\x01\x12\x1c\n" +
+	"\aclub_id\x18\r \x01(\tH\tR\x06clubId\x88\x01\x01\x12,\n" +
+	"\x0ftraining_format\x18\x0e \x01(\tH\n" +
+	"R\x0etrainingFormat\x88\x01\x01\x12\x1f\n" +
+	"\bdistrict\x18\x0f \x01(\tH\vR\bdistrict\x88\x01\x01\x12(\n" +
+	"\x10allowed_user_ids\x18\x10 \x03(\tR\x0eallowedUserIds\x125\n" +
+	"\x17update_allowed_user_ids\x18\x11 \x01(\bR\x14updateAllowedUserIds\x12\"\n" +
+	"\n" +
+	"arena_name\x18\x12 \x01(\tH\fR\tarenaName\x88\x01\x01\x129\n" +
+	"\x16organizer_display_name\x18\x13 \x01(\tH\rR\x14organizerDisplayName\x88\x01\x01\x12,\n" +
+	"\x0forganizer_phone\x18\x14 \x01(\tH\x0eR\x0eorganizerPhone\x88\x01\x01B\a\n" +
+	"\x05_typeB\b\n" +
+	"\x06_titleB\f\n" +
+	"\n" +
+	"_starts_atB\n" +
+	"\n" +
+	"\b_ends_atB\v\n" +
+	"\t_arena_idB\n" +
+	"\n" +
+	"\b_team_idB\x17\n" +
+	"\x15_required_skill_levelB\x13\n" +
+	"\x11_price_per_playerB\x0f\n" +
+	"\r_access_scopeB\n" +
+	"\n" +
+	"\b_club_idB\x12\n" +
+	"\x10_training_formatB\v\n" +
+	"\t_districtB\r\n" +
+	"\v_arena_nameB\x19\n" +
+	"\x17_organizer_display_nameB\x12\n" +
+	"\x10_organizer_phone\"\xa2\x02\n" +
+	"\x12GetCalendarRequest\x12\x17\n" +
+	"\x04type\x18\x01 \x01(\tH\x00R\x04type\x88\x01\x01\x120\n" +
+	"\x11attendance_status\x18\x02 \x01(\tH\x01R\x10attendanceStatus\x88\x01\x01\x123\n" +
+	"\x04from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\x04from\x88\x01\x01\x12/\n" +
+	"\x02to\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x02to\x88\x01\x01\x12\x14\n" +
+	"\x05limit\x18\x05 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x06 \x01(\x05R\x06offsetB\a\n" +
+	"\x05_typeB\x14\n" +
+	"\x12_attendance_statusB\a\n" +
+	"\x05_fromB\x05\n" +
+	"\x03_to\"`\n" +
+	"\x17ListTeamCalendarRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"f\n" +
+	"\x1dListTeamTrainingEventsRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"`\n" +
+	"\x17ListClubCalendarRequest\x12\x17\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"h\n" +
+	"\x1fListPrivateClubTrainingsRequest\x12\x17\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"\x9f\x04\n" +
+	" CreatePrivateClubTrainingRequest\x12\x17\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x127\n" +
+	"\tstarts_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x123\n" +
+	"\aends_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x06endsAt\x12\x19\n" +
+	"\barena_id\x18\x05 \x01(\tR\aarenaId\x12\x1c\n" +
+	"\ateam_id\x18\x06 \x01(\tH\x00R\x06teamId\x88\x01\x01\x125\n" +
+	"\x14required_skill_level\x18\a \x01(\tH\x01R\x12requiredSkillLevel\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"arena_name\x18\b \x01(\tH\x02R\tarenaName\x88\x01\x01\x129\n" +
+	"\x16organizer_display_name\x18\t \x01(\tH\x03R\x14organizerDisplayName\x88\x01\x01\x12,\n" +
+	"\x0forganizer_phone\x18\n" +
+	" \x01(\tH\x04R\x0eorganizerPhone\x88\x01\x01B\n" +
+	"\n" +
+	"\b_team_idB\x17\n" +
+	"\x15_required_skill_levelB\r\n" +
+	"\v_arena_nameB\x19\n" +
+	"\x17_organizer_display_nameB\x12\n" +
+	"\x10_organizer_phone\"\x85\x01\n" +
+	"\x17UpdateAttendanceRequest\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12&\n" +
+	"\fdisplay_name\x18\x03 \x01(\tH\x00R\vdisplayName\x88\x01\x01B\x0f\n" +
+	"\r_display_name\"3\n" +
+	"\x16GetRosterStatusRequest\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\"^\n" +
+	"\x13RosterStatusSummary\x12\x14\n" +
+	"\x05going\x18\x01 \x01(\x05R\x05going\x12\x1b\n" +
+	"\tnot_going\x18\x02 \x01(\x05R\bnotGoing\x12\x14\n" +
+	"\x05maybe\x18\x03 \x01(\x05R\x05maybe\"\x9c\x01\n" +
+	"\fRosterStatus\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x125\n" +
+	"\bdeficits\x18\x02 \x03(\v2\x19.training.v1.RequiredSlotR\bdeficits\x12:\n" +
+	"\asummary\x18\x03 \x01(\v2 .training.v1.RosterStatusSummaryR\asummary\"\x8f\x02\n" +
+	"\x0fEventRsvpPlayer\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
+	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x1a\n" +
+	"\bposition\x18\x03 \x01(\tR\bposition\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12*\n" +
+	"\x0edecline_reason\x18\x05 \x01(\tH\x00R\rdeclineReason\x88\x01\x01\x12>\n" +
+	"\n" +
+	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\tupdatedAt\x88\x01\x01B\x11\n" +
+	"\x0f_decline_reasonB\r\n" +
+	"\v_updated_at\"\xb7\x02\n" +
+	"\x0eEventRsvpBoard\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x17\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x1b\n" +
+	"\tteam_name\x18\x03 \x01(\tR\bteamName\x12\x1f\n" +
+	"\vleague_name\x18\x04 \x01(\tR\n" +
+	"leagueName\x12#\n" +
+	"\ropponent_name\x18\x05 \x01(\tR\fopponentName\x127\n" +
+	"\tstarts_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x12\x1d\n" +
+	"\n" +
+	"arena_name\x18\a \x01(\tR\tarenaName\x126\n" +
+	"\aplayers\x18\b \x03(\v2\x1c.training.v1.EventRsvpPlayerR\aplayers\"0\n" +
+	"\x13GetEventRsvpRequest\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\"\x8a\x01\n" +
+	"\x16UpdateEventRsvpRequest\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12*\n" +
+	"\x0edecline_reason\x18\x03 \x01(\tH\x00R\rdeclineReason\x88\x01\x01B\x11\n" +
+	"\x0f_decline_reason\"\xd1\x01\n" +
+	"\tEventRsvp\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x16\n" +
+	"\x06status\x18\x03 \x01(\tR\x06status\x12*\n" +
+	"\x0edecline_reason\x18\x04 \x01(\tH\x00R\rdeclineReason\x88\x01\x01\x129\n" +
+	"\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x11\n" +
+	"\x0f_decline_reason\"\xe3\x01\n" +
 	"\x10LineupAssignment\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
 	"\bposition\x18\x02 \x01(\tR\bposition\x12\x12\n" +
 	"\x04side\x18\x03 \x01(\tR\x04side\x12\x17\n" +
-	"\x04line\x18\x04 \x01(\x05H\x00R\x04line\x88\x01\x01B\a\n" +
-	"\x05_line\"\xed\x06\n" +
+	"\x04line\x18\x04 \x01(\x05H\x00R\x04line\x88\x01\x01\x12&\n" +
+	"\fdisplay_name\x18\x05 \x01(\tH\x01R\vdisplayName\x88\x01\x01\x12\x1e\n" +
+	"\bevent_id\x18\x06 \x01(\tH\x02R\aeventId\x88\x01\x01B\a\n" +
+	"\x05_lineB\x0f\n" +
+	"\r_display_nameB\v\n" +
+	"\t_event_id\"Q\n" +
+	"\x0eTrainingLineup\x12?\n" +
+	"\vassignments\x18\x01 \x03(\v2\x1d.training.v1.LineupAssignmentR\vassignments\"N\n" +
+	"\x18GetTrainingLineupRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
+	"\bevent_id\x18\x02 \x01(\tR\aeventId\"\x93\x01\n" +
+	"\x1cReplaceTrainingLineupRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
+	"\bevent_id\x18\x02 \x01(\tR\aeventId\x12?\n" +
+	"\vassignments\x18\x03 \x03(\v2\x1d.training.v1.LineupAssignmentR\vassignments\"\xe4\a\n" +
 	"\rTrainingDraft\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\aclub_id\x18\x02 \x01(\tR\x06clubId\x12\x1c\n" +
-	"\ateam_id\x18\x03 \x01(\tH\x00R\x06teamId\x88\x01\x01\x12$\n" +
-	"\x0eauthor_user_id\x18\x04 \x01(\tR\fauthorUserId\x12\x16\n" +
+	"\ateam_id\x18\x03 \x01(\tH\x00R\x06teamId\x88\x01\x01\x12+\n" +
+	"\x12created_by_user_id\x18\x04 \x01(\tR\x0fcreatedByUserId\x12\x16\n" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12\x14\n" +
 	"\x05title\x18\x06 \x01(\tR\x05title\x127\n" +
 	"\tstarts_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x123\n" +
@@ -966,32 +3452,38 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"skillLevel\x88\x01\x01\x12\x1b\n" +
 	"\x06format\x18\v \x01(\tH\x03R\x06format\x88\x01\x01\x12-\n" +
 	"\x10price_per_player\x18\f \x01(\x05H\x04R\x0epricePerPlayer\x88\x01\x01\x12%\n" +
-	"\x0erequired_slots\x18\r \x01(\tR\rrequiredSlots\x12L\n" +
-	"\x12lineup_assignments\x18\x0e \x03(\v2\x1d.training.v1.LineupAssignmentR\x11lineupAssignments\x12(\n" +
-	"\rreject_reason\x18\x0f \x01(\tH\x05R\frejectReason\x88\x01\x01\x127\n" +
-	"\x15published_training_id\x18\x10 \x01(\tH\x06R\x13publishedTrainingId\x88\x01\x01\x129\n" +
+	"\x0erequired_slots\x18\r \x01(\tR\rrequiredSlots\x12?\n" +
+	"\vassignments\x18\x0e \x03(\v2\x1d.training.v1.LineupAssignmentR\vassignments\x12,\n" +
+	"\x0frejected_reason\x18\x0f \x01(\tH\x05R\x0erejectedReason\x88\x01\x01\x12\x1e\n" +
+	"\bevent_id\x18\x10 \x01(\tH\x06R\aeventId\x88\x01\x01\x129\n" +
 	"\n" +
 	"created_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\n" +
+	"updated_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12-\n" +
+	"\x13created_by_is_coach\x18\x13 \x01(\bR\x10createdByIsCoach\x122\n" +
+	"\x13approved_by_user_id\x18\x14 \x01(\tH\aR\x10approvedByUserId\x88\x01\x01\x12\x17\n" +
+	"\x04note\x18\x15 \x01(\tH\bR\x04note\x88\x01\x01B\n" +
 	"\n" +
 	"\b_team_idB\v\n" +
 	"\t_arena_idB\x0e\n" +
 	"\f_skill_levelB\t\n" +
 	"\a_formatB\x13\n" +
-	"\x11_price_per_playerB\x10\n" +
-	"\x0e_reject_reasonB\x18\n" +
-	"\x16_published_training_id\"z\n" +
+	"\x11_price_per_playerB\x12\n" +
+	"\x10_rejected_reasonB\v\n" +
+	"\t_event_idB\x16\n" +
+	"\x14_approved_by_user_idB\a\n" +
+	"\x05_note\"\x8a\x01\n" +
 	"\x19ListTrainingDraftsRequest\x12\x17\n" +
-	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status\x12\x14\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x1b\n" +
+	"\x06status\x18\x02 \x01(\tH\x00R\x06status\x88\x01\x01\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x04 \x01(\x05R\x06offset\"\x92\x01\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offsetB\t\n" +
+	"\a_status\"\x92\x01\n" +
 	"\x1aListTrainingDraftsResponse\x120\n" +
 	"\x05items\x18\x01 \x03(\v2\x1a.training.v1.TrainingDraftR\x05items\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x04 \x01(\x05R\x06offset\"\xa7\x04\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"\xd4\x04\n" +
 	"\x1aCreateTrainingDraftRequest\x12\x17\n" +
 	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x127\n" +
@@ -1002,19 +3494,22 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\vskill_level\x18\a \x01(\tH\x02R\n" +
 	"skillLevel\x88\x01\x01\x12\x1b\n" +
 	"\x06format\x18\b \x01(\tH\x03R\x06format\x88\x01\x01\x12-\n" +
-	"\x10price_per_player\x18\t \x01(\x05H\x04R\x0epricePerPlayer\x88\x01\x01\x12%\n" +
+	"\x10price_per_player\x18\t \x01(\x05H\x04R\x0epricePerPlayer\x88\x01\x01\x12*\n" +
 	"\x0erequired_slots\x18\n" +
-	" \x01(\tR\rrequiredSlots\x12L\n" +
-	"\x12lineup_assignments\x18\v \x03(\v2\x1d.training.v1.LineupAssignmentR\x11lineupAssignmentsB\n" +
+	" \x01(\tH\x05R\rrequiredSlots\x88\x01\x01\x12?\n" +
+	"\vassignments\x18\v \x03(\v2\x1d.training.v1.LineupAssignmentR\vassignments\x12\x17\n" +
+	"\x04note\x18\f \x01(\tH\x06R\x04note\x88\x01\x01B\n" +
 	"\n" +
 	"\b_team_idB\v\n" +
 	"\t_arena_idB\x0e\n" +
 	"\f_skill_levelB\t\n" +
 	"\a_formatB\x13\n" +
-	"\x11_price_per_player\"M\n" +
+	"\x11_price_per_playerB\x11\n" +
+	"\x0f_required_slotsB\a\n" +
+	"\x05_note\"M\n" +
 	"\x17GetTrainingDraftRequest\x12\x17\n" +
 	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x19\n" +
-	"\bdraft_id\x18\x02 \x01(\tR\adraftId\"\xc9\x05\n" +
+	"\bdraft_id\x18\x02 \x01(\tR\adraftId\"\xd1\x05\n" +
 	"\x1aUpdateTrainingDraftRequest\x12\x17\n" +
 	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x19\n" +
 	"\bdraft_id\x18\x02 \x01(\tR\adraftId\x12\x19\n" +
@@ -1028,9 +3523,10 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\x06format\x18\t \x01(\tH\x06R\x06format\x88\x01\x01\x12-\n" +
 	"\x10price_per_player\x18\n" +
 	" \x01(\x05H\aR\x0epricePerPlayer\x88\x01\x01\x12*\n" +
-	"\x0erequired_slots\x18\v \x01(\tH\bR\rrequiredSlots\x88\x01\x01\x12L\n" +
-	"\x12lineup_assignments\x18\f \x03(\v2\x1d.training.v1.LineupAssignmentR\x11lineupAssignments\x12:\n" +
-	"\x19update_lineup_assignments\x18\r \x01(\bR\x17updateLineupAssignmentsB\b\n" +
+	"\x0erequired_slots\x18\v \x01(\tH\bR\rrequiredSlots\x88\x01\x01\x12?\n" +
+	"\vassignments\x18\f \x03(\v2\x1d.training.v1.LineupAssignmentR\vassignments\x12-\n" +
+	"\x12update_assignments\x18\r \x01(\bR\x11updateAssignments\x12\x17\n" +
+	"\x04note\x18\x0e \x01(\tH\tR\x04note\x88\x01\x01B\b\n" +
 	"\x06_titleB\f\n" +
 	"\n" +
 	"_starts_atB\n" +
@@ -1042,7 +3538,8 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\f_skill_levelB\t\n" +
 	"\a_formatB\x13\n" +
 	"\x11_price_per_playerB\x11\n" +
-	"\x0f_required_slots\"P\n" +
+	"\x0f_required_slotsB\a\n" +
+	"\x05_note\"P\n" +
 	"\x1aSubmitTrainingDraftRequest\x12\x17\n" +
 	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x19\n" +
 	"\bdraft_id\x18\x02 \x01(\tR\adraftId\"Q\n" +
@@ -1055,17 +3552,41 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\x06reason\x18\x03 \x01(\tR\x06reason\"Q\n" +
 	"\x1bPublishTrainingDraftRequest\x12\x17\n" +
 	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x19\n" +
-	"\bdraft_id\x18\x02 \x01(\tR\adraftId2\xdc\t\n" +
-	"\x0fTrainingService\x12\x92\x01\n" +
+	"\bdraft_id\x18\x02 \x01(\tR\adraftId\"\x9b\x01\n" +
+	"\x1cPublishTrainingDraftResponse\x120\n" +
+	"\x05draft\x18\x01 \x01(\v2\x1a.training.v1.TrainingDraftR\x05draft\x12(\n" +
+	"\x05event\x18\x02 \x01(\v2\x12.training.v1.EventR\x05event\x12\x1f\n" +
+	"\vmessage_ids\x18\x03 \x03(\tR\n" +
+	"messageIds2\x80\x19\n" +
+	"\x0fTrainingService\x12X\n" +
+	"\n" +
+	"ListEvents\x12\x1e.training.v1.ListEventsRequest\x1a\x16.training.v1.EventList\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
+	"/v1/events\x12Y\n" +
+	"\vCreateEvent\x12\x1f.training.v1.CreateEventRequest\x1a\x12.training.v1.Event\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
+	"/v1/events\x12[\n" +
+	"\bGetEvent\x12\x1c.training.v1.GetEventRequest\x1a\x12.training.v1.Event\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/events/{event_id}\x12d\n" +
+	"\vUpdateEvent\x12\x1f.training.v1.UpdateEventRequest\x1a\x12.training.v1.Event\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/events/{event_id}\x12\\\n" +
+	"\vGetCalendar\x12\x1f.training.v1.GetCalendarRequest\x1a\x16.training.v1.EventList\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/calendar\x12v\n" +
+	"\x10ListTeamCalendar\x12$.training.v1.ListTeamCalendarRequest\x1a\x16.training.v1.EventList\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/v1/teams/{team_id}/calendar\x12\x89\x01\n" +
+	"\x16ListTeamTrainingEvents\x12*.training.v1.ListTeamTrainingEventsRequest\x1a\x16.training.v1.EventList\"+\x82\xd3\xe4\x93\x02%\x12#/v1/teams/{team_id}/training-events\x12v\n" +
+	"\x10ListClubCalendar\x12$.training.v1.ListClubCalendarRequest\x1a\x16.training.v1.EventList\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/v1/clubs/{club_id}/calendar\x12\x8f\x01\n" +
+	"\x18ListPrivateClubTrainings\x12,.training.v1.ListPrivateClubTrainingsRequest\x1a\x16.training.v1.EventList\"-\x82\xd3\xe4\x93\x02'\x12%/v1/clubs/{club_id}/private-trainings\x12\x90\x01\n" +
+	"\x19CreatePrivateClubTraining\x12-.training.v1.CreatePrivateClubTrainingRequest\x1a\x12.training.v1.Event\"0\x82\xd3\xe4\x93\x02*:\x01*\"%/v1/clubs/{club_id}/private-trainings\x12y\n" +
+	"\x10UpdateAttendance\x12$.training.v1.UpdateAttendanceRequest\x1a\x12.training.v1.Event\"+\x82\xd3\xe4\x93\x02%:\x01*2 /v1/events/{event_id}/attendance\x12~\n" +
+	"\x0fGetRosterStatus\x12#.training.v1.GetRosterStatusRequest\x1a\x19.training.v1.RosterStatus\"+\x82\xd3\xe4\x93\x02%\x12#/v1/events/{event_id}/roster-status\x12q\n" +
+	"\fGetEventRsvp\x12 .training.v1.GetEventRsvpRequest\x1a\x1b.training.v1.EventRsvpBoard\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v1/events/{event_id}/rsvp\x12u\n" +
+	"\x0fUpdateEventRsvp\x12#.training.v1.UpdateEventRsvpRequest\x1a\x16.training.v1.EventRsvp\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v1/events/{event_id}/rsvp\x12\x8f\x01\n" +
+	"\x11GetTrainingLineup\x12%.training.v1.GetTrainingLineupRequest\x1a\x1b.training.v1.TrainingLineup\"6\x82\xd3\xe4\x93\x020\x12./v1/teams/{team_id}/training-lineup/{event_id}\x12\xa4\x01\n" +
+	"\x15ReplaceTrainingLineup\x12).training.v1.ReplaceTrainingLineupRequest\x1a\x1b.training.v1.TrainingLineup\"C\x82\xd3\xe4\x93\x02=:\vassignments\x1a./v1/teams/{team_id}/training-lineup/{event_id}\x12\x92\x01\n" +
 	"\x12ListTrainingDrafts\x12&.training.v1.ListTrainingDraftsRequest\x1a'.training.v1.ListTrainingDraftsResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v1/clubs/{club_id}/training-drafts\x12\x8a\x01\n" +
 	"\x13CreateTrainingDraft\x12'.training.v1.CreateTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\".\x82\xd3\xe4\x93\x02(:\x01*\"#/v1/clubs/{club_id}/training-drafts\x12\x8c\x01\n" +
 	"\x10GetTrainingDraft\x12$.training.v1.GetTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\"6\x82\xd3\xe4\x93\x020\x12./v1/clubs/{club_id}/training-drafts/{draft_id}\x12\x95\x01\n" +
 	"\x13UpdateTrainingDraft\x12'.training.v1.UpdateTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\"9\x82\xd3\xe4\x93\x023:\x01*2./v1/clubs/{club_id}/training-drafts/{draft_id}\x12\x9c\x01\n" +
 	"\x13SubmitTrainingDraft\x12'.training.v1.SubmitTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\"@\x82\xd3\xe4\x93\x02::\x01*\"5/v1/clubs/{club_id}/training-drafts/{draft_id}/submit\x12\x9f\x01\n" +
 	"\x14ApproveTrainingDraft\x12(.training.v1.ApproveTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\"A\x82\xd3\xe4\x93\x02;:\x01*\"6/v1/clubs/{club_id}/training-drafts/{draft_id}/approve\x12\x9c\x01\n" +
-	"\x13RejectTrainingDraft\x12'.training.v1.RejectTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\"@\x82\xd3\xe4\x93\x02::\x01*\"5/v1/clubs/{club_id}/training-drafts/{draft_id}/reject\x12\x9f\x01\n" +
-	"\x14PublishTrainingDraft\x12(.training.v1.PublishTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\"A\x82\xd3\xe4\x93\x02;:\x01*\"6/v1/clubs/{club_id}/training-drafts/{draft_id}/publishB\xf1\x01\x92A\x9e\x01\x12\x9b\x01\n" +
-	"\x19HockeyNights Training API\x12wЧерновики тренировок клуба: создание, согласование и публикация.2\x051.0.0ZMgithub.com/HockeyNights/hockey-shared-contracts/training/gen/go/v1;trainingv1b\x06proto3"
+	"\x13RejectTrainingDraft\x12'.training.v1.RejectTrainingDraftRequest\x1a\x1a.training.v1.TrainingDraft\"@\x82\xd3\xe4\x93\x02::\x01*\"5/v1/clubs/{club_id}/training-drafts/{draft_id}/reject\x12\xae\x01\n" +
+	"\x14PublishTrainingDraft\x12(.training.v1.PublishTrainingDraftRequest\x1a).training.v1.PublishTrainingDraftResponse\"A\x82\xd3\xe4\x93\x02;:\x01*\"6/v1/clubs/{club_id}/training-drafts/{draft_id}/publishB\xf2\x01\x92A\x9f\x01\x12\x9c\x01\n" +
+	"\x19HockeyNights Training API\x12xСобытия, календари, участие, RSVP, раскладки и черновики тренировок.2\x051.1.0ZMgithub.com/HockeyNights/hockey-shared-contracts/training/gen/go/v1;trainingv1b\x06proto3"
 
 var (
 	file_training_v1_training_proto_rawDescOnce sync.Once
@@ -1079,55 +3600,142 @@ func file_training_v1_training_proto_rawDescGZIP() []byte {
 	return file_training_v1_training_proto_rawDescData
 }
 
-var file_training_v1_training_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_training_v1_training_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_training_v1_training_proto_goTypes = []any{
-	(*LineupAssignment)(nil),            // 0: training.v1.LineupAssignment
-	(*TrainingDraft)(nil),               // 1: training.v1.TrainingDraft
-	(*ListTrainingDraftsRequest)(nil),   // 2: training.v1.ListTrainingDraftsRequest
-	(*ListTrainingDraftsResponse)(nil),  // 3: training.v1.ListTrainingDraftsResponse
-	(*CreateTrainingDraftRequest)(nil),  // 4: training.v1.CreateTrainingDraftRequest
-	(*GetTrainingDraftRequest)(nil),     // 5: training.v1.GetTrainingDraftRequest
-	(*UpdateTrainingDraftRequest)(nil),  // 6: training.v1.UpdateTrainingDraftRequest
-	(*SubmitTrainingDraftRequest)(nil),  // 7: training.v1.SubmitTrainingDraftRequest
-	(*ApproveTrainingDraftRequest)(nil), // 8: training.v1.ApproveTrainingDraftRequest
-	(*RejectTrainingDraftRequest)(nil),  // 9: training.v1.RejectTrainingDraftRequest
-	(*PublishTrainingDraftRequest)(nil), // 10: training.v1.PublishTrainingDraftRequest
-	(*timestamppb.Timestamp)(nil),       // 11: google.protobuf.Timestamp
+	(*RequiredSlot)(nil),                     // 0: training.v1.RequiredSlot
+	(*Attendance)(nil),                       // 1: training.v1.Attendance
+	(*Event)(nil),                            // 2: training.v1.Event
+	(*EventList)(nil),                        // 3: training.v1.EventList
+	(*ListEventsRequest)(nil),                // 4: training.v1.ListEventsRequest
+	(*CreateEventRequest)(nil),               // 5: training.v1.CreateEventRequest
+	(*GetEventRequest)(nil),                  // 6: training.v1.GetEventRequest
+	(*UpdateEventRequest)(nil),               // 7: training.v1.UpdateEventRequest
+	(*GetCalendarRequest)(nil),               // 8: training.v1.GetCalendarRequest
+	(*ListTeamCalendarRequest)(nil),          // 9: training.v1.ListTeamCalendarRequest
+	(*ListTeamTrainingEventsRequest)(nil),    // 10: training.v1.ListTeamTrainingEventsRequest
+	(*ListClubCalendarRequest)(nil),          // 11: training.v1.ListClubCalendarRequest
+	(*ListPrivateClubTrainingsRequest)(nil),  // 12: training.v1.ListPrivateClubTrainingsRequest
+	(*CreatePrivateClubTrainingRequest)(nil), // 13: training.v1.CreatePrivateClubTrainingRequest
+	(*UpdateAttendanceRequest)(nil),          // 14: training.v1.UpdateAttendanceRequest
+	(*GetRosterStatusRequest)(nil),           // 15: training.v1.GetRosterStatusRequest
+	(*RosterStatusSummary)(nil),              // 16: training.v1.RosterStatusSummary
+	(*RosterStatus)(nil),                     // 17: training.v1.RosterStatus
+	(*EventRsvpPlayer)(nil),                  // 18: training.v1.EventRsvpPlayer
+	(*EventRsvpBoard)(nil),                   // 19: training.v1.EventRsvpBoard
+	(*GetEventRsvpRequest)(nil),              // 20: training.v1.GetEventRsvpRequest
+	(*UpdateEventRsvpRequest)(nil),           // 21: training.v1.UpdateEventRsvpRequest
+	(*EventRsvp)(nil),                        // 22: training.v1.EventRsvp
+	(*LineupAssignment)(nil),                 // 23: training.v1.LineupAssignment
+	(*TrainingLineup)(nil),                   // 24: training.v1.TrainingLineup
+	(*GetTrainingLineupRequest)(nil),         // 25: training.v1.GetTrainingLineupRequest
+	(*ReplaceTrainingLineupRequest)(nil),     // 26: training.v1.ReplaceTrainingLineupRequest
+	(*TrainingDraft)(nil),                    // 27: training.v1.TrainingDraft
+	(*ListTrainingDraftsRequest)(nil),        // 28: training.v1.ListTrainingDraftsRequest
+	(*ListTrainingDraftsResponse)(nil),       // 29: training.v1.ListTrainingDraftsResponse
+	(*CreateTrainingDraftRequest)(nil),       // 30: training.v1.CreateTrainingDraftRequest
+	(*GetTrainingDraftRequest)(nil),          // 31: training.v1.GetTrainingDraftRequest
+	(*UpdateTrainingDraftRequest)(nil),       // 32: training.v1.UpdateTrainingDraftRequest
+	(*SubmitTrainingDraftRequest)(nil),       // 33: training.v1.SubmitTrainingDraftRequest
+	(*ApproveTrainingDraftRequest)(nil),      // 34: training.v1.ApproveTrainingDraftRequest
+	(*RejectTrainingDraftRequest)(nil),       // 35: training.v1.RejectTrainingDraftRequest
+	(*PublishTrainingDraftRequest)(nil),      // 36: training.v1.PublishTrainingDraftRequest
+	(*PublishTrainingDraftResponse)(nil),     // 37: training.v1.PublishTrainingDraftResponse
+	(*timestamppb.Timestamp)(nil),            // 38: google.protobuf.Timestamp
 }
 var file_training_v1_training_proto_depIdxs = []int32{
-	11, // 0: training.v1.TrainingDraft.starts_at:type_name -> google.protobuf.Timestamp
-	11, // 1: training.v1.TrainingDraft.ends_at:type_name -> google.protobuf.Timestamp
-	0,  // 2: training.v1.TrainingDraft.lineup_assignments:type_name -> training.v1.LineupAssignment
-	11, // 3: training.v1.TrainingDraft.created_at:type_name -> google.protobuf.Timestamp
-	11, // 4: training.v1.TrainingDraft.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 5: training.v1.ListTrainingDraftsResponse.items:type_name -> training.v1.TrainingDraft
-	11, // 6: training.v1.CreateTrainingDraftRequest.starts_at:type_name -> google.protobuf.Timestamp
-	11, // 7: training.v1.CreateTrainingDraftRequest.ends_at:type_name -> google.protobuf.Timestamp
-	0,  // 8: training.v1.CreateTrainingDraftRequest.lineup_assignments:type_name -> training.v1.LineupAssignment
-	11, // 9: training.v1.UpdateTrainingDraftRequest.starts_at:type_name -> google.protobuf.Timestamp
-	11, // 10: training.v1.UpdateTrainingDraftRequest.ends_at:type_name -> google.protobuf.Timestamp
-	0,  // 11: training.v1.UpdateTrainingDraftRequest.lineup_assignments:type_name -> training.v1.LineupAssignment
-	2,  // 12: training.v1.TrainingService.ListTrainingDrafts:input_type -> training.v1.ListTrainingDraftsRequest
-	4,  // 13: training.v1.TrainingService.CreateTrainingDraft:input_type -> training.v1.CreateTrainingDraftRequest
-	5,  // 14: training.v1.TrainingService.GetTrainingDraft:input_type -> training.v1.GetTrainingDraftRequest
-	6,  // 15: training.v1.TrainingService.UpdateTrainingDraft:input_type -> training.v1.UpdateTrainingDraftRequest
-	7,  // 16: training.v1.TrainingService.SubmitTrainingDraft:input_type -> training.v1.SubmitTrainingDraftRequest
-	8,  // 17: training.v1.TrainingService.ApproveTrainingDraft:input_type -> training.v1.ApproveTrainingDraftRequest
-	9,  // 18: training.v1.TrainingService.RejectTrainingDraft:input_type -> training.v1.RejectTrainingDraftRequest
-	10, // 19: training.v1.TrainingService.PublishTrainingDraft:input_type -> training.v1.PublishTrainingDraftRequest
-	3,  // 20: training.v1.TrainingService.ListTrainingDrafts:output_type -> training.v1.ListTrainingDraftsResponse
-	1,  // 21: training.v1.TrainingService.CreateTrainingDraft:output_type -> training.v1.TrainingDraft
-	1,  // 22: training.v1.TrainingService.GetTrainingDraft:output_type -> training.v1.TrainingDraft
-	1,  // 23: training.v1.TrainingService.UpdateTrainingDraft:output_type -> training.v1.TrainingDraft
-	1,  // 24: training.v1.TrainingService.SubmitTrainingDraft:output_type -> training.v1.TrainingDraft
-	1,  // 25: training.v1.TrainingService.ApproveTrainingDraft:output_type -> training.v1.TrainingDraft
-	1,  // 26: training.v1.TrainingService.RejectTrainingDraft:output_type -> training.v1.TrainingDraft
-	1,  // 27: training.v1.TrainingService.PublishTrainingDraft:output_type -> training.v1.TrainingDraft
-	20, // [20:28] is the sub-list for method output_type
-	12, // [12:20] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	38, // 0: training.v1.Attendance.updated_at:type_name -> google.protobuf.Timestamp
+	38, // 1: training.v1.Event.starts_at:type_name -> google.protobuf.Timestamp
+	38, // 2: training.v1.Event.ends_at:type_name -> google.protobuf.Timestamp
+	0,  // 3: training.v1.Event.required_slots:type_name -> training.v1.RequiredSlot
+	1,  // 4: training.v1.Event.participation:type_name -> training.v1.Attendance
+	38, // 5: training.v1.Event.created_at:type_name -> google.protobuf.Timestamp
+	38, // 6: training.v1.Event.updated_at:type_name -> google.protobuf.Timestamp
+	2,  // 7: training.v1.EventList.items:type_name -> training.v1.Event
+	38, // 8: training.v1.CreateEventRequest.starts_at:type_name -> google.protobuf.Timestamp
+	38, // 9: training.v1.CreateEventRequest.ends_at:type_name -> google.protobuf.Timestamp
+	0,  // 10: training.v1.CreateEventRequest.required_slots:type_name -> training.v1.RequiredSlot
+	38, // 11: training.v1.UpdateEventRequest.starts_at:type_name -> google.protobuf.Timestamp
+	38, // 12: training.v1.UpdateEventRequest.ends_at:type_name -> google.protobuf.Timestamp
+	0,  // 13: training.v1.UpdateEventRequest.required_slots:type_name -> training.v1.RequiredSlot
+	38, // 14: training.v1.GetCalendarRequest.from:type_name -> google.protobuf.Timestamp
+	38, // 15: training.v1.GetCalendarRequest.to:type_name -> google.protobuf.Timestamp
+	38, // 16: training.v1.CreatePrivateClubTrainingRequest.starts_at:type_name -> google.protobuf.Timestamp
+	38, // 17: training.v1.CreatePrivateClubTrainingRequest.ends_at:type_name -> google.protobuf.Timestamp
+	0,  // 18: training.v1.RosterStatus.deficits:type_name -> training.v1.RequiredSlot
+	16, // 19: training.v1.RosterStatus.summary:type_name -> training.v1.RosterStatusSummary
+	38, // 20: training.v1.EventRsvpPlayer.updated_at:type_name -> google.protobuf.Timestamp
+	38, // 21: training.v1.EventRsvpBoard.starts_at:type_name -> google.protobuf.Timestamp
+	18, // 22: training.v1.EventRsvpBoard.players:type_name -> training.v1.EventRsvpPlayer
+	38, // 23: training.v1.EventRsvp.updated_at:type_name -> google.protobuf.Timestamp
+	23, // 24: training.v1.TrainingLineup.assignments:type_name -> training.v1.LineupAssignment
+	23, // 25: training.v1.ReplaceTrainingLineupRequest.assignments:type_name -> training.v1.LineupAssignment
+	38, // 26: training.v1.TrainingDraft.starts_at:type_name -> google.protobuf.Timestamp
+	38, // 27: training.v1.TrainingDraft.ends_at:type_name -> google.protobuf.Timestamp
+	23, // 28: training.v1.TrainingDraft.assignments:type_name -> training.v1.LineupAssignment
+	38, // 29: training.v1.TrainingDraft.created_at:type_name -> google.protobuf.Timestamp
+	38, // 30: training.v1.TrainingDraft.updated_at:type_name -> google.protobuf.Timestamp
+	27, // 31: training.v1.ListTrainingDraftsResponse.items:type_name -> training.v1.TrainingDraft
+	38, // 32: training.v1.CreateTrainingDraftRequest.starts_at:type_name -> google.protobuf.Timestamp
+	38, // 33: training.v1.CreateTrainingDraftRequest.ends_at:type_name -> google.protobuf.Timestamp
+	23, // 34: training.v1.CreateTrainingDraftRequest.assignments:type_name -> training.v1.LineupAssignment
+	38, // 35: training.v1.UpdateTrainingDraftRequest.starts_at:type_name -> google.protobuf.Timestamp
+	38, // 36: training.v1.UpdateTrainingDraftRequest.ends_at:type_name -> google.protobuf.Timestamp
+	23, // 37: training.v1.UpdateTrainingDraftRequest.assignments:type_name -> training.v1.LineupAssignment
+	27, // 38: training.v1.PublishTrainingDraftResponse.draft:type_name -> training.v1.TrainingDraft
+	2,  // 39: training.v1.PublishTrainingDraftResponse.event:type_name -> training.v1.Event
+	4,  // 40: training.v1.TrainingService.ListEvents:input_type -> training.v1.ListEventsRequest
+	5,  // 41: training.v1.TrainingService.CreateEvent:input_type -> training.v1.CreateEventRequest
+	6,  // 42: training.v1.TrainingService.GetEvent:input_type -> training.v1.GetEventRequest
+	7,  // 43: training.v1.TrainingService.UpdateEvent:input_type -> training.v1.UpdateEventRequest
+	8,  // 44: training.v1.TrainingService.GetCalendar:input_type -> training.v1.GetCalendarRequest
+	9,  // 45: training.v1.TrainingService.ListTeamCalendar:input_type -> training.v1.ListTeamCalendarRequest
+	10, // 46: training.v1.TrainingService.ListTeamTrainingEvents:input_type -> training.v1.ListTeamTrainingEventsRequest
+	11, // 47: training.v1.TrainingService.ListClubCalendar:input_type -> training.v1.ListClubCalendarRequest
+	12, // 48: training.v1.TrainingService.ListPrivateClubTrainings:input_type -> training.v1.ListPrivateClubTrainingsRequest
+	13, // 49: training.v1.TrainingService.CreatePrivateClubTraining:input_type -> training.v1.CreatePrivateClubTrainingRequest
+	14, // 50: training.v1.TrainingService.UpdateAttendance:input_type -> training.v1.UpdateAttendanceRequest
+	15, // 51: training.v1.TrainingService.GetRosterStatus:input_type -> training.v1.GetRosterStatusRequest
+	20, // 52: training.v1.TrainingService.GetEventRsvp:input_type -> training.v1.GetEventRsvpRequest
+	21, // 53: training.v1.TrainingService.UpdateEventRsvp:input_type -> training.v1.UpdateEventRsvpRequest
+	25, // 54: training.v1.TrainingService.GetTrainingLineup:input_type -> training.v1.GetTrainingLineupRequest
+	26, // 55: training.v1.TrainingService.ReplaceTrainingLineup:input_type -> training.v1.ReplaceTrainingLineupRequest
+	28, // 56: training.v1.TrainingService.ListTrainingDrafts:input_type -> training.v1.ListTrainingDraftsRequest
+	30, // 57: training.v1.TrainingService.CreateTrainingDraft:input_type -> training.v1.CreateTrainingDraftRequest
+	31, // 58: training.v1.TrainingService.GetTrainingDraft:input_type -> training.v1.GetTrainingDraftRequest
+	32, // 59: training.v1.TrainingService.UpdateTrainingDraft:input_type -> training.v1.UpdateTrainingDraftRequest
+	33, // 60: training.v1.TrainingService.SubmitTrainingDraft:input_type -> training.v1.SubmitTrainingDraftRequest
+	34, // 61: training.v1.TrainingService.ApproveTrainingDraft:input_type -> training.v1.ApproveTrainingDraftRequest
+	35, // 62: training.v1.TrainingService.RejectTrainingDraft:input_type -> training.v1.RejectTrainingDraftRequest
+	36, // 63: training.v1.TrainingService.PublishTrainingDraft:input_type -> training.v1.PublishTrainingDraftRequest
+	3,  // 64: training.v1.TrainingService.ListEvents:output_type -> training.v1.EventList
+	2,  // 65: training.v1.TrainingService.CreateEvent:output_type -> training.v1.Event
+	2,  // 66: training.v1.TrainingService.GetEvent:output_type -> training.v1.Event
+	2,  // 67: training.v1.TrainingService.UpdateEvent:output_type -> training.v1.Event
+	3,  // 68: training.v1.TrainingService.GetCalendar:output_type -> training.v1.EventList
+	3,  // 69: training.v1.TrainingService.ListTeamCalendar:output_type -> training.v1.EventList
+	3,  // 70: training.v1.TrainingService.ListTeamTrainingEvents:output_type -> training.v1.EventList
+	3,  // 71: training.v1.TrainingService.ListClubCalendar:output_type -> training.v1.EventList
+	3,  // 72: training.v1.TrainingService.ListPrivateClubTrainings:output_type -> training.v1.EventList
+	2,  // 73: training.v1.TrainingService.CreatePrivateClubTraining:output_type -> training.v1.Event
+	2,  // 74: training.v1.TrainingService.UpdateAttendance:output_type -> training.v1.Event
+	17, // 75: training.v1.TrainingService.GetRosterStatus:output_type -> training.v1.RosterStatus
+	19, // 76: training.v1.TrainingService.GetEventRsvp:output_type -> training.v1.EventRsvpBoard
+	22, // 77: training.v1.TrainingService.UpdateEventRsvp:output_type -> training.v1.EventRsvp
+	24, // 78: training.v1.TrainingService.GetTrainingLineup:output_type -> training.v1.TrainingLineup
+	24, // 79: training.v1.TrainingService.ReplaceTrainingLineup:output_type -> training.v1.TrainingLineup
+	29, // 80: training.v1.TrainingService.ListTrainingDrafts:output_type -> training.v1.ListTrainingDraftsResponse
+	27, // 81: training.v1.TrainingService.CreateTrainingDraft:output_type -> training.v1.TrainingDraft
+	27, // 82: training.v1.TrainingService.GetTrainingDraft:output_type -> training.v1.TrainingDraft
+	27, // 83: training.v1.TrainingService.UpdateTrainingDraft:output_type -> training.v1.TrainingDraft
+	27, // 84: training.v1.TrainingService.SubmitTrainingDraft:output_type -> training.v1.TrainingDraft
+	27, // 85: training.v1.TrainingService.ApproveTrainingDraft:output_type -> training.v1.TrainingDraft
+	27, // 86: training.v1.TrainingService.RejectTrainingDraft:output_type -> training.v1.TrainingDraft
+	37, // 87: training.v1.TrainingService.PublishTrainingDraft:output_type -> training.v1.PublishTrainingDraftResponse
+	64, // [64:88] is the sub-list for method output_type
+	40, // [40:64] is the sub-list for method input_type
+	40, // [40:40] is the sub-list for extension type_name
+	40, // [40:40] is the sub-list for extension extendee
+	0,  // [0:40] is the sub-list for field type_name
 }
 
 func init() { file_training_v1_training_proto_init() }
@@ -1135,17 +3743,29 @@ func file_training_v1_training_proto_init() {
 	if File_training_v1_training_proto != nil {
 		return
 	}
-	file_training_v1_training_proto_msgTypes[0].OneofWrappers = []any{}
 	file_training_v1_training_proto_msgTypes[1].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[2].OneofWrappers = []any{}
 	file_training_v1_training_proto_msgTypes[4].OneofWrappers = []any{}
-	file_training_v1_training_proto_msgTypes[6].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[5].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[7].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[8].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[13].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[14].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[18].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[21].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[22].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[23].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[27].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[28].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[30].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[32].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_training_v1_training_proto_rawDesc), len(file_training_v1_training_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   38,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

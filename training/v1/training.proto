@@ -11,61 +11,262 @@ option go_package = "github.com/HockeyNights/hockey-shared-contracts/training/ge
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "HockeyNights Training API"
-    version: "1.0.0"
-    description: "Черновики тренировок клуба: создание, согласование и публикация."
+    version: "1.1.0"
+    description: "События, календари, участие, RSVP, раскладки и черновики тренировок."
   }
 };
 
 service TrainingService {
+  rpc ListEvents(ListEventsRequest) returns (EventList) {
+    option (google.api.http) = {get: "/v1/events"};
+  }
+  rpc CreateEvent(CreateEventRequest) returns (Event) {
+    option (google.api.http) = {post: "/v1/events" body: "*"};
+  }
+  rpc GetEvent(GetEventRequest) returns (Event) {
+    option (google.api.http) = {get: "/v1/events/{event_id}"};
+  }
+  rpc UpdateEvent(UpdateEventRequest) returns (Event) {
+    option (google.api.http) = {patch: "/v1/events/{event_id}" body: "*"};
+  }
+  rpc GetCalendar(GetCalendarRequest) returns (EventList) {
+    option (google.api.http) = {get: "/v1/calendar"};
+  }
+  rpc ListTeamCalendar(ListTeamCalendarRequest) returns (EventList) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}/calendar"};
+  }
+  rpc ListTeamTrainingEvents(ListTeamTrainingEventsRequest) returns (EventList) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}/training-events"};
+  }
+  rpc ListClubCalendar(ListClubCalendarRequest) returns (EventList) {
+    option (google.api.http) = {get: "/v1/clubs/{club_id}/calendar"};
+  }
+  rpc ListPrivateClubTrainings(ListPrivateClubTrainingsRequest) returns (EventList) {
+    option (google.api.http) = {get: "/v1/clubs/{club_id}/private-trainings"};
+  }
+  rpc CreatePrivateClubTraining(CreatePrivateClubTrainingRequest) returns (Event) {
+    option (google.api.http) = {post: "/v1/clubs/{club_id}/private-trainings" body: "*"};
+  }
+  rpc UpdateAttendance(UpdateAttendanceRequest) returns (Event) {
+    option (google.api.http) = {patch: "/v1/events/{event_id}/attendance" body: "*"};
+  }
+  rpc GetRosterStatus(GetRosterStatusRequest) returns (RosterStatus) {
+    option (google.api.http) = {get: "/v1/events/{event_id}/roster-status"};
+  }
+  rpc GetEventRsvp(GetEventRsvpRequest) returns (EventRsvpBoard) {
+    option (google.api.http) = {get: "/v1/events/{event_id}/rsvp"};
+  }
+  rpc UpdateEventRsvp(UpdateEventRsvpRequest) returns (EventRsvp) {
+    option (google.api.http) = {post: "/v1/events/{event_id}/rsvp" body: "*"};
+  }
+  rpc GetTrainingLineup(GetTrainingLineupRequest) returns (TrainingLineup) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}/training-lineup/{event_id}"};
+  }
+  rpc ReplaceTrainingLineup(ReplaceTrainingLineupRequest) returns (TrainingLineup) {
+    option (google.api.http) = {put: "/v1/teams/{team_id}/training-lineup/{event_id}" body: "assignments"};
+  }
+
   rpc ListTrainingDrafts(ListTrainingDraftsRequest) returns (ListTrainingDraftsResponse) {
     option (google.api.http) = {get: "/v1/clubs/{club_id}/training-drafts"};
   }
-
   rpc CreateTrainingDraft(CreateTrainingDraftRequest) returns (TrainingDraft) {
-    option (google.api.http) = {
-      post: "/v1/clubs/{club_id}/training-drafts"
-      body: "*"
-    };
+    option (google.api.http) = {post: "/v1/clubs/{club_id}/training-drafts" body: "*"};
   }
-
   rpc GetTrainingDraft(GetTrainingDraftRequest) returns (TrainingDraft) {
     option (google.api.http) = {get: "/v1/clubs/{club_id}/training-drafts/{draft_id}"};
   }
-
   rpc UpdateTrainingDraft(UpdateTrainingDraftRequest) returns (TrainingDraft) {
-    option (google.api.http) = {
-      patch: "/v1/clubs/{club_id}/training-drafts/{draft_id}"
-      body: "*"
-    };
+    option (google.api.http) = {patch: "/v1/clubs/{club_id}/training-drafts/{draft_id}" body: "*"};
   }
-
   rpc SubmitTrainingDraft(SubmitTrainingDraftRequest) returns (TrainingDraft) {
-    option (google.api.http) = {
-      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/submit"
-      body: "*"
-    };
+    option (google.api.http) = {post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/submit" body: "*"};
   }
-
   rpc ApproveTrainingDraft(ApproveTrainingDraftRequest) returns (TrainingDraft) {
-    option (google.api.http) = {
-      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/approve"
-      body: "*"
-    };
+    option (google.api.http) = {post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/approve" body: "*"};
   }
-
   rpc RejectTrainingDraft(RejectTrainingDraftRequest) returns (TrainingDraft) {
-    option (google.api.http) = {
-      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/reject"
-      body: "*"
-    };
+    option (google.api.http) = {post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/reject" body: "*"};
   }
+  rpc PublishTrainingDraft(PublishTrainingDraftRequest) returns (PublishTrainingDraftResponse) {
+    option (google.api.http) = {post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/publish" body: "*"};
+  }
+}
 
-  rpc PublishTrainingDraft(PublishTrainingDraftRequest) returns (TrainingDraft) {
-    option (google.api.http) = {
-      post: "/v1/clubs/{club_id}/training-drafts/{draft_id}/publish"
-      body: "*"
-    };
-  }
+message RequiredSlot {
+  string position = 1;
+  int32 count = 2;
+  int32 filled_count = 3;
+}
+
+message Attendance {
+  string event_id = 1;
+  string user_id = 2;
+  optional string display_name = 3;
+  string status = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message Event {
+  string id = 1;
+  string type = 2;
+  string title = 3;
+  google.protobuf.Timestamp starts_at = 4;
+  google.protobuf.Timestamp ends_at = 5;
+  string arena_id = 6;
+  optional string arena_name = 7;
+  string organizer_user_id = 8;
+  optional string team_id = 9;
+  string required_skill_level = 10;
+  repeated RequiredSlot required_slots = 11;
+  optional int32 price_per_player = 12;
+  optional string training_format = 13;
+  optional string district = 14;
+  optional string registration_status = 15;
+  optional string access_scope = 16;
+  repeated string allowed_user_ids = 17;
+  optional string organizer_display_name = 18;
+  optional string organizer_phone = 19;
+  repeated Attendance participation = 20;
+  bool has_team_rsvp = 21;
+  optional string club_id = 22;
+  google.protobuf.Timestamp created_at = 23;
+  google.protobuf.Timestamp updated_at = 24;
+}
+
+message EventList {
+  repeated Event items = 1;
+  int64 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message ListEventsRequest {
+  optional string type = 1;
+  optional string team_id = 2;
+  optional string club_id = 3;
+  optional string access_scope = 4;
+  int32 limit = 5;
+  int32 offset = 6;
+}
+
+message CreateEventRequest {
+  string type = 1;
+  string title = 2;
+  google.protobuf.Timestamp starts_at = 3;
+  google.protobuf.Timestamp ends_at = 4;
+  string arena_id = 5;
+  optional string team_id = 6;
+  string required_skill_level = 7;
+  repeated RequiredSlot required_slots = 8;
+  optional int32 price_per_player = 9;
+  optional string access_scope = 10;
+  optional string club_id = 11;
+  optional string training_format = 12;
+  optional string district = 13;
+  repeated string allowed_user_ids = 14;
+  optional string arena_name = 15;
+  optional string organizer_display_name = 16;
+  optional string organizer_phone = 17;
+}
+
+message GetEventRequest { string event_id = 1; }
+
+message UpdateEventRequest {
+  string event_id = 1;
+  optional string type = 2;
+  optional string title = 3;
+  optional google.protobuf.Timestamp starts_at = 4;
+  optional google.protobuf.Timestamp ends_at = 5;
+  optional string arena_id = 6;
+  optional string team_id = 7;
+  optional string required_skill_level = 8;
+  repeated RequiredSlot required_slots = 9;
+  bool update_required_slots = 10;
+  optional int32 price_per_player = 11;
+  optional string access_scope = 12;
+  optional string club_id = 13;
+  optional string training_format = 14;
+  optional string district = 15;
+  repeated string allowed_user_ids = 16;
+  bool update_allowed_user_ids = 17;
+  optional string arena_name = 18;
+  optional string organizer_display_name = 19;
+  optional string organizer_phone = 20;
+}
+
+message GetCalendarRequest {
+  optional string type = 1;
+  optional string attendance_status = 2;
+  optional google.protobuf.Timestamp from = 3;
+  optional google.protobuf.Timestamp to = 4;
+  int32 limit = 5;
+  int32 offset = 6;
+}
+
+message ListTeamCalendarRequest { string team_id = 1; int32 limit = 2; int32 offset = 3; }
+message ListTeamTrainingEventsRequest { string team_id = 1; int32 limit = 2; int32 offset = 3; }
+message ListClubCalendarRequest { string club_id = 1; int32 limit = 2; int32 offset = 3; }
+message ListPrivateClubTrainingsRequest { string club_id = 1; int32 limit = 2; int32 offset = 3; }
+
+message CreatePrivateClubTrainingRequest {
+  string club_id = 1;
+  string title = 2;
+  google.protobuf.Timestamp starts_at = 3;
+  google.protobuf.Timestamp ends_at = 4;
+  string arena_id = 5;
+  optional string team_id = 6;
+  optional string required_skill_level = 7;
+  optional string arena_name = 8;
+  optional string organizer_display_name = 9;
+  optional string organizer_phone = 10;
+}
+
+message UpdateAttendanceRequest {
+  string event_id = 1;
+  string status = 2;
+  optional string display_name = 3;
+}
+
+message GetRosterStatusRequest { string event_id = 1; }
+message RosterStatusSummary { int32 going = 1; int32 not_going = 2; int32 maybe = 3; }
+message RosterStatus {
+  string event_id = 1;
+  repeated RequiredSlot deficits = 2;
+  RosterStatusSummary summary = 3;
+}
+
+message EventRsvpPlayer {
+  string user_id = 1;
+  string display_name = 2;
+  string position = 3;
+  string status = 4;
+  optional string decline_reason = 5;
+  optional google.protobuf.Timestamp updated_at = 6;
+}
+
+message EventRsvpBoard {
+  string event_id = 1;
+  string team_id = 2;
+  string team_name = 3;
+  string league_name = 4;
+  string opponent_name = 5;
+  google.protobuf.Timestamp starts_at = 6;
+  string arena_name = 7;
+  repeated EventRsvpPlayer players = 8;
+}
+
+message GetEventRsvpRequest { string event_id = 1; }
+message UpdateEventRsvpRequest {
+  string event_id = 1;
+  string status = 2;
+  optional string decline_reason = 3;
+}
+message EventRsvp {
+  string event_id = 1;
+  string user_id = 2;
+  string status = 3;
+  optional string decline_reason = 4;
+  google.protobuf.Timestamp updated_at = 5;
 }
 
 message LineupAssignment {
@@ -73,13 +274,23 @@ message LineupAssignment {
   string position = 2;
   string side = 3;
   optional int32 line = 4;
+  optional string display_name = 5;
+  optional string event_id = 6;
+}
+
+message TrainingLineup { repeated LineupAssignment assignments = 1; }
+message GetTrainingLineupRequest { string team_id = 1; string event_id = 2; }
+message ReplaceTrainingLineupRequest {
+  string team_id = 1;
+  string event_id = 2;
+  repeated LineupAssignment assignments = 3;
 }
 
 message TrainingDraft {
   string id = 1;
   string club_id = 2;
   optional string team_id = 3;
-  string author_user_id = 4;
+  string created_by_user_id = 4;
   string status = 5;
   string title = 6;
   google.protobuf.Timestamp starts_at = 7;
@@ -89,16 +300,19 @@ message TrainingDraft {
   optional string format = 11;
   optional int32 price_per_player = 12;
   string required_slots = 13;
-  repeated LineupAssignment lineup_assignments = 14;
-  optional string reject_reason = 15;
-  optional string published_training_id = 16;
+  repeated LineupAssignment assignments = 14;
+  optional string rejected_reason = 15;
+  optional string event_id = 16;
   google.protobuf.Timestamp created_at = 17;
   google.protobuf.Timestamp updated_at = 18;
+  bool created_by_is_coach = 19;
+  optional string approved_by_user_id = 20;
+  optional string note = 21;
 }
 
 message ListTrainingDraftsRequest {
   string club_id = 1;
-  string status = 2;
+  optional string status = 2;
   int32 limit = 3;
   int32 offset = 4;
 }
@@ -120,14 +334,12 @@ message CreateTrainingDraftRequest {
   optional string skill_level = 7;
   optional string format = 8;
   optional int32 price_per_player = 9;
-  string required_slots = 10;
-  repeated LineupAssignment lineup_assignments = 11;
+  optional string required_slots = 10;
+  repeated LineupAssignment assignments = 11;
+  optional string note = 12;
 }
 
-message GetTrainingDraftRequest {
-  string club_id = 1;
-  string draft_id = 2;
-}
+message GetTrainingDraftRequest { string club_id = 1; string draft_id = 2; }
 
 message UpdateTrainingDraftRequest {
   string club_id = 1;
@@ -141,27 +353,17 @@ message UpdateTrainingDraftRequest {
   optional string format = 9;
   optional int32 price_per_player = 10;
   optional string required_slots = 11;
-  repeated LineupAssignment lineup_assignments = 12;
-  bool update_lineup_assignments = 13;
+  repeated LineupAssignment assignments = 12;
+  bool update_assignments = 13;
+  optional string note = 14;
 }
 
-message SubmitTrainingDraftRequest {
-  string club_id = 1;
-  string draft_id = 2;
-}
-
-message ApproveTrainingDraftRequest {
-  string club_id = 1;
-  string draft_id = 2;
-}
-
-message RejectTrainingDraftRequest {
-  string club_id = 1;
-  string draft_id = 2;
-  string reason = 3;
-}
-
-message PublishTrainingDraftRequest {
-  string club_id = 1;
-  string draft_id = 2;
+message SubmitTrainingDraftRequest { string club_id = 1; string draft_id = 2; }
+message ApproveTrainingDraftRequest { string club_id = 1; string draft_id = 2; }
+message RejectTrainingDraftRequest { string club_id = 1; string draft_id = 2; string reason = 3; }
+message PublishTrainingDraftRequest { string club_id = 1; string draft_id = 2; }
+message PublishTrainingDraftResponse {
+  TrainingDraft draft = 1;
+  Event event = 2;
+  repeated string message_ids = 3;
 }

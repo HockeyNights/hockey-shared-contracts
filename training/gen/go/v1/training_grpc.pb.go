@@ -19,20 +19,52 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TrainingService_ListTrainingDrafts_FullMethodName   = "/training.v1.TrainingService/ListTrainingDrafts"
-	TrainingService_CreateTrainingDraft_FullMethodName  = "/training.v1.TrainingService/CreateTrainingDraft"
-	TrainingService_GetTrainingDraft_FullMethodName     = "/training.v1.TrainingService/GetTrainingDraft"
-	TrainingService_UpdateTrainingDraft_FullMethodName  = "/training.v1.TrainingService/UpdateTrainingDraft"
-	TrainingService_SubmitTrainingDraft_FullMethodName  = "/training.v1.TrainingService/SubmitTrainingDraft"
-	TrainingService_ApproveTrainingDraft_FullMethodName = "/training.v1.TrainingService/ApproveTrainingDraft"
-	TrainingService_RejectTrainingDraft_FullMethodName  = "/training.v1.TrainingService/RejectTrainingDraft"
-	TrainingService_PublishTrainingDraft_FullMethodName = "/training.v1.TrainingService/PublishTrainingDraft"
+	TrainingService_ListEvents_FullMethodName                = "/training.v1.TrainingService/ListEvents"
+	TrainingService_CreateEvent_FullMethodName               = "/training.v1.TrainingService/CreateEvent"
+	TrainingService_GetEvent_FullMethodName                  = "/training.v1.TrainingService/GetEvent"
+	TrainingService_UpdateEvent_FullMethodName               = "/training.v1.TrainingService/UpdateEvent"
+	TrainingService_GetCalendar_FullMethodName               = "/training.v1.TrainingService/GetCalendar"
+	TrainingService_ListTeamCalendar_FullMethodName          = "/training.v1.TrainingService/ListTeamCalendar"
+	TrainingService_ListTeamTrainingEvents_FullMethodName    = "/training.v1.TrainingService/ListTeamTrainingEvents"
+	TrainingService_ListClubCalendar_FullMethodName          = "/training.v1.TrainingService/ListClubCalendar"
+	TrainingService_ListPrivateClubTrainings_FullMethodName  = "/training.v1.TrainingService/ListPrivateClubTrainings"
+	TrainingService_CreatePrivateClubTraining_FullMethodName = "/training.v1.TrainingService/CreatePrivateClubTraining"
+	TrainingService_UpdateAttendance_FullMethodName          = "/training.v1.TrainingService/UpdateAttendance"
+	TrainingService_GetRosterStatus_FullMethodName           = "/training.v1.TrainingService/GetRosterStatus"
+	TrainingService_GetEventRsvp_FullMethodName              = "/training.v1.TrainingService/GetEventRsvp"
+	TrainingService_UpdateEventRsvp_FullMethodName           = "/training.v1.TrainingService/UpdateEventRsvp"
+	TrainingService_GetTrainingLineup_FullMethodName         = "/training.v1.TrainingService/GetTrainingLineup"
+	TrainingService_ReplaceTrainingLineup_FullMethodName     = "/training.v1.TrainingService/ReplaceTrainingLineup"
+	TrainingService_ListTrainingDrafts_FullMethodName        = "/training.v1.TrainingService/ListTrainingDrafts"
+	TrainingService_CreateTrainingDraft_FullMethodName       = "/training.v1.TrainingService/CreateTrainingDraft"
+	TrainingService_GetTrainingDraft_FullMethodName          = "/training.v1.TrainingService/GetTrainingDraft"
+	TrainingService_UpdateTrainingDraft_FullMethodName       = "/training.v1.TrainingService/UpdateTrainingDraft"
+	TrainingService_SubmitTrainingDraft_FullMethodName       = "/training.v1.TrainingService/SubmitTrainingDraft"
+	TrainingService_ApproveTrainingDraft_FullMethodName      = "/training.v1.TrainingService/ApproveTrainingDraft"
+	TrainingService_RejectTrainingDraft_FullMethodName       = "/training.v1.TrainingService/RejectTrainingDraft"
+	TrainingService_PublishTrainingDraft_FullMethodName      = "/training.v1.TrainingService/PublishTrainingDraft"
 )
 
 // TrainingServiceClient is the client API for TrainingService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrainingServiceClient interface {
+	ListEvents(ctx context.Context, in *ListEventsRequest, opts ...grpc.CallOption) (*EventList, error)
+	CreateEvent(ctx context.Context, in *CreateEventRequest, opts ...grpc.CallOption) (*Event, error)
+	GetEvent(ctx context.Context, in *GetEventRequest, opts ...grpc.CallOption) (*Event, error)
+	UpdateEvent(ctx context.Context, in *UpdateEventRequest, opts ...grpc.CallOption) (*Event, error)
+	GetCalendar(ctx context.Context, in *GetCalendarRequest, opts ...grpc.CallOption) (*EventList, error)
+	ListTeamCalendar(ctx context.Context, in *ListTeamCalendarRequest, opts ...grpc.CallOption) (*EventList, error)
+	ListTeamTrainingEvents(ctx context.Context, in *ListTeamTrainingEventsRequest, opts ...grpc.CallOption) (*EventList, error)
+	ListClubCalendar(ctx context.Context, in *ListClubCalendarRequest, opts ...grpc.CallOption) (*EventList, error)
+	ListPrivateClubTrainings(ctx context.Context, in *ListPrivateClubTrainingsRequest, opts ...grpc.CallOption) (*EventList, error)
+	CreatePrivateClubTraining(ctx context.Context, in *CreatePrivateClubTrainingRequest, opts ...grpc.CallOption) (*Event, error)
+	UpdateAttendance(ctx context.Context, in *UpdateAttendanceRequest, opts ...grpc.CallOption) (*Event, error)
+	GetRosterStatus(ctx context.Context, in *GetRosterStatusRequest, opts ...grpc.CallOption) (*RosterStatus, error)
+	GetEventRsvp(ctx context.Context, in *GetEventRsvpRequest, opts ...grpc.CallOption) (*EventRsvpBoard, error)
+	UpdateEventRsvp(ctx context.Context, in *UpdateEventRsvpRequest, opts ...grpc.CallOption) (*EventRsvp, error)
+	GetTrainingLineup(ctx context.Context, in *GetTrainingLineupRequest, opts ...grpc.CallOption) (*TrainingLineup, error)
+	ReplaceTrainingLineup(ctx context.Context, in *ReplaceTrainingLineupRequest, opts ...grpc.CallOption) (*TrainingLineup, error)
 	ListTrainingDrafts(ctx context.Context, in *ListTrainingDraftsRequest, opts ...grpc.CallOption) (*ListTrainingDraftsResponse, error)
 	CreateTrainingDraft(ctx context.Context, in *CreateTrainingDraftRequest, opts ...grpc.CallOption) (*TrainingDraft, error)
 	GetTrainingDraft(ctx context.Context, in *GetTrainingDraftRequest, opts ...grpc.CallOption) (*TrainingDraft, error)
@@ -40,7 +72,7 @@ type TrainingServiceClient interface {
 	SubmitTrainingDraft(ctx context.Context, in *SubmitTrainingDraftRequest, opts ...grpc.CallOption) (*TrainingDraft, error)
 	ApproveTrainingDraft(ctx context.Context, in *ApproveTrainingDraftRequest, opts ...grpc.CallOption) (*TrainingDraft, error)
 	RejectTrainingDraft(ctx context.Context, in *RejectTrainingDraftRequest, opts ...grpc.CallOption) (*TrainingDraft, error)
-	PublishTrainingDraft(ctx context.Context, in *PublishTrainingDraftRequest, opts ...grpc.CallOption) (*TrainingDraft, error)
+	PublishTrainingDraft(ctx context.Context, in *PublishTrainingDraftRequest, opts ...grpc.CallOption) (*PublishTrainingDraftResponse, error)
 }
 
 type trainingServiceClient struct {
@@ -49,6 +81,166 @@ type trainingServiceClient struct {
 
 func NewTrainingServiceClient(cc grpc.ClientConnInterface) TrainingServiceClient {
 	return &trainingServiceClient{cc}
+}
+
+func (c *trainingServiceClient) ListEvents(ctx context.Context, in *ListEventsRequest, opts ...grpc.CallOption) (*EventList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventList)
+	err := c.cc.Invoke(ctx, TrainingService_ListEvents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) CreateEvent(ctx context.Context, in *CreateEventRequest, opts ...grpc.CallOption) (*Event, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Event)
+	err := c.cc.Invoke(ctx, TrainingService_CreateEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) GetEvent(ctx context.Context, in *GetEventRequest, opts ...grpc.CallOption) (*Event, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Event)
+	err := c.cc.Invoke(ctx, TrainingService_GetEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) UpdateEvent(ctx context.Context, in *UpdateEventRequest, opts ...grpc.CallOption) (*Event, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Event)
+	err := c.cc.Invoke(ctx, TrainingService_UpdateEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) GetCalendar(ctx context.Context, in *GetCalendarRequest, opts ...grpc.CallOption) (*EventList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventList)
+	err := c.cc.Invoke(ctx, TrainingService_GetCalendar_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) ListTeamCalendar(ctx context.Context, in *ListTeamCalendarRequest, opts ...grpc.CallOption) (*EventList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventList)
+	err := c.cc.Invoke(ctx, TrainingService_ListTeamCalendar_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) ListTeamTrainingEvents(ctx context.Context, in *ListTeamTrainingEventsRequest, opts ...grpc.CallOption) (*EventList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventList)
+	err := c.cc.Invoke(ctx, TrainingService_ListTeamTrainingEvents_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) ListClubCalendar(ctx context.Context, in *ListClubCalendarRequest, opts ...grpc.CallOption) (*EventList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventList)
+	err := c.cc.Invoke(ctx, TrainingService_ListClubCalendar_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) ListPrivateClubTrainings(ctx context.Context, in *ListPrivateClubTrainingsRequest, opts ...grpc.CallOption) (*EventList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventList)
+	err := c.cc.Invoke(ctx, TrainingService_ListPrivateClubTrainings_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) CreatePrivateClubTraining(ctx context.Context, in *CreatePrivateClubTrainingRequest, opts ...grpc.CallOption) (*Event, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Event)
+	err := c.cc.Invoke(ctx, TrainingService_CreatePrivateClubTraining_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) UpdateAttendance(ctx context.Context, in *UpdateAttendanceRequest, opts ...grpc.CallOption) (*Event, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Event)
+	err := c.cc.Invoke(ctx, TrainingService_UpdateAttendance_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) GetRosterStatus(ctx context.Context, in *GetRosterStatusRequest, opts ...grpc.CallOption) (*RosterStatus, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RosterStatus)
+	err := c.cc.Invoke(ctx, TrainingService_GetRosterStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) GetEventRsvp(ctx context.Context, in *GetEventRsvpRequest, opts ...grpc.CallOption) (*EventRsvpBoard, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventRsvpBoard)
+	err := c.cc.Invoke(ctx, TrainingService_GetEventRsvp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) UpdateEventRsvp(ctx context.Context, in *UpdateEventRsvpRequest, opts ...grpc.CallOption) (*EventRsvp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EventRsvp)
+	err := c.cc.Invoke(ctx, TrainingService_UpdateEventRsvp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) GetTrainingLineup(ctx context.Context, in *GetTrainingLineupRequest, opts ...grpc.CallOption) (*TrainingLineup, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TrainingLineup)
+	err := c.cc.Invoke(ctx, TrainingService_GetTrainingLineup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trainingServiceClient) ReplaceTrainingLineup(ctx context.Context, in *ReplaceTrainingLineupRequest, opts ...grpc.CallOption) (*TrainingLineup, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TrainingLineup)
+	err := c.cc.Invoke(ctx, TrainingService_ReplaceTrainingLineup_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *trainingServiceClient) ListTrainingDrafts(ctx context.Context, in *ListTrainingDraftsRequest, opts ...grpc.CallOption) (*ListTrainingDraftsResponse, error) {
@@ -121,9 +313,9 @@ func (c *trainingServiceClient) RejectTrainingDraft(ctx context.Context, in *Rej
 	return out, nil
 }
 
-func (c *trainingServiceClient) PublishTrainingDraft(ctx context.Context, in *PublishTrainingDraftRequest, opts ...grpc.CallOption) (*TrainingDraft, error) {
+func (c *trainingServiceClient) PublishTrainingDraft(ctx context.Context, in *PublishTrainingDraftRequest, opts ...grpc.CallOption) (*PublishTrainingDraftResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TrainingDraft)
+	out := new(PublishTrainingDraftResponse)
 	err := c.cc.Invoke(ctx, TrainingService_PublishTrainingDraft_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -135,6 +327,22 @@ func (c *trainingServiceClient) PublishTrainingDraft(ctx context.Context, in *Pu
 // All implementations must embed UnimplementedTrainingServiceServer
 // for forward compatibility.
 type TrainingServiceServer interface {
+	ListEvents(context.Context, *ListEventsRequest) (*EventList, error)
+	CreateEvent(context.Context, *CreateEventRequest) (*Event, error)
+	GetEvent(context.Context, *GetEventRequest) (*Event, error)
+	UpdateEvent(context.Context, *UpdateEventRequest) (*Event, error)
+	GetCalendar(context.Context, *GetCalendarRequest) (*EventList, error)
+	ListTeamCalendar(context.Context, *ListTeamCalendarRequest) (*EventList, error)
+	ListTeamTrainingEvents(context.Context, *ListTeamTrainingEventsRequest) (*EventList, error)
+	ListClubCalendar(context.Context, *ListClubCalendarRequest) (*EventList, error)
+	ListPrivateClubTrainings(context.Context, *ListPrivateClubTrainingsRequest) (*EventList, error)
+	CreatePrivateClubTraining(context.Context, *CreatePrivateClubTrainingRequest) (*Event, error)
+	UpdateAttendance(context.Context, *UpdateAttendanceRequest) (*Event, error)
+	GetRosterStatus(context.Context, *GetRosterStatusRequest) (*RosterStatus, error)
+	GetEventRsvp(context.Context, *GetEventRsvpRequest) (*EventRsvpBoard, error)
+	UpdateEventRsvp(context.Context, *UpdateEventRsvpRequest) (*EventRsvp, error)
+	GetTrainingLineup(context.Context, *GetTrainingLineupRequest) (*TrainingLineup, error)
+	ReplaceTrainingLineup(context.Context, *ReplaceTrainingLineupRequest) (*TrainingLineup, error)
 	ListTrainingDrafts(context.Context, *ListTrainingDraftsRequest) (*ListTrainingDraftsResponse, error)
 	CreateTrainingDraft(context.Context, *CreateTrainingDraftRequest) (*TrainingDraft, error)
 	GetTrainingDraft(context.Context, *GetTrainingDraftRequest) (*TrainingDraft, error)
@@ -142,7 +350,7 @@ type TrainingServiceServer interface {
 	SubmitTrainingDraft(context.Context, *SubmitTrainingDraftRequest) (*TrainingDraft, error)
 	ApproveTrainingDraft(context.Context, *ApproveTrainingDraftRequest) (*TrainingDraft, error)
 	RejectTrainingDraft(context.Context, *RejectTrainingDraftRequest) (*TrainingDraft, error)
-	PublishTrainingDraft(context.Context, *PublishTrainingDraftRequest) (*TrainingDraft, error)
+	PublishTrainingDraft(context.Context, *PublishTrainingDraftRequest) (*PublishTrainingDraftResponse, error)
 	mustEmbedUnimplementedTrainingServiceServer()
 }
 
@@ -153,6 +361,54 @@ type TrainingServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTrainingServiceServer struct{}
 
+func (UnimplementedTrainingServiceServer) ListEvents(context.Context, *ListEventsRequest) (*EventList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListEvents not implemented")
+}
+func (UnimplementedTrainingServiceServer) CreateEvent(context.Context, *CreateEventRequest) (*Event, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateEvent not implemented")
+}
+func (UnimplementedTrainingServiceServer) GetEvent(context.Context, *GetEventRequest) (*Event, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEvent not implemented")
+}
+func (UnimplementedTrainingServiceServer) UpdateEvent(context.Context, *UpdateEventRequest) (*Event, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateEvent not implemented")
+}
+func (UnimplementedTrainingServiceServer) GetCalendar(context.Context, *GetCalendarRequest) (*EventList, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCalendar not implemented")
+}
+func (UnimplementedTrainingServiceServer) ListTeamCalendar(context.Context, *ListTeamCalendarRequest) (*EventList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListTeamCalendar not implemented")
+}
+func (UnimplementedTrainingServiceServer) ListTeamTrainingEvents(context.Context, *ListTeamTrainingEventsRequest) (*EventList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListTeamTrainingEvents not implemented")
+}
+func (UnimplementedTrainingServiceServer) ListClubCalendar(context.Context, *ListClubCalendarRequest) (*EventList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListClubCalendar not implemented")
+}
+func (UnimplementedTrainingServiceServer) ListPrivateClubTrainings(context.Context, *ListPrivateClubTrainingsRequest) (*EventList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListPrivateClubTrainings not implemented")
+}
+func (UnimplementedTrainingServiceServer) CreatePrivateClubTraining(context.Context, *CreatePrivateClubTrainingRequest) (*Event, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreatePrivateClubTraining not implemented")
+}
+func (UnimplementedTrainingServiceServer) UpdateAttendance(context.Context, *UpdateAttendanceRequest) (*Event, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateAttendance not implemented")
+}
+func (UnimplementedTrainingServiceServer) GetRosterStatus(context.Context, *GetRosterStatusRequest) (*RosterStatus, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetRosterStatus not implemented")
+}
+func (UnimplementedTrainingServiceServer) GetEventRsvp(context.Context, *GetEventRsvpRequest) (*EventRsvpBoard, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEventRsvp not implemented")
+}
+func (UnimplementedTrainingServiceServer) UpdateEventRsvp(context.Context, *UpdateEventRsvpRequest) (*EventRsvp, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateEventRsvp not implemented")
+}
+func (UnimplementedTrainingServiceServer) GetTrainingLineup(context.Context, *GetTrainingLineupRequest) (*TrainingLineup, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTrainingLineup not implemented")
+}
+func (UnimplementedTrainingServiceServer) ReplaceTrainingLineup(context.Context, *ReplaceTrainingLineupRequest) (*TrainingLineup, error) {
+	return nil, status.Error(codes.Unimplemented, "method ReplaceTrainingLineup not implemented")
+}
 func (UnimplementedTrainingServiceServer) ListTrainingDrafts(context.Context, *ListTrainingDraftsRequest) (*ListTrainingDraftsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListTrainingDrafts not implemented")
 }
@@ -174,7 +430,7 @@ func (UnimplementedTrainingServiceServer) ApproveTrainingDraft(context.Context, 
 func (UnimplementedTrainingServiceServer) RejectTrainingDraft(context.Context, *RejectTrainingDraftRequest) (*TrainingDraft, error) {
 	return nil, status.Error(codes.Unimplemented, "method RejectTrainingDraft not implemented")
 }
-func (UnimplementedTrainingServiceServer) PublishTrainingDraft(context.Context, *PublishTrainingDraftRequest) (*TrainingDraft, error) {
+func (UnimplementedTrainingServiceServer) PublishTrainingDraft(context.Context, *PublishTrainingDraftRequest) (*PublishTrainingDraftResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method PublishTrainingDraft not implemented")
 }
 func (UnimplementedTrainingServiceServer) mustEmbedUnimplementedTrainingServiceServer() {}
@@ -196,6 +452,294 @@ func RegisterTrainingServiceServer(s grpc.ServiceRegistrar, srv TrainingServiceS
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&TrainingService_ServiceDesc, srv)
+}
+
+func _TrainingService_ListEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEventsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).ListEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_ListEvents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).ListEvents(ctx, req.(*ListEventsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_CreateEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).CreateEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_CreateEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).CreateEvent(ctx, req.(*CreateEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_GetEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).GetEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_GetEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).GetEvent(ctx, req.(*GetEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_UpdateEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).UpdateEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_UpdateEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).UpdateEvent(ctx, req.(*UpdateEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_GetCalendar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCalendarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).GetCalendar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_GetCalendar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).GetCalendar(ctx, req.(*GetCalendarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_ListTeamCalendar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTeamCalendarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).ListTeamCalendar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_ListTeamCalendar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).ListTeamCalendar(ctx, req.(*ListTeamCalendarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_ListTeamTrainingEvents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTeamTrainingEventsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).ListTeamTrainingEvents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_ListTeamTrainingEvents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).ListTeamTrainingEvents(ctx, req.(*ListTeamTrainingEventsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_ListClubCalendar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListClubCalendarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).ListClubCalendar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_ListClubCalendar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).ListClubCalendar(ctx, req.(*ListClubCalendarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_ListPrivateClubTrainings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPrivateClubTrainingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).ListPrivateClubTrainings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_ListPrivateClubTrainings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).ListPrivateClubTrainings(ctx, req.(*ListPrivateClubTrainingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_CreatePrivateClubTraining_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePrivateClubTrainingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).CreatePrivateClubTraining(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_CreatePrivateClubTraining_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).CreatePrivateClubTraining(ctx, req.(*CreatePrivateClubTrainingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_UpdateAttendance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAttendanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).UpdateAttendance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_UpdateAttendance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).UpdateAttendance(ctx, req.(*UpdateAttendanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_GetRosterStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRosterStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).GetRosterStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_GetRosterStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).GetRosterStatus(ctx, req.(*GetRosterStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_GetEventRsvp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEventRsvpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).GetEventRsvp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_GetEventRsvp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).GetEventRsvp(ctx, req.(*GetEventRsvpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_UpdateEventRsvp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateEventRsvpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).UpdateEventRsvp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_UpdateEventRsvp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).UpdateEventRsvp(ctx, req.(*UpdateEventRsvpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_GetTrainingLineup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTrainingLineupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).GetTrainingLineup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_GetTrainingLineup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).GetTrainingLineup(ctx, req.(*GetTrainingLineupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrainingService_ReplaceTrainingLineup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReplaceTrainingLineupRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrainingServiceServer).ReplaceTrainingLineup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrainingService_ReplaceTrainingLineup_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrainingServiceServer).ReplaceTrainingLineup(ctx, req.(*ReplaceTrainingLineupRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TrainingService_ListTrainingDrafts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -349,6 +893,70 @@ var TrainingService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "training.v1.TrainingService",
 	HandlerType: (*TrainingServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListEvents",
+			Handler:    _TrainingService_ListEvents_Handler,
+		},
+		{
+			MethodName: "CreateEvent",
+			Handler:    _TrainingService_CreateEvent_Handler,
+		},
+		{
+			MethodName: "GetEvent",
+			Handler:    _TrainingService_GetEvent_Handler,
+		},
+		{
+			MethodName: "UpdateEvent",
+			Handler:    _TrainingService_UpdateEvent_Handler,
+		},
+		{
+			MethodName: "GetCalendar",
+			Handler:    _TrainingService_GetCalendar_Handler,
+		},
+		{
+			MethodName: "ListTeamCalendar",
+			Handler:    _TrainingService_ListTeamCalendar_Handler,
+		},
+		{
+			MethodName: "ListTeamTrainingEvents",
+			Handler:    _TrainingService_ListTeamTrainingEvents_Handler,
+		},
+		{
+			MethodName: "ListClubCalendar",
+			Handler:    _TrainingService_ListClubCalendar_Handler,
+		},
+		{
+			MethodName: "ListPrivateClubTrainings",
+			Handler:    _TrainingService_ListPrivateClubTrainings_Handler,
+		},
+		{
+			MethodName: "CreatePrivateClubTraining",
+			Handler:    _TrainingService_CreatePrivateClubTraining_Handler,
+		},
+		{
+			MethodName: "UpdateAttendance",
+			Handler:    _TrainingService_UpdateAttendance_Handler,
+		},
+		{
+			MethodName: "GetRosterStatus",
+			Handler:    _TrainingService_GetRosterStatus_Handler,
+		},
+		{
+			MethodName: "GetEventRsvp",
+			Handler:    _TrainingService_GetEventRsvp_Handler,
+		},
+		{
+			MethodName: "UpdateEventRsvp",
+			Handler:    _TrainingService_UpdateEventRsvp_Handler,
+		},
+		{
+			MethodName: "GetTrainingLineup",
+			Handler:    _TrainingService_GetTrainingLineup_Handler,
+		},
+		{
+			MethodName: "ReplaceTrainingLineup",
+			Handler:    _TrainingService_ReplaceTrainingLineup_Handler,
+		},
 		{
 			MethodName: "ListTrainingDrafts",
 			Handler:    _TrainingService_ListTrainingDrafts_Handler,
