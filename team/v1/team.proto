@@ -185,7 +185,7 @@ message ListInvitesRequest {
   string team_id = 1;
   optional string status = 2;
   int32 limit = 3;
-  int32 limit = 4;
+  int32 offset = 4;
 }
 
 message InviteList {
