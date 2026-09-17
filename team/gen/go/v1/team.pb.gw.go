@@ -401,6 +401,8 @@ func local_request_TeamService_UpdateTeamRole_0(ctx context.Context, marshaler r
 	return msg, metadata, err
 }
 
+var filter_TeamService_ListInvites_0 = &utilities.DoubleArray{Encoding: map[string]int{"team_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+
 func request_TeamService_ListInvites_0(ctx context.Context, marshaler runtime.Marshaler, client TeamServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListInvitesRequest
@@ -414,6 +416,12 @@ func request_TeamService_ListInvites_0(ctx context.Context, marshaler runtime.Ma
 	protoReq.TeamId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "team_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeamService_ListInvites_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
@@ -435,6 +443,12 @@ func local_request_TeamService_ListInvites_0(ctx context.Context, marshaler runt
 	protoReq.TeamId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "team_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TeamService_ListInvites_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.ListInvites(ctx, &protoReq)
 	return msg, metadata, err
