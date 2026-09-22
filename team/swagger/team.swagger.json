@@ -17,6 +17,44 @@
     "application/json"
   ],
   "paths": {
+    "/v1/team-invites/{inviteId}/accept": {
+      "post": {
+        "operationId": "TeamService_AcceptInvite",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TeamInvite"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inviteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamServiceAcceptInviteBody"
+            }
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
     "/v1/teams": {
       "get": {
         "operationId": "TeamService_ListTeams",
@@ -405,6 +443,9 @@
     }
   },
   "definitions": {
+    "TeamServiceAcceptInviteBody": {
+      "type": "object"
+    },
     "TeamServiceAddMemberBody": {
       "type": "object",
       "properties": {
