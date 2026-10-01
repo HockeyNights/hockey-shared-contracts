@@ -74,6 +74,13 @@ service TeamService {
       body: "*"
     };
   }
+
+  rpc AcceptInvite(AcceptInviteRequest) returns (TeamInvite) {
+    option (google.api.http) = {
+      post: "/v1/team-invites/{invite_id}/accept"
+      body: "*"
+    };
+  }
 }
 
 message Team {
@@ -111,6 +118,7 @@ message TeamInvite {
   string status = 7;
   google.protobuf.Timestamp created_at = 8;
   optional google.protobuf.Timestamp updated_at = 9;
+  google.protobuf.Timestamp expires_at = 10;
 }
 
 message CreateTeamRequest {
@@ -182,13 +190,23 @@ message UpdateTeamRoleRequest {
 
 message ListInvitesRequest {
   string team_id = 1;
+  optional string status = 2;
+  int32 limit = 3;
+  int32 offset = 4;
 }
 
 message InviteList {
   repeated TeamInvite invites = 1;
+  int64 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
 }
 
 message CreateEmailInviteRequest {
   string team_id = 1;
   string email = 2;
+}
+
+message AcceptInviteRequest {
+  string invite_id = 1;
 }
