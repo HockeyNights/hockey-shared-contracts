@@ -2341,6 +2341,122 @@ func (x *LeaguePartnerMembership) GetUserId() string {
 	return ""
 }
 
+type UpsertLeagueCatalogRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	LeagueId         *string                `protobuf:"bytes,1,opt,name=league_id,json=leagueId,proto3,oneof" json:"league_id,omitempty"`
+	Name             string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Region           string                 `protobuf:"bytes,3,opt,name=region,proto3" json:"region,omitempty"`
+	Level            *string                `protobuf:"bytes,4,opt,name=level,proto3,oneof" json:"level,omitempty"`
+	WebsiteUrl       *string                `protobuf:"bytes,5,opt,name=website_url,json=websiteUrl,proto3,oneof" json:"website_url,omitempty"`
+	Description      *string                `protobuf:"bytes,6,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Visible          bool                   `protobuf:"varint,7,opt,name=visible,proto3" json:"visible,omitempty"`
+	ModerationStatus string                 `protobuf:"bytes,8,opt,name=moderation_status,json=moderationStatus,proto3" json:"moderation_status,omitempty"`
+	RecruitingStatus *string                `protobuf:"bytes,9,opt,name=recruiting_status,json=recruitingStatus,proto3,oneof" json:"recruiting_status,omitempty"`
+	SourceMeta       *structpb.Struct       `protobuf:"bytes,10,opt,name=source_meta,json=sourceMeta,proto3" json:"source_meta,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *UpsertLeagueCatalogRequest) Reset() {
+	*x = UpsertLeagueCatalogRequest{}
+	mi := &file_league_v1_league_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpsertLeagueCatalogRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpsertLeagueCatalogRequest) ProtoMessage() {}
+
+func (x *UpsertLeagueCatalogRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_league_v1_league_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpsertLeagueCatalogRequest.ProtoReflect.Descriptor instead.
+func (*UpsertLeagueCatalogRequest) Descriptor() ([]byte, []int) {
+	return file_league_v1_league_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *UpsertLeagueCatalogRequest) GetLeagueId() string {
+	if x != nil && x.LeagueId != nil {
+		return *x.LeagueId
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetLevel() string {
+	if x != nil && x.Level != nil {
+		return *x.Level
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetWebsiteUrl() string {
+	if x != nil && x.WebsiteUrl != nil {
+		return *x.WebsiteUrl
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetVisible() bool {
+	if x != nil {
+		return x.Visible
+	}
+	return false
+}
+
+func (x *UpsertLeagueCatalogRequest) GetModerationStatus() string {
+	if x != nil {
+		return x.ModerationStatus
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetRecruitingStatus() string {
+	if x != nil && x.RecruitingStatus != nil {
+		return *x.RecruitingStatus
+	}
+	return ""
+}
+
+func (x *UpsertLeagueCatalogRequest) GetSourceMeta() *structpb.Struct {
+	if x != nil {
+		return x.SourceMeta
+	}
+	return nil
+}
+
 var File_league_v1_league_proto protoreflect.FileDescriptor
 
 const file_league_v1_league_proto_rawDesc = "" +
@@ -2588,7 +2704,27 @@ const file_league_v1_league_proto_rawDesc = "" +
 	"\aenabled\x18\x03 \x01(\bR\aenabled\"O\n" +
 	"\x17LeaguePartnerMembership\x12\x1b\n" +
 	"\tleague_id\x18\x01 \x01(\tR\bleagueId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId2\x84\x12\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xd3\x03\n" +
+	"\x1aUpsertLeagueCatalogRequest\x12 \n" +
+	"\tleague_id\x18\x01 \x01(\tH\x00R\bleagueId\x88\x01\x01\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
+	"\x06region\x18\x03 \x01(\tR\x06region\x12\x19\n" +
+	"\x05level\x18\x04 \x01(\tH\x01R\x05level\x88\x01\x01\x12$\n" +
+	"\vwebsite_url\x18\x05 \x01(\tH\x02R\n" +
+	"websiteUrl\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x06 \x01(\tH\x03R\vdescription\x88\x01\x01\x12\x18\n" +
+	"\avisible\x18\a \x01(\bR\avisible\x12+\n" +
+	"\x11moderation_status\x18\b \x01(\tR\x10moderationStatus\x120\n" +
+	"\x11recruiting_status\x18\t \x01(\tH\x04R\x10recruitingStatus\x88\x01\x01\x128\n" +
+	"\vsource_meta\x18\n" +
+	" \x01(\v2\x17.google.protobuf.StructR\n" +
+	"sourceMetaB\f\n" +
+	"\n" +
+	"_league_idB\b\n" +
+	"\x06_levelB\x0e\n" +
+	"\f_website_urlB\x0e\n" +
+	"\f_descriptionB\x14\n" +
+	"\x12_recruiting_status2\xd5\x12\n" +
 	"\rLeagueService\x12X\n" +
 	"\vListLeagues\x12\x1d.league.v1.ListLeaguesRequest\x1a\x15.league.v1.LeagueList\"\x13\x82\xd3\xe4\x93\x02\r\x12\v/v1/leagues\x12\\\n" +
 	"\tGetLeague\x12\x1b.league.v1.GetLeagueRequest\x1a\x11.league.v1.League\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17/v1/leagues/{league_id}\x12{\n" +
@@ -2609,7 +2745,8 @@ const file_league_v1_league_proto_rawDesc = "" +
 	"CreatePost\x12\x1c.league.v1.CreatePostRequest\x1a\x15.league.v1.LeaguePost\"(\x82\xd3\xe4\x93\x02\":\x01*\"\x1d/v1/leagues/{league_id}/posts\x12q\n" +
 	"\fGetAnalytics\x12\x1a.league.v1.LeagueIdRequest\x1a\x1a.league.v1.LeagueAnalytics\")\x82\xd3\xe4\x93\x02#\x12!/v1/leagues/{league_id}/analytics\x12O\n" +
 	"\fLeagueExists\x12\x1e.league.v1.LeagueExistsRequest\x1a\x1f.league.v1.LeagueExistsResponse\x12n\n" +
-	"\x1aSetLeaguePartnerMembership\x12,.league.v1.SetLeaguePartnerMembershipRequest\x1a\".league.v1.LeaguePartnerMembershipB\xb3\x01\x92Ae\x12c\n" +
+	"\x1aSetLeaguePartnerMembership\x12,.league.v1.SetLeaguePartnerMembershipRequest\x1a\".league.v1.LeaguePartnerMembership\x12O\n" +
+	"\x13UpsertLeagueCatalog\x12%.league.v1.UpsertLeagueCatalogRequest\x1a\x11.league.v1.LeagueB\xb3\x01\x92Ae\x12c\n" +
 	"\x17HockeyNights League API\x12AКаталог и кабинет любительских лиг.2\x051.0.0ZIgithub.com/HockeyNights/hockey-shared-contracts/league/gen/go/v1;leaguev1b\x06proto3"
 
 var (
@@ -2624,7 +2761,7 @@ func file_league_v1_league_proto_rawDescGZIP() []byte {
 	return file_league_v1_league_proto_rawDescData
 }
 
-var file_league_v1_league_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_league_v1_league_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_league_v1_league_proto_goTypes = []any{
 	(*League)(nil),                            // 0: league.v1.League
 	(*LeagueList)(nil),                        // 1: league.v1.LeagueList
@@ -2659,66 +2796,70 @@ var file_league_v1_league_proto_goTypes = []any{
 	(*LeagueExistsResponse)(nil),              // 30: league.v1.LeagueExistsResponse
 	(*SetLeaguePartnerMembershipRequest)(nil), // 31: league.v1.SetLeaguePartnerMembershipRequest
 	(*LeaguePartnerMembership)(nil),           // 32: league.v1.LeaguePartnerMembership
-	(*structpb.Struct)(nil),                   // 33: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),             // 34: google.protobuf.Timestamp
+	(*UpsertLeagueCatalogRequest)(nil),        // 33: league.v1.UpsertLeagueCatalogRequest
+	(*structpb.Struct)(nil),                   // 34: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),             // 35: google.protobuf.Timestamp
 }
 var file_league_v1_league_proto_depIdxs = []int32{
-	33, // 0: league.v1.League.source_meta:type_name -> google.protobuf.Struct
+	34, // 0: league.v1.League.source_meta:type_name -> google.protobuf.Struct
 	0,  // 1: league.v1.LeagueList.items:type_name -> league.v1.League
 	6,  // 2: league.v1.LeagueStandingList.items:type_name -> league.v1.LeagueStanding
-	34, // 3: league.v1.LeagueScheduleItem.starts_at:type_name -> google.protobuf.Timestamp
+	35, // 3: league.v1.LeagueScheduleItem.starts_at:type_name -> google.protobuf.Timestamp
 	9,  // 4: league.v1.LeagueScheduleList.items:type_name -> league.v1.LeagueScheduleItem
-	34, // 5: league.v1.CreateScheduleItemRequest.starts_at:type_name -> google.protobuf.Timestamp
-	34, // 6: league.v1.UpdateScheduleItemRequest.starts_at:type_name -> google.protobuf.Timestamp
+	35, // 5: league.v1.CreateScheduleItemRequest.starts_at:type_name -> google.protobuf.Timestamp
+	35, // 6: league.v1.UpdateScheduleItemRequest.starts_at:type_name -> google.protobuf.Timestamp
 	15, // 7: league.v1.LeagueSeasonList.items:type_name -> league.v1.LeagueSeason
 	17, // 8: league.v1.LeagueDivisionList.items:type_name -> league.v1.LeagueDivision
-	34, // 9: league.v1.LeagueApplication.created_at:type_name -> google.protobuf.Timestamp
+	35, // 9: league.v1.LeagueApplication.created_at:type_name -> google.protobuf.Timestamp
 	20, // 10: league.v1.LeagueApplicationList.items:type_name -> league.v1.LeagueApplication
-	34, // 11: league.v1.LeaguePost.published_at:type_name -> google.protobuf.Timestamp
+	35, // 11: league.v1.LeaguePost.published_at:type_name -> google.protobuf.Timestamp
 	25, // 12: league.v1.LeaguePostList.items:type_name -> league.v1.LeaguePost
-	2,  // 13: league.v1.LeagueService.ListLeagues:input_type -> league.v1.ListLeaguesRequest
-	3,  // 14: league.v1.LeagueService.GetLeague:input_type -> league.v1.GetLeagueRequest
-	5,  // 15: league.v1.LeagueService.UpdateLeagueProfile:input_type -> league.v1.UpdateLeagueProfileRequest
-	4,  // 16: league.v1.LeagueService.ListStandings:input_type -> league.v1.LeagueIdRequest
-	8,  // 17: league.v1.LeagueService.UpdateStanding:input_type -> league.v1.UpdateStandingRequest
-	4,  // 18: league.v1.LeagueService.ListSchedule:input_type -> league.v1.LeagueIdRequest
-	11, // 19: league.v1.LeagueService.CreateScheduleItem:input_type -> league.v1.CreateScheduleItemRequest
-	12, // 20: league.v1.LeagueService.UpdateScheduleItem:input_type -> league.v1.UpdateScheduleItemRequest
-	13, // 21: league.v1.LeagueService.ImportScheduleCsv:input_type -> league.v1.ImportScheduleCsvRequest
-	4,  // 22: league.v1.LeagueService.ListSeasons:input_type -> league.v1.LeagueIdRequest
-	19, // 23: league.v1.LeagueService.ListDivisions:input_type -> league.v1.ListDivisionsRequest
-	22, // 24: league.v1.LeagueService.ListApplications:input_type -> league.v1.ListApplicationsRequest
-	23, // 25: league.v1.LeagueService.CreateApplication:input_type -> league.v1.CreateApplicationRequest
-	24, // 26: league.v1.LeagueService.ReviewApplication:input_type -> league.v1.ReviewApplicationRequest
-	4,  // 27: league.v1.LeagueService.ListPosts:input_type -> league.v1.LeagueIdRequest
-	27, // 28: league.v1.LeagueService.CreatePost:input_type -> league.v1.CreatePostRequest
-	4,  // 29: league.v1.LeagueService.GetAnalytics:input_type -> league.v1.LeagueIdRequest
-	29, // 30: league.v1.LeagueService.LeagueExists:input_type -> league.v1.LeagueExistsRequest
-	31, // 31: league.v1.LeagueService.SetLeaguePartnerMembership:input_type -> league.v1.SetLeaguePartnerMembershipRequest
-	1,  // 32: league.v1.LeagueService.ListLeagues:output_type -> league.v1.LeagueList
-	0,  // 33: league.v1.LeagueService.GetLeague:output_type -> league.v1.League
-	0,  // 34: league.v1.LeagueService.UpdateLeagueProfile:output_type -> league.v1.League
-	7,  // 35: league.v1.LeagueService.ListStandings:output_type -> league.v1.LeagueStandingList
-	6,  // 36: league.v1.LeagueService.UpdateStanding:output_type -> league.v1.LeagueStanding
-	10, // 37: league.v1.LeagueService.ListSchedule:output_type -> league.v1.LeagueScheduleList
-	9,  // 38: league.v1.LeagueService.CreateScheduleItem:output_type -> league.v1.LeagueScheduleItem
-	9,  // 39: league.v1.LeagueService.UpdateScheduleItem:output_type -> league.v1.LeagueScheduleItem
-	14, // 40: league.v1.LeagueService.ImportScheduleCsv:output_type -> league.v1.ScheduleImportResult
-	16, // 41: league.v1.LeagueService.ListSeasons:output_type -> league.v1.LeagueSeasonList
-	18, // 42: league.v1.LeagueService.ListDivisions:output_type -> league.v1.LeagueDivisionList
-	21, // 43: league.v1.LeagueService.ListApplications:output_type -> league.v1.LeagueApplicationList
-	20, // 44: league.v1.LeagueService.CreateApplication:output_type -> league.v1.LeagueApplication
-	20, // 45: league.v1.LeagueService.ReviewApplication:output_type -> league.v1.LeagueApplication
-	26, // 46: league.v1.LeagueService.ListPosts:output_type -> league.v1.LeaguePostList
-	25, // 47: league.v1.LeagueService.CreatePost:output_type -> league.v1.LeaguePost
-	28, // 48: league.v1.LeagueService.GetAnalytics:output_type -> league.v1.LeagueAnalytics
-	30, // 49: league.v1.LeagueService.LeagueExists:output_type -> league.v1.LeagueExistsResponse
-	32, // 50: league.v1.LeagueService.SetLeaguePartnerMembership:output_type -> league.v1.LeaguePartnerMembership
-	32, // [32:51] is the sub-list for method output_type
-	13, // [13:32] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	34, // 13: league.v1.UpsertLeagueCatalogRequest.source_meta:type_name -> google.protobuf.Struct
+	2,  // 14: league.v1.LeagueService.ListLeagues:input_type -> league.v1.ListLeaguesRequest
+	3,  // 15: league.v1.LeagueService.GetLeague:input_type -> league.v1.GetLeagueRequest
+	5,  // 16: league.v1.LeagueService.UpdateLeagueProfile:input_type -> league.v1.UpdateLeagueProfileRequest
+	4,  // 17: league.v1.LeagueService.ListStandings:input_type -> league.v1.LeagueIdRequest
+	8,  // 18: league.v1.LeagueService.UpdateStanding:input_type -> league.v1.UpdateStandingRequest
+	4,  // 19: league.v1.LeagueService.ListSchedule:input_type -> league.v1.LeagueIdRequest
+	11, // 20: league.v1.LeagueService.CreateScheduleItem:input_type -> league.v1.CreateScheduleItemRequest
+	12, // 21: league.v1.LeagueService.UpdateScheduleItem:input_type -> league.v1.UpdateScheduleItemRequest
+	13, // 22: league.v1.LeagueService.ImportScheduleCsv:input_type -> league.v1.ImportScheduleCsvRequest
+	4,  // 23: league.v1.LeagueService.ListSeasons:input_type -> league.v1.LeagueIdRequest
+	19, // 24: league.v1.LeagueService.ListDivisions:input_type -> league.v1.ListDivisionsRequest
+	22, // 25: league.v1.LeagueService.ListApplications:input_type -> league.v1.ListApplicationsRequest
+	23, // 26: league.v1.LeagueService.CreateApplication:input_type -> league.v1.CreateApplicationRequest
+	24, // 27: league.v1.LeagueService.ReviewApplication:input_type -> league.v1.ReviewApplicationRequest
+	4,  // 28: league.v1.LeagueService.ListPosts:input_type -> league.v1.LeagueIdRequest
+	27, // 29: league.v1.LeagueService.CreatePost:input_type -> league.v1.CreatePostRequest
+	4,  // 30: league.v1.LeagueService.GetAnalytics:input_type -> league.v1.LeagueIdRequest
+	29, // 31: league.v1.LeagueService.LeagueExists:input_type -> league.v1.LeagueExistsRequest
+	31, // 32: league.v1.LeagueService.SetLeaguePartnerMembership:input_type -> league.v1.SetLeaguePartnerMembershipRequest
+	33, // 33: league.v1.LeagueService.UpsertLeagueCatalog:input_type -> league.v1.UpsertLeagueCatalogRequest
+	1,  // 34: league.v1.LeagueService.ListLeagues:output_type -> league.v1.LeagueList
+	0,  // 35: league.v1.LeagueService.GetLeague:output_type -> league.v1.League
+	0,  // 36: league.v1.LeagueService.UpdateLeagueProfile:output_type -> league.v1.League
+	7,  // 37: league.v1.LeagueService.ListStandings:output_type -> league.v1.LeagueStandingList
+	6,  // 38: league.v1.LeagueService.UpdateStanding:output_type -> league.v1.LeagueStanding
+	10, // 39: league.v1.LeagueService.ListSchedule:output_type -> league.v1.LeagueScheduleList
+	9,  // 40: league.v1.LeagueService.CreateScheduleItem:output_type -> league.v1.LeagueScheduleItem
+	9,  // 41: league.v1.LeagueService.UpdateScheduleItem:output_type -> league.v1.LeagueScheduleItem
+	14, // 42: league.v1.LeagueService.ImportScheduleCsv:output_type -> league.v1.ScheduleImportResult
+	16, // 43: league.v1.LeagueService.ListSeasons:output_type -> league.v1.LeagueSeasonList
+	18, // 44: league.v1.LeagueService.ListDivisions:output_type -> league.v1.LeagueDivisionList
+	21, // 45: league.v1.LeagueService.ListApplications:output_type -> league.v1.LeagueApplicationList
+	20, // 46: league.v1.LeagueService.CreateApplication:output_type -> league.v1.LeagueApplication
+	20, // 47: league.v1.LeagueService.ReviewApplication:output_type -> league.v1.LeagueApplication
+	26, // 48: league.v1.LeagueService.ListPosts:output_type -> league.v1.LeaguePostList
+	25, // 49: league.v1.LeagueService.CreatePost:output_type -> league.v1.LeaguePost
+	28, // 50: league.v1.LeagueService.GetAnalytics:output_type -> league.v1.LeagueAnalytics
+	30, // 51: league.v1.LeagueService.LeagueExists:output_type -> league.v1.LeagueExistsResponse
+	32, // 52: league.v1.LeagueService.SetLeaguePartnerMembership:output_type -> league.v1.LeaguePartnerMembership
+	0,  // 53: league.v1.LeagueService.UpsertLeagueCatalog:output_type -> league.v1.League
+	34, // [34:54] is the sub-list for method output_type
+	14, // [14:34] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_league_v1_league_proto_init() }
@@ -2738,13 +2879,14 @@ func file_league_v1_league_proto_init() {
 	file_league_v1_league_proto_msgTypes[23].OneofWrappers = []any{}
 	file_league_v1_league_proto_msgTypes[24].OneofWrappers = []any{}
 	file_league_v1_league_proto_msgTypes[28].OneofWrappers = []any{}
+	file_league_v1_league_proto_msgTypes[33].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_league_v1_league_proto_rawDesc), len(file_league_v1_league_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

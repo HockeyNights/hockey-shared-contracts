@@ -38,6 +38,7 @@ const (
 	LeagueService_GetAnalytics_FullMethodName               = "/league.v1.LeagueService/GetAnalytics"
 	LeagueService_LeagueExists_FullMethodName               = "/league.v1.LeagueService/LeagueExists"
 	LeagueService_SetLeaguePartnerMembership_FullMethodName = "/league.v1.LeagueService/SetLeaguePartnerMembership"
+	LeagueService_UpsertLeagueCatalog_FullMethodName        = "/league.v1.LeagueService/UpsertLeagueCatalog"
 )
 
 // LeagueServiceClient is the client API for LeagueService service.
@@ -64,6 +65,7 @@ type LeagueServiceClient interface {
 	// Internal service-to-service methods have no HTTP annotations.
 	LeagueExists(ctx context.Context, in *LeagueExistsRequest, opts ...grpc.CallOption) (*LeagueExistsResponse, error)
 	SetLeaguePartnerMembership(ctx context.Context, in *SetLeaguePartnerMembershipRequest, opts ...grpc.CallOption) (*LeaguePartnerMembership, error)
+	UpsertLeagueCatalog(ctx context.Context, in *UpsertLeagueCatalogRequest, opts ...grpc.CallOption) (*League, error)
 }
 
 type leagueServiceClient struct {
@@ -264,6 +266,16 @@ func (c *leagueServiceClient) SetLeaguePartnerMembership(ctx context.Context, in
 	return out, nil
 }
 
+func (c *leagueServiceClient) UpsertLeagueCatalog(ctx context.Context, in *UpsertLeagueCatalogRequest, opts ...grpc.CallOption) (*League, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(League)
+	err := c.cc.Invoke(ctx, LeagueService_UpsertLeagueCatalog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LeagueServiceServer is the server API for LeagueService service.
 // All implementations must embed UnimplementedLeagueServiceServer
 // for forward compatibility.
@@ -288,6 +300,7 @@ type LeagueServiceServer interface {
 	// Internal service-to-service methods have no HTTP annotations.
 	LeagueExists(context.Context, *LeagueExistsRequest) (*LeagueExistsResponse, error)
 	SetLeaguePartnerMembership(context.Context, *SetLeaguePartnerMembershipRequest) (*LeaguePartnerMembership, error)
+	UpsertLeagueCatalog(context.Context, *UpsertLeagueCatalogRequest) (*League, error)
 	mustEmbedUnimplementedLeagueServiceServer()
 }
 
@@ -354,6 +367,9 @@ func (UnimplementedLeagueServiceServer) LeagueExists(context.Context, *LeagueExi
 }
 func (UnimplementedLeagueServiceServer) SetLeaguePartnerMembership(context.Context, *SetLeaguePartnerMembershipRequest) (*LeaguePartnerMembership, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetLeaguePartnerMembership not implemented")
+}
+func (UnimplementedLeagueServiceServer) UpsertLeagueCatalog(context.Context, *UpsertLeagueCatalogRequest) (*League, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpsertLeagueCatalog not implemented")
 }
 func (UnimplementedLeagueServiceServer) mustEmbedUnimplementedLeagueServiceServer() {}
 func (UnimplementedLeagueServiceServer) testEmbeddedByValue()                       {}
@@ -718,6 +734,24 @@ func _LeagueService_SetLeaguePartnerMembership_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LeagueService_UpsertLeagueCatalog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpsertLeagueCatalogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeagueServiceServer).UpsertLeagueCatalog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: LeagueService_UpsertLeagueCatalog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeagueServiceServer).UpsertLeagueCatalog(ctx, req.(*UpsertLeagueCatalogRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // LeagueService_ServiceDesc is the grpc.ServiceDesc for LeagueService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -800,6 +834,10 @@ var LeagueService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetLeaguePartnerMembership",
 			Handler:    _LeagueService_SetLeaguePartnerMembership_Handler,
+		},
+		{
+			MethodName: "UpsertLeagueCatalog",
+			Handler:    _LeagueService_UpsertLeagueCatalog_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

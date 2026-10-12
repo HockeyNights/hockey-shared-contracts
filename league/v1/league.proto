@@ -34,6 +34,7 @@ service LeagueService {
   // Internal service-to-service methods have no HTTP annotations.
   rpc LeagueExists(LeagueExistsRequest) returns (LeagueExistsResponse);
   rpc SetLeaguePartnerMembership(SetLeaguePartnerMembershipRequest) returns (LeaguePartnerMembership);
+  rpc UpsertLeagueCatalog(UpsertLeagueCatalogRequest) returns (League);
 }
 
 message League {
@@ -158,3 +159,15 @@ message LeagueExistsRequest { string league_id = 1; }
 message LeagueExistsResponse { bool exists = 1; }
 message SetLeaguePartnerMembershipRequest { string league_id = 1; string user_id = 2; bool enabled = 3; }
 message LeaguePartnerMembership { string league_id = 1; string user_id = 2; }
+message UpsertLeagueCatalogRequest {
+  optional string league_id = 1;
+  string name = 2;
+  string region = 3;
+  optional string level = 4;
+  optional string website_url = 5;
+  optional string description = 6;
+  bool visible = 7;
+  string moderation_status = 8;
+  optional string recruiting_status = 9;
+  google.protobuf.Struct source_meta = 10;
+}
