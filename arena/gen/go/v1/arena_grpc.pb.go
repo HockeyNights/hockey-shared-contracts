@@ -19,17 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArenaService_ListArenas_FullMethodName        = "/arena.v1.ArenaService/ListArenas"
-	ArenaService_GetArena_FullMethodName          = "/arena.v1.ArenaService/GetArena"
-	ArenaService_ListArenaSlots_FullMethodName    = "/arena.v1.ArenaService/ListArenaSlots"
-	ArenaService_ListArenaListings_FullMethodName = "/arena.v1.ArenaService/ListArenaListings"
-	ArenaService_UpdateArena_FullMethodName       = "/arena.v1.ArenaService/UpdateArena"
-	ArenaService_ListIceListings_FullMethodName   = "/arena.v1.ArenaService/ListIceListings"
-	ArenaService_CreateIceListing_FullMethodName  = "/arena.v1.ArenaService/CreateIceListing"
-	ArenaService_UpdateIceListing_FullMethodName  = "/arena.v1.ArenaService/UpdateIceListing"
-	ArenaService_CreateIceSlot_FullMethodName     = "/arena.v1.ArenaService/CreateIceSlot"
-	ArenaService_UpdateIceSlot_FullMethodName     = "/arena.v1.ArenaService/UpdateIceSlot"
-	ArenaService_ArenaExists_FullMethodName       = "/arena.v1.ArenaService/ArenaExists"
+	ArenaService_ListArenas_FullMethodName                = "/arena.v1.ArenaService/ListArenas"
+	ArenaService_GetArena_FullMethodName                  = "/arena.v1.ArenaService/GetArena"
+	ArenaService_ListArenaSlots_FullMethodName            = "/arena.v1.ArenaService/ListArenaSlots"
+	ArenaService_ListArenaResources_FullMethodName        = "/arena.v1.ArenaService/ListArenaResources"
+	ArenaService_CreateArenaResource_FullMethodName       = "/arena.v1.ArenaService/CreateArenaResource"
+	ArenaService_ListArenaListings_FullMethodName         = "/arena.v1.ArenaService/ListArenaListings"
+	ArenaService_UpdateArena_FullMethodName               = "/arena.v1.ArenaService/UpdateArena"
+	ArenaService_ListIceListings_FullMethodName           = "/arena.v1.ArenaService/ListIceListings"
+	ArenaService_CreateIceListing_FullMethodName          = "/arena.v1.ArenaService/CreateIceListing"
+	ArenaService_UpdateIceListing_FullMethodName          = "/arena.v1.ArenaService/UpdateIceListing"
+	ArenaService_CreateIceSlot_FullMethodName             = "/arena.v1.ArenaService/CreateIceSlot"
+	ArenaService_UpdateIceSlot_FullMethodName             = "/arena.v1.ArenaService/UpdateIceSlot"
+	ArenaService_ArenaExists_FullMethodName               = "/arena.v1.ArenaService/ArenaExists"
+	ArenaService_SetArenaPartnerMembership_FullMethodName = "/arena.v1.ArenaService/SetArenaPartnerMembership"
 )
 
 // ArenaServiceClient is the client API for ArenaService service.
@@ -39,6 +42,8 @@ type ArenaServiceClient interface {
 	ListArenas(ctx context.Context, in *ListArenasRequest, opts ...grpc.CallOption) (*ArenaList, error)
 	GetArena(ctx context.Context, in *GetArenaRequest, opts ...grpc.CallOption) (*Arena, error)
 	ListArenaSlots(ctx context.Context, in *ListArenaSlotsRequest, opts ...grpc.CallOption) (*IceSlotList, error)
+	ListArenaResources(ctx context.Context, in *ListArenaResourcesRequest, opts ...grpc.CallOption) (*ArenaResourceList, error)
+	CreateArenaResource(ctx context.Context, in *CreateArenaResourceRequest, opts ...grpc.CallOption) (*ArenaResource, error)
 	ListArenaListings(ctx context.Context, in *ListArenaListingsRequest, opts ...grpc.CallOption) (*IceListingList, error)
 	UpdateArena(ctx context.Context, in *UpdateArenaRequest, opts ...grpc.CallOption) (*Arena, error)
 	// Anonymous callers see published listings only; authenticated managers can inspect their own statuses.
@@ -49,6 +54,7 @@ type ArenaServiceClient interface {
 	UpdateIceSlot(ctx context.Context, in *UpdateIceSlotRequest, opts ...grpc.CallOption) (*IceSlot, error)
 	// Service-to-service methods. They intentionally have no HTTP annotations.
 	ArenaExists(ctx context.Context, in *ArenaExistsRequest, opts ...grpc.CallOption) (*ArenaExistsResponse, error)
+	SetArenaPartnerMembership(ctx context.Context, in *SetArenaPartnerMembershipRequest, opts ...grpc.CallOption) (*ArenaPartnerMembership, error)
 }
 
 type arenaServiceClient struct {
@@ -83,6 +89,26 @@ func (c *arenaServiceClient) ListArenaSlots(ctx context.Context, in *ListArenaSl
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(IceSlotList)
 	err := c.cc.Invoke(ctx, ArenaService_ListArenaSlots_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *arenaServiceClient) ListArenaResources(ctx context.Context, in *ListArenaResourcesRequest, opts ...grpc.CallOption) (*ArenaResourceList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArenaResourceList)
+	err := c.cc.Invoke(ctx, ArenaService_ListArenaResources_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *arenaServiceClient) CreateArenaResource(ctx context.Context, in *CreateArenaResourceRequest, opts ...grpc.CallOption) (*ArenaResource, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArenaResource)
+	err := c.cc.Invoke(ctx, ArenaService_CreateArenaResource_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -169,6 +195,16 @@ func (c *arenaServiceClient) ArenaExists(ctx context.Context, in *ArenaExistsReq
 	return out, nil
 }
 
+func (c *arenaServiceClient) SetArenaPartnerMembership(ctx context.Context, in *SetArenaPartnerMembershipRequest, opts ...grpc.CallOption) (*ArenaPartnerMembership, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ArenaPartnerMembership)
+	err := c.cc.Invoke(ctx, ArenaService_SetArenaPartnerMembership_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArenaServiceServer is the server API for ArenaService service.
 // All implementations must embed UnimplementedArenaServiceServer
 // for forward compatibility.
@@ -176,6 +212,8 @@ type ArenaServiceServer interface {
 	ListArenas(context.Context, *ListArenasRequest) (*ArenaList, error)
 	GetArena(context.Context, *GetArenaRequest) (*Arena, error)
 	ListArenaSlots(context.Context, *ListArenaSlotsRequest) (*IceSlotList, error)
+	ListArenaResources(context.Context, *ListArenaResourcesRequest) (*ArenaResourceList, error)
+	CreateArenaResource(context.Context, *CreateArenaResourceRequest) (*ArenaResource, error)
 	ListArenaListings(context.Context, *ListArenaListingsRequest) (*IceListingList, error)
 	UpdateArena(context.Context, *UpdateArenaRequest) (*Arena, error)
 	// Anonymous callers see published listings only; authenticated managers can inspect their own statuses.
@@ -186,6 +224,7 @@ type ArenaServiceServer interface {
 	UpdateIceSlot(context.Context, *UpdateIceSlotRequest) (*IceSlot, error)
 	// Service-to-service methods. They intentionally have no HTTP annotations.
 	ArenaExists(context.Context, *ArenaExistsRequest) (*ArenaExistsResponse, error)
+	SetArenaPartnerMembership(context.Context, *SetArenaPartnerMembershipRequest) (*ArenaPartnerMembership, error)
 	mustEmbedUnimplementedArenaServiceServer()
 }
 
@@ -204,6 +243,12 @@ func (UnimplementedArenaServiceServer) GetArena(context.Context, *GetArenaReques
 }
 func (UnimplementedArenaServiceServer) ListArenaSlots(context.Context, *ListArenaSlotsRequest) (*IceSlotList, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListArenaSlots not implemented")
+}
+func (UnimplementedArenaServiceServer) ListArenaResources(context.Context, *ListArenaResourcesRequest) (*ArenaResourceList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListArenaResources not implemented")
+}
+func (UnimplementedArenaServiceServer) CreateArenaResource(context.Context, *CreateArenaResourceRequest) (*ArenaResource, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateArenaResource not implemented")
 }
 func (UnimplementedArenaServiceServer) ListArenaListings(context.Context, *ListArenaListingsRequest) (*IceListingList, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListArenaListings not implemented")
@@ -228,6 +273,9 @@ func (UnimplementedArenaServiceServer) UpdateIceSlot(context.Context, *UpdateIce
 }
 func (UnimplementedArenaServiceServer) ArenaExists(context.Context, *ArenaExistsRequest) (*ArenaExistsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ArenaExists not implemented")
+}
+func (UnimplementedArenaServiceServer) SetArenaPartnerMembership(context.Context, *SetArenaPartnerMembershipRequest) (*ArenaPartnerMembership, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetArenaPartnerMembership not implemented")
 }
 func (UnimplementedArenaServiceServer) mustEmbedUnimplementedArenaServiceServer() {}
 func (UnimplementedArenaServiceServer) testEmbeddedByValue()                      {}
@@ -300,6 +348,42 @@ func _ArenaService_ListArenaSlots_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArenaServiceServer).ListArenaSlots(ctx, req.(*ListArenaSlotsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArenaService_ListArenaResources_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListArenaResourcesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).ListArenaResources(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_ListArenaResources_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).ListArenaResources(ctx, req.(*ListArenaResourcesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArenaService_CreateArenaResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateArenaResourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).CreateArenaResource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_CreateArenaResource_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).CreateArenaResource(ctx, req.(*CreateArenaResourceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -448,6 +532,24 @@ func _ArenaService_ArenaExists_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArenaService_SetArenaPartnerMembership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetArenaPartnerMembershipRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).SetArenaPartnerMembership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_SetArenaPartnerMembership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).SetArenaPartnerMembership(ctx, req.(*SetArenaPartnerMembershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArenaService_ServiceDesc is the grpc.ServiceDesc for ArenaService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -466,6 +568,14 @@ var ArenaService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListArenaSlots",
 			Handler:    _ArenaService_ListArenaSlots_Handler,
+		},
+		{
+			MethodName: "ListArenaResources",
+			Handler:    _ArenaService_ListArenaResources_Handler,
+		},
+		{
+			MethodName: "CreateArenaResource",
+			Handler:    _ArenaService_CreateArenaResource_Handler,
 		},
 		{
 			MethodName: "ListArenaListings",
@@ -498,6 +608,10 @@ var ArenaService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ArenaExists",
 			Handler:    _ArenaService_ArenaExists_Handler,
+		},
+		{
+			MethodName: "SetArenaPartnerMembership",
+			Handler:    _ArenaService_SetArenaPartnerMembership_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

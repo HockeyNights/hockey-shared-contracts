@@ -185,6 +185,72 @@
         ]
       }
     },
+    "/v1/arenas/{arenaId}/resources": {
+      "get": {
+        "operationId": "ArenaService_ListArenaResources",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ArenaResourceList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "arenaId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      },
+      "post": {
+        "operationId": "ArenaService_CreateArenaResource",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ArenaResource"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "arenaId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArenaServiceCreateArenaResourceBody"
+            }
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
     "/v1/arenas/{arenaId}/slots": {
       "get": {
         "operationId": "ArenaService_ListArenaSlots",
@@ -207,6 +273,12 @@
             "name": "arenaId",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resourceId",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -386,6 +458,14 @@
     }
   },
   "definitions": {
+    "ArenaServiceCreateArenaResourceBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "ArenaServiceUpdateArenaBody": {
       "type": "object",
       "properties": {
@@ -579,6 +659,35 @@
         }
       }
     },
+    "v1ArenaResource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isDefault": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1ArenaResourceList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ArenaResource"
+          }
+        }
+      }
+    },
     "v1CreateIceListingRequest": {
       "type": "object",
       "properties": {
@@ -633,6 +742,9 @@
           "type": "string"
         },
         "bookingUrl": {
+          "type": "string"
+        },
+        "resourceId": {
           "type": "string"
         }
       }
@@ -724,6 +836,9 @@
         },
         "sourceMeta": {
           "type": "object"
+        },
+        "resourceId": {
+          "type": "string"
         }
       }
     },
