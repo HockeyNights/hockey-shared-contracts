@@ -1,0 +1,743 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HockeyNights Arena API",
+    "description": "Каталог арен, расписание льда и объявления о доступных слотах.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "ArenaService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/arenas": {
+      "get": {
+        "operationId": "ArenaService_ListArenas",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ArenaList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cityRegion",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "district",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metro",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "amenity",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hasFreeSlots",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "bookingMode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/arenas/{arenaId}": {
+      "get": {
+        "operationId": "ArenaService_GetArena",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Arena"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "arenaId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      },
+      "patch": {
+        "operationId": "ArenaService_UpdateArena",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Arena"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "arenaId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArenaServiceUpdateArenaBody"
+            }
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/arenas/{arenaId}/listings": {
+      "get": {
+        "operationId": "ArenaService_ListArenaListings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceListingList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "arenaId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "publicOnly",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/arenas/{arenaId}/slots": {
+      "get": {
+        "operationId": "ArenaService_ListArenaSlots",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceSlotList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "arenaId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/ice-listings": {
+      "get": {
+        "summary": "Anonymous callers see published listings only; authenticated managers can inspect their own statuses.",
+        "operationId": "ArenaService_ListIceListings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceListingList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      },
+      "post": {
+        "operationId": "ArenaService_CreateIceListing",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceListing"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateIceListingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/ice-listings/{listingId}": {
+      "patch": {
+        "operationId": "ArenaService_UpdateIceListing",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceListing"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "listingId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArenaServiceUpdateIceListingBody"
+            }
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/ice-slots": {
+      "post": {
+        "operationId": "ArenaService_CreateIceSlot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceSlot"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateIceSlotRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/ice-slots/{slotId}": {
+      "patch": {
+        "operationId": "ArenaService_UpdateIceSlot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceSlot"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slotId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArenaServiceUpdateIceSlotBody"
+            }
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ArenaServiceUpdateArenaBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "bookingUrl": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "metro": {
+          "type": "string"
+        },
+        "priceRange": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ArenaServiceUpdateIceListingBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "priceRub": {
+          "type": "string",
+          "format": "int64"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "contactNote": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "ArenaServiceUpdateIceSlotBody": {
+      "type": "object",
+      "properties": {
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "status": {
+          "type": "string"
+        },
+        "bookingUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Arena": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "metro": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "amenities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "phone": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "bookingUrl": {
+          "type": "string"
+        },
+        "bookingMode": {
+          "type": "string"
+        },
+        "priceRange": {
+          "type": "string"
+        },
+        "sourceMeta": {
+          "type": "object"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1ArenaList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Arena"
+          }
+        }
+      }
+    },
+    "v1CreateIceListingRequest": {
+      "type": "object",
+      "properties": {
+        "arenaId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "priceRub": {
+          "type": "string",
+          "format": "int64"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "contactNote": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateIceSlotRequest": {
+      "type": "object",
+      "properties": {
+        "arenaId": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "status": {
+          "type": "string"
+        },
+        "bookingUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "v1IceListing": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "ownerUserId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "priceRub": {
+          "type": "string",
+          "format": "int64"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "contactNote": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1IceListingList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1IceListing"
+          }
+        }
+      }
+    },
+    "v1IceSlot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "status": {
+          "type": "string"
+        },
+        "bookingUrl": {
+          "type": "string"
+        },
+        "sourceMeta": {
+          "type": "object"
+        }
+      }
+    },
+    "v1IceSlotList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1IceSlot"
+          }
+        }
+      }
+    }
+  }
+}
