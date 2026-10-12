@@ -17,6 +17,268 @@
     "application/json"
   ],
   "paths": {
+    "/v1/clubs/{clubId}": {
+      "get": {
+        "operationId": "TeamService_GetClub",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Club"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      },
+      "patch": {
+        "operationId": "TeamService_UpdateClub",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Club"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "clubId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamServiceUpdateClubBody"
+            }
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
+    "/v1/team-invites": {
+      "get": {
+        "operationId": "TeamService_ListMyInvites",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1InviteList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
+    "/v1/team-invites/{inviteId}/accept": {
+      "post": {
+        "operationId": "TeamService_AcceptInvite",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TeamInvite"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inviteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamServiceAcceptInviteBody"
+            }
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
+    "/v1/team-invites/{inviteId}/decline": {
+      "post": {
+        "operationId": "TeamService_DeclineInvite",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TeamInvite"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inviteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamServiceDeclineInviteBody"
+            }
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
+    "/v1/team-invites/{inviteId}/resend": {
+      "post": {
+        "operationId": "TeamService_ResendInvite",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TeamInvite"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inviteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamServiceResendInviteBody"
+            }
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
+    "/v1/team-invites/{inviteId}/revoke": {
+      "post": {
+        "operationId": "TeamService_RevokeInvite",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TeamInvite"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inviteId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamServiceRevokeInviteBody"
+            }
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
     "/v1/teams": {
       "get": {
         "operationId": "TeamService_ListTeams",
@@ -72,6 +334,19 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "leagueId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "playerId",
+            "description": "Alias for user_id; conflicting aliases are rejected.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -175,6 +450,36 @@
         ]
       }
     },
+    "/v1/teams/{teamId}/club-profile": {
+      "get": {
+        "operationId": "TeamService_GetTeamClubProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ClubProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
+    },
     "/v1/teams/{teamId}/invites": {
       "get": {
         "operationId": "TeamService_ListInvites",
@@ -198,6 +503,26 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -402,14 +727,101 @@
           "TeamService"
         ]
       }
+    },
+    "/v1/teams/{teamId}/staff-contact": {
+      "get": {
+        "operationId": "TeamService_ListStaffContacts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StaffContactList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      },
+      "post": {
+        "operationId": "TeamService_CreateStaffContact",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1StaffContact"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TeamServiceCreateStaffContactBody"
+            }
+          }
+        ],
+        "tags": [
+          "TeamService"
+        ]
+      }
     }
   },
   "definitions": {
+    "TeamServiceAcceptInviteBody": {
+      "type": "object"
+    },
     "TeamServiceAddMemberBody": {
       "type": "object",
       "properties": {
         "userId": {
           "type": "string"
+        },
+        "teamRole": {
+          "type": "string",
+          "description": "player (default) or coach; never owner/captain/admin."
         }
       }
     },
@@ -418,6 +830,80 @@
       "properties": {
         "email": {
           "type": "string"
+        },
+        "teamRole": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        }
+      }
+    },
+    "TeamServiceCreateStaffContactBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        }
+      }
+    },
+    "TeamServiceDeclineInviteBody": {
+      "type": "object",
+      "properties": {
+        "idempotencyKey": {
+          "type": "string"
+        }
+      }
+    },
+    "TeamServiceResendInviteBody": {
+      "type": "object",
+      "properties": {
+        "idempotencyKey": {
+          "type": "string"
+        }
+      }
+    },
+    "TeamServiceRevokeInviteBody": {
+      "type": "object",
+      "properties": {
+        "idempotencyKey": {
+          "type": "string"
+        }
+      }
+    },
+    "TeamServiceUpdateClubBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "staff": {
+          "$ref": "#/definitions/v1ClubStaffList",
+          "description": "Absent: unchanged; present with empty items: remove all contact staff."
+        },
+        "clearFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -452,6 +938,22 @@
         },
         "homeArenaId": {
           "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "clubId": {
+          "type": "string"
+        },
+        "clearFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Clear nullable fields explicitly; absent fields are left unchanged."
         }
       }
     },
@@ -491,6 +993,121 @@
         }
       }
     },
+    "v1Club": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "homeArenaId": {
+          "type": "string"
+        },
+        "leagueIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "teamIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "squads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ClubSquad"
+          }
+        },
+        "staff": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ClubStaff"
+          }
+        }
+      }
+    },
+    "v1ClubProfileResponse": {
+      "type": "object",
+      "properties": {
+        "club": {
+          "$ref": "#/definitions/v1Club"
+        }
+      }
+    },
+    "v1ClubSquad": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "season": {
+          "type": "string"
+        },
+        "linkedTeamId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClubStaff": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ClubStaffList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ClubStaff"
+          }
+        }
+      }
+    },
     "v1CreateTeamRequest": {
       "type": "object",
       "properties": {
@@ -514,6 +1131,30 @@
         },
         "homeArenaId": {
           "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "playerIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coachIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clubId": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
         }
       }
     },
@@ -526,6 +1167,18 @@
             "type": "object",
             "$ref": "#/definitions/v1TeamInvite"
           }
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -562,6 +1215,18 @@
             "type": "object",
             "$ref": "#/definitions/v1RosterMember"
           }
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -589,6 +1254,54 @@
         "joinedAt": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "v1StaffContact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1StaffContactList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1StaffContact"
+          }
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -635,6 +1348,15 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "clubId": {
+          "type": "string"
         }
       }
     },
@@ -669,6 +1391,13 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "teamRole": {
+          "type": "string"
         }
       }
     }

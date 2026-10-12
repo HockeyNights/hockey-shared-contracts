@@ -1,0 +1,209 @@
+syntax = "proto3";
+
+package arena.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/arena/gen/go/v1;arenav1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Arena API"
+    version: "1.0.0"
+    description: "Каталог арен, расписание льда и объявления о доступных слотах."
+  }
+};
+
+service ArenaService {
+  rpc ListArenas(ListArenasRequest) returns (ArenaList) {
+    option (google.api.http) = {get: "/v1/arenas"};
+  }
+  rpc GetArena(GetArenaRequest) returns (Arena) {
+    option (google.api.http) = {get: "/v1/arenas/{arena_id}"};
+  }
+  rpc ListArenaSlots(ListArenaSlotsRequest) returns (IceSlotList) {
+    option (google.api.http) = {get: "/v1/arenas/{arena_id}/slots"};
+  }
+  rpc ListArenaResources(ListArenaResourcesRequest) returns (ArenaResourceList) {
+    option (google.api.http) = {get: "/v1/arenas/{arena_id}/resources"};
+  }
+  rpc CreateArenaResource(CreateArenaResourceRequest) returns (ArenaResource) {
+    option (google.api.http) = {post: "/v1/arenas/{arena_id}/resources" body: "*"};
+  }
+  rpc ListArenaListings(ListArenaListingsRequest) returns (IceListingList) {
+    option (google.api.http) = {get: "/v1/arenas/{arena_id}/listings"};
+  }
+  rpc UpdateArena(UpdateArenaRequest) returns (Arena) {
+    option (google.api.http) = {patch: "/v1/arenas/{arena_id}" body: "*"};
+  }
+  // Anonymous callers see published listings only; authenticated managers can inspect their own statuses.
+  rpc ListIceListings(ListIceListingsRequest) returns (IceListingList) {
+    option (google.api.http) = {get: "/v1/ice-listings"};
+  }
+  rpc CreateIceListing(CreateIceListingRequest) returns (IceListing) {
+    option (google.api.http) = {post: "/v1/ice-listings" body: "*"};
+  }
+  rpc UpdateIceListing(UpdateIceListingRequest) returns (IceListing) {
+    option (google.api.http) = {patch: "/v1/ice-listings/{listing_id}" body: "*"};
+  }
+  rpc CreateIceSlot(CreateIceSlotRequest) returns (IceSlot) {
+    option (google.api.http) = {post: "/v1/ice-slots" body: "*"};
+  }
+  rpc UpdateIceSlot(UpdateIceSlotRequest) returns (IceSlot) {
+    option (google.api.http) = {patch: "/v1/ice-slots/{slot_id}" body: "*"};
+  }
+
+  // Service-to-service methods. They intentionally have no HTTP annotations.
+  rpc ArenaExists(ArenaExistsRequest) returns (ArenaExistsResponse);
+  rpc SetArenaPartnerMembership(SetArenaPartnerMembershipRequest) returns (ArenaPartnerMembership);
+}
+
+message Arena {
+  string id = 1;
+  string name = 2;
+  string city = 3;
+  string address = 4;
+  optional string district = 5;
+  optional string metro = 6;
+  double latitude = 7;
+  double longitude = 8;
+  repeated string amenities = 9;
+  optional string phone = 10;
+  optional string website_url = 11;
+  optional string booking_url = 12;
+  string booking_mode = 13;
+  optional string price_range = 14;
+  google.protobuf.Struct source_meta = 15;
+  bool visible = 16;
+}
+
+message ListArenasRequest {
+  string q = 1;
+  string city_region = 2;
+  string district = 3;
+  string metro = 4;
+  string amenity = 5;
+  bool has_free_slots = 6;
+  string booking_mode = 7;
+}
+
+message ArenaList { repeated Arena items = 1; }
+
+message GetArenaRequest { string arena_id = 1; }
+message ListArenaSlotsRequest {
+  string arena_id = 1;
+  string resource_id = 2;
+}
+message ArenaResource {
+  string id = 1;
+  string arena_id = 2;
+  string name = 3;
+  bool is_default = 4;
+}
+message ArenaResourceList { repeated ArenaResource items = 1; }
+message ListArenaResourcesRequest { string arena_id = 1; }
+message CreateArenaResourceRequest {
+  string arena_id = 1;
+  string name = 2;
+}
+message ListArenaListingsRequest {
+  string arena_id = 1;
+  bool public_only = 2;
+}
+
+message UpdateArenaRequest {
+  string arena_id = 1;
+  optional string name = 2;
+  optional string phone = 3;
+  optional string website_url = 4;
+  optional string booking_url = 5;
+  optional string address = 6;
+  optional string city = 7;
+  optional string district = 8;
+  optional string metro = 9;
+  optional string price_range = 10;
+  optional bool visible = 11;
+}
+
+message IceSlot {
+  string id = 1;
+  string arena_id = 2;
+  google.protobuf.Timestamp starts_at = 3;
+  google.protobuf.Timestamp ends_at = 4;
+  optional double price = 5;
+  string status = 6;
+  optional string booking_url = 7;
+  google.protobuf.Struct source_meta = 8;
+  string resource_id = 9;
+}
+
+message IceSlotList { repeated IceSlot items = 1; }
+message CreateIceSlotRequest {
+  string arena_id = 1;
+  google.protobuf.Timestamp starts_at = 2;
+  google.protobuf.Timestamp ends_at = 3;
+  optional double price = 4;
+  optional string status = 5;
+  optional string booking_url = 6;
+  string resource_id = 7;
+}
+message UpdateIceSlotRequest {
+  string slot_id = 1;
+  optional google.protobuf.Timestamp starts_at = 2;
+  optional google.protobuf.Timestamp ends_at = 3;
+  optional double price = 4;
+  optional string status = 5;
+  optional string booking_url = 6;
+}
+
+message IceListing {
+  string id = 1;
+  string arena_id = 2;
+  string owner_user_id = 3;
+  string title = 4;
+  google.protobuf.Timestamp starts_at = 5;
+  google.protobuf.Timestamp ends_at = 6;
+  optional int64 price_rub = 7;
+  optional string contact_phone = 8;
+  optional string contact_note = 9;
+  string status = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+}
+message IceListingList { repeated IceListing items = 1; }
+message ListIceListingsRequest { string status = 1; }
+message CreateIceListingRequest {
+  string arena_id = 1;
+  string title = 2;
+  google.protobuf.Timestamp starts_at = 3;
+  google.protobuf.Timestamp ends_at = 4;
+  optional int64 price_rub = 5;
+  optional string contact_phone = 6;
+  optional string contact_note = 7;
+  optional string status = 8;
+}
+message UpdateIceListingRequest {
+  string listing_id = 1;
+  optional string title = 2;
+  optional google.protobuf.Timestamp starts_at = 3;
+  optional google.protobuf.Timestamp ends_at = 4;
+  optional int64 price_rub = 5;
+  optional string contact_phone = 6;
+  optional string contact_note = 7;
+  optional string status = 8;
+}
+
+message ArenaExistsRequest { string arena_id = 1; }
+message ArenaExistsResponse { bool exists = 1; }
+message SetArenaPartnerMembershipRequest {
+  string arena_id = 1;
+  string user_id = 2;
+  bool enabled = 3;
+}
+message ArenaPartnerMembership {
+  string arena_id = 1;
+  string user_id = 2;
+}

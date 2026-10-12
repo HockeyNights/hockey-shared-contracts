@@ -17,6 +17,38 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 service TeamService {
+  rpc ListMyInvites(ListMyInvitesRequest) returns (InviteList) {
+    option (google.api.http) = {get: "/v1/team-invites"};
+  }
+  rpc DeclineInvite(InviteActionRequest) returns (TeamInvite) {
+    option (google.api.http) = {post: "/v1/team-invites/{invite_id}/decline" body: "*"};
+  }
+  rpc RevokeInvite(InviteActionRequest) returns (TeamInvite) {
+    option (google.api.http) = {post: "/v1/team-invites/{invite_id}/revoke" body: "*"};
+  }
+  rpc ResendInvite(InviteActionRequest) returns (TeamInvite) {
+    option (google.api.http) = {post: "/v1/team-invites/{invite_id}/resend" body: "*"};
+  }
+  rpc GetClub(GetClubRequest) returns (Club) {
+    option (google.api.http) = {get: "/v1/clubs/{club_id}"};
+  }
+  rpc UpdateClub(UpdateClubRequest) returns (Club) {
+    option (google.api.http) = {patch: "/v1/clubs/{club_id}" body: "*"};
+  }
+  rpc GetTeamClubProfile(GetTeamRequest) returns (ClubProfileResponse) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}/club-profile"};
+  }
+  rpc CreateStaffContact(CreateStaffContactRequest) returns (StaffContact) {
+    option (google.api.http) = {post: "/v1/teams/{team_id}/staff-contact" body: "*"};
+  }
+  rpc ListStaffContacts(ListStaffContactsRequest) returns (StaffContactList) {
+    option (google.api.http) = {get: "/v1/teams/{team_id}/staff-contact"};
+  }
+  // Internal methods authenticate services, have bounded output, and no HTTP annotations.
+  rpc CheckTeamAccess(CheckTeamAccessRequest) returns (AccessDecision);
+  rpc CheckClubAccess(CheckClubAccessRequest) returns (AccessDecision);
+  rpc GetTeamMembers(GetTeamMembersRequest) returns (RosterList);
+  rpc GetClubTeams(GetClubTeamsRequest) returns (ClubTeamsResponse);
   rpc CreateTeam(CreateTeamRequest) returns (Team) {
     option (google.api.http) = {
       post: "/v1/teams"
@@ -74,6 +106,13 @@ service TeamService {
       body: "*"
     };
   }
+
+  rpc AcceptInvite(AcceptInviteRequest) returns (TeamInvite) {
+    option (google.api.http) = {
+      post: "/v1/team-invites/{invite_id}/accept"
+      body: "*"
+    };
+  }
 }
 
 message Team {
@@ -89,6 +128,9 @@ message Team {
   repeated string member_ids = 10;
   google.protobuf.Timestamp created_at = 11;
   google.protobuf.Timestamp updated_at = 12;
+  optional string short_description = 13;
+  optional string logo_url = 14;
+  optional string club_id = 15;
 }
 
 message RosterMember {
@@ -111,6 +153,8 @@ message TeamInvite {
   string status = 7;
   google.protobuf.Timestamp created_at = 8;
   optional google.protobuf.Timestamp updated_at = 9;
+  google.protobuf.Timestamp expires_at = 10;
+  string team_role = 11;
 }
 
 message CreateTeamRequest {
@@ -121,6 +165,12 @@ message CreateTeamRequest {
   optional string captain_user_id = 5;
   optional string league_id = 6;
   optional string home_arena_id = 7;
+  optional string short_description = 8;
+  optional string logo_url = 9;
+  repeated string player_ids = 10;
+  repeated string coach_ids = 11;
+  optional string club_id = 12;
+  string idempotency_key = 13;
 }
 
 message GetTeamRequest {
@@ -136,6 +186,11 @@ message UpdateTeamRequest {
   optional string captain_user_id = 6;
   optional string league_id = 7;
   optional string home_arena_id = 8;
+  optional string short_description = 9;
+  optional string logo_url = 10;
+  optional string club_id = 11;
+  // Clear nullable fields explicitly; absent fields are left unchanged.
+  repeated string clear_fields = 12;
 }
 
 message ListTeamsRequest {
@@ -145,6 +200,8 @@ message ListTeamsRequest {
   string user_id = 4;
   int32 limit = 5;
   int32 offset = 6;
+  string league_id = 7;
+  string player_id = 8; // Alias for user_id; conflicting aliases are rejected.
 }
 
 message ListTeamsResponse {
@@ -161,11 +218,13 @@ message GetRosterRequest {
 
 message RosterList {
   repeated RosterMember members = 1;
+  int64 total = 2; int32 limit = 3; int32 offset = 4;
 }
 
 message AddMemberRequest {
   string team_id = 1;
   string user_id = 2;
+  string team_role = 3; // player (default) or coach; never owner/captain/admin.
 }
 
 message UpdateRosterStatusRequest {
@@ -182,13 +241,72 @@ message UpdateTeamRoleRequest {
 
 message ListInvitesRequest {
   string team_id = 1;
+  optional string status = 2;
+  int32 limit = 3;
+  int32 offset = 4;
 }
 
 message InviteList {
   repeated TeamInvite invites = 1;
+  int64 total = 2;
+  int32 limit = 3;
+  int32 offset = 4;
 }
 
 message CreateEmailInviteRequest {
   string team_id = 1;
   string email = 2;
+  string team_role = 3;
+  string idempotency_key = 4;
+}
+
+message InviteActionRequest { string invite_id = 1; string idempotency_key = 2; }
+message ListMyInvitesRequest { string status = 1; int32 limit = 2; int32 offset = 3; }
+message GetClubRequest { string club_id = 1; }
+message ClubStaff {
+  string id = 1;
+  optional string user_id = 2;
+  string display_name = 3;
+  string role = 4;
+  optional string contact_email = 5;
+  optional string contact_phone = 6;
+}
+message ClubSquad { string id = 1; string name = 2; string level = 3; optional string season = 4; optional string linked_team_id = 5; }
+message Club {
+  string id = 1; string name = 2; string city = 3;
+  optional string description = 4;
+  optional string contact_email = 5; optional string contact_phone = 6;
+  optional string home_arena_id = 7;
+  repeated string league_ids = 8; repeated string team_ids = 9;
+  repeated ClubSquad squads = 10; repeated ClubStaff staff = 11;
+}
+message ClubStaffList { repeated ClubStaff items = 1; }
+message UpdateClubRequest {
+  string club_id = 1;
+  optional string name = 2; optional string description = 3;
+  optional string contact_email = 4; optional string contact_phone = 5;
+  // Absent: unchanged; present with empty items: remove all contact staff.
+  ClubStaffList staff = 6;
+  repeated string clear_fields = 7;
+}
+message ClubProfileResponse { Club club = 1; }
+message CreateStaffContactRequest {
+  string team_id = 1; string name = 2; string email = 3; string message = 4;
+  string idempotency_key = 5;
+}
+message StaffContact {
+  string id = 1; string team_id = 2; string name = 3; string email = 4;
+  string message = 5; google.protobuf.Timestamp created_at = 6;
+}
+message ListStaffContactsRequest { string team_id = 1; int32 limit = 2; int32 offset = 3; }
+message StaffContactList { repeated StaffContact items = 1; int64 total = 2; int32 limit = 3; int32 offset = 4; }
+message CheckTeamAccessRequest { string team_id = 1; string user_id = 2; string action = 3; }
+message CheckClubAccessRequest { string club_id = 1; string user_id = 2; string action = 3; }
+message AccessDecision { bool allowed = 1; }
+message GetTeamMembersRequest { string team_id = 1; int32 limit = 2; int32 offset = 3; }
+message GetClubTeamsRequest { string club_id = 1; int32 limit = 2; int32 offset = 3; }
+message ClubTeamsResponse { repeated string team_ids = 1; int64 total = 2; int32 limit = 3; int32 offset = 4; }
+
+message AcceptInviteRequest {
+  string invite_id = 1;
 }
