@@ -372,6 +372,7 @@ func (x *GetArenaRequest) GetArenaId() string {
 type ListArenaSlotsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ArenaId       string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	ResourceId    string                 `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -413,6 +414,221 @@ func (x *ListArenaSlotsRequest) GetArenaId() string {
 	return ""
 }
 
+func (x *ListArenaSlotsRequest) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
+type ArenaResource struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ArenaId       string                 `protobuf:"bytes,2,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	IsDefault     bool                   `protobuf:"varint,4,opt,name=is_default,json=isDefault,proto3" json:"is_default,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ArenaResource) Reset() {
+	*x = ArenaResource{}
+	mi := &file_arena_v1_arena_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ArenaResource) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArenaResource) ProtoMessage() {}
+
+func (x *ArenaResource) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArenaResource.ProtoReflect.Descriptor instead.
+func (*ArenaResource) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ArenaResource) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ArenaResource) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *ArenaResource) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ArenaResource) GetIsDefault() bool {
+	if x != nil {
+		return x.IsDefault
+	}
+	return false
+}
+
+type ArenaResourceList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*ArenaResource       `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ArenaResourceList) Reset() {
+	*x = ArenaResourceList{}
+	mi := &file_arena_v1_arena_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ArenaResourceList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArenaResourceList) ProtoMessage() {}
+
+func (x *ArenaResourceList) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArenaResourceList.ProtoReflect.Descriptor instead.
+func (*ArenaResourceList) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ArenaResourceList) GetItems() []*ArenaResource {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type ListArenaResourcesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArenaId       string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListArenaResourcesRequest) Reset() {
+	*x = ListArenaResourcesRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListArenaResourcesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListArenaResourcesRequest) ProtoMessage() {}
+
+func (x *ListArenaResourcesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListArenaResourcesRequest.ProtoReflect.Descriptor instead.
+func (*ListArenaResourcesRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ListArenaResourcesRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+type CreateArenaResourceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArenaId       string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateArenaResourceRequest) Reset() {
+	*x = CreateArenaResourceRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateArenaResourceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateArenaResourceRequest) ProtoMessage() {}
+
+func (x *CreateArenaResourceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateArenaResourceRequest.ProtoReflect.Descriptor instead.
+func (*CreateArenaResourceRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *CreateArenaResourceRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *CreateArenaResourceRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 type ListArenaListingsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ArenaId       string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
@@ -423,7 +639,7 @@ type ListArenaListingsRequest struct {
 
 func (x *ListArenaListingsRequest) Reset() {
 	*x = ListArenaListingsRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[5]
+	mi := &file_arena_v1_arena_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -435,7 +651,7 @@ func (x *ListArenaListingsRequest) String() string {
 func (*ListArenaListingsRequest) ProtoMessage() {}
 
 func (x *ListArenaListingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[5]
+	mi := &file_arena_v1_arena_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -448,7 +664,7 @@ func (x *ListArenaListingsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListArenaListingsRequest.ProtoReflect.Descriptor instead.
 func (*ListArenaListingsRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{5}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListArenaListingsRequest) GetArenaId() string {
@@ -484,7 +700,7 @@ type UpdateArenaRequest struct {
 
 func (x *UpdateArenaRequest) Reset() {
 	*x = UpdateArenaRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[6]
+	mi := &file_arena_v1_arena_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -496,7 +712,7 @@ func (x *UpdateArenaRequest) String() string {
 func (*UpdateArenaRequest) ProtoMessage() {}
 
 func (x *UpdateArenaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[6]
+	mi := &file_arena_v1_arena_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -509,7 +725,7 @@ func (x *UpdateArenaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateArenaRequest.ProtoReflect.Descriptor instead.
 func (*UpdateArenaRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{6}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateArenaRequest) GetArenaId() string {
@@ -599,13 +815,14 @@ type IceSlot struct {
 	Status        string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
 	BookingUrl    *string                `protobuf:"bytes,7,opt,name=booking_url,json=bookingUrl,proto3,oneof" json:"booking_url,omitempty"`
 	SourceMeta    *structpb.Struct       `protobuf:"bytes,8,opt,name=source_meta,json=sourceMeta,proto3" json:"source_meta,omitempty"`
+	ResourceId    string                 `protobuf:"bytes,9,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *IceSlot) Reset() {
 	*x = IceSlot{}
-	mi := &file_arena_v1_arena_proto_msgTypes[7]
+	mi := &file_arena_v1_arena_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -617,7 +834,7 @@ func (x *IceSlot) String() string {
 func (*IceSlot) ProtoMessage() {}
 
 func (x *IceSlot) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[7]
+	mi := &file_arena_v1_arena_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -630,7 +847,7 @@ func (x *IceSlot) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IceSlot.ProtoReflect.Descriptor instead.
 func (*IceSlot) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{7}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *IceSlot) GetId() string {
@@ -689,6 +906,13 @@ func (x *IceSlot) GetSourceMeta() *structpb.Struct {
 	return nil
 }
 
+func (x *IceSlot) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
 type IceSlotList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Items         []*IceSlot             `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
@@ -698,7 +922,7 @@ type IceSlotList struct {
 
 func (x *IceSlotList) Reset() {
 	*x = IceSlotList{}
-	mi := &file_arena_v1_arena_proto_msgTypes[8]
+	mi := &file_arena_v1_arena_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -710,7 +934,7 @@ func (x *IceSlotList) String() string {
 func (*IceSlotList) ProtoMessage() {}
 
 func (x *IceSlotList) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[8]
+	mi := &file_arena_v1_arena_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -723,7 +947,7 @@ func (x *IceSlotList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IceSlotList.ProtoReflect.Descriptor instead.
 func (*IceSlotList) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{8}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *IceSlotList) GetItems() []*IceSlot {
@@ -741,13 +965,14 @@ type CreateIceSlotRequest struct {
 	Price         *float64               `protobuf:"fixed64,4,opt,name=price,proto3,oneof" json:"price,omitempty"`
 	Status        *string                `protobuf:"bytes,5,opt,name=status,proto3,oneof" json:"status,omitempty"`
 	BookingUrl    *string                `protobuf:"bytes,6,opt,name=booking_url,json=bookingUrl,proto3,oneof" json:"booking_url,omitempty"`
+	ResourceId    string                 `protobuf:"bytes,7,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateIceSlotRequest) Reset() {
 	*x = CreateIceSlotRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[9]
+	mi := &file_arena_v1_arena_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -759,7 +984,7 @@ func (x *CreateIceSlotRequest) String() string {
 func (*CreateIceSlotRequest) ProtoMessage() {}
 
 func (x *CreateIceSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[9]
+	mi := &file_arena_v1_arena_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -772,7 +997,7 @@ func (x *CreateIceSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateIceSlotRequest.ProtoReflect.Descriptor instead.
 func (*CreateIceSlotRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{9}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CreateIceSlotRequest) GetArenaId() string {
@@ -817,6 +1042,13 @@ func (x *CreateIceSlotRequest) GetBookingUrl() string {
 	return ""
 }
 
+func (x *CreateIceSlotRequest) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
 type UpdateIceSlotRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SlotId        string                 `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
@@ -831,7 +1063,7 @@ type UpdateIceSlotRequest struct {
 
 func (x *UpdateIceSlotRequest) Reset() {
 	*x = UpdateIceSlotRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[10]
+	mi := &file_arena_v1_arena_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -843,7 +1075,7 @@ func (x *UpdateIceSlotRequest) String() string {
 func (*UpdateIceSlotRequest) ProtoMessage() {}
 
 func (x *UpdateIceSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[10]
+	mi := &file_arena_v1_arena_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -856,7 +1088,7 @@ func (x *UpdateIceSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateIceSlotRequest.ProtoReflect.Descriptor instead.
 func (*UpdateIceSlotRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{10}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateIceSlotRequest) GetSlotId() string {
@@ -921,7 +1153,7 @@ type IceListing struct {
 
 func (x *IceListing) Reset() {
 	*x = IceListing{}
-	mi := &file_arena_v1_arena_proto_msgTypes[11]
+	mi := &file_arena_v1_arena_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -933,7 +1165,7 @@ func (x *IceListing) String() string {
 func (*IceListing) ProtoMessage() {}
 
 func (x *IceListing) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[11]
+	mi := &file_arena_v1_arena_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -946,7 +1178,7 @@ func (x *IceListing) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IceListing.ProtoReflect.Descriptor instead.
 func (*IceListing) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{11}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *IceListing) GetId() string {
@@ -1042,7 +1274,7 @@ type IceListingList struct {
 
 func (x *IceListingList) Reset() {
 	*x = IceListingList{}
-	mi := &file_arena_v1_arena_proto_msgTypes[12]
+	mi := &file_arena_v1_arena_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1054,7 +1286,7 @@ func (x *IceListingList) String() string {
 func (*IceListingList) ProtoMessage() {}
 
 func (x *IceListingList) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[12]
+	mi := &file_arena_v1_arena_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1067,7 +1299,7 @@ func (x *IceListingList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IceListingList.ProtoReflect.Descriptor instead.
 func (*IceListingList) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{12}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *IceListingList) GetItems() []*IceListing {
@@ -1086,7 +1318,7 @@ type ListIceListingsRequest struct {
 
 func (x *ListIceListingsRequest) Reset() {
 	*x = ListIceListingsRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[13]
+	mi := &file_arena_v1_arena_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1098,7 +1330,7 @@ func (x *ListIceListingsRequest) String() string {
 func (*ListIceListingsRequest) ProtoMessage() {}
 
 func (x *ListIceListingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[13]
+	mi := &file_arena_v1_arena_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1111,7 +1343,7 @@ func (x *ListIceListingsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListIceListingsRequest.ProtoReflect.Descriptor instead.
 func (*ListIceListingsRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{13}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListIceListingsRequest) GetStatus() string {
@@ -1137,7 +1369,7 @@ type CreateIceListingRequest struct {
 
 func (x *CreateIceListingRequest) Reset() {
 	*x = CreateIceListingRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[14]
+	mi := &file_arena_v1_arena_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1149,7 +1381,7 @@ func (x *CreateIceListingRequest) String() string {
 func (*CreateIceListingRequest) ProtoMessage() {}
 
 func (x *CreateIceListingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[14]
+	mi := &file_arena_v1_arena_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1162,7 +1394,7 @@ func (x *CreateIceListingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateIceListingRequest.ProtoReflect.Descriptor instead.
 func (*CreateIceListingRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{14}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CreateIceListingRequest) GetArenaId() string {
@@ -1237,7 +1469,7 @@ type UpdateIceListingRequest struct {
 
 func (x *UpdateIceListingRequest) Reset() {
 	*x = UpdateIceListingRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[15]
+	mi := &file_arena_v1_arena_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1249,7 +1481,7 @@ func (x *UpdateIceListingRequest) String() string {
 func (*UpdateIceListingRequest) ProtoMessage() {}
 
 func (x *UpdateIceListingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[15]
+	mi := &file_arena_v1_arena_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1262,7 +1494,7 @@ func (x *UpdateIceListingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateIceListingRequest.ProtoReflect.Descriptor instead.
 func (*UpdateIceListingRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{15}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *UpdateIceListingRequest) GetListingId() string {
@@ -1330,7 +1562,7 @@ type ArenaExistsRequest struct {
 
 func (x *ArenaExistsRequest) Reset() {
 	*x = ArenaExistsRequest{}
-	mi := &file_arena_v1_arena_proto_msgTypes[16]
+	mi := &file_arena_v1_arena_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1342,7 +1574,7 @@ func (x *ArenaExistsRequest) String() string {
 func (*ArenaExistsRequest) ProtoMessage() {}
 
 func (x *ArenaExistsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[16]
+	mi := &file_arena_v1_arena_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1355,7 +1587,7 @@ func (x *ArenaExistsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArenaExistsRequest.ProtoReflect.Descriptor instead.
 func (*ArenaExistsRequest) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{16}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ArenaExistsRequest) GetArenaId() string {
@@ -1374,7 +1606,7 @@ type ArenaExistsResponse struct {
 
 func (x *ArenaExistsResponse) Reset() {
 	*x = ArenaExistsResponse{}
-	mi := &file_arena_v1_arena_proto_msgTypes[17]
+	mi := &file_arena_v1_arena_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1386,7 +1618,7 @@ func (x *ArenaExistsResponse) String() string {
 func (*ArenaExistsResponse) ProtoMessage() {}
 
 func (x *ArenaExistsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_arena_v1_arena_proto_msgTypes[17]
+	mi := &file_arena_v1_arena_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1399,7 +1631,7 @@ func (x *ArenaExistsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArenaExistsResponse.ProtoReflect.Descriptor instead.
 func (*ArenaExistsResponse) Descriptor() ([]byte, []int) {
-	return file_arena_v1_arena_proto_rawDescGZIP(), []int{17}
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ArenaExistsResponse) GetExists() bool {
@@ -1407,6 +1639,118 @@ func (x *ArenaExistsResponse) GetExists() bool {
 		return x.Exists
 	}
 	return false
+}
+
+type SetArenaPartnerMembershipRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArenaId       string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Enabled       bool                   `protobuf:"varint,3,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetArenaPartnerMembershipRequest) Reset() {
+	*x = SetArenaPartnerMembershipRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetArenaPartnerMembershipRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetArenaPartnerMembershipRequest) ProtoMessage() {}
+
+func (x *SetArenaPartnerMembershipRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetArenaPartnerMembershipRequest.ProtoReflect.Descriptor instead.
+func (*SetArenaPartnerMembershipRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *SetArenaPartnerMembershipRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *SetArenaPartnerMembershipRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *SetArenaPartnerMembershipRequest) GetEnabled() bool {
+	if x != nil {
+		return x.Enabled
+	}
+	return false
+}
+
+type ArenaPartnerMembership struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArenaId       string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ArenaPartnerMembership) Reset() {
+	*x = ArenaPartnerMembership{}
+	mi := &file_arena_v1_arena_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ArenaPartnerMembership) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArenaPartnerMembership) ProtoMessage() {}
+
+func (x *ArenaPartnerMembership) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArenaPartnerMembership.ProtoReflect.Descriptor instead.
+func (*ArenaPartnerMembership) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ArenaPartnerMembership) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *ArenaPartnerMembership) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
 }
 
 var File_arena_v1_arena_proto protoreflect.FileDescriptor
@@ -1454,9 +1798,24 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\tArenaList\x12%\n" +
 	"\x05items\x18\x01 \x03(\v2\x0f.arena.v1.ArenaR\x05items\",\n" +
 	"\x0fGetArenaRequest\x12\x19\n" +
-	"\barena_id\x18\x01 \x01(\tR\aarenaId\"2\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\"S\n" +
 	"\x15ListArenaSlotsRequest\x12\x19\n" +
-	"\barena_id\x18\x01 \x01(\tR\aarenaId\"V\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\x12\x1f\n" +
+	"\vresource_id\x18\x02 \x01(\tR\n" +
+	"resourceId\"m\n" +
+	"\rArenaResource\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\barena_id\x18\x02 \x01(\tR\aarenaId\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1d\n" +
+	"\n" +
+	"is_default\x18\x04 \x01(\bR\tisDefault\"B\n" +
+	"\x11ArenaResourceList\x12-\n" +
+	"\x05items\x18\x01 \x03(\v2\x17.arena.v1.ArenaResourceR\x05items\"6\n" +
+	"\x19ListArenaResourcesRequest\x12\x19\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\"K\n" +
+	"\x1aCreateArenaResourceRequest\x12\x19\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"V\n" +
 	"\x18ListArenaListingsRequest\x12\x19\n" +
 	"\barena_id\x18\x01 \x01(\tR\aarenaId\x12\x1f\n" +
 	"\vpublic_only\x18\x02 \x01(\bR\n" +
@@ -1488,7 +1847,7 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\x06_metroB\x0e\n" +
 	"\f_price_rangeB\n" +
 	"\n" +
-	"\b_visible\"\xcf\x02\n" +
+	"\b_visible\"\xf0\x02\n" +
 	"\aIceSlot\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
 	"\barena_id\x18\x02 \x01(\tR\aarenaId\x127\n" +
@@ -1499,11 +1858,13 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\vbooking_url\x18\a \x01(\tH\x01R\n" +
 	"bookingUrl\x88\x01\x01\x128\n" +
 	"\vsource_meta\x18\b \x01(\v2\x17.google.protobuf.StructR\n" +
-	"sourceMetaB\b\n" +
+	"sourceMeta\x12\x1f\n" +
+	"\vresource_id\x18\t \x01(\tR\n" +
+	"resourceIdB\b\n" +
 	"\x06_priceB\x0e\n" +
 	"\f_booking_url\"6\n" +
 	"\vIceSlotList\x12'\n" +
-	"\x05items\x18\x01 \x03(\v2\x11.arena.v1.IceSlotR\x05items\"\xa2\x02\n" +
+	"\x05items\x18\x01 \x03(\v2\x11.arena.v1.IceSlotR\x05items\"\xc3\x02\n" +
 	"\x14CreateIceSlotRequest\x12\x19\n" +
 	"\barena_id\x18\x01 \x01(\tR\aarenaId\x127\n" +
 	"\tstarts_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x123\n" +
@@ -1511,7 +1872,9 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\x05price\x18\x04 \x01(\x01H\x00R\x05price\x88\x01\x01\x12\x1b\n" +
 	"\x06status\x18\x05 \x01(\tH\x01R\x06status\x88\x01\x01\x12$\n" +
 	"\vbooking_url\x18\x06 \x01(\tH\x02R\n" +
-	"bookingUrl\x88\x01\x01B\b\n" +
+	"bookingUrl\x88\x01\x01\x12\x1f\n" +
+	"\vresource_id\x18\a \x01(\tR\n" +
+	"resourceIdB\b\n" +
 	"\x06_priceB\t\n" +
 	"\a_statusB\x0e\n" +
 	"\f_booking_url\"\xc4\x02\n" +
@@ -1592,13 +1955,22 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\x12ArenaExistsRequest\x12\x19\n" +
 	"\barena_id\x18\x01 \x01(\tR\aarenaId\"-\n" +
 	"\x13ArenaExistsResponse\x12\x16\n" +
-	"\x06exists\x18\x01 \x01(\bR\x06exists2\xdf\b\n" +
+	"\x06exists\x18\x01 \x01(\bR\x06exists\"p\n" +
+	" SetArenaPartnerMembershipRequest\x12\x19\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x18\n" +
+	"\aenabled\x18\x03 \x01(\bR\aenabled\"L\n" +
+	"\x16ArenaPartnerMembership\x12\x19\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId2\xce\v\n" +
 	"\fArenaService\x12R\n" +
 	"\n" +
 	"ListArenas\x12\x1b.arena.v1.ListArenasRequest\x1a\x13.arena.v1.ArenaList\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
 	"/v1/arenas\x12U\n" +
 	"\bGetArena\x12\x19.arena.v1.GetArenaRequest\x1a\x0f.arena.v1.Arena\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/arenas/{arena_id}\x12m\n" +
-	"\x0eListArenaSlots\x12\x1f.arena.v1.ListArenaSlotsRequest\x1a\x15.arena.v1.IceSlotList\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/arenas/{arena_id}/slots\x12y\n" +
+	"\x0eListArenaSlots\x12\x1f.arena.v1.ListArenaSlotsRequest\x1a\x15.arena.v1.IceSlotList\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/arenas/{arena_id}/slots\x12\x7f\n" +
+	"\x12ListArenaResources\x12#.arena.v1.ListArenaResourcesRequest\x1a\x1b.arena.v1.ArenaResourceList\"'\x82\xd3\xe4\x93\x02!\x12\x1f/v1/arenas/{arena_id}/resources\x12\x80\x01\n" +
+	"\x13CreateArenaResource\x12$.arena.v1.CreateArenaResourceRequest\x1a\x17.arena.v1.ArenaResource\"*\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v1/arenas/{arena_id}/resources\x12y\n" +
 	"\x11ListArenaListings\x12\".arena.v1.ListArenaListingsRequest\x1a\x18.arena.v1.IceListingList\"&\x82\xd3\xe4\x93\x02 \x12\x1e/v1/arenas/{arena_id}/listings\x12^\n" +
 	"\vUpdateArena\x12\x1c.arena.v1.UpdateArenaRequest\x1a\x0f.arena.v1.Arena\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/arenas/{arena_id}\x12g\n" +
 	"\x0fListIceListings\x12 .arena.v1.ListIceListingsRequest\x1a\x18.arena.v1.IceListingList\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/ice-listings\x12h\n" +
@@ -1606,7 +1978,8 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\x10UpdateIceListing\x12!.arena.v1.UpdateIceListingRequest\x1a\x14.arena.v1.IceListing\"(\x82\xd3\xe4\x93\x02\":\x01*2\x1d/v1/ice-listings/{listing_id}\x12\\\n" +
 	"\rCreateIceSlot\x12\x1e.arena.v1.CreateIceSlotRequest\x1a\x11.arena.v1.IceSlot\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/ice-slots\x12f\n" +
 	"\rUpdateIceSlot\x12\x1e.arena.v1.UpdateIceSlotRequest\x1a\x11.arena.v1.IceSlot\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*2\x17/v1/ice-slots/{slot_id}\x12J\n" +
-	"\vArenaExists\x12\x1c.arena.v1.ArenaExistsRequest\x1a\x1d.arena.v1.ArenaExistsResponseB\xe3\x01\x92A\x96\x01\x12\x93\x01\n" +
+	"\vArenaExists\x12\x1c.arena.v1.ArenaExistsRequest\x1a\x1d.arena.v1.ArenaExistsResponse\x12i\n" +
+	"\x19SetArenaPartnerMembership\x12*.arena.v1.SetArenaPartnerMembershipRequest\x1a .arena.v1.ArenaPartnerMembershipB\xe3\x01\x92A\x96\x01\x12\x93\x01\n" +
 	"\x16HockeyNights Arena API\x12rКаталог арен, расписание льда и объявления о доступных слотах.2\x051.0.0ZGgithub.com/HockeyNights/hockey-shared-contracts/arena/gen/go/v1;arenav1b\x06proto3"
 
 var (
@@ -1621,76 +1994,89 @@ func file_arena_v1_arena_proto_rawDescGZIP() []byte {
 	return file_arena_v1_arena_proto_rawDescData
 }
 
-var file_arena_v1_arena_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_arena_v1_arena_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_arena_v1_arena_proto_goTypes = []any{
-	(*Arena)(nil),                    // 0: arena.v1.Arena
-	(*ListArenasRequest)(nil),        // 1: arena.v1.ListArenasRequest
-	(*ArenaList)(nil),                // 2: arena.v1.ArenaList
-	(*GetArenaRequest)(nil),          // 3: arena.v1.GetArenaRequest
-	(*ListArenaSlotsRequest)(nil),    // 4: arena.v1.ListArenaSlotsRequest
-	(*ListArenaListingsRequest)(nil), // 5: arena.v1.ListArenaListingsRequest
-	(*UpdateArenaRequest)(nil),       // 6: arena.v1.UpdateArenaRequest
-	(*IceSlot)(nil),                  // 7: arena.v1.IceSlot
-	(*IceSlotList)(nil),              // 8: arena.v1.IceSlotList
-	(*CreateIceSlotRequest)(nil),     // 9: arena.v1.CreateIceSlotRequest
-	(*UpdateIceSlotRequest)(nil),     // 10: arena.v1.UpdateIceSlotRequest
-	(*IceListing)(nil),               // 11: arena.v1.IceListing
-	(*IceListingList)(nil),           // 12: arena.v1.IceListingList
-	(*ListIceListingsRequest)(nil),   // 13: arena.v1.ListIceListingsRequest
-	(*CreateIceListingRequest)(nil),  // 14: arena.v1.CreateIceListingRequest
-	(*UpdateIceListingRequest)(nil),  // 15: arena.v1.UpdateIceListingRequest
-	(*ArenaExistsRequest)(nil),       // 16: arena.v1.ArenaExistsRequest
-	(*ArenaExistsResponse)(nil),      // 17: arena.v1.ArenaExistsResponse
-	(*structpb.Struct)(nil),          // 18: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),    // 19: google.protobuf.Timestamp
+	(*Arena)(nil),                            // 0: arena.v1.Arena
+	(*ListArenasRequest)(nil),                // 1: arena.v1.ListArenasRequest
+	(*ArenaList)(nil),                        // 2: arena.v1.ArenaList
+	(*GetArenaRequest)(nil),                  // 3: arena.v1.GetArenaRequest
+	(*ListArenaSlotsRequest)(nil),            // 4: arena.v1.ListArenaSlotsRequest
+	(*ArenaResource)(nil),                    // 5: arena.v1.ArenaResource
+	(*ArenaResourceList)(nil),                // 6: arena.v1.ArenaResourceList
+	(*ListArenaResourcesRequest)(nil),        // 7: arena.v1.ListArenaResourcesRequest
+	(*CreateArenaResourceRequest)(nil),       // 8: arena.v1.CreateArenaResourceRequest
+	(*ListArenaListingsRequest)(nil),         // 9: arena.v1.ListArenaListingsRequest
+	(*UpdateArenaRequest)(nil),               // 10: arena.v1.UpdateArenaRequest
+	(*IceSlot)(nil),                          // 11: arena.v1.IceSlot
+	(*IceSlotList)(nil),                      // 12: arena.v1.IceSlotList
+	(*CreateIceSlotRequest)(nil),             // 13: arena.v1.CreateIceSlotRequest
+	(*UpdateIceSlotRequest)(nil),             // 14: arena.v1.UpdateIceSlotRequest
+	(*IceListing)(nil),                       // 15: arena.v1.IceListing
+	(*IceListingList)(nil),                   // 16: arena.v1.IceListingList
+	(*ListIceListingsRequest)(nil),           // 17: arena.v1.ListIceListingsRequest
+	(*CreateIceListingRequest)(nil),          // 18: arena.v1.CreateIceListingRequest
+	(*UpdateIceListingRequest)(nil),          // 19: arena.v1.UpdateIceListingRequest
+	(*ArenaExistsRequest)(nil),               // 20: arena.v1.ArenaExistsRequest
+	(*ArenaExistsResponse)(nil),              // 21: arena.v1.ArenaExistsResponse
+	(*SetArenaPartnerMembershipRequest)(nil), // 22: arena.v1.SetArenaPartnerMembershipRequest
+	(*ArenaPartnerMembership)(nil),           // 23: arena.v1.ArenaPartnerMembership
+	(*structpb.Struct)(nil),                  // 24: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),            // 25: google.protobuf.Timestamp
 }
 var file_arena_v1_arena_proto_depIdxs = []int32{
-	18, // 0: arena.v1.Arena.source_meta:type_name -> google.protobuf.Struct
+	24, // 0: arena.v1.Arena.source_meta:type_name -> google.protobuf.Struct
 	0,  // 1: arena.v1.ArenaList.items:type_name -> arena.v1.Arena
-	19, // 2: arena.v1.IceSlot.starts_at:type_name -> google.protobuf.Timestamp
-	19, // 3: arena.v1.IceSlot.ends_at:type_name -> google.protobuf.Timestamp
-	18, // 4: arena.v1.IceSlot.source_meta:type_name -> google.protobuf.Struct
-	7,  // 5: arena.v1.IceSlotList.items:type_name -> arena.v1.IceSlot
-	19, // 6: arena.v1.CreateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
-	19, // 7: arena.v1.CreateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
-	19, // 8: arena.v1.UpdateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
-	19, // 9: arena.v1.UpdateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
-	19, // 10: arena.v1.IceListing.starts_at:type_name -> google.protobuf.Timestamp
-	19, // 11: arena.v1.IceListing.ends_at:type_name -> google.protobuf.Timestamp
-	19, // 12: arena.v1.IceListing.created_at:type_name -> google.protobuf.Timestamp
-	19, // 13: arena.v1.IceListing.updated_at:type_name -> google.protobuf.Timestamp
-	11, // 14: arena.v1.IceListingList.items:type_name -> arena.v1.IceListing
-	19, // 15: arena.v1.CreateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
-	19, // 16: arena.v1.CreateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
-	19, // 17: arena.v1.UpdateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
-	19, // 18: arena.v1.UpdateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
-	1,  // 19: arena.v1.ArenaService.ListArenas:input_type -> arena.v1.ListArenasRequest
-	3,  // 20: arena.v1.ArenaService.GetArena:input_type -> arena.v1.GetArenaRequest
-	4,  // 21: arena.v1.ArenaService.ListArenaSlots:input_type -> arena.v1.ListArenaSlotsRequest
-	5,  // 22: arena.v1.ArenaService.ListArenaListings:input_type -> arena.v1.ListArenaListingsRequest
-	6,  // 23: arena.v1.ArenaService.UpdateArena:input_type -> arena.v1.UpdateArenaRequest
-	13, // 24: arena.v1.ArenaService.ListIceListings:input_type -> arena.v1.ListIceListingsRequest
-	14, // 25: arena.v1.ArenaService.CreateIceListing:input_type -> arena.v1.CreateIceListingRequest
-	15, // 26: arena.v1.ArenaService.UpdateIceListing:input_type -> arena.v1.UpdateIceListingRequest
-	9,  // 27: arena.v1.ArenaService.CreateIceSlot:input_type -> arena.v1.CreateIceSlotRequest
-	10, // 28: arena.v1.ArenaService.UpdateIceSlot:input_type -> arena.v1.UpdateIceSlotRequest
-	16, // 29: arena.v1.ArenaService.ArenaExists:input_type -> arena.v1.ArenaExistsRequest
-	2,  // 30: arena.v1.ArenaService.ListArenas:output_type -> arena.v1.ArenaList
-	0,  // 31: arena.v1.ArenaService.GetArena:output_type -> arena.v1.Arena
-	8,  // 32: arena.v1.ArenaService.ListArenaSlots:output_type -> arena.v1.IceSlotList
-	12, // 33: arena.v1.ArenaService.ListArenaListings:output_type -> arena.v1.IceListingList
-	0,  // 34: arena.v1.ArenaService.UpdateArena:output_type -> arena.v1.Arena
-	12, // 35: arena.v1.ArenaService.ListIceListings:output_type -> arena.v1.IceListingList
-	11, // 36: arena.v1.ArenaService.CreateIceListing:output_type -> arena.v1.IceListing
-	11, // 37: arena.v1.ArenaService.UpdateIceListing:output_type -> arena.v1.IceListing
-	7,  // 38: arena.v1.ArenaService.CreateIceSlot:output_type -> arena.v1.IceSlot
-	7,  // 39: arena.v1.ArenaService.UpdateIceSlot:output_type -> arena.v1.IceSlot
-	17, // 40: arena.v1.ArenaService.ArenaExists:output_type -> arena.v1.ArenaExistsResponse
-	30, // [30:41] is the sub-list for method output_type
-	19, // [19:30] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	5,  // 2: arena.v1.ArenaResourceList.items:type_name -> arena.v1.ArenaResource
+	25, // 3: arena.v1.IceSlot.starts_at:type_name -> google.protobuf.Timestamp
+	25, // 4: arena.v1.IceSlot.ends_at:type_name -> google.protobuf.Timestamp
+	24, // 5: arena.v1.IceSlot.source_meta:type_name -> google.protobuf.Struct
+	11, // 6: arena.v1.IceSlotList.items:type_name -> arena.v1.IceSlot
+	25, // 7: arena.v1.CreateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
+	25, // 8: arena.v1.CreateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
+	25, // 9: arena.v1.UpdateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
+	25, // 10: arena.v1.UpdateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
+	25, // 11: arena.v1.IceListing.starts_at:type_name -> google.protobuf.Timestamp
+	25, // 12: arena.v1.IceListing.ends_at:type_name -> google.protobuf.Timestamp
+	25, // 13: arena.v1.IceListing.created_at:type_name -> google.protobuf.Timestamp
+	25, // 14: arena.v1.IceListing.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 15: arena.v1.IceListingList.items:type_name -> arena.v1.IceListing
+	25, // 16: arena.v1.CreateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
+	25, // 17: arena.v1.CreateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
+	25, // 18: arena.v1.UpdateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
+	25, // 19: arena.v1.UpdateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
+	1,  // 20: arena.v1.ArenaService.ListArenas:input_type -> arena.v1.ListArenasRequest
+	3,  // 21: arena.v1.ArenaService.GetArena:input_type -> arena.v1.GetArenaRequest
+	4,  // 22: arena.v1.ArenaService.ListArenaSlots:input_type -> arena.v1.ListArenaSlotsRequest
+	7,  // 23: arena.v1.ArenaService.ListArenaResources:input_type -> arena.v1.ListArenaResourcesRequest
+	8,  // 24: arena.v1.ArenaService.CreateArenaResource:input_type -> arena.v1.CreateArenaResourceRequest
+	9,  // 25: arena.v1.ArenaService.ListArenaListings:input_type -> arena.v1.ListArenaListingsRequest
+	10, // 26: arena.v1.ArenaService.UpdateArena:input_type -> arena.v1.UpdateArenaRequest
+	17, // 27: arena.v1.ArenaService.ListIceListings:input_type -> arena.v1.ListIceListingsRequest
+	18, // 28: arena.v1.ArenaService.CreateIceListing:input_type -> arena.v1.CreateIceListingRequest
+	19, // 29: arena.v1.ArenaService.UpdateIceListing:input_type -> arena.v1.UpdateIceListingRequest
+	13, // 30: arena.v1.ArenaService.CreateIceSlot:input_type -> arena.v1.CreateIceSlotRequest
+	14, // 31: arena.v1.ArenaService.UpdateIceSlot:input_type -> arena.v1.UpdateIceSlotRequest
+	20, // 32: arena.v1.ArenaService.ArenaExists:input_type -> arena.v1.ArenaExistsRequest
+	22, // 33: arena.v1.ArenaService.SetArenaPartnerMembership:input_type -> arena.v1.SetArenaPartnerMembershipRequest
+	2,  // 34: arena.v1.ArenaService.ListArenas:output_type -> arena.v1.ArenaList
+	0,  // 35: arena.v1.ArenaService.GetArena:output_type -> arena.v1.Arena
+	12, // 36: arena.v1.ArenaService.ListArenaSlots:output_type -> arena.v1.IceSlotList
+	6,  // 37: arena.v1.ArenaService.ListArenaResources:output_type -> arena.v1.ArenaResourceList
+	5,  // 38: arena.v1.ArenaService.CreateArenaResource:output_type -> arena.v1.ArenaResource
+	16, // 39: arena.v1.ArenaService.ListArenaListings:output_type -> arena.v1.IceListingList
+	0,  // 40: arena.v1.ArenaService.UpdateArena:output_type -> arena.v1.Arena
+	16, // 41: arena.v1.ArenaService.ListIceListings:output_type -> arena.v1.IceListingList
+	15, // 42: arena.v1.ArenaService.CreateIceListing:output_type -> arena.v1.IceListing
+	15, // 43: arena.v1.ArenaService.UpdateIceListing:output_type -> arena.v1.IceListing
+	11, // 44: arena.v1.ArenaService.CreateIceSlot:output_type -> arena.v1.IceSlot
+	11, // 45: arena.v1.ArenaService.UpdateIceSlot:output_type -> arena.v1.IceSlot
+	21, // 46: arena.v1.ArenaService.ArenaExists:output_type -> arena.v1.ArenaExistsResponse
+	23, // 47: arena.v1.ArenaService.SetArenaPartnerMembership:output_type -> arena.v1.ArenaPartnerMembership
+	34, // [34:48] is the sub-list for method output_type
+	20, // [20:34] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_arena_v1_arena_proto_init() }
@@ -1699,20 +2085,20 @@ func file_arena_v1_arena_proto_init() {
 		return
 	}
 	file_arena_v1_arena_proto_msgTypes[0].OneofWrappers = []any{}
-	file_arena_v1_arena_proto_msgTypes[6].OneofWrappers = []any{}
-	file_arena_v1_arena_proto_msgTypes[7].OneofWrappers = []any{}
-	file_arena_v1_arena_proto_msgTypes[9].OneofWrappers = []any{}
 	file_arena_v1_arena_proto_msgTypes[10].OneofWrappers = []any{}
 	file_arena_v1_arena_proto_msgTypes[11].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[13].OneofWrappers = []any{}
 	file_arena_v1_arena_proto_msgTypes[14].OneofWrappers = []any{}
 	file_arena_v1_arena_proto_msgTypes[15].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[18].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[19].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_arena_v1_arena_proto_rawDesc), len(file_arena_v1_arena_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

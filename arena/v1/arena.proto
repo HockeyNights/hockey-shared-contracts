@@ -27,6 +27,12 @@ service ArenaService {
   rpc ListArenaSlots(ListArenaSlotsRequest) returns (IceSlotList) {
     option (google.api.http) = {get: "/v1/arenas/{arena_id}/slots"};
   }
+  rpc ListArenaResources(ListArenaResourcesRequest) returns (ArenaResourceList) {
+    option (google.api.http) = {get: "/v1/arenas/{arena_id}/resources"};
+  }
+  rpc CreateArenaResource(CreateArenaResourceRequest) returns (ArenaResource) {
+    option (google.api.http) = {post: "/v1/arenas/{arena_id}/resources" body: "*"};
+  }
   rpc ListArenaListings(ListArenaListingsRequest) returns (IceListingList) {
     option (google.api.http) = {get: "/v1/arenas/{arena_id}/listings"};
   }
@@ -52,6 +58,7 @@ service ArenaService {
 
   // Service-to-service methods. They intentionally have no HTTP annotations.
   rpc ArenaExists(ArenaExistsRequest) returns (ArenaExistsResponse);
+  rpc SetArenaPartnerMembership(SetArenaPartnerMembershipRequest) returns (ArenaPartnerMembership);
 }
 
 message Arena {
@@ -86,7 +93,22 @@ message ListArenasRequest {
 message ArenaList { repeated Arena items = 1; }
 
 message GetArenaRequest { string arena_id = 1; }
-message ListArenaSlotsRequest { string arena_id = 1; }
+message ListArenaSlotsRequest {
+  string arena_id = 1;
+  string resource_id = 2;
+}
+message ArenaResource {
+  string id = 1;
+  string arena_id = 2;
+  string name = 3;
+  bool is_default = 4;
+}
+message ArenaResourceList { repeated ArenaResource items = 1; }
+message ListArenaResourcesRequest { string arena_id = 1; }
+message CreateArenaResourceRequest {
+  string arena_id = 1;
+  string name = 2;
+}
 message ListArenaListingsRequest {
   string arena_id = 1;
   bool public_only = 2;
@@ -115,6 +137,7 @@ message IceSlot {
   string status = 6;
   optional string booking_url = 7;
   google.protobuf.Struct source_meta = 8;
+  string resource_id = 9;
 }
 
 message IceSlotList { repeated IceSlot items = 1; }
@@ -125,6 +148,7 @@ message CreateIceSlotRequest {
   optional double price = 4;
   optional string status = 5;
   optional string booking_url = 6;
+  string resource_id = 7;
 }
 message UpdateIceSlotRequest {
   string slot_id = 1;
@@ -174,3 +198,12 @@ message UpdateIceListingRequest {
 
 message ArenaExistsRequest { string arena_id = 1; }
 message ArenaExistsResponse { bool exists = 1; }
+message SetArenaPartnerMembershipRequest {
+  string arena_id = 1;
+  string user_id = 2;
+  bool enabled = 3;
+}
+message ArenaPartnerMembership {
+  string arena_id = 1;
+  string user_id = 2;
+}

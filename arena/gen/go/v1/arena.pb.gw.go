@@ -109,6 +109,8 @@ func local_request_ArenaService_GetArena_0(ctx context.Context, marshaler runtim
 	return msg, metadata, err
 }
 
+var filter_ArenaService_ListArenaSlots_0 = &utilities.DoubleArray{Encoding: map[string]int{"arena_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+
 func request_ArenaService_ListArenaSlots_0(ctx context.Context, marshaler runtime.Marshaler, client ArenaServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListArenaSlotsRequest
@@ -122,6 +124,12 @@ func request_ArenaService_ListArenaSlots_0(ctx context.Context, marshaler runtim
 	protoReq.ArenaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArenaService_ListArenaSlots_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
@@ -144,7 +152,97 @@ func local_request_ArenaService_ListArenaSlots_0(ctx context.Context, marshaler 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
 	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ArenaService_ListArenaSlots_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 	msg, err := server.ListArenaSlots(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ArenaService_ListArenaResources_0(ctx context.Context, marshaler runtime.Marshaler, client ArenaServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListArenaResourcesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["arena_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "arena_id")
+	}
+	protoReq.ArenaId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListArenaResources(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArenaService_ListArenaResources_0(ctx context.Context, marshaler runtime.Marshaler, server ArenaServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListArenaResourcesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["arena_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "arena_id")
+	}
+	protoReq.ArenaId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
+	}
+	msg, err := server.ListArenaResources(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ArenaService_CreateArenaResource_0(ctx context.Context, marshaler runtime.Marshaler, client ArenaServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateArenaResourceRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["arena_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "arena_id")
+	}
+	protoReq.ArenaId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.CreateArenaResource(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArenaService_CreateArenaResource_0(ctx context.Context, marshaler runtime.Marshaler, server ArenaServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateArenaResourceRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["arena_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "arena_id")
+	}
+	protoReq.ArenaId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
+	}
+	msg, err := server.CreateArenaResource(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -491,6 +589,46 @@ func RegisterArenaServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_ArenaService_ListArenaSlots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ArenaService_ListArenaResources_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/arena.v1.ArenaService/ListArenaResources", runtime.WithHTTPPathPattern("/v1/arenas/{arena_id}/resources"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArenaService_ListArenaResources_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_ListArenaResources_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ArenaService_CreateArenaResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/arena.v1.ArenaService/CreateArenaResource", runtime.WithHTTPPathPattern("/v1/arenas/{arena_id}/resources"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArenaService_CreateArenaResource_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_CreateArenaResource_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ArenaService_ListArenaListings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -722,6 +860,40 @@ func RegisterArenaServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_ArenaService_ListArenaSlots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ArenaService_ListArenaResources_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/arena.v1.ArenaService/ListArenaResources", runtime.WithHTTPPathPattern("/v1/arenas/{arena_id}/resources"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArenaService_ListArenaResources_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_ListArenaResources_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_ArenaService_CreateArenaResource_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/arena.v1.ArenaService/CreateArenaResource", runtime.WithHTTPPathPattern("/v1/arenas/{arena_id}/resources"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArenaService_CreateArenaResource_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_CreateArenaResource_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_ArenaService_ListArenaListings_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -845,27 +1017,31 @@ func RegisterArenaServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_ArenaService_ListArenas_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "arenas"}, ""))
-	pattern_ArenaService_GetArena_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
-	pattern_ArenaService_ListArenaSlots_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "slots"}, ""))
-	pattern_ArenaService_ListArenaListings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "listings"}, ""))
-	pattern_ArenaService_UpdateArena_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
-	pattern_ArenaService_ListIceListings_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
-	pattern_ArenaService_CreateIceListing_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
-	pattern_ArenaService_UpdateIceListing_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-listings", "listing_id"}, ""))
-	pattern_ArenaService_CreateIceSlot_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-slots"}, ""))
-	pattern_ArenaService_UpdateIceSlot_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-slots", "slot_id"}, ""))
+	pattern_ArenaService_ListArenas_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "arenas"}, ""))
+	pattern_ArenaService_GetArena_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
+	pattern_ArenaService_ListArenaSlots_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "slots"}, ""))
+	pattern_ArenaService_ListArenaResources_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "resources"}, ""))
+	pattern_ArenaService_CreateArenaResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "resources"}, ""))
+	pattern_ArenaService_ListArenaListings_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "listings"}, ""))
+	pattern_ArenaService_UpdateArena_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
+	pattern_ArenaService_ListIceListings_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
+	pattern_ArenaService_CreateIceListing_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
+	pattern_ArenaService_UpdateIceListing_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-listings", "listing_id"}, ""))
+	pattern_ArenaService_CreateIceSlot_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-slots"}, ""))
+	pattern_ArenaService_UpdateIceSlot_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-slots", "slot_id"}, ""))
 )
 
 var (
-	forward_ArenaService_ListArenas_0        = runtime.ForwardResponseMessage
-	forward_ArenaService_GetArena_0          = runtime.ForwardResponseMessage
-	forward_ArenaService_ListArenaSlots_0    = runtime.ForwardResponseMessage
-	forward_ArenaService_ListArenaListings_0 = runtime.ForwardResponseMessage
-	forward_ArenaService_UpdateArena_0       = runtime.ForwardResponseMessage
-	forward_ArenaService_ListIceListings_0   = runtime.ForwardResponseMessage
-	forward_ArenaService_CreateIceListing_0  = runtime.ForwardResponseMessage
-	forward_ArenaService_UpdateIceListing_0  = runtime.ForwardResponseMessage
-	forward_ArenaService_CreateIceSlot_0     = runtime.ForwardResponseMessage
-	forward_ArenaService_UpdateIceSlot_0     = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenas_0          = runtime.ForwardResponseMessage
+	forward_ArenaService_GetArena_0            = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenaSlots_0      = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenaResources_0  = runtime.ForwardResponseMessage
+	forward_ArenaService_CreateArenaResource_0 = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenaListings_0   = runtime.ForwardResponseMessage
+	forward_ArenaService_UpdateArena_0         = runtime.ForwardResponseMessage
+	forward_ArenaService_ListIceListings_0     = runtime.ForwardResponseMessage
+	forward_ArenaService_CreateIceListing_0    = runtime.ForwardResponseMessage
+	forward_ArenaService_UpdateIceListing_0    = runtime.ForwardResponseMessage
+	forward_ArenaService_CreateIceSlot_0       = runtime.ForwardResponseMessage
+	forward_ArenaService_UpdateIceSlot_0       = runtime.ForwardResponseMessage
 )
