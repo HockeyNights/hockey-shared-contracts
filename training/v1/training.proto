@@ -131,6 +131,8 @@ message Event {
   optional string club_id = 22;
   google.protobuf.Timestamp created_at = 23;
   google.protobuf.Timestamp updated_at = 24;
+  optional string ice_booking_id = 25;
+  optional string ice_agreement_id = 26;
 }
 
 message EventList {
@@ -167,6 +169,7 @@ message CreateEventRequest {
   optional string arena_name = 15;
   optional string organizer_display_name = 16;
   optional string organizer_phone = 17;
+  optional string ice_agreement_id = 18;
 }
 
 message GetEventRequest { string event_id = 1; }

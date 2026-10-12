@@ -1359,6 +1359,9 @@
         },
         "organizerPhone": {
           "type": "string"
+        },
+        "iceAgreementId": {
+          "type": "string"
         }
       }
     },
@@ -1452,6 +1455,12 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "iceBookingId": {
+          "type": "string"
+        },
+        "iceAgreementId": {
+          "type": "string"
         }
       }
     },
