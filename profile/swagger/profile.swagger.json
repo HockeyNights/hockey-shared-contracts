@@ -17,6 +17,121 @@
     "application/json"
   ],
   "paths": {
+    "/v1/players": {
+      "get": {
+        "operationId": "ProfileService_ListPlayers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPlayersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "position",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skillLevel",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "district",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "goalieOnly",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "verified",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/players/{userId}": {
+      "get": {
+        "operationId": "ProfileService_GetPlayer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PublicPlayerView"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
     "/v1/profile": {
       "get": {
         "operationId": "ProfileService_GetProfile",
@@ -182,9 +297,225 @@
           "ProfileService"
         ]
       }
+    },
+    "/v1/profile/me": {
+      "get": {
+        "operationId": "ProfileService_GetProfile2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Profile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProfileService"
+        ]
+      },
+      "put": {
+        "operationId": "ProfileService_UpdateProfile2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Profile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/profile/notification-preferences": {
+      "patch": {
+        "operationId": "ProfileService_UpdateNotificationPreferences",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ProfileSettings"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "patch",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/profile/privacy": {
+      "patch": {
+        "operationId": "ProfileService_UpdatePrivacy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ProfileSettings"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "patch",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/profile/settings": {
+      "get": {
+        "operationId": "ProfileService_GetProfileSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ProfileSettings"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/verification-requests": {
+      "post": {
+        "operationId": "ProfileService_CreateVerificationRequest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1VerificationRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateVerificationRequestRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
+    },
+    "/v1/verification-requests/{requestId}": {
+      "patch": {
+        "operationId": "ProfileService_ReviewVerificationRequest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1VerificationRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProfileServiceReviewVerificationRequestBody"
+            }
+          }
+        ],
+        "tags": [
+          "ProfileService"
+        ]
+      }
     }
   },
   "definitions": {
+    "ProfileServiceReviewVerificationRequestBody": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -193,6 +524,14 @@
         }
       },
       "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
     },
     "rpcStatus": {
       "type": "object",
@@ -210,6 +549,23 @@
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
+        }
+      }
+    },
+    "v1ContactInfo": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "telegram": {
+          "type": "string"
+        },
+        "maxMessenger": {
+          "type": "string"
         }
       }
     },
@@ -254,6 +610,56 @@
         }
       }
     },
+    "v1CreateVerificationRequestRequest": {
+      "type": "object"
+    },
+    "v1FieldPrivacy": {
+      "type": "object",
+      "properties": {
+        "birthDate": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "heightWeight": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "skillLevel": {
+          "type": "string"
+        },
+        "teams": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "achievements": {
+          "type": "string"
+        },
+        "participationHistory": {
+          "type": "string"
+        },
+        "calendar": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "telegram": {
+          "type": "string"
+        },
+        "maxMessenger": {
+          "type": "string"
+        }
+      }
+    },
     "v1Grip": {
       "type": "string",
       "enum": [
@@ -262,6 +668,129 @@
         "GRIP_RIGHT"
       ],
       "default": "GRIP_UNSPECIFIED"
+    },
+    "v1ListPlayersResponse": {
+      "type": "object",
+      "properties": {
+        "players": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1PlayerCard"
+          }
+        },
+        "nextCursor": {
+          "type": "string"
+        }
+      }
+    },
+    "v1NotificationPreferences": {
+      "type": "object",
+      "properties": {
+        "inApp": {
+          "type": "boolean"
+        },
+        "email": {
+          "type": "boolean"
+        },
+        "push": {
+          "type": "boolean"
+        },
+        "maxMessenger": {
+          "type": "boolean"
+        },
+        "teamEvents": {
+          "type": "boolean"
+        },
+        "goalkeeperSos": {
+          "type": "boolean"
+        },
+        "eventReminders": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1PlayerCard": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "metro": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "skillLevel": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "verificationStatus": {
+          "type": "string"
+        },
+        "teamIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contacts": {
+          "$ref": "#/definitions/v1ContactInfo"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "heightCm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weightKg": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "achievements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "availability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "playerIndex": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "profileCompleteness": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "karmaScore": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
     },
     "v1Position": {
       "type": "string",
@@ -272,6 +801,33 @@
         "POSITION_GOALIE"
       ],
       "default": "POSITION_UNSPECIFIED"
+    },
+    "v1PrivacySettings": {
+      "type": "object",
+      "properties": {
+        "profileVisibility": {
+          "type": "string"
+        },
+        "showContacts": {
+          "type": "boolean"
+        },
+        "showParticipationHistory": {
+          "type": "boolean"
+        },
+        "calendarVisibility": {
+          "type": "string"
+        },
+        "fields": {
+          "$ref": "#/definitions/v1FieldPrivacy"
+        },
+        "personalDataProcessingConsent": {
+          "type": "boolean"
+        },
+        "personalDataConsentAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
     },
     "v1Profile": {
       "type": "object",
@@ -325,6 +881,82 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "district": {
+          "type": "string"
+        },
+        "metro": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "contacts": {
+          "$ref": "#/definitions/v1ContactInfo"
+        },
+        "availability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "achievements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verificationStatus": {
+          "type": "string"
+        },
+        "teamIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ProfileSettings": {
+      "type": "object",
+      "properties": {
+        "notificationPreferences": {
+          "$ref": "#/definitions/v1NotificationPreferences"
+        },
+        "privacy": {
+          "$ref": "#/definitions/v1PrivacySettings"
+        },
+        "subscription": {
+          "$ref": "#/definitions/v1SubscriptionState"
+        }
+      }
+    },
+    "v1PublicPlayerView": {
+      "type": "object",
+      "properties": {
+        "player": {
+          "$ref": "#/definitions/v1PlayerCard"
+        },
+        "visibility": {
+          "type": "string"
+        },
+        "contactsVisible": {
+          "type": "boolean"
+        },
+        "visibleContacts": {
+          "$ref": "#/definitions/v1ContactInfo"
+        },
+        "participationHistoryVisible": {
+          "type": "boolean"
+        },
+        "calendarVisible": {
+          "type": "boolean"
+        },
+        "visibleFields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
         }
       }
     },
@@ -351,6 +983,27 @@
       "properties": {
         "key": {
           "type": "string"
+        }
+      }
+    },
+    "v1SubscriptionState": {
+      "type": "object",
+      "properties": {
+        "planId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "currentPeriodEndsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "entitlements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -392,6 +1045,48 @@
         "skillIndex": {
           "type": "integer",
           "format": "int32"
+        },
+        "district": {
+          "type": "string"
+        },
+        "metro": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "contacts": {
+          "$ref": "#/definitions/v1ContactInfo"
+        },
+        "availability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "achievements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1VerificationRequest": {
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     }
