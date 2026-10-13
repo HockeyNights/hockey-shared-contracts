@@ -216,6 +216,86 @@ func (*GetMySubscriptionRequest) Descriptor() ([]byte, []int) {
 	return file_billing_v1_billing_proto_rawDescGZIP(), []int{3}
 }
 
+type SetMySubscriptionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlanId        string                 `protobuf:"bytes,1,opt,name=plan_id,json=planId,proto3" json:"plan_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetMySubscriptionRequest) Reset() {
+	*x = SetMySubscriptionRequest{}
+	mi := &file_billing_v1_billing_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetMySubscriptionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetMySubscriptionRequest) ProtoMessage() {}
+
+func (x *SetMySubscriptionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_billing_v1_billing_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetMySubscriptionRequest.ProtoReflect.Descriptor instead.
+func (*SetMySubscriptionRequest) Descriptor() ([]byte, []int) {
+	return file_billing_v1_billing_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *SetMySubscriptionRequest) GetPlanId() string {
+	if x != nil {
+		return x.PlanId
+	}
+	return ""
+}
+
+type CancelMySubscriptionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CancelMySubscriptionRequest) Reset() {
+	*x = CancelMySubscriptionRequest{}
+	mi := &file_billing_v1_billing_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CancelMySubscriptionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CancelMySubscriptionRequest) ProtoMessage() {}
+
+func (x *CancelMySubscriptionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_billing_v1_billing_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CancelMySubscriptionRequest.ProtoReflect.Descriptor instead.
+func (*CancelMySubscriptionRequest) Descriptor() ([]byte, []int) {
+	return file_billing_v1_billing_proto_rawDescGZIP(), []int{5}
+}
+
 type SubscriptionState struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	PlanId              string                 `protobuf:"bytes,1,opt,name=plan_id,json=planId,proto3" json:"plan_id,omitempty"`
@@ -228,7 +308,7 @@ type SubscriptionState struct {
 
 func (x *SubscriptionState) Reset() {
 	*x = SubscriptionState{}
-	mi := &file_billing_v1_billing_proto_msgTypes[4]
+	mi := &file_billing_v1_billing_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -240,7 +320,7 @@ func (x *SubscriptionState) String() string {
 func (*SubscriptionState) ProtoMessage() {}
 
 func (x *SubscriptionState) ProtoReflect() protoreflect.Message {
-	mi := &file_billing_v1_billing_proto_msgTypes[4]
+	mi := &file_billing_v1_billing_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -253,7 +333,7 @@ func (x *SubscriptionState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscriptionState.ProtoReflect.Descriptor instead.
 func (*SubscriptionState) Descriptor() ([]byte, []int) {
-	return file_billing_v1_billing_proto_rawDescGZIP(), []int{4}
+	return file_billing_v1_billing_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SubscriptionState) GetPlanId() string {
@@ -293,7 +373,7 @@ type CreateSubscriptionIntentRequest struct {
 
 func (x *CreateSubscriptionIntentRequest) Reset() {
 	*x = CreateSubscriptionIntentRequest{}
-	mi := &file_billing_v1_billing_proto_msgTypes[5]
+	mi := &file_billing_v1_billing_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -305,7 +385,7 @@ func (x *CreateSubscriptionIntentRequest) String() string {
 func (*CreateSubscriptionIntentRequest) ProtoMessage() {}
 
 func (x *CreateSubscriptionIntentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_billing_v1_billing_proto_msgTypes[5]
+	mi := &file_billing_v1_billing_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,7 +398,7 @@ func (x *CreateSubscriptionIntentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateSubscriptionIntentRequest.ProtoReflect.Descriptor instead.
 func (*CreateSubscriptionIntentRequest) Descriptor() ([]byte, []int) {
-	return file_billing_v1_billing_proto_rawDescGZIP(), []int{5}
+	return file_billing_v1_billing_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CreateSubscriptionIntentRequest) GetPlanId() string {
@@ -340,7 +420,7 @@ type SubscriptionIntent struct {
 
 func (x *SubscriptionIntent) Reset() {
 	*x = SubscriptionIntent{}
-	mi := &file_billing_v1_billing_proto_msgTypes[6]
+	mi := &file_billing_v1_billing_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -352,7 +432,7 @@ func (x *SubscriptionIntent) String() string {
 func (*SubscriptionIntent) ProtoMessage() {}
 
 func (x *SubscriptionIntent) ProtoReflect() protoreflect.Message {
-	mi := &file_billing_v1_billing_proto_msgTypes[6]
+	mi := &file_billing_v1_billing_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -365,7 +445,7 @@ func (x *SubscriptionIntent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscriptionIntent.ProtoReflect.Descriptor instead.
 func (*SubscriptionIntent) Descriptor() ([]byte, []int) {
-	return file_billing_v1_billing_proto_rawDescGZIP(), []int{6}
+	return file_billing_v1_billing_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SubscriptionIntent) GetId() string {
@@ -405,7 +485,7 @@ type GetUserEntitlementsRequest struct {
 
 func (x *GetUserEntitlementsRequest) Reset() {
 	*x = GetUserEntitlementsRequest{}
-	mi := &file_billing_v1_billing_proto_msgTypes[7]
+	mi := &file_billing_v1_billing_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -417,7 +497,7 @@ func (x *GetUserEntitlementsRequest) String() string {
 func (*GetUserEntitlementsRequest) ProtoMessage() {}
 
 func (x *GetUserEntitlementsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_billing_v1_billing_proto_msgTypes[7]
+	mi := &file_billing_v1_billing_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -430,7 +510,7 @@ func (x *GetUserEntitlementsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserEntitlementsRequest.ProtoReflect.Descriptor instead.
 func (*GetUserEntitlementsRequest) Descriptor() ([]byte, []int) {
-	return file_billing_v1_billing_proto_rawDescGZIP(), []int{7}
+	return file_billing_v1_billing_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetUserEntitlementsRequest) GetUserId() string {
@@ -455,7 +535,10 @@ const file_billing_v1_billing_proto_rawDesc = "" +
 	"\fentitlements\x18\x05 \x03(\tR\fentitlements\";\n" +
 	"\x11ListPlansResponse\x12&\n" +
 	"\x05plans\x18\x01 \x03(\v2\x10.billing.v1.PlanR\x05plans\"\x1a\n" +
-	"\x18GetMySubscriptionRequest\"\xb9\x01\n" +
+	"\x18GetMySubscriptionRequest\"3\n" +
+	"\x18SetMySubscriptionRequest\x12\x17\n" +
+	"\aplan_id\x18\x01 \x01(\tR\x06planId\"\x1d\n" +
+	"\x1bCancelMySubscriptionRequest\"\xb9\x01\n" +
 	"\x11SubscriptionState\x12\x17\n" +
 	"\aplan_id\x18\x01 \x01(\tR\x06planId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12O\n" +
@@ -470,13 +553,15 @@ const file_billing_v1_billing_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"5\n" +
 	"\x1aGetUserEntitlementsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId2\xce\x03\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId2\xbf\x05\n" +
 	"\x0eBillingService\x12[\n" +
 	"\tListPlans\x12\x1c.billing.v1.ListPlansRequest\x1a\x1d.billing.v1.ListPlansResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/plans\x12r\n" +
-	"\x11GetMySubscription\x12$.billing.v1.GetMySubscriptionRequest\x1a\x1d.billing.v1.SubscriptionState\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/subscription\x12\x8c\x01\n" +
+	"\x11GetMySubscription\x12$.billing.v1.GetMySubscriptionRequest\x1a\x1d.billing.v1.SubscriptionState\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/subscription\x12u\n" +
+	"\x11SetMySubscription\x12$.billing.v1.SetMySubscriptionRequest\x1a\x1d.billing.v1.SubscriptionState\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\x1a\x10/v1/subscription\x12x\n" +
+	"\x14CancelMySubscription\x12'.billing.v1.CancelMySubscriptionRequest\x1a\x1d.billing.v1.SubscriptionState\"\x18\x82\xd3\xe4\x93\x02\x12*\x10/v1/subscription\x12\x8c\x01\n" +
 	"\x18CreateSubscriptionIntent\x12+.billing.v1.CreateSubscriptionIntentRequest\x1a\x1e.billing.v1.SubscriptionIntent\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/subscription-intents\x12\\\n" +
-	"\x13GetUserEntitlements\x12&.billing.v1.GetUserEntitlementsRequest\x1a\x1d.billing.v1.SubscriptionStateB\xd1\x01\x92A\x80\x01\x12~\n" +
-	"\x18HockeyNights Billing API\x12[Тарифы и намерения подписки без фиктивной оплаты.2\x051.0.0ZKgithub.com/HockeyNights/hockey-shared-contracts/billing/gen/go/v1;billingv1b\x06proto3"
+	"\x13GetUserEntitlements\x12&.billing.v1.GetUserEntitlementsRequest\x1a\x1d.billing.v1.SubscriptionStateB\xe5\x01\x92A\x94\x01\x12\x91\x01\n" +
+	"\x18HockeyNights Billing API\x12nТарифы и временное mock-переключение подписки без эквайринга.2\x051.0.0ZKgithub.com/HockeyNights/hockey-shared-contracts/billing/gen/go/v1;billingv1b\x06proto3"
 
 var (
 	file_billing_v1_billing_proto_rawDescOnce sync.Once
@@ -490,35 +575,41 @@ func file_billing_v1_billing_proto_rawDescGZIP() []byte {
 	return file_billing_v1_billing_proto_rawDescData
 }
 
-var file_billing_v1_billing_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_billing_v1_billing_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_billing_v1_billing_proto_goTypes = []any{
 	(*ListPlansRequest)(nil),                // 0: billing.v1.ListPlansRequest
 	(*Plan)(nil),                            // 1: billing.v1.Plan
 	(*ListPlansResponse)(nil),               // 2: billing.v1.ListPlansResponse
 	(*GetMySubscriptionRequest)(nil),        // 3: billing.v1.GetMySubscriptionRequest
-	(*SubscriptionState)(nil),               // 4: billing.v1.SubscriptionState
-	(*CreateSubscriptionIntentRequest)(nil), // 5: billing.v1.CreateSubscriptionIntentRequest
-	(*SubscriptionIntent)(nil),              // 6: billing.v1.SubscriptionIntent
-	(*GetUserEntitlementsRequest)(nil),      // 7: billing.v1.GetUserEntitlementsRequest
-	(*timestamppb.Timestamp)(nil),           // 8: google.protobuf.Timestamp
+	(*SetMySubscriptionRequest)(nil),        // 4: billing.v1.SetMySubscriptionRequest
+	(*CancelMySubscriptionRequest)(nil),     // 5: billing.v1.CancelMySubscriptionRequest
+	(*SubscriptionState)(nil),               // 6: billing.v1.SubscriptionState
+	(*CreateSubscriptionIntentRequest)(nil), // 7: billing.v1.CreateSubscriptionIntentRequest
+	(*SubscriptionIntent)(nil),              // 8: billing.v1.SubscriptionIntent
+	(*GetUserEntitlementsRequest)(nil),      // 9: billing.v1.GetUserEntitlementsRequest
+	(*timestamppb.Timestamp)(nil),           // 10: google.protobuf.Timestamp
 }
 var file_billing_v1_billing_proto_depIdxs = []int32{
-	1, // 0: billing.v1.ListPlansResponse.plans:type_name -> billing.v1.Plan
-	8, // 1: billing.v1.SubscriptionState.current_period_ends_at:type_name -> google.protobuf.Timestamp
-	8, // 2: billing.v1.SubscriptionIntent.created_at:type_name -> google.protobuf.Timestamp
-	0, // 3: billing.v1.BillingService.ListPlans:input_type -> billing.v1.ListPlansRequest
-	3, // 4: billing.v1.BillingService.GetMySubscription:input_type -> billing.v1.GetMySubscriptionRequest
-	5, // 5: billing.v1.BillingService.CreateSubscriptionIntent:input_type -> billing.v1.CreateSubscriptionIntentRequest
-	7, // 6: billing.v1.BillingService.GetUserEntitlements:input_type -> billing.v1.GetUserEntitlementsRequest
-	2, // 7: billing.v1.BillingService.ListPlans:output_type -> billing.v1.ListPlansResponse
-	4, // 8: billing.v1.BillingService.GetMySubscription:output_type -> billing.v1.SubscriptionState
-	6, // 9: billing.v1.BillingService.CreateSubscriptionIntent:output_type -> billing.v1.SubscriptionIntent
-	4, // 10: billing.v1.BillingService.GetUserEntitlements:output_type -> billing.v1.SubscriptionState
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	1,  // 0: billing.v1.ListPlansResponse.plans:type_name -> billing.v1.Plan
+	10, // 1: billing.v1.SubscriptionState.current_period_ends_at:type_name -> google.protobuf.Timestamp
+	10, // 2: billing.v1.SubscriptionIntent.created_at:type_name -> google.protobuf.Timestamp
+	0,  // 3: billing.v1.BillingService.ListPlans:input_type -> billing.v1.ListPlansRequest
+	3,  // 4: billing.v1.BillingService.GetMySubscription:input_type -> billing.v1.GetMySubscriptionRequest
+	4,  // 5: billing.v1.BillingService.SetMySubscription:input_type -> billing.v1.SetMySubscriptionRequest
+	5,  // 6: billing.v1.BillingService.CancelMySubscription:input_type -> billing.v1.CancelMySubscriptionRequest
+	7,  // 7: billing.v1.BillingService.CreateSubscriptionIntent:input_type -> billing.v1.CreateSubscriptionIntentRequest
+	9,  // 8: billing.v1.BillingService.GetUserEntitlements:input_type -> billing.v1.GetUserEntitlementsRequest
+	2,  // 9: billing.v1.BillingService.ListPlans:output_type -> billing.v1.ListPlansResponse
+	6,  // 10: billing.v1.BillingService.GetMySubscription:output_type -> billing.v1.SubscriptionState
+	6,  // 11: billing.v1.BillingService.SetMySubscription:output_type -> billing.v1.SubscriptionState
+	6,  // 12: billing.v1.BillingService.CancelMySubscription:output_type -> billing.v1.SubscriptionState
+	8,  // 13: billing.v1.BillingService.CreateSubscriptionIntent:output_type -> billing.v1.SubscriptionIntent
+	6,  // 14: billing.v1.BillingService.GetUserEntitlements:output_type -> billing.v1.SubscriptionState
+	9,  // [9:15] is the sub-list for method output_type
+	3,  // [3:9] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_billing_v1_billing_proto_init() }
@@ -532,7 +623,7 @@ func file_billing_v1_billing_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_billing_v1_billing_proto_rawDesc), len(file_billing_v1_billing_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

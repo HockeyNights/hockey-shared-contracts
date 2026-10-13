@@ -9,7 +9,7 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 option go_package = "github.com/HockeyNights/hockey-shared-contracts/billing/gen/go/v1;billingv1";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  info: {title: "HockeyNights Billing API" version: "1.0.0" description: "Тарифы и намерения подписки без фиктивной оплаты."}
+  info: {title: "HockeyNights Billing API" version: "1.0.0" description: "Тарифы и временное mock-переключение подписки без эквайринга."}
 };
 
 service BillingService {
@@ -18,6 +18,12 @@ service BillingService {
   }
   rpc GetMySubscription(GetMySubscriptionRequest) returns (SubscriptionState) {
     option (google.api.http) = {get: "/v1/subscription"};
+  }
+  rpc SetMySubscription(SetMySubscriptionRequest) returns (SubscriptionState) {
+    option (google.api.http) = {put: "/v1/subscription" body: "*"};
+  }
+  rpc CancelMySubscription(CancelMySubscriptionRequest) returns (SubscriptionState) {
+    option (google.api.http) = {delete: "/v1/subscription"};
   }
   rpc CreateSubscriptionIntent(CreateSubscriptionIntentRequest) returns (SubscriptionIntent) {
     option (google.api.http) = {post: "/v1/subscription-intents" body: "*"};
@@ -36,6 +42,8 @@ message Plan {
 }
 message ListPlansResponse { repeated Plan plans = 1; }
 message GetMySubscriptionRequest {}
+message SetMySubscriptionRequest { string plan_id = 1; }
+message CancelMySubscriptionRequest {}
 message SubscriptionState {
   string plan_id = 1;
   string status = 2;

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "HockeyNights Billing API",
-    "description": "Тарифы и намерения подписки без фиктивной оплаты.",
+    "description": "Тарифы и временное mock-переключение подписки без эквайринга.",
     "version": "1.0.0"
   },
   "tags": [
@@ -56,6 +56,56 @@
             }
           }
         },
+        "tags": [
+          "BillingService"
+        ]
+      },
+      "delete": {
+        "operationId": "BillingService_CancelMySubscription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SubscriptionState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BillingService"
+        ]
+      },
+      "put": {
+        "operationId": "BillingService_SetMySubscription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SubscriptionState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SetMySubscriptionRequest"
+            }
+          }
+        ],
         "tags": [
           "BillingService"
         ]
@@ -164,6 +214,14 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "v1SetMySubscriptionRequest": {
+      "type": "object",
+      "properties": {
+        "planId": {
+          "type": "string"
         }
       }
     },

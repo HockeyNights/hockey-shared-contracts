@@ -21,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	BillingService_ListPlans_FullMethodName                = "/billing.v1.BillingService/ListPlans"
 	BillingService_GetMySubscription_FullMethodName        = "/billing.v1.BillingService/GetMySubscription"
+	BillingService_SetMySubscription_FullMethodName        = "/billing.v1.BillingService/SetMySubscription"
+	BillingService_CancelMySubscription_FullMethodName     = "/billing.v1.BillingService/CancelMySubscription"
 	BillingService_CreateSubscriptionIntent_FullMethodName = "/billing.v1.BillingService/CreateSubscriptionIntent"
 	BillingService_GetUserEntitlements_FullMethodName      = "/billing.v1.BillingService/GetUserEntitlements"
 )
@@ -31,6 +33,8 @@ const (
 type BillingServiceClient interface {
 	ListPlans(ctx context.Context, in *ListPlansRequest, opts ...grpc.CallOption) (*ListPlansResponse, error)
 	GetMySubscription(ctx context.Context, in *GetMySubscriptionRequest, opts ...grpc.CallOption) (*SubscriptionState, error)
+	SetMySubscription(ctx context.Context, in *SetMySubscriptionRequest, opts ...grpc.CallOption) (*SubscriptionState, error)
+	CancelMySubscription(ctx context.Context, in *CancelMySubscriptionRequest, opts ...grpc.CallOption) (*SubscriptionState, error)
 	CreateSubscriptionIntent(ctx context.Context, in *CreateSubscriptionIntentRequest, opts ...grpc.CallOption) (*SubscriptionIntent, error)
 	// Internal only: authenticated with x-service-token, never exposed by Gateway.
 	GetUserEntitlements(ctx context.Context, in *GetUserEntitlementsRequest, opts ...grpc.CallOption) (*SubscriptionState, error)
@@ -64,6 +68,26 @@ func (c *billingServiceClient) GetMySubscription(ctx context.Context, in *GetMyS
 	return out, nil
 }
 
+func (c *billingServiceClient) SetMySubscription(ctx context.Context, in *SetMySubscriptionRequest, opts ...grpc.CallOption) (*SubscriptionState, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SubscriptionState)
+	err := c.cc.Invoke(ctx, BillingService_SetMySubscription_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingServiceClient) CancelMySubscription(ctx context.Context, in *CancelMySubscriptionRequest, opts ...grpc.CallOption) (*SubscriptionState, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SubscriptionState)
+	err := c.cc.Invoke(ctx, BillingService_CancelMySubscription_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingServiceClient) CreateSubscriptionIntent(ctx context.Context, in *CreateSubscriptionIntentRequest, opts ...grpc.CallOption) (*SubscriptionIntent, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SubscriptionIntent)
@@ -90,6 +114,8 @@ func (c *billingServiceClient) GetUserEntitlements(ctx context.Context, in *GetU
 type BillingServiceServer interface {
 	ListPlans(context.Context, *ListPlansRequest) (*ListPlansResponse, error)
 	GetMySubscription(context.Context, *GetMySubscriptionRequest) (*SubscriptionState, error)
+	SetMySubscription(context.Context, *SetMySubscriptionRequest) (*SubscriptionState, error)
+	CancelMySubscription(context.Context, *CancelMySubscriptionRequest) (*SubscriptionState, error)
 	CreateSubscriptionIntent(context.Context, *CreateSubscriptionIntentRequest) (*SubscriptionIntent, error)
 	// Internal only: authenticated with x-service-token, never exposed by Gateway.
 	GetUserEntitlements(context.Context, *GetUserEntitlementsRequest) (*SubscriptionState, error)
@@ -108,6 +134,12 @@ func (UnimplementedBillingServiceServer) ListPlans(context.Context, *ListPlansRe
 }
 func (UnimplementedBillingServiceServer) GetMySubscription(context.Context, *GetMySubscriptionRequest) (*SubscriptionState, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMySubscription not implemented")
+}
+func (UnimplementedBillingServiceServer) SetMySubscription(context.Context, *SetMySubscriptionRequest) (*SubscriptionState, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetMySubscription not implemented")
+}
+func (UnimplementedBillingServiceServer) CancelMySubscription(context.Context, *CancelMySubscriptionRequest) (*SubscriptionState, error) {
+	return nil, status.Error(codes.Unimplemented, "method CancelMySubscription not implemented")
 }
 func (UnimplementedBillingServiceServer) CreateSubscriptionIntent(context.Context, *CreateSubscriptionIntentRequest) (*SubscriptionIntent, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateSubscriptionIntent not implemented")
@@ -172,6 +204,42 @@ func _BillingService_GetMySubscription_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BillingService_SetMySubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetMySubscriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).SetMySubscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BillingService_SetMySubscription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).SetMySubscription(ctx, req.(*SetMySubscriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BillingService_CancelMySubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CancelMySubscriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BillingServiceServer).CancelMySubscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BillingService_CancelMySubscription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BillingServiceServer).CancelMySubscription(ctx, req.(*CancelMySubscriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BillingService_CreateSubscriptionIntent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateSubscriptionIntentRequest)
 	if err := dec(in); err != nil {
@@ -222,6 +290,14 @@ var BillingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMySubscription",
 			Handler:    _BillingService_GetMySubscription_Handler,
+		},
+		{
+			MethodName: "SetMySubscription",
+			Handler:    _BillingService_SetMySubscription_Handler,
+		},
+		{
+			MethodName: "CancelMySubscription",
+			Handler:    _BillingService_CancelMySubscription_Handler,
 		},
 		{
 			MethodName: "CreateSubscriptionIntent",
