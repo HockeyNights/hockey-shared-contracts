@@ -5,6 +5,7 @@ package profile.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/HockeyNights/hockey-shared-contracts/profile/gen/go/v1;profilev1";
@@ -20,6 +21,27 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 service ProfileService {
   // Internal only: returns no private profile fields and has no HTTP route.
   rpc BatchGetProfileSummaries(BatchGetProfileSummariesRequest) returns (BatchGetProfileSummariesResponse);
+  rpc ListPlayers(ListPlayersRequest) returns (ListPlayersResponse) {
+    option (google.api.http) = {get: "/v1/players"};
+  }
+  rpc GetPlayer(GetPlayerRequest) returns (PublicPlayerView) {
+    option (google.api.http) = {get: "/v1/players/{user_id}"};
+  }
+  rpc GetProfileSettings(GetProfileSettingsRequest) returns (ProfileSettings) {
+    option (google.api.http) = {get: "/v1/profile/settings"};
+  }
+  rpc UpdateNotificationPreferences(UpdateNotificationPreferencesRequest) returns (ProfileSettings) {
+    option (google.api.http) = {patch: "/v1/profile/notification-preferences" body: "patch"};
+  }
+  rpc UpdatePrivacy(UpdatePrivacyRequest) returns (ProfileSettings) {
+    option (google.api.http) = {patch: "/v1/profile/privacy" body: "patch"};
+  }
+  rpc CreateVerificationRequest(CreateVerificationRequestRequest) returns (VerificationRequest) {
+    option (google.api.http) = {post: "/v1/verification-requests" body: "*"};
+  }
+  rpc ReviewVerificationRequest(ReviewVerificationRequestRequest) returns (VerificationRequest) {
+    option (google.api.http) = {patch: "/v1/verification-requests/{request_id}" body: "*"};
+  }
   rpc CreateProfile(CreateProfileRequest) returns (Profile) {
     option (google.api.http) = {
       post: "/v1/profile"
@@ -28,13 +50,14 @@ service ProfileService {
   }
 
   rpc GetProfile(GetProfileRequest) returns (Profile) {
-    option (google.api.http) = {get: "/v1/profile"};
+    option (google.api.http) = {get: "/v1/profile" additional_bindings: {get: "/v1/profile/me"}};
   }
 
   rpc UpdateProfile(UpdateProfileRequest) returns (Profile) {
     option (google.api.http) = {
       put: "/v1/profile"
       body: "*"
+      additional_bindings: {put: "/v1/profile/me" body: "*"}
     };
   }
 
@@ -73,6 +96,132 @@ message ProfileSummary {
 
 message BatchGetProfileSummariesResponse {
   repeated ProfileSummary profiles = 1;
+}
+
+message ListPlayersRequest {
+  string q = 1;
+  string position = 2;
+  string skill_level = 3;
+  string district = 4;
+  bool goalie_only = 5;
+  bool verified = 6;
+  string team_id = 7;
+  string city = 8;
+  int32 limit = 9;
+  string cursor = 10;
+}
+
+message ContactInfo {
+  string phone = 1;
+  string email = 2;
+  string telegram = 3;
+  string max_messenger = 4;
+}
+
+message PlayerCard {
+  string user_id = 1;
+  string full_name = 2;
+  string display_name = 3;
+  string avatar_url = 4;
+  string city = 5;
+  string district = 6;
+  string metro = 7;
+  string position = 8;
+  string skill_level = 9;
+  string bio = 10;
+  string verification_status = 11;
+  repeated string team_ids = 12;
+  ContactInfo contacts = 13;
+  string birth_date = 14;
+  int32 height_cm = 15;
+  int32 weight_kg = 16;
+  repeated string achievements = 17;
+  repeated string availability = 18;
+  int32 player_index = 19;
+  int32 profile_completeness = 20;
+  int32 karma_score = 21;
+}
+
+message ListPlayersResponse {
+  repeated PlayerCard players = 1;
+  string next_cursor = 2;
+}
+
+message GetPlayerRequest { string user_id = 1; }
+
+message PublicPlayerView {
+  PlayerCard player = 1;
+  string visibility = 2;
+  bool contacts_visible = 3;
+  ContactInfo visible_contacts = 4;
+  bool participation_history_visible = 5;
+  bool calendar_visible = 6;
+  map<string, bool> visible_fields = 7;
+}
+
+message FieldPrivacy {
+  string birth_date = 1;
+  string city = 2;
+  string height_weight = 3;
+  string position = 4;
+  string skill_level = 5;
+  string teams = 6;
+  string bio = 7;
+  string achievements = 8;
+  string participation_history = 9;
+  string calendar = 10;
+  string phone = 11;
+  string email = 12;
+  string telegram = 13;
+  string max_messenger = 14;
+}
+
+message PrivacySettings {
+  string profile_visibility = 1;
+  bool show_contacts = 2;
+  bool show_participation_history = 3;
+  string calendar_visibility = 4;
+  FieldPrivacy fields = 5;
+  bool personal_data_processing_consent = 6;
+  google.protobuf.Timestamp personal_data_consent_at = 7;
+}
+
+message NotificationPreferences {
+  bool in_app = 1;
+  bool email = 2;
+  bool push = 3;
+  bool max_messenger = 4;
+  bool team_events = 5;
+  bool goalkeeper_sos = 6;
+  bool event_reminders = 7;
+}
+
+message SubscriptionState {
+  string plan_id = 1;
+  string status = 2;
+  google.protobuf.Timestamp current_period_ends_at = 3;
+  repeated string entitlements = 4;
+}
+
+message ProfileSettings {
+  NotificationPreferences notification_preferences = 1;
+  PrivacySettings privacy = 2;
+  SubscriptionState subscription = 3;
+}
+
+message GetProfileSettingsRequest {}
+message UpdateNotificationPreferencesRequest { google.protobuf.Struct patch = 1; }
+message UpdatePrivacyRequest { google.protobuf.Struct patch = 1; }
+message CreateVerificationRequestRequest {}
+message ReviewVerificationRequestRequest {
+  string request_id = 1;
+  string status = 2;
+}
+message VerificationRequest {
+  string request_id = 1;
+  string status = 2;
+  string method = 3;
+  google.protobuf.Timestamp created_at = 4;
 }
 
 enum Grip {
@@ -126,6 +275,14 @@ message Profile {
 
   google.protobuf.Timestamp created_at = 14;
   google.protobuf.Timestamp updated_at = 15;
+  string district = 16;
+  string metro = 17;
+  string bio = 18;
+  ContactInfo contacts = 19;
+  repeated string availability = 20;
+  repeated string achievements = 21;
+  string verification_status = 22;
+  repeated string team_ids = 23;
 }
 
 message RequestAvatarUploadRequest {}
@@ -228,5 +385,12 @@ message UpdateProfileRequest {
     gte: 0
     lte: 10
   }];
+
+  string district = 12;
+  string metro = 13;
+  string bio = 14;
+  ContactInfo contacts = 15;
+  repeated string availability = 16;
+  repeated string achievements = 17;
 
 }
