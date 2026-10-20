@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package shop.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/shop/gen/go/v1;shopv1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Shop API"
+    version: "1.0.0"
+    description: "Каталог магазинов и marketplace."
+  }
+};
+
+service ShopService {
+  rpc ListShops(ListShopsRequest) returns (ListShopsResponse) {
+    option (google.api.http) = {get: "/v1/shops"};
+  }
+}
+
+message Shop {
+  string id = 1;
+  string name = 2;
+  string city = 3;
+  string website_url = 4;
+  repeated string categories = 5;
+  string partner_status = 6;
+  bool visible = 7;
+  string description = 8;
+  string contact_email = 9;
+  string contact_phone = 10;
+  string delivery_info = 11;
+  string pickup_info = 12;
+  string moderation_status = 13;
+  string ad_tier = 14;
+  int32 ad_priority = 15;
+}
+
+message ListShopsRequest {
+  string city = 1;
+  string category = 2;
+}
+
+message ListShopsResponse {
+  repeated Shop shops = 1;
+}
