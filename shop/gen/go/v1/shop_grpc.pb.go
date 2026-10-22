@@ -19,7 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ShopService_ListShops_FullMethodName = "/shop.v1.ShopService/ListShops"
+	ShopService_ListShops_FullMethodName                = "/shop.v1.ShopService/ListShops"
+	ShopService_ListProductOffers_FullMethodName        = "/shop.v1.ShopService/ListProductOffers"
+	ShopService_UpdateShopPartnerProfile_FullMethodName = "/shop.v1.ShopService/UpdateShopPartnerProfile"
+	ShopService_CreateShopProduct_FullMethodName        = "/shop.v1.ShopService/CreateShopProduct"
+	ShopService_UpdateShopProduct_FullMethodName        = "/shop.v1.ShopService/UpdateShopProduct"
+	ShopService_ListShopPromos_FullMethodName           = "/shop.v1.ShopService/ListShopPromos"
+	ShopService_CreateShopPromo_FullMethodName          = "/shop.v1.ShopService/CreateShopPromo"
 )
 
 // ShopServiceClient is the client API for ShopService service.
@@ -27,6 +33,12 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ShopServiceClient interface {
 	ListShops(ctx context.Context, in *ListShopsRequest, opts ...grpc.CallOption) (*ListShopsResponse, error)
+	ListProductOffers(ctx context.Context, in *ListProductOffersRequest, opts ...grpc.CallOption) (*ListProductOffersResponse, error)
+	UpdateShopPartnerProfile(ctx context.Context, in *UpdateShopPartnerProfileRequest, opts ...grpc.CallOption) (*Shop, error)
+	CreateShopProduct(ctx context.Context, in *CreateShopProductRequest, opts ...grpc.CallOption) (*ProductOffer, error)
+	UpdateShopProduct(ctx context.Context, in *UpdateShopProductRequest, opts ...grpc.CallOption) (*ProductOffer, error)
+	ListShopPromos(ctx context.Context, in *ListShopPromosRequest, opts ...grpc.CallOption) (*ListShopPromosResponse, error)
+	CreateShopPromo(ctx context.Context, in *CreateShopPromoRequest, opts ...grpc.CallOption) (*ShopPromo, error)
 }
 
 type shopServiceClient struct {
@@ -47,11 +59,77 @@ func (c *shopServiceClient) ListShops(ctx context.Context, in *ListShopsRequest,
 	return out, nil
 }
 
+func (c *shopServiceClient) ListProductOffers(ctx context.Context, in *ListProductOffersRequest, opts ...grpc.CallOption) (*ListProductOffersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListProductOffersResponse)
+	err := c.cc.Invoke(ctx, ShopService_ListProductOffers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopServiceClient) UpdateShopPartnerProfile(ctx context.Context, in *UpdateShopPartnerProfileRequest, opts ...grpc.CallOption) (*Shop, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Shop)
+	err := c.cc.Invoke(ctx, ShopService_UpdateShopPartnerProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopServiceClient) CreateShopProduct(ctx context.Context, in *CreateShopProductRequest, opts ...grpc.CallOption) (*ProductOffer, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProductOffer)
+	err := c.cc.Invoke(ctx, ShopService_CreateShopProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopServiceClient) UpdateShopProduct(ctx context.Context, in *UpdateShopProductRequest, opts ...grpc.CallOption) (*ProductOffer, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProductOffer)
+	err := c.cc.Invoke(ctx, ShopService_UpdateShopProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopServiceClient) ListShopPromos(ctx context.Context, in *ListShopPromosRequest, opts ...grpc.CallOption) (*ListShopPromosResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListShopPromosResponse)
+	err := c.cc.Invoke(ctx, ShopService_ListShopPromos_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *shopServiceClient) CreateShopPromo(ctx context.Context, in *CreateShopPromoRequest, opts ...grpc.CallOption) (*ShopPromo, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ShopPromo)
+	err := c.cc.Invoke(ctx, ShopService_CreateShopPromo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShopServiceServer is the server API for ShopService service.
 // All implementations must embed UnimplementedShopServiceServer
 // for forward compatibility.
 type ShopServiceServer interface {
 	ListShops(context.Context, *ListShopsRequest) (*ListShopsResponse, error)
+	ListProductOffers(context.Context, *ListProductOffersRequest) (*ListProductOffersResponse, error)
+	UpdateShopPartnerProfile(context.Context, *UpdateShopPartnerProfileRequest) (*Shop, error)
+	CreateShopProduct(context.Context, *CreateShopProductRequest) (*ProductOffer, error)
+	UpdateShopProduct(context.Context, *UpdateShopProductRequest) (*ProductOffer, error)
+	ListShopPromos(context.Context, *ListShopPromosRequest) (*ListShopPromosResponse, error)
+	CreateShopPromo(context.Context, *CreateShopPromoRequest) (*ShopPromo, error)
 	mustEmbedUnimplementedShopServiceServer()
 }
 
@@ -64,6 +142,24 @@ type UnimplementedShopServiceServer struct{}
 
 func (UnimplementedShopServiceServer) ListShops(context.Context, *ListShopsRequest) (*ListShopsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListShops not implemented")
+}
+func (UnimplementedShopServiceServer) ListProductOffers(context.Context, *ListProductOffersRequest) (*ListProductOffersResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListProductOffers not implemented")
+}
+func (UnimplementedShopServiceServer) UpdateShopPartnerProfile(context.Context, *UpdateShopPartnerProfileRequest) (*Shop, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateShopPartnerProfile not implemented")
+}
+func (UnimplementedShopServiceServer) CreateShopProduct(context.Context, *CreateShopProductRequest) (*ProductOffer, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateShopProduct not implemented")
+}
+func (UnimplementedShopServiceServer) UpdateShopProduct(context.Context, *UpdateShopProductRequest) (*ProductOffer, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateShopProduct not implemented")
+}
+func (UnimplementedShopServiceServer) ListShopPromos(context.Context, *ListShopPromosRequest) (*ListShopPromosResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListShopPromos not implemented")
+}
+func (UnimplementedShopServiceServer) CreateShopPromo(context.Context, *CreateShopPromoRequest) (*ShopPromo, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateShopPromo not implemented")
 }
 func (UnimplementedShopServiceServer) mustEmbedUnimplementedShopServiceServer() {}
 func (UnimplementedShopServiceServer) testEmbeddedByValue()                     {}
@@ -104,6 +200,114 @@ func _ShopService_ListShops_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ShopService_ListProductOffers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListProductOffersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServiceServer).ListProductOffers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShopService_ListProductOffers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServiceServer).ListProductOffers(ctx, req.(*ListProductOffersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ShopService_UpdateShopPartnerProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateShopPartnerProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServiceServer).UpdateShopPartnerProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShopService_UpdateShopPartnerProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServiceServer).UpdateShopPartnerProfile(ctx, req.(*UpdateShopPartnerProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ShopService_CreateShopProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateShopProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServiceServer).CreateShopProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShopService_CreateShopProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServiceServer).CreateShopProduct(ctx, req.(*CreateShopProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ShopService_UpdateShopProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateShopProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServiceServer).UpdateShopProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShopService_UpdateShopProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServiceServer).UpdateShopProduct(ctx, req.(*UpdateShopProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ShopService_ListShopPromos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListShopPromosRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServiceServer).ListShopPromos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShopService_ListShopPromos_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServiceServer).ListShopPromos(ctx, req.(*ListShopPromosRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ShopService_CreateShopPromo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateShopPromoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServiceServer).CreateShopPromo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShopService_CreateShopPromo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServiceServer).CreateShopPromo(ctx, req.(*CreateShopPromoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ShopService_ServiceDesc is the grpc.ServiceDesc for ShopService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +318,30 @@ var ShopService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListShops",
 			Handler:    _ShopService_ListShops_Handler,
+		},
+		{
+			MethodName: "ListProductOffers",
+			Handler:    _ShopService_ListProductOffers_Handler,
+		},
+		{
+			MethodName: "UpdateShopPartnerProfile",
+			Handler:    _ShopService_UpdateShopPartnerProfile_Handler,
+		},
+		{
+			MethodName: "CreateShopProduct",
+			Handler:    _ShopService_CreateShopProduct_Handler,
+		},
+		{
+			MethodName: "UpdateShopProduct",
+			Handler:    _ShopService_UpdateShopProduct_Handler,
+		},
+		{
+			MethodName: "ListShopPromos",
+			Handler:    _ShopService_ListShopPromos_Handler,
+		},
+		{
+			MethodName: "CreateShopPromo",
+			Handler:    _ShopService_CreateShopPromo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

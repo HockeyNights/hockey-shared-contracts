@@ -275,6 +275,854 @@ func (x *ListShopsResponse) GetShops() []*Shop {
 	return nil
 }
 
+type ProductOffer struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ShopId               string                 `protobuf:"bytes,2,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	Title                string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Category             string                 `protobuf:"bytes,4,opt,name=category,proto3" json:"category,omitempty"`
+	Price                float64                `protobuf:"fixed64,5,opt,name=price,proto3" json:"price,omitempty"`
+	Currency             string                 `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
+	Availability         string                 `protobuf:"bytes,7,opt,name=availability,proto3" json:"availability,omitempty"`
+	ExternalUrl          string                 `protobuf:"bytes,8,opt,name=external_url,json=externalUrl,proto3" json:"external_url,omitempty"`
+	RecommendedPositions []string               `protobuf:"bytes,9,rep,name=recommended_positions,json=recommendedPositions,proto3" json:"recommended_positions,omitempty"`
+	RecommendedLevels    []string               `protobuf:"bytes,10,rep,name=recommended_levels,json=recommendedLevels,proto3" json:"recommended_levels,omitempty"`
+	ImageUrl             string                 `protobuf:"bytes,11,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
+	ModerationStatus     string                 `protobuf:"bytes,12,opt,name=moderation_status,json=moderationStatus,proto3" json:"moderation_status,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *ProductOffer) Reset() {
+	*x = ProductOffer{}
+	mi := &file_shop_v1_shop_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductOffer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductOffer) ProtoMessage() {}
+
+func (x *ProductOffer) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductOffer.ProtoReflect.Descriptor instead.
+func (*ProductOffer) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ProductOffer) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetPrice() float64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+func (x *ProductOffer) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetAvailability() string {
+	if x != nil {
+		return x.Availability
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetExternalUrl() string {
+	if x != nil {
+		return x.ExternalUrl
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetRecommendedPositions() []string {
+	if x != nil {
+		return x.RecommendedPositions
+	}
+	return nil
+}
+
+func (x *ProductOffer) GetRecommendedLevels() []string {
+	if x != nil {
+		return x.RecommendedLevels
+	}
+	return nil
+}
+
+func (x *ProductOffer) GetImageUrl() string {
+	if x != nil {
+		return x.ImageUrl
+	}
+	return ""
+}
+
+func (x *ProductOffer) GetModerationStatus() string {
+	if x != nil {
+		return x.ModerationStatus
+	}
+	return ""
+}
+
+type ListProductOffersRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ShopId        string                 `protobuf:"bytes,1,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListProductOffersRequest) Reset() {
+	*x = ListProductOffersRequest{}
+	mi := &file_shop_v1_shop_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListProductOffersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListProductOffersRequest) ProtoMessage() {}
+
+func (x *ListProductOffersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListProductOffersRequest.ProtoReflect.Descriptor instead.
+func (*ListProductOffersRequest) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ListProductOffersRequest) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+type ListProductOffersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Offers        []*ProductOffer        `protobuf:"bytes,1,rep,name=offers,proto3" json:"offers,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListProductOffersResponse) Reset() {
+	*x = ListProductOffersResponse{}
+	mi := &file_shop_v1_shop_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListProductOffersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListProductOffersResponse) ProtoMessage() {}
+
+func (x *ListProductOffersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListProductOffersResponse.ProtoReflect.Descriptor instead.
+func (*ListProductOffersResponse) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ListProductOffersResponse) GetOffers() []*ProductOffer {
+	if x != nil {
+		return x.Offers
+	}
+	return nil
+}
+
+type UpdateShopPartnerProfileRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ShopId        string                 `protobuf:"bytes,1,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	City          *string                `protobuf:"bytes,3,opt,name=city,proto3,oneof" json:"city,omitempty"`
+	WebsiteUrl    *string                `protobuf:"bytes,4,opt,name=website_url,json=websiteUrl,proto3,oneof" json:"website_url,omitempty"`
+	Categories    []string               `protobuf:"bytes,5,rep,name=categories,proto3" json:"categories,omitempty"`
+	Description   *string                `protobuf:"bytes,6,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	ContactEmail  *string                `protobuf:"bytes,7,opt,name=contact_email,json=contactEmail,proto3,oneof" json:"contact_email,omitempty"`
+	ContactPhone  *string                `protobuf:"bytes,8,opt,name=contact_phone,json=contactPhone,proto3,oneof" json:"contact_phone,omitempty"`
+	DeliveryInfo  *string                `protobuf:"bytes,9,opt,name=delivery_info,json=deliveryInfo,proto3,oneof" json:"delivery_info,omitempty"`
+	PickupInfo    *string                `protobuf:"bytes,10,opt,name=pickup_info,json=pickupInfo,proto3,oneof" json:"pickup_info,omitempty"`
+	Visible       *bool                  `protobuf:"varint,11,opt,name=visible,proto3,oneof" json:"visible,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateShopPartnerProfileRequest) Reset() {
+	*x = UpdateShopPartnerProfileRequest{}
+	mi := &file_shop_v1_shop_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateShopPartnerProfileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateShopPartnerProfileRequest) ProtoMessage() {}
+
+func (x *UpdateShopPartnerProfileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateShopPartnerProfileRequest.ProtoReflect.Descriptor instead.
+func (*UpdateShopPartnerProfileRequest) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetCity() string {
+	if x != nil && x.City != nil {
+		return *x.City
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetWebsiteUrl() string {
+	if x != nil && x.WebsiteUrl != nil {
+		return *x.WebsiteUrl
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetCategories() []string {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetContactEmail() string {
+	if x != nil && x.ContactEmail != nil {
+		return *x.ContactEmail
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetContactPhone() string {
+	if x != nil && x.ContactPhone != nil {
+		return *x.ContactPhone
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetDeliveryInfo() string {
+	if x != nil && x.DeliveryInfo != nil {
+		return *x.DeliveryInfo
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetPickupInfo() string {
+	if x != nil && x.PickupInfo != nil {
+		return *x.PickupInfo
+	}
+	return ""
+}
+
+func (x *UpdateShopPartnerProfileRequest) GetVisible() bool {
+	if x != nil && x.Visible != nil {
+		return *x.Visible
+	}
+	return false
+}
+
+type CreateShopProductRequest struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	ShopId               string                 `protobuf:"bytes,1,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	Title                string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Category             string                 `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
+	Price                float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
+	Currency             string                 `protobuf:"bytes,5,opt,name=currency,proto3" json:"currency,omitempty"`
+	Availability         string                 `protobuf:"bytes,6,opt,name=availability,proto3" json:"availability,omitempty"`
+	ExternalUrl          string                 `protobuf:"bytes,7,opt,name=external_url,json=externalUrl,proto3" json:"external_url,omitempty"`
+	RecommendedPositions []string               `protobuf:"bytes,8,rep,name=recommended_positions,json=recommendedPositions,proto3" json:"recommended_positions,omitempty"`
+	RecommendedLevels    []string               `protobuf:"bytes,9,rep,name=recommended_levels,json=recommendedLevels,proto3" json:"recommended_levels,omitempty"`
+	ImageUrl             string                 `protobuf:"bytes,10,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *CreateShopProductRequest) Reset() {
+	*x = CreateShopProductRequest{}
+	mi := &file_shop_v1_shop_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateShopProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateShopProductRequest) ProtoMessage() {}
+
+func (x *CreateShopProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateShopProductRequest.ProtoReflect.Descriptor instead.
+func (*CreateShopProductRequest) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CreateShopProductRequest) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *CreateShopProductRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateShopProductRequest) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *CreateShopProductRequest) GetPrice() float64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+func (x *CreateShopProductRequest) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *CreateShopProductRequest) GetAvailability() string {
+	if x != nil {
+		return x.Availability
+	}
+	return ""
+}
+
+func (x *CreateShopProductRequest) GetExternalUrl() string {
+	if x != nil {
+		return x.ExternalUrl
+	}
+	return ""
+}
+
+func (x *CreateShopProductRequest) GetRecommendedPositions() []string {
+	if x != nil {
+		return x.RecommendedPositions
+	}
+	return nil
+}
+
+func (x *CreateShopProductRequest) GetRecommendedLevels() []string {
+	if x != nil {
+		return x.RecommendedLevels
+	}
+	return nil
+}
+
+func (x *CreateShopProductRequest) GetImageUrl() string {
+	if x != nil {
+		return x.ImageUrl
+	}
+	return ""
+}
+
+type UpdateShopProductRequest struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	ShopId               string                 `protobuf:"bytes,1,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	ProductId            string                 `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Title                *string                `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Category             *string                `protobuf:"bytes,4,opt,name=category,proto3,oneof" json:"category,omitempty"`
+	Price                *float64               `protobuf:"fixed64,5,opt,name=price,proto3,oneof" json:"price,omitempty"`
+	Currency             *string                `protobuf:"bytes,6,opt,name=currency,proto3,oneof" json:"currency,omitempty"`
+	Availability         *string                `protobuf:"bytes,7,opt,name=availability,proto3,oneof" json:"availability,omitempty"`
+	ExternalUrl          *string                `protobuf:"bytes,8,opt,name=external_url,json=externalUrl,proto3,oneof" json:"external_url,omitempty"`
+	RecommendedPositions []string               `protobuf:"bytes,9,rep,name=recommended_positions,json=recommendedPositions,proto3" json:"recommended_positions,omitempty"`
+	RecommendedLevels    []string               `protobuf:"bytes,10,rep,name=recommended_levels,json=recommendedLevels,proto3" json:"recommended_levels,omitempty"`
+	ImageUrl             *string                `protobuf:"bytes,11,opt,name=image_url,json=imageUrl,proto3,oneof" json:"image_url,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *UpdateShopProductRequest) Reset() {
+	*x = UpdateShopProductRequest{}
+	mi := &file_shop_v1_shop_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateShopProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateShopProductRequest) ProtoMessage() {}
+
+func (x *UpdateShopProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateShopProductRequest.ProtoReflect.Descriptor instead.
+func (*UpdateShopProductRequest) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UpdateShopProductRequest) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *UpdateShopProductRequest) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
+func (x *UpdateShopProductRequest) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *UpdateShopProductRequest) GetCategory() string {
+	if x != nil && x.Category != nil {
+		return *x.Category
+	}
+	return ""
+}
+
+func (x *UpdateShopProductRequest) GetPrice() float64 {
+	if x != nil && x.Price != nil {
+		return *x.Price
+	}
+	return 0
+}
+
+func (x *UpdateShopProductRequest) GetCurrency() string {
+	if x != nil && x.Currency != nil {
+		return *x.Currency
+	}
+	return ""
+}
+
+func (x *UpdateShopProductRequest) GetAvailability() string {
+	if x != nil && x.Availability != nil {
+		return *x.Availability
+	}
+	return ""
+}
+
+func (x *UpdateShopProductRequest) GetExternalUrl() string {
+	if x != nil && x.ExternalUrl != nil {
+		return *x.ExternalUrl
+	}
+	return ""
+}
+
+func (x *UpdateShopProductRequest) GetRecommendedPositions() []string {
+	if x != nil {
+		return x.RecommendedPositions
+	}
+	return nil
+}
+
+func (x *UpdateShopProductRequest) GetRecommendedLevels() []string {
+	if x != nil {
+		return x.RecommendedLevels
+	}
+	return nil
+}
+
+func (x *UpdateShopProductRequest) GetImageUrl() string {
+	if x != nil && x.ImageUrl != nil {
+		return *x.ImageUrl
+	}
+	return ""
+}
+
+type ShopPromo struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ShopId          string                 `protobuf:"bytes,2,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	Title           string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Subtitle        string                 `protobuf:"bytes,4,opt,name=subtitle,proto3" json:"subtitle,omitempty"`
+	DiscountPercent *int32                 `protobuf:"varint,5,opt,name=discount_percent,json=discountPercent,proto3,oneof" json:"discount_percent,omitempty"`
+	TargetPositions []string               `protobuf:"bytes,6,rep,name=target_positions,json=targetPositions,proto3" json:"target_positions,omitempty"`
+	Active          bool                   `protobuf:"varint,7,opt,name=active,proto3" json:"active,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *ShopPromo) Reset() {
+	*x = ShopPromo{}
+	mi := &file_shop_v1_shop_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ShopPromo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ShopPromo) ProtoMessage() {}
+
+func (x *ShopPromo) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ShopPromo.ProtoReflect.Descriptor instead.
+func (*ShopPromo) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ShopPromo) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ShopPromo) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *ShopPromo) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *ShopPromo) GetSubtitle() string {
+	if x != nil {
+		return x.Subtitle
+	}
+	return ""
+}
+
+func (x *ShopPromo) GetDiscountPercent() int32 {
+	if x != nil && x.DiscountPercent != nil {
+		return *x.DiscountPercent
+	}
+	return 0
+}
+
+func (x *ShopPromo) GetTargetPositions() []string {
+	if x != nil {
+		return x.TargetPositions
+	}
+	return nil
+}
+
+func (x *ShopPromo) GetActive() bool {
+	if x != nil {
+		return x.Active
+	}
+	return false
+}
+
+type ListShopPromosRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ShopId        string                 `protobuf:"bytes,1,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListShopPromosRequest) Reset() {
+	*x = ListShopPromosRequest{}
+	mi := &file_shop_v1_shop_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListShopPromosRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListShopPromosRequest) ProtoMessage() {}
+
+func (x *ListShopPromosRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListShopPromosRequest.ProtoReflect.Descriptor instead.
+func (*ListShopPromosRequest) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ListShopPromosRequest) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+type ListShopPromosResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Promos        []*ShopPromo           `protobuf:"bytes,1,rep,name=promos,proto3" json:"promos,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListShopPromosResponse) Reset() {
+	*x = ListShopPromosResponse{}
+	mi := &file_shop_v1_shop_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListShopPromosResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListShopPromosResponse) ProtoMessage() {}
+
+func (x *ListShopPromosResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListShopPromosResponse.ProtoReflect.Descriptor instead.
+func (*ListShopPromosResponse) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ListShopPromosResponse) GetPromos() []*ShopPromo {
+	if x != nil {
+		return x.Promos
+	}
+	return nil
+}
+
+type CreateShopPromoRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ShopId          string                 `protobuf:"bytes,1,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	Title           string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Subtitle        string                 `protobuf:"bytes,3,opt,name=subtitle,proto3" json:"subtitle,omitempty"`
+	DiscountPercent *int32                 `protobuf:"varint,4,opt,name=discount_percent,json=discountPercent,proto3,oneof" json:"discount_percent,omitempty"`
+	TargetPositions []string               `protobuf:"bytes,5,rep,name=target_positions,json=targetPositions,proto3" json:"target_positions,omitempty"`
+	Active          *bool                  `protobuf:"varint,6,opt,name=active,proto3,oneof" json:"active,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *CreateShopPromoRequest) Reset() {
+	*x = CreateShopPromoRequest{}
+	mi := &file_shop_v1_shop_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateShopPromoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateShopPromoRequest) ProtoMessage() {}
+
+func (x *CreateShopPromoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateShopPromoRequest.ProtoReflect.Descriptor instead.
+func (*CreateShopPromoRequest) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *CreateShopPromoRequest) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *CreateShopPromoRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateShopPromoRequest) GetSubtitle() string {
+	if x != nil {
+		return x.Subtitle
+	}
+	return ""
+}
+
+func (x *CreateShopPromoRequest) GetDiscountPercent() int32 {
+	if x != nil && x.DiscountPercent != nil {
+		return *x.DiscountPercent
+	}
+	return 0
+}
+
+func (x *CreateShopPromoRequest) GetTargetPositions() []string {
+	if x != nil {
+		return x.TargetPositions
+	}
+	return nil
+}
+
+func (x *CreateShopPromoRequest) GetActive() bool {
+	if x != nil && x.Active != nil {
+		return *x.Active
+	}
+	return false
+}
+
 var File_shop_v1_shop_proto protoreflect.FileDescriptor
 
 const file_shop_v1_shop_proto_rawDesc = "" +
@@ -306,9 +1154,116 @@ const file_shop_v1_shop_proto_rawDesc = "" +
 	"\x04city\x18\x01 \x01(\tR\x04city\x12\x1a\n" +
 	"\bcategory\x18\x02 \x01(\tR\bcategory\"8\n" +
 	"\x11ListShopsResponse\x12#\n" +
-	"\x05shops\x18\x01 \x03(\v2\r.shop.v1.ShopR\x05shops2d\n" +
+	"\x05shops\x18\x01 \x03(\v2\r.shop.v1.ShopR\x05shops\"\x90\x03\n" +
+	"\fProductOffer\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\ashop_id\x18\x02 \x01(\tR\x06shopId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1a\n" +
+	"\bcategory\x18\x04 \x01(\tR\bcategory\x12\x14\n" +
+	"\x05price\x18\x05 \x01(\x01R\x05price\x12\x1a\n" +
+	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12\"\n" +
+	"\favailability\x18\a \x01(\tR\favailability\x12!\n" +
+	"\fexternal_url\x18\b \x01(\tR\vexternalUrl\x123\n" +
+	"\x15recommended_positions\x18\t \x03(\tR\x14recommendedPositions\x12-\n" +
+	"\x12recommended_levels\x18\n" +
+	" \x03(\tR\x11recommendedLevels\x12\x1b\n" +
+	"\timage_url\x18\v \x01(\tR\bimageUrl\x12+\n" +
+	"\x11moderation_status\x18\f \x01(\tR\x10moderationStatus\"3\n" +
+	"\x18ListProductOffersRequest\x12\x17\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\"J\n" +
+	"\x19ListProductOffersResponse\x12-\n" +
+	"\x06offers\x18\x01 \x03(\v2\x15.shop.v1.ProductOfferR\x06offers\"\xa0\x04\n" +
+	"\x1fUpdateShopPartnerProfileRequest\x12\x17\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x17\n" +
+	"\x04city\x18\x03 \x01(\tH\x01R\x04city\x88\x01\x01\x12$\n" +
+	"\vwebsite_url\x18\x04 \x01(\tH\x02R\n" +
+	"websiteUrl\x88\x01\x01\x12\x1e\n" +
+	"\n" +
+	"categories\x18\x05 \x03(\tR\n" +
+	"categories\x12%\n" +
+	"\vdescription\x18\x06 \x01(\tH\x03R\vdescription\x88\x01\x01\x12(\n" +
+	"\rcontact_email\x18\a \x01(\tH\x04R\fcontactEmail\x88\x01\x01\x12(\n" +
+	"\rcontact_phone\x18\b \x01(\tH\x05R\fcontactPhone\x88\x01\x01\x12(\n" +
+	"\rdelivery_info\x18\t \x01(\tH\x06R\fdeliveryInfo\x88\x01\x01\x12$\n" +
+	"\vpickup_info\x18\n" +
+	" \x01(\tH\aR\n" +
+	"pickupInfo\x88\x01\x01\x12\x1d\n" +
+	"\avisible\x18\v \x01(\bH\bR\avisible\x88\x01\x01B\a\n" +
+	"\x05_nameB\a\n" +
+	"\x05_cityB\x0e\n" +
+	"\f_website_urlB\x0e\n" +
+	"\f_descriptionB\x10\n" +
+	"\x0e_contact_emailB\x10\n" +
+	"\x0e_contact_phoneB\x10\n" +
+	"\x0e_delivery_infoB\x0e\n" +
+	"\f_pickup_infoB\n" +
+	"\n" +
+	"\b_visible\"\xdf\x02\n" +
+	"\x18CreateShopProductRequest\x12\x17\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bcategory\x18\x03 \x01(\tR\bcategory\x12\x14\n" +
+	"\x05price\x18\x04 \x01(\x01R\x05price\x12\x1a\n" +
+	"\bcurrency\x18\x05 \x01(\tR\bcurrency\x12\"\n" +
+	"\favailability\x18\x06 \x01(\tR\favailability\x12!\n" +
+	"\fexternal_url\x18\a \x01(\tR\vexternalUrl\x123\n" +
+	"\x15recommended_positions\x18\b \x03(\tR\x14recommendedPositions\x12-\n" +
+	"\x12recommended_levels\x18\t \x03(\tR\x11recommendedLevels\x12\x1b\n" +
+	"\timage_url\x18\n" +
+	" \x01(\tR\bimageUrl\"\xff\x03\n" +
+	"\x18UpdateShopProductRequest\x12\x17\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x02 \x01(\tR\tproductId\x12\x19\n" +
+	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12\x1f\n" +
+	"\bcategory\x18\x04 \x01(\tH\x01R\bcategory\x88\x01\x01\x12\x19\n" +
+	"\x05price\x18\x05 \x01(\x01H\x02R\x05price\x88\x01\x01\x12\x1f\n" +
+	"\bcurrency\x18\x06 \x01(\tH\x03R\bcurrency\x88\x01\x01\x12'\n" +
+	"\favailability\x18\a \x01(\tH\x04R\favailability\x88\x01\x01\x12&\n" +
+	"\fexternal_url\x18\b \x01(\tH\x05R\vexternalUrl\x88\x01\x01\x123\n" +
+	"\x15recommended_positions\x18\t \x03(\tR\x14recommendedPositions\x12-\n" +
+	"\x12recommended_levels\x18\n" +
+	" \x03(\tR\x11recommendedLevels\x12 \n" +
+	"\timage_url\x18\v \x01(\tH\x06R\bimageUrl\x88\x01\x01B\b\n" +
+	"\x06_titleB\v\n" +
+	"\t_categoryB\b\n" +
+	"\x06_priceB\v\n" +
+	"\t_currencyB\x0f\n" +
+	"\r_availabilityB\x0f\n" +
+	"\r_external_urlB\f\n" +
+	"\n" +
+	"_image_url\"\xee\x01\n" +
+	"\tShopPromo\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\ashop_id\x18\x02 \x01(\tR\x06shopId\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x1a\n" +
+	"\bsubtitle\x18\x04 \x01(\tR\bsubtitle\x12.\n" +
+	"\x10discount_percent\x18\x05 \x01(\x05H\x00R\x0fdiscountPercent\x88\x01\x01\x12)\n" +
+	"\x10target_positions\x18\x06 \x03(\tR\x0ftargetPositions\x12\x16\n" +
+	"\x06active\x18\a \x01(\bR\x06activeB\x13\n" +
+	"\x11_discount_percent\"0\n" +
+	"\x15ListShopPromosRequest\x12\x17\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\"D\n" +
+	"\x16ListShopPromosResponse\x12*\n" +
+	"\x06promos\x18\x01 \x03(\v2\x12.shop.v1.ShopPromoR\x06promos\"\xfb\x01\n" +
+	"\x16CreateShopPromoRequest\x12\x17\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bsubtitle\x18\x03 \x01(\tR\bsubtitle\x12.\n" +
+	"\x10discount_percent\x18\x04 \x01(\x05H\x00R\x0fdiscountPercent\x88\x01\x01\x12)\n" +
+	"\x10target_positions\x18\x05 \x03(\tR\x0ftargetPositions\x12\x1b\n" +
+	"\x06active\x18\x06 \x01(\bH\x01R\x06active\x88\x01\x01B\x13\n" +
+	"\x11_discount_percentB\t\n" +
+	"\a_active2\xbd\x06\n" +
 	"\vShopService\x12U\n" +
-	"\tListShops\x12\x19.shop.v1.ListShopsRequest\x1a\x1a.shop.v1.ListShopsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/shopsB\x9d\x01\x92AS\x12Q\n" +
+	"\tListShops\x12\x19.shop.v1.ListShopsRequest\x1a\x1a.shop.v1.ListShopsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/shops\x12v\n" +
+	"\x11ListProductOffers\x12!.shop.v1.ListProductOffersRequest\x1a\".shop.v1.ListProductOffersResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v1/product-offers\x12{\n" +
+	"\x18UpdateShopPartnerProfile\x12(.shop.v1.UpdateShopPartnerProfileRequest\x1a\r.shop.v1.Shop\"&\x82\xd3\xe4\x93\x02 :\x01*2\x1b/v1/shops/{shop_id}/profile\x12v\n" +
+	"\x11CreateShopProduct\x12!.shop.v1.CreateShopProductRequest\x1a\x15.shop.v1.ProductOffer\"'\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v1/shops/{shop_id}/products\x12\x83\x01\n" +
+	"\x11UpdateShopProduct\x12!.shop.v1.UpdateShopProductRequest\x1a\x15.shop.v1.ProductOffer\"4\x82\xd3\xe4\x93\x02.:\x01*2)/v1/shops/{shop_id}/products/{product_id}\x12u\n" +
+	"\x0eListShopPromos\x12\x1e.shop.v1.ListShopPromosRequest\x1a\x1f.shop.v1.ListShopPromosResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v1/shops/{shop_id}/promos\x12m\n" +
+	"\x0fCreateShopPromo\x12\x1f.shop.v1.CreateShopPromoRequest\x1a\x12.shop.v1.ShopPromo\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v1/shops/{shop_id}/promosB\x9d\x01\x92AS\x12Q\n" +
 	"\x15HockeyNights Shop API\x121Каталог магазинов и marketplace.2\x051.0.0ZEgithub.com/HockeyNights/hockey-shared-contracts/shop/gen/go/v1;shopv1b\x06proto3"
 
 var (
@@ -323,21 +1278,45 @@ func file_shop_v1_shop_proto_rawDescGZIP() []byte {
 	return file_shop_v1_shop_proto_rawDescData
 }
 
-var file_shop_v1_shop_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_shop_v1_shop_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_shop_v1_shop_proto_goTypes = []any{
-	(*Shop)(nil),              // 0: shop.v1.Shop
-	(*ListShopsRequest)(nil),  // 1: shop.v1.ListShopsRequest
-	(*ListShopsResponse)(nil), // 2: shop.v1.ListShopsResponse
+	(*Shop)(nil),                            // 0: shop.v1.Shop
+	(*ListShopsRequest)(nil),                // 1: shop.v1.ListShopsRequest
+	(*ListShopsResponse)(nil),               // 2: shop.v1.ListShopsResponse
+	(*ProductOffer)(nil),                    // 3: shop.v1.ProductOffer
+	(*ListProductOffersRequest)(nil),        // 4: shop.v1.ListProductOffersRequest
+	(*ListProductOffersResponse)(nil),       // 5: shop.v1.ListProductOffersResponse
+	(*UpdateShopPartnerProfileRequest)(nil), // 6: shop.v1.UpdateShopPartnerProfileRequest
+	(*CreateShopProductRequest)(nil),        // 7: shop.v1.CreateShopProductRequest
+	(*UpdateShopProductRequest)(nil),        // 8: shop.v1.UpdateShopProductRequest
+	(*ShopPromo)(nil),                       // 9: shop.v1.ShopPromo
+	(*ListShopPromosRequest)(nil),           // 10: shop.v1.ListShopPromosRequest
+	(*ListShopPromosResponse)(nil),          // 11: shop.v1.ListShopPromosResponse
+	(*CreateShopPromoRequest)(nil),          // 12: shop.v1.CreateShopPromoRequest
 }
 var file_shop_v1_shop_proto_depIdxs = []int32{
-	0, // 0: shop.v1.ListShopsResponse.shops:type_name -> shop.v1.Shop
-	1, // 1: shop.v1.ShopService.ListShops:input_type -> shop.v1.ListShopsRequest
-	2, // 2: shop.v1.ShopService.ListShops:output_type -> shop.v1.ListShopsResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0,  // 0: shop.v1.ListShopsResponse.shops:type_name -> shop.v1.Shop
+	3,  // 1: shop.v1.ListProductOffersResponse.offers:type_name -> shop.v1.ProductOffer
+	9,  // 2: shop.v1.ListShopPromosResponse.promos:type_name -> shop.v1.ShopPromo
+	1,  // 3: shop.v1.ShopService.ListShops:input_type -> shop.v1.ListShopsRequest
+	4,  // 4: shop.v1.ShopService.ListProductOffers:input_type -> shop.v1.ListProductOffersRequest
+	6,  // 5: shop.v1.ShopService.UpdateShopPartnerProfile:input_type -> shop.v1.UpdateShopPartnerProfileRequest
+	7,  // 6: shop.v1.ShopService.CreateShopProduct:input_type -> shop.v1.CreateShopProductRequest
+	8,  // 7: shop.v1.ShopService.UpdateShopProduct:input_type -> shop.v1.UpdateShopProductRequest
+	10, // 8: shop.v1.ShopService.ListShopPromos:input_type -> shop.v1.ListShopPromosRequest
+	12, // 9: shop.v1.ShopService.CreateShopPromo:input_type -> shop.v1.CreateShopPromoRequest
+	2,  // 10: shop.v1.ShopService.ListShops:output_type -> shop.v1.ListShopsResponse
+	5,  // 11: shop.v1.ShopService.ListProductOffers:output_type -> shop.v1.ListProductOffersResponse
+	0,  // 12: shop.v1.ShopService.UpdateShopPartnerProfile:output_type -> shop.v1.Shop
+	3,  // 13: shop.v1.ShopService.CreateShopProduct:output_type -> shop.v1.ProductOffer
+	3,  // 14: shop.v1.ShopService.UpdateShopProduct:output_type -> shop.v1.ProductOffer
+	11, // 15: shop.v1.ShopService.ListShopPromos:output_type -> shop.v1.ListShopPromosResponse
+	9,  // 16: shop.v1.ShopService.CreateShopPromo:output_type -> shop.v1.ShopPromo
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_shop_v1_shop_proto_init() }
@@ -345,13 +1324,17 @@ func file_shop_v1_shop_proto_init() {
 	if File_shop_v1_shop_proto != nil {
 		return
 	}
+	file_shop_v1_shop_proto_msgTypes[6].OneofWrappers = []any{}
+	file_shop_v1_shop_proto_msgTypes[8].OneofWrappers = []any{}
+	file_shop_v1_shop_proto_msgTypes[9].OneofWrappers = []any{}
+	file_shop_v1_shop_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_shop_v1_shop_proto_rawDesc), len(file_shop_v1_shop_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
