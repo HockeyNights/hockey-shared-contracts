@@ -17,6 +17,66 @@
     "application/json"
   ],
   "paths": {
+    "/v1/marketplace": {
+      "get": {
+        "operationId": "ShopService_GetMarketPlaceFeed",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMarketPlaceFeedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "shopId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "inStockOnly",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "position",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    },
     "/v1/product-offers": {
       "get": {
         "operationId": "ShopService_ListProductOffers",
@@ -439,6 +499,31 @@
         }
       }
     },
+    "v1GetMarketPlaceFeedResponse": {
+      "type": "object",
+      "properties": {
+        "spotlightShops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MarketplaceShopSpotlight"
+          }
+        },
+        "listings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MarketplaceProductListing"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "v1ListProductOffersResponse": {
       "type": "object",
       "properties": {
@@ -472,6 +557,52 @@
             "type": "object",
             "$ref": "#/definitions/v1Shop"
           }
+        }
+      }
+    },
+    "v1MarketplaceProductListing": {
+      "type": "object",
+      "properties": {
+        "offer": {
+          "$ref": "#/definitions/v1ProductOffer"
+        },
+        "shopId": {
+          "type": "string"
+        },
+        "shopName": {
+          "type": "string"
+        },
+        "shopCity": {
+          "type": "string"
+        },
+        "shopAdTier": {
+          "type": "string"
+        },
+        "shopAdPriority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isPromoted": {
+          "type": "boolean"
+        },
+        "promoDiscount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1MarketplaceShopSpotlight": {
+      "type": "object",
+      "properties": {
+        "shop": {
+          "$ref": "#/definitions/v1Shop"
+        },
+        "promoTitle": {
+          "type": "string"
+        },
+        "promoDiscount": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

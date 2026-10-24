@@ -1123,6 +1123,310 @@ func (x *CreateShopPromoRequest) GetActive() bool {
 	return false
 }
 
+type GetMarketPlaceFeedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Q             string                 `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty"`
+	Category      string                 `protobuf:"bytes,2,opt,name=category,proto3" json:"category,omitempty"`
+	ShopId        string                 `protobuf:"bytes,3,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	InStockOnly   bool                   `protobuf:"varint,4,opt,name=in_stock_only,json=inStockOnly,proto3" json:"in_stock_only,omitempty"`
+	Position      string                 `protobuf:"bytes,5,opt,name=position,proto3" json:"position,omitempty"`
+	Sort          string                 `protobuf:"bytes,6,opt,name=sort,proto3" json:"sort,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetMarketPlaceFeedRequest) Reset() {
+	*x = GetMarketPlaceFeedRequest{}
+	mi := &file_shop_v1_shop_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetMarketPlaceFeedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMarketPlaceFeedRequest) ProtoMessage() {}
+
+func (x *GetMarketPlaceFeedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMarketPlaceFeedRequest.ProtoReflect.Descriptor instead.
+func (*GetMarketPlaceFeedRequest) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetMarketPlaceFeedRequest) GetQ() string {
+	if x != nil {
+		return x.Q
+	}
+	return ""
+}
+
+func (x *GetMarketPlaceFeedRequest) GetCategory() string {
+	if x != nil {
+		return x.Category
+	}
+	return ""
+}
+
+func (x *GetMarketPlaceFeedRequest) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *GetMarketPlaceFeedRequest) GetInStockOnly() bool {
+	if x != nil {
+		return x.InStockOnly
+	}
+	return false
+}
+
+func (x *GetMarketPlaceFeedRequest) GetPosition() string {
+	if x != nil {
+		return x.Position
+	}
+	return ""
+}
+
+func (x *GetMarketPlaceFeedRequest) GetSort() string {
+	if x != nil {
+		return x.Sort
+	}
+	return ""
+}
+
+type MarketplaceShopSpotlight struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Shop          *Shop                  `protobuf:"bytes,1,opt,name=shop,proto3" json:"shop,omitempty"`
+	PromoTitle    string                 `protobuf:"bytes,2,opt,name=promo_title,json=promoTitle,proto3" json:"promo_title,omitempty"`
+	PromoDiscount *int32                 `protobuf:"varint,3,opt,name=promo_discount,json=promoDiscount,proto3,oneof" json:"promo_discount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MarketplaceShopSpotlight) Reset() {
+	*x = MarketplaceShopSpotlight{}
+	mi := &file_shop_v1_shop_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarketplaceShopSpotlight) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarketplaceShopSpotlight) ProtoMessage() {}
+
+func (x *MarketplaceShopSpotlight) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarketplaceShopSpotlight.ProtoReflect.Descriptor instead.
+func (*MarketplaceShopSpotlight) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *MarketplaceShopSpotlight) GetShop() *Shop {
+	if x != nil {
+		return x.Shop
+	}
+	return nil
+}
+
+func (x *MarketplaceShopSpotlight) GetPromoTitle() string {
+	if x != nil {
+		return x.PromoTitle
+	}
+	return ""
+}
+
+func (x *MarketplaceShopSpotlight) GetPromoDiscount() int32 {
+	if x != nil && x.PromoDiscount != nil {
+		return *x.PromoDiscount
+	}
+	return 0
+}
+
+type MarketplaceProductListing struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Offer          *ProductOffer          `protobuf:"bytes,1,opt,name=offer,proto3" json:"offer,omitempty"`
+	ShopId         string                 `protobuf:"bytes,2,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
+	ShopName       string                 `protobuf:"bytes,3,opt,name=shop_name,json=shopName,proto3" json:"shop_name,omitempty"`
+	ShopCity       string                 `protobuf:"bytes,4,opt,name=shop_city,json=shopCity,proto3" json:"shop_city,omitempty"`
+	ShopAdTier     string                 `protobuf:"bytes,5,opt,name=shop_ad_tier,json=shopAdTier,proto3" json:"shop_ad_tier,omitempty"`
+	ShopAdPriority int32                  `protobuf:"varint,6,opt,name=shop_ad_priority,json=shopAdPriority,proto3" json:"shop_ad_priority,omitempty"`
+	IsPromoted     bool                   `protobuf:"varint,7,opt,name=is_promoted,json=isPromoted,proto3" json:"is_promoted,omitempty"`
+	PromoDiscount  *int32                 `protobuf:"varint,8,opt,name=promo_discount,json=promoDiscount,proto3,oneof" json:"promo_discount,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *MarketplaceProductListing) Reset() {
+	*x = MarketplaceProductListing{}
+	mi := &file_shop_v1_shop_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MarketplaceProductListing) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MarketplaceProductListing) ProtoMessage() {}
+
+func (x *MarketplaceProductListing) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MarketplaceProductListing.ProtoReflect.Descriptor instead.
+func (*MarketplaceProductListing) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *MarketplaceProductListing) GetOffer() *ProductOffer {
+	if x != nil {
+		return x.Offer
+	}
+	return nil
+}
+
+func (x *MarketplaceProductListing) GetShopId() string {
+	if x != nil {
+		return x.ShopId
+	}
+	return ""
+}
+
+func (x *MarketplaceProductListing) GetShopName() string {
+	if x != nil {
+		return x.ShopName
+	}
+	return ""
+}
+
+func (x *MarketplaceProductListing) GetShopCity() string {
+	if x != nil {
+		return x.ShopCity
+	}
+	return ""
+}
+
+func (x *MarketplaceProductListing) GetShopAdTier() string {
+	if x != nil {
+		return x.ShopAdTier
+	}
+	return ""
+}
+
+func (x *MarketplaceProductListing) GetShopAdPriority() int32 {
+	if x != nil {
+		return x.ShopAdPriority
+	}
+	return 0
+}
+
+func (x *MarketplaceProductListing) GetIsPromoted() bool {
+	if x != nil {
+		return x.IsPromoted
+	}
+	return false
+}
+
+func (x *MarketplaceProductListing) GetPromoDiscount() int32 {
+	if x != nil && x.PromoDiscount != nil {
+		return *x.PromoDiscount
+	}
+	return 0
+}
+
+type GetMarketPlaceFeedResponse struct {
+	state          protoimpl.MessageState       `protogen:"open.v1"`
+	SpotlightShops []*MarketplaceShopSpotlight  `protobuf:"bytes,1,rep,name=spotlight_shops,json=spotlightShops,proto3" json:"spotlight_shops,omitempty"`
+	Listings       []*MarketplaceProductListing `protobuf:"bytes,2,rep,name=listings,proto3" json:"listings,omitempty"`
+	Categories     []string                     `protobuf:"bytes,3,rep,name=categories,proto3" json:"categories,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetMarketPlaceFeedResponse) Reset() {
+	*x = GetMarketPlaceFeedResponse{}
+	mi := &file_shop_v1_shop_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetMarketPlaceFeedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMarketPlaceFeedResponse) ProtoMessage() {}
+
+func (x *GetMarketPlaceFeedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_shop_v1_shop_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMarketPlaceFeedResponse.ProtoReflect.Descriptor instead.
+func (*GetMarketPlaceFeedResponse) Descriptor() ([]byte, []int) {
+	return file_shop_v1_shop_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetMarketPlaceFeedResponse) GetSpotlightShops() []*MarketplaceShopSpotlight {
+	if x != nil {
+		return x.SpotlightShops
+	}
+	return nil
+}
+
+func (x *GetMarketPlaceFeedResponse) GetListings() []*MarketplaceProductListing {
+	if x != nil {
+		return x.Listings
+	}
+	return nil
+}
+
+func (x *GetMarketPlaceFeedResponse) GetCategories() []string {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
 var File_shop_v1_shop_proto protoreflect.FileDescriptor
 
 const file_shop_v1_shop_proto_rawDesc = "" +
@@ -1255,7 +1559,38 @@ const file_shop_v1_shop_proto_rawDesc = "" +
 	"\x10target_positions\x18\x05 \x03(\tR\x0ftargetPositions\x12\x1b\n" +
 	"\x06active\x18\x06 \x01(\bH\x01R\x06active\x88\x01\x01B\x13\n" +
 	"\x11_discount_percentB\t\n" +
-	"\a_active2\xbd\x06\n" +
+	"\a_active\"\xb2\x01\n" +
+	"\x19GetMarketPlaceFeedRequest\x12\f\n" +
+	"\x01q\x18\x01 \x01(\tR\x01q\x12\x1a\n" +
+	"\bcategory\x18\x02 \x01(\tR\bcategory\x12\x17\n" +
+	"\ashop_id\x18\x03 \x01(\tR\x06shopId\x12\"\n" +
+	"\rin_stock_only\x18\x04 \x01(\bR\vinStockOnly\x12\x1a\n" +
+	"\bposition\x18\x05 \x01(\tR\bposition\x12\x12\n" +
+	"\x04sort\x18\x06 \x01(\tR\x04sort\"\x9d\x01\n" +
+	"\x18MarketplaceShopSpotlight\x12!\n" +
+	"\x04shop\x18\x01 \x01(\v2\r.shop.v1.ShopR\x04shop\x12\x1f\n" +
+	"\vpromo_title\x18\x02 \x01(\tR\n" +
+	"promoTitle\x12*\n" +
+	"\x0epromo_discount\x18\x03 \x01(\x05H\x00R\rpromoDiscount\x88\x01\x01B\x11\n" +
+	"\x0f_promo_discount\"\xc7\x02\n" +
+	"\x19MarketplaceProductListing\x12+\n" +
+	"\x05offer\x18\x01 \x01(\v2\x15.shop.v1.ProductOfferR\x05offer\x12\x17\n" +
+	"\ashop_id\x18\x02 \x01(\tR\x06shopId\x12\x1b\n" +
+	"\tshop_name\x18\x03 \x01(\tR\bshopName\x12\x1b\n" +
+	"\tshop_city\x18\x04 \x01(\tR\bshopCity\x12 \n" +
+	"\fshop_ad_tier\x18\x05 \x01(\tR\n" +
+	"shopAdTier\x12(\n" +
+	"\x10shop_ad_priority\x18\x06 \x01(\x05R\x0eshopAdPriority\x12\x1f\n" +
+	"\vis_promoted\x18\a \x01(\bR\n" +
+	"isPromoted\x12*\n" +
+	"\x0epromo_discount\x18\b \x01(\x05H\x00R\rpromoDiscount\x88\x01\x01B\x11\n" +
+	"\x0f_promo_discount\"\xc8\x01\n" +
+	"\x1aGetMarketPlaceFeedResponse\x12J\n" +
+	"\x0fspotlight_shops\x18\x01 \x03(\v2!.shop.v1.MarketplaceShopSpotlightR\x0espotlightShops\x12>\n" +
+	"\blistings\x18\x02 \x03(\v2\".shop.v1.MarketplaceProductListingR\blistings\x12\x1e\n" +
+	"\n" +
+	"categories\x18\x03 \x03(\tR\n" +
+	"categories2\xb5\a\n" +
 	"\vShopService\x12U\n" +
 	"\tListShops\x12\x19.shop.v1.ListShopsRequest\x1a\x1a.shop.v1.ListShopsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/shops\x12v\n" +
 	"\x11ListProductOffers\x12!.shop.v1.ListProductOffersRequest\x1a\".shop.v1.ListProductOffersResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v1/product-offers\x12{\n" +
@@ -1263,7 +1598,8 @@ const file_shop_v1_shop_proto_rawDesc = "" +
 	"\x11CreateShopProduct\x12!.shop.v1.CreateShopProductRequest\x1a\x15.shop.v1.ProductOffer\"'\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v1/shops/{shop_id}/products\x12\x83\x01\n" +
 	"\x11UpdateShopProduct\x12!.shop.v1.UpdateShopProductRequest\x1a\x15.shop.v1.ProductOffer\"4\x82\xd3\xe4\x93\x02.:\x01*2)/v1/shops/{shop_id}/products/{product_id}\x12u\n" +
 	"\x0eListShopPromos\x12\x1e.shop.v1.ListShopPromosRequest\x1a\x1f.shop.v1.ListShopPromosResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v1/shops/{shop_id}/promos\x12m\n" +
-	"\x0fCreateShopPromo\x12\x1f.shop.v1.CreateShopPromoRequest\x1a\x12.shop.v1.ShopPromo\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v1/shops/{shop_id}/promosB\x9d\x01\x92AS\x12Q\n" +
+	"\x0fCreateShopPromo\x12\x1f.shop.v1.CreateShopPromoRequest\x1a\x12.shop.v1.ShopPromo\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v1/shops/{shop_id}/promos\x12v\n" +
+	"\x12GetMarketPlaceFeed\x12\".shop.v1.GetMarketPlaceFeedRequest\x1a#.shop.v1.GetMarketPlaceFeedResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/marketplaceB\x9d\x01\x92AS\x12Q\n" +
 	"\x15HockeyNights Shop API\x121Каталог магазинов и marketplace.2\x051.0.0ZEgithub.com/HockeyNights/hockey-shared-contracts/shop/gen/go/v1;shopv1b\x06proto3"
 
 var (
@@ -1278,7 +1614,7 @@ func file_shop_v1_shop_proto_rawDescGZIP() []byte {
 	return file_shop_v1_shop_proto_rawDescData
 }
 
-var file_shop_v1_shop_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_shop_v1_shop_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_shop_v1_shop_proto_goTypes = []any{
 	(*Shop)(nil),                            // 0: shop.v1.Shop
 	(*ListShopsRequest)(nil),                // 1: shop.v1.ListShopsRequest
@@ -1293,30 +1629,40 @@ var file_shop_v1_shop_proto_goTypes = []any{
 	(*ListShopPromosRequest)(nil),           // 10: shop.v1.ListShopPromosRequest
 	(*ListShopPromosResponse)(nil),          // 11: shop.v1.ListShopPromosResponse
 	(*CreateShopPromoRequest)(nil),          // 12: shop.v1.CreateShopPromoRequest
+	(*GetMarketPlaceFeedRequest)(nil),       // 13: shop.v1.GetMarketPlaceFeedRequest
+	(*MarketplaceShopSpotlight)(nil),        // 14: shop.v1.MarketplaceShopSpotlight
+	(*MarketplaceProductListing)(nil),       // 15: shop.v1.MarketplaceProductListing
+	(*GetMarketPlaceFeedResponse)(nil),      // 16: shop.v1.GetMarketPlaceFeedResponse
 }
 var file_shop_v1_shop_proto_depIdxs = []int32{
 	0,  // 0: shop.v1.ListShopsResponse.shops:type_name -> shop.v1.Shop
 	3,  // 1: shop.v1.ListProductOffersResponse.offers:type_name -> shop.v1.ProductOffer
 	9,  // 2: shop.v1.ListShopPromosResponse.promos:type_name -> shop.v1.ShopPromo
-	1,  // 3: shop.v1.ShopService.ListShops:input_type -> shop.v1.ListShopsRequest
-	4,  // 4: shop.v1.ShopService.ListProductOffers:input_type -> shop.v1.ListProductOffersRequest
-	6,  // 5: shop.v1.ShopService.UpdateShopPartnerProfile:input_type -> shop.v1.UpdateShopPartnerProfileRequest
-	7,  // 6: shop.v1.ShopService.CreateShopProduct:input_type -> shop.v1.CreateShopProductRequest
-	8,  // 7: shop.v1.ShopService.UpdateShopProduct:input_type -> shop.v1.UpdateShopProductRequest
-	10, // 8: shop.v1.ShopService.ListShopPromos:input_type -> shop.v1.ListShopPromosRequest
-	12, // 9: shop.v1.ShopService.CreateShopPromo:input_type -> shop.v1.CreateShopPromoRequest
-	2,  // 10: shop.v1.ShopService.ListShops:output_type -> shop.v1.ListShopsResponse
-	5,  // 11: shop.v1.ShopService.ListProductOffers:output_type -> shop.v1.ListProductOffersResponse
-	0,  // 12: shop.v1.ShopService.UpdateShopPartnerProfile:output_type -> shop.v1.Shop
-	3,  // 13: shop.v1.ShopService.CreateShopProduct:output_type -> shop.v1.ProductOffer
-	3,  // 14: shop.v1.ShopService.UpdateShopProduct:output_type -> shop.v1.ProductOffer
-	11, // 15: shop.v1.ShopService.ListShopPromos:output_type -> shop.v1.ListShopPromosResponse
-	9,  // 16: shop.v1.ShopService.CreateShopPromo:output_type -> shop.v1.ShopPromo
-	10, // [10:17] is the sub-list for method output_type
-	3,  // [3:10] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	0,  // 3: shop.v1.MarketplaceShopSpotlight.shop:type_name -> shop.v1.Shop
+	3,  // 4: shop.v1.MarketplaceProductListing.offer:type_name -> shop.v1.ProductOffer
+	14, // 5: shop.v1.GetMarketPlaceFeedResponse.spotlight_shops:type_name -> shop.v1.MarketplaceShopSpotlight
+	15, // 6: shop.v1.GetMarketPlaceFeedResponse.listings:type_name -> shop.v1.MarketplaceProductListing
+	1,  // 7: shop.v1.ShopService.ListShops:input_type -> shop.v1.ListShopsRequest
+	4,  // 8: shop.v1.ShopService.ListProductOffers:input_type -> shop.v1.ListProductOffersRequest
+	6,  // 9: shop.v1.ShopService.UpdateShopPartnerProfile:input_type -> shop.v1.UpdateShopPartnerProfileRequest
+	7,  // 10: shop.v1.ShopService.CreateShopProduct:input_type -> shop.v1.CreateShopProductRequest
+	8,  // 11: shop.v1.ShopService.UpdateShopProduct:input_type -> shop.v1.UpdateShopProductRequest
+	10, // 12: shop.v1.ShopService.ListShopPromos:input_type -> shop.v1.ListShopPromosRequest
+	12, // 13: shop.v1.ShopService.CreateShopPromo:input_type -> shop.v1.CreateShopPromoRequest
+	13, // 14: shop.v1.ShopService.GetMarketPlaceFeed:input_type -> shop.v1.GetMarketPlaceFeedRequest
+	2,  // 15: shop.v1.ShopService.ListShops:output_type -> shop.v1.ListShopsResponse
+	5,  // 16: shop.v1.ShopService.ListProductOffers:output_type -> shop.v1.ListProductOffersResponse
+	0,  // 17: shop.v1.ShopService.UpdateShopPartnerProfile:output_type -> shop.v1.Shop
+	3,  // 18: shop.v1.ShopService.CreateShopProduct:output_type -> shop.v1.ProductOffer
+	3,  // 19: shop.v1.ShopService.UpdateShopProduct:output_type -> shop.v1.ProductOffer
+	11, // 20: shop.v1.ShopService.ListShopPromos:output_type -> shop.v1.ListShopPromosResponse
+	9,  // 21: shop.v1.ShopService.CreateShopPromo:output_type -> shop.v1.ShopPromo
+	16, // 22: shop.v1.ShopService.GetMarketPlaceFeed:output_type -> shop.v1.GetMarketPlaceFeedResponse
+	15, // [15:23] is the sub-list for method output_type
+	7,  // [7:15] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_shop_v1_shop_proto_init() }
@@ -1328,13 +1674,15 @@ func file_shop_v1_shop_proto_init() {
 	file_shop_v1_shop_proto_msgTypes[8].OneofWrappers = []any{}
 	file_shop_v1_shop_proto_msgTypes[9].OneofWrappers = []any{}
 	file_shop_v1_shop_proto_msgTypes[12].OneofWrappers = []any{}
+	file_shop_v1_shop_proto_msgTypes[14].OneofWrappers = []any{}
+	file_shop_v1_shop_proto_msgTypes[15].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_shop_v1_shop_proto_rawDesc), len(file_shop_v1_shop_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

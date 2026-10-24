@@ -26,6 +26,7 @@ const (
 	ShopService_UpdateShopProduct_FullMethodName        = "/shop.v1.ShopService/UpdateShopProduct"
 	ShopService_ListShopPromos_FullMethodName           = "/shop.v1.ShopService/ListShopPromos"
 	ShopService_CreateShopPromo_FullMethodName          = "/shop.v1.ShopService/CreateShopPromo"
+	ShopService_GetMarketPlaceFeed_FullMethodName       = "/shop.v1.ShopService/GetMarketPlaceFeed"
 )
 
 // ShopServiceClient is the client API for ShopService service.
@@ -39,6 +40,7 @@ type ShopServiceClient interface {
 	UpdateShopProduct(ctx context.Context, in *UpdateShopProductRequest, opts ...grpc.CallOption) (*ProductOffer, error)
 	ListShopPromos(ctx context.Context, in *ListShopPromosRequest, opts ...grpc.CallOption) (*ListShopPromosResponse, error)
 	CreateShopPromo(ctx context.Context, in *CreateShopPromoRequest, opts ...grpc.CallOption) (*ShopPromo, error)
+	GetMarketPlaceFeed(ctx context.Context, in *GetMarketPlaceFeedRequest, opts ...grpc.CallOption) (*GetMarketPlaceFeedResponse, error)
 }
 
 type shopServiceClient struct {
@@ -119,6 +121,16 @@ func (c *shopServiceClient) CreateShopPromo(ctx context.Context, in *CreateShopP
 	return out, nil
 }
 
+func (c *shopServiceClient) GetMarketPlaceFeed(ctx context.Context, in *GetMarketPlaceFeedRequest, opts ...grpc.CallOption) (*GetMarketPlaceFeedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMarketPlaceFeedResponse)
+	err := c.cc.Invoke(ctx, ShopService_GetMarketPlaceFeed_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ShopServiceServer is the server API for ShopService service.
 // All implementations must embed UnimplementedShopServiceServer
 // for forward compatibility.
@@ -130,6 +142,7 @@ type ShopServiceServer interface {
 	UpdateShopProduct(context.Context, *UpdateShopProductRequest) (*ProductOffer, error)
 	ListShopPromos(context.Context, *ListShopPromosRequest) (*ListShopPromosResponse, error)
 	CreateShopPromo(context.Context, *CreateShopPromoRequest) (*ShopPromo, error)
+	GetMarketPlaceFeed(context.Context, *GetMarketPlaceFeedRequest) (*GetMarketPlaceFeedResponse, error)
 	mustEmbedUnimplementedShopServiceServer()
 }
 
@@ -160,6 +173,9 @@ func (UnimplementedShopServiceServer) ListShopPromos(context.Context, *ListShopP
 }
 func (UnimplementedShopServiceServer) CreateShopPromo(context.Context, *CreateShopPromoRequest) (*ShopPromo, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateShopPromo not implemented")
+}
+func (UnimplementedShopServiceServer) GetMarketPlaceFeed(context.Context, *GetMarketPlaceFeedRequest) (*GetMarketPlaceFeedResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetMarketPlaceFeed not implemented")
 }
 func (UnimplementedShopServiceServer) mustEmbedUnimplementedShopServiceServer() {}
 func (UnimplementedShopServiceServer) testEmbeddedByValue()                     {}
@@ -308,6 +324,24 @@ func _ShopService_CreateShopPromo_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ShopService_GetMarketPlaceFeed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMarketPlaceFeedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ShopServiceServer).GetMarketPlaceFeed(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ShopService_GetMarketPlaceFeed_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ShopServiceServer).GetMarketPlaceFeed(ctx, req.(*GetMarketPlaceFeedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ShopService_ServiceDesc is the grpc.ServiceDesc for ShopService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -342,6 +376,10 @@ var ShopService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateShopPromo",
 			Handler:    _ShopService_CreateShopPromo_Handler,
+		},
+		{
+			MethodName: "GetMarketPlaceFeed",
+			Handler:    _ShopService_GetMarketPlaceFeed_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

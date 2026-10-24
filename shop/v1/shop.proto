@@ -49,6 +49,9 @@ service ShopService {
       body: "*"
     };
   }
+  rpc GetMarketPlaceFeed(GetMarketPlaceFeedRequest) returns (GetMarketPlaceFeedResponse) {
+    option (google.api.http) = {get: "/v1/marketplace"};
+  }
 }
 
 message Shop {
@@ -167,4 +170,36 @@ message CreateShopPromoRequest {
   optional int32 discount_percent = 4;
   repeated string target_positions = 5;
   optional bool active = 6;
+}
+
+message GetMarketPlaceFeedRequest {
+  string q = 1;
+  string category = 2;
+  string shop_id = 3;
+  bool in_stock_only = 4;
+  string position = 5;
+  string sort = 6;
+}
+
+message MarketplaceShopSpotlight {
+  Shop shop = 1;
+  string promo_title = 2;
+  optional int32 promo_discount = 3;
+}
+
+message MarketplaceProductListing {
+  ProductOffer offer = 1;
+  string shop_id = 2;
+  string shop_name = 3;
+  string shop_city = 4;
+  string shop_ad_tier = 5;
+  int32 shop_ad_priority = 6;
+  bool is_promoted = 7;
+  optional int32 promo_discount = 8;
+}
+
+message GetMarketPlaceFeedResponse {
+  repeated MarketplaceShopSpotlight spotlight_shops = 1;
+  repeated MarketplaceProductListing listings = 2;
+  repeated string categories = 3;
 }
