@@ -31,8 +31,42 @@ endif
 image:
 	@docker build -q -t $(IMAGE) . >/dev/null
 
+
+GRPC_GATEWAY_REF   ?= v2.30.0
+GOOGLEAPIS_REF     ?= 9415ba048aa587b1b2df2b96fc00aa009c831597
+PROTOVALIDATE_REF  ?= v1.2.0
+
+PROTODEPS_FILES = \
+	.protodeps/google/api/annotations.proto \
+	.protodeps/google/api/http.proto \
+	.protodeps/protoc-gen-openapiv2/options/annotations.proto \
+	.protodeps/protoc-gen-openapiv2/options/openapiv2.proto \
+	.protodeps/buf/validate/validate.proto
+
+.PHONY: protodeps
+protodeps: $(PROTODEPS_FILES)
+
+.protodeps/google/api/%.proto:
+	@mkdir -p $(dir $@)
+	@curl -fsSL -o $@ \
+		https://raw.githubusercontent.com/googleapis/googleapis/$(GOOGLEAPIS_REF)/google/api/$*.proto
+
+.protodeps/protoc-gen-openapiv2/options/%.proto:
+	@mkdir -p $(dir $@)
+	@curl -fsSL -o $@ \
+		https://raw.githubusercontent.com/grpc-ecosystem/grpc-gateway/$(GRPC_GATEWAY_REF)/protoc-gen-openapiv2/options/$*.proto
+
+.protodeps/buf/validate/validate.proto:
+	@mkdir -p $(dir $@)
+	@curl -fsSL -o $@ \
+		https://raw.githubusercontent.com/bufbuild/protovalidate/$(PROTOVALIDATE_REF)/proto/protovalidate/buf/validate/validate.proto
+
+.PHONY: protodeps-clean
+protodeps-clean:
+	@rm -rf .protodeps
+
 .PHONY: generate
-generate: image
+generate: image protodeps
 	@for api in $(TARGET_APIS); do \
 		echo "  $$api"; \
 		rm -rf $$api/gen $$api/swagger; \
@@ -49,7 +83,7 @@ generate: image
 	@echo "готово: $(TARGET_APIS)"
 
 .PHONY: check
-check: image
+check: image protodeps
 	@for api in $(TARGET_APIS); do \
 		$(DOCKER_PROTOC) protoc $(INCLUDES) -o /dev/null $$api/v*/*.proto || exit 1; \
 	done
