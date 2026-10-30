@@ -1,0 +1,268 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HockeyNights Billing API",
+    "description": "Тарифы и временное mock-переключение подписки без эквайринга.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "BillingService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/plans": {
+      "get": {
+        "operationId": "BillingService_ListPlans",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPlansResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BillingService"
+        ]
+      }
+    },
+    "/v1/subscription": {
+      "get": {
+        "operationId": "BillingService_GetMySubscription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SubscriptionState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BillingService"
+        ]
+      },
+      "delete": {
+        "operationId": "BillingService_CancelMySubscription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SubscriptionState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BillingService"
+        ]
+      },
+      "put": {
+        "operationId": "BillingService_SetMySubscription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SubscriptionState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SetMySubscriptionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BillingService"
+        ]
+      }
+    },
+    "/v1/subscription-intents": {
+      "post": {
+        "operationId": "BillingService_CreateSubscriptionIntent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SubscriptionIntent"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateSubscriptionIntentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BillingService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1CreateSubscriptionIntentRequest": {
+      "type": "object",
+      "properties": {
+        "planId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ListPlansResponse": {
+      "type": "object",
+      "properties": {
+        "plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Plan"
+          }
+        }
+      }
+    },
+    "v1Plan": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "priceRub": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "billingPeriod": {
+          "type": "string"
+        },
+        "entitlements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1SetMySubscriptionRequest": {
+      "type": "object",
+      "properties": {
+        "planId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SubscriptionIntent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "planId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1SubscriptionState": {
+      "type": "object",
+      "properties": {
+        "planId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "currentPeriodEndsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "entitlements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

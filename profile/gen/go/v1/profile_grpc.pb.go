@@ -19,13 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProfileService_BatchGetProfileSummaries_FullMethodName = "/profile.v1.ProfileService/BatchGetProfileSummaries"
-	ProfileService_CreateProfile_FullMethodName            = "/profile.v1.ProfileService/CreateProfile"
-	ProfileService_GetProfile_FullMethodName               = "/profile.v1.ProfileService/GetProfile"
-	ProfileService_UpdateProfile_FullMethodName            = "/profile.v1.ProfileService/UpdateProfile"
-	ProfileService_RequestAvatarUpload_FullMethodName      = "/profile.v1.ProfileService/RequestAvatarUpload"
-	ProfileService_SetAvatar_FullMethodName                = "/profile.v1.ProfileService/SetAvatar"
-	ProfileService_DeleteAvatar_FullMethodName             = "/profile.v1.ProfileService/DeleteAvatar"
+	ProfileService_BatchGetProfileSummaries_FullMethodName      = "/profile.v1.ProfileService/BatchGetProfileSummaries"
+	ProfileService_ListPlayers_FullMethodName                   = "/profile.v1.ProfileService/ListPlayers"
+	ProfileService_GetPlayer_FullMethodName                     = "/profile.v1.ProfileService/GetPlayer"
+	ProfileService_GetProfileSettings_FullMethodName            = "/profile.v1.ProfileService/GetProfileSettings"
+	ProfileService_UpdateNotificationPreferences_FullMethodName = "/profile.v1.ProfileService/UpdateNotificationPreferences"
+	ProfileService_UpdatePrivacy_FullMethodName                 = "/profile.v1.ProfileService/UpdatePrivacy"
+	ProfileService_CreateVerificationRequest_FullMethodName     = "/profile.v1.ProfileService/CreateVerificationRequest"
+	ProfileService_ReviewVerificationRequest_FullMethodName     = "/profile.v1.ProfileService/ReviewVerificationRequest"
+	ProfileService_CreateProfile_FullMethodName                 = "/profile.v1.ProfileService/CreateProfile"
+	ProfileService_GetProfile_FullMethodName                    = "/profile.v1.ProfileService/GetProfile"
+	ProfileService_UpdateProfile_FullMethodName                 = "/profile.v1.ProfileService/UpdateProfile"
+	ProfileService_RequestAvatarUpload_FullMethodName           = "/profile.v1.ProfileService/RequestAvatarUpload"
+	ProfileService_SetAvatar_FullMethodName                     = "/profile.v1.ProfileService/SetAvatar"
+	ProfileService_DeleteAvatar_FullMethodName                  = "/profile.v1.ProfileService/DeleteAvatar"
 )
 
 // ProfileServiceClient is the client API for ProfileService service.
@@ -34,6 +41,13 @@ const (
 type ProfileServiceClient interface {
 	// Internal only: returns no private profile fields and has no HTTP route.
 	BatchGetProfileSummaries(ctx context.Context, in *BatchGetProfileSummariesRequest, opts ...grpc.CallOption) (*BatchGetProfileSummariesResponse, error)
+	ListPlayers(ctx context.Context, in *ListPlayersRequest, opts ...grpc.CallOption) (*ListPlayersResponse, error)
+	GetPlayer(ctx context.Context, in *GetPlayerRequest, opts ...grpc.CallOption) (*PublicPlayerView, error)
+	GetProfileSettings(ctx context.Context, in *GetProfileSettingsRequest, opts ...grpc.CallOption) (*ProfileSettings, error)
+	UpdateNotificationPreferences(ctx context.Context, in *UpdateNotificationPreferencesRequest, opts ...grpc.CallOption) (*ProfileSettings, error)
+	UpdatePrivacy(ctx context.Context, in *UpdatePrivacyRequest, opts ...grpc.CallOption) (*ProfileSettings, error)
+	CreateVerificationRequest(ctx context.Context, in *CreateVerificationRequestRequest, opts ...grpc.CallOption) (*VerificationRequest, error)
+	ReviewVerificationRequest(ctx context.Context, in *ReviewVerificationRequestRequest, opts ...grpc.CallOption) (*VerificationRequest, error)
 	CreateProfile(ctx context.Context, in *CreateProfileRequest, opts ...grpc.CallOption) (*Profile, error)
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*Profile, error)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*Profile, error)
@@ -54,6 +68,76 @@ func (c *profileServiceClient) BatchGetProfileSummaries(ctx context.Context, in 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(BatchGetProfileSummariesResponse)
 	err := c.cc.Invoke(ctx, ProfileService_BatchGetProfileSummaries_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) ListPlayers(ctx context.Context, in *ListPlayersRequest, opts ...grpc.CallOption) (*ListPlayersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListPlayersResponse)
+	err := c.cc.Invoke(ctx, ProfileService_ListPlayers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) GetPlayer(ctx context.Context, in *GetPlayerRequest, opts ...grpc.CallOption) (*PublicPlayerView, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublicPlayerView)
+	err := c.cc.Invoke(ctx, ProfileService_GetPlayer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) GetProfileSettings(ctx context.Context, in *GetProfileSettingsRequest, opts ...grpc.CallOption) (*ProfileSettings, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileSettings)
+	err := c.cc.Invoke(ctx, ProfileService_GetProfileSettings_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) UpdateNotificationPreferences(ctx context.Context, in *UpdateNotificationPreferencesRequest, opts ...grpc.CallOption) (*ProfileSettings, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileSettings)
+	err := c.cc.Invoke(ctx, ProfileService_UpdateNotificationPreferences_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) UpdatePrivacy(ctx context.Context, in *UpdatePrivacyRequest, opts ...grpc.CallOption) (*ProfileSettings, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileSettings)
+	err := c.cc.Invoke(ctx, ProfileService_UpdatePrivacy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) CreateVerificationRequest(ctx context.Context, in *CreateVerificationRequestRequest, opts ...grpc.CallOption) (*VerificationRequest, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerificationRequest)
+	err := c.cc.Invoke(ctx, ProfileService_CreateVerificationRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) ReviewVerificationRequest(ctx context.Context, in *ReviewVerificationRequestRequest, opts ...grpc.CallOption) (*VerificationRequest, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(VerificationRequest)
+	err := c.cc.Invoke(ctx, ProfileService_ReviewVerificationRequest_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,6 +210,13 @@ func (c *profileServiceClient) DeleteAvatar(ctx context.Context, in *DeleteAvata
 type ProfileServiceServer interface {
 	// Internal only: returns no private profile fields and has no HTTP route.
 	BatchGetProfileSummaries(context.Context, *BatchGetProfileSummariesRequest) (*BatchGetProfileSummariesResponse, error)
+	ListPlayers(context.Context, *ListPlayersRequest) (*ListPlayersResponse, error)
+	GetPlayer(context.Context, *GetPlayerRequest) (*PublicPlayerView, error)
+	GetProfileSettings(context.Context, *GetProfileSettingsRequest) (*ProfileSettings, error)
+	UpdateNotificationPreferences(context.Context, *UpdateNotificationPreferencesRequest) (*ProfileSettings, error)
+	UpdatePrivacy(context.Context, *UpdatePrivacyRequest) (*ProfileSettings, error)
+	CreateVerificationRequest(context.Context, *CreateVerificationRequestRequest) (*VerificationRequest, error)
+	ReviewVerificationRequest(context.Context, *ReviewVerificationRequestRequest) (*VerificationRequest, error)
 	CreateProfile(context.Context, *CreateProfileRequest) (*Profile, error)
 	GetProfile(context.Context, *GetProfileRequest) (*Profile, error)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*Profile, error)
@@ -144,6 +235,27 @@ type UnimplementedProfileServiceServer struct{}
 
 func (UnimplementedProfileServiceServer) BatchGetProfileSummaries(context.Context, *BatchGetProfileSummariesRequest) (*BatchGetProfileSummariesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method BatchGetProfileSummaries not implemented")
+}
+func (UnimplementedProfileServiceServer) ListPlayers(context.Context, *ListPlayersRequest) (*ListPlayersResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListPlayers not implemented")
+}
+func (UnimplementedProfileServiceServer) GetPlayer(context.Context, *GetPlayerRequest) (*PublicPlayerView, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPlayer not implemented")
+}
+func (UnimplementedProfileServiceServer) GetProfileSettings(context.Context, *GetProfileSettingsRequest) (*ProfileSettings, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetProfileSettings not implemented")
+}
+func (UnimplementedProfileServiceServer) UpdateNotificationPreferences(context.Context, *UpdateNotificationPreferencesRequest) (*ProfileSettings, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateNotificationPreferences not implemented")
+}
+func (UnimplementedProfileServiceServer) UpdatePrivacy(context.Context, *UpdatePrivacyRequest) (*ProfileSettings, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdatePrivacy not implemented")
+}
+func (UnimplementedProfileServiceServer) CreateVerificationRequest(context.Context, *CreateVerificationRequestRequest) (*VerificationRequest, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateVerificationRequest not implemented")
+}
+func (UnimplementedProfileServiceServer) ReviewVerificationRequest(context.Context, *ReviewVerificationRequestRequest) (*VerificationRequest, error) {
+	return nil, status.Error(codes.Unimplemented, "method ReviewVerificationRequest not implemented")
 }
 func (UnimplementedProfileServiceServer) CreateProfile(context.Context, *CreateProfileRequest) (*Profile, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateProfile not implemented")
@@ -198,6 +310,132 @@ func _ProfileService_BatchGetProfileSummaries_Handler(srv interface{}, ctx conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProfileServiceServer).BatchGetProfileSummaries(ctx, req.(*BatchGetProfileSummariesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_ListPlayers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPlayersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).ListPlayers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_ListPlayers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).ListPlayers(ctx, req.(*ListPlayersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_GetPlayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPlayerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).GetPlayer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_GetPlayer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).GetPlayer(ctx, req.(*GetPlayerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_GetProfileSettings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileSettingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).GetProfileSettings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_GetProfileSettings_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).GetProfileSettings(ctx, req.(*GetProfileSettingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_UpdateNotificationPreferences_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateNotificationPreferencesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).UpdateNotificationPreferences(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_UpdateNotificationPreferences_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).UpdateNotificationPreferences(ctx, req.(*UpdateNotificationPreferencesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_UpdatePrivacy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePrivacyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).UpdatePrivacy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_UpdatePrivacy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).UpdatePrivacy(ctx, req.(*UpdatePrivacyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_CreateVerificationRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateVerificationRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).CreateVerificationRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_CreateVerificationRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).CreateVerificationRequest(ctx, req.(*CreateVerificationRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_ReviewVerificationRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReviewVerificationRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).ReviewVerificationRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_ReviewVerificationRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).ReviewVerificationRequest(ctx, req.(*ReviewVerificationRequestRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -320,6 +558,34 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BatchGetProfileSummaries",
 			Handler:    _ProfileService_BatchGetProfileSummaries_Handler,
+		},
+		{
+			MethodName: "ListPlayers",
+			Handler:    _ProfileService_ListPlayers_Handler,
+		},
+		{
+			MethodName: "GetPlayer",
+			Handler:    _ProfileService_GetPlayer_Handler,
+		},
+		{
+			MethodName: "GetProfileSettings",
+			Handler:    _ProfileService_GetProfileSettings_Handler,
+		},
+		{
+			MethodName: "UpdateNotificationPreferences",
+			Handler:    _ProfileService_UpdateNotificationPreferences_Handler,
+		},
+		{
+			MethodName: "UpdatePrivacy",
+			Handler:    _ProfileService_UpdatePrivacy_Handler,
+		},
+		{
+			MethodName: "CreateVerificationRequest",
+			Handler:    _ProfileService_CreateVerificationRequest_Handler,
+		},
+		{
+			MethodName: "ReviewVerificationRequest",
+			Handler:    _ProfileService_ReviewVerificationRequest_Handler,
 		},
 		{
 			MethodName: "CreateProfile",

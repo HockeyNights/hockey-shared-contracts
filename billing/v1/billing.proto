@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package billing.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/billing/gen/go/v1;billingv1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {title: "HockeyNights Billing API" version: "1.0.0" description: "Тарифы и временное mock-переключение подписки без эквайринга."}
+};
+
+service BillingService {
+  rpc ListPlans(ListPlansRequest) returns (ListPlansResponse) {
+    option (google.api.http) = {get: "/v1/plans"};
+  }
+  rpc GetMySubscription(GetMySubscriptionRequest) returns (SubscriptionState) {
+    option (google.api.http) = {get: "/v1/subscription"};
+  }
+  rpc SetMySubscription(SetMySubscriptionRequest) returns (SubscriptionState) {
+    option (google.api.http) = {put: "/v1/subscription" body: "*"};
+  }
+  rpc CancelMySubscription(CancelMySubscriptionRequest) returns (SubscriptionState) {
+    option (google.api.http) = {delete: "/v1/subscription"};
+  }
+  rpc CreateSubscriptionIntent(CreateSubscriptionIntentRequest) returns (SubscriptionIntent) {
+    option (google.api.http) = {post: "/v1/subscription-intents" body: "*"};
+  }
+  // Internal only: authenticated with x-service-token, never exposed by Gateway.
+  rpc GetUserEntitlements(GetUserEntitlementsRequest) returns (SubscriptionState);
+}
+
+message ListPlansRequest {}
+message Plan {
+  string code = 1;
+  string name = 2;
+  int32 price_rub = 3;
+  string billing_period = 4;
+  repeated string entitlements = 5;
+}
+message ListPlansResponse { repeated Plan plans = 1; }
+message GetMySubscriptionRequest {}
+message SetMySubscriptionRequest { string plan_id = 1; }
+message CancelMySubscriptionRequest {}
+message SubscriptionState {
+  string plan_id = 1;
+  string status = 2;
+  google.protobuf.Timestamp current_period_ends_at = 3;
+  repeated string entitlements = 4;
+}
+message CreateSubscriptionIntentRequest { string plan_id = 1; }
+message SubscriptionIntent {
+  string id = 1;
+  string plan_id = 2;
+  string status = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+message GetUserEntitlementsRequest { string user_id = 1; }

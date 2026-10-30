@@ -49,6 +49,7 @@ service TeamService {
   rpc CheckClubAccess(CheckClubAccessRequest) returns (AccessDecision);
   rpc GetTeamMembers(GetTeamMembersRequest) returns (RosterList);
   rpc GetClubTeams(GetClubTeamsRequest) returns (ClubTeamsResponse);
+  rpc BatchGetUserTeams(BatchGetUserTeamsRequest) returns (BatchGetUserTeamsResponse);
   rpc CreateTeam(CreateTeamRequest) returns (Team) {
     option (google.api.http) = {
       post: "/v1/teams"
@@ -114,6 +115,13 @@ service TeamService {
     };
   }
 }
+
+message BatchGetUserTeamsRequest { repeated string user_ids = 1; }
+message UserTeams {
+  string user_id = 1;
+  repeated string team_ids = 2;
+}
+message BatchGetUserTeamsResponse { repeated UserTeams users = 1; }
 
 message Team {
   string id = 1;

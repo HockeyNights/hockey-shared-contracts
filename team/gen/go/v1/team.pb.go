@@ -24,6 +24,146 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type BatchGetUserTeamsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserIds       []string               `protobuf:"bytes,1,rep,name=user_ids,json=userIds,proto3" json:"user_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BatchGetUserTeamsRequest) Reset() {
+	*x = BatchGetUserTeamsRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BatchGetUserTeamsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BatchGetUserTeamsRequest) ProtoMessage() {}
+
+func (x *BatchGetUserTeamsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BatchGetUserTeamsRequest.ProtoReflect.Descriptor instead.
+func (*BatchGetUserTeamsRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *BatchGetUserTeamsRequest) GetUserIds() []string {
+	if x != nil {
+		return x.UserIds
+	}
+	return nil
+}
+
+type UserTeams struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TeamIds       []string               `protobuf:"bytes,2,rep,name=team_ids,json=teamIds,proto3" json:"team_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserTeams) Reset() {
+	*x = UserTeams{}
+	mi := &file_team_v1_team_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserTeams) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserTeams) ProtoMessage() {}
+
+func (x *UserTeams) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserTeams.ProtoReflect.Descriptor instead.
+func (*UserTeams) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UserTeams) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserTeams) GetTeamIds() []string {
+	if x != nil {
+		return x.TeamIds
+	}
+	return nil
+}
+
+type BatchGetUserTeamsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Users         []*UserTeams           `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BatchGetUserTeamsResponse) Reset() {
+	*x = BatchGetUserTeamsResponse{}
+	mi := &file_team_v1_team_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BatchGetUserTeamsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BatchGetUserTeamsResponse) ProtoMessage() {}
+
+func (x *BatchGetUserTeamsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BatchGetUserTeamsResponse.ProtoReflect.Descriptor instead.
+func (*BatchGetUserTeamsResponse) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *BatchGetUserTeamsResponse) GetUsers() []*UserTeams {
+	if x != nil {
+		return x.Users
+	}
+	return nil
+}
+
 type Team struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -47,7 +187,7 @@ type Team struct {
 
 func (x *Team) Reset() {
 	*x = Team{}
-	mi := &file_team_v1_team_proto_msgTypes[0]
+	mi := &file_team_v1_team_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -59,7 +199,7 @@ func (x *Team) String() string {
 func (*Team) ProtoMessage() {}
 
 func (x *Team) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[0]
+	mi := &file_team_v1_team_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -72,7 +212,7 @@ func (x *Team) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Team.ProtoReflect.Descriptor instead.
 func (*Team) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{0}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Team) GetId() string {
@@ -195,7 +335,7 @@ type RosterMember struct {
 
 func (x *RosterMember) Reset() {
 	*x = RosterMember{}
-	mi := &file_team_v1_team_proto_msgTypes[1]
+	mi := &file_team_v1_team_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -207,7 +347,7 @@ func (x *RosterMember) String() string {
 func (*RosterMember) ProtoMessage() {}
 
 func (x *RosterMember) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[1]
+	mi := &file_team_v1_team_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -220,7 +360,7 @@ func (x *RosterMember) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RosterMember.ProtoReflect.Descriptor instead.
 func (*RosterMember) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{1}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RosterMember) GetTeamId() string {
@@ -291,7 +431,7 @@ type TeamInvite struct {
 
 func (x *TeamInvite) Reset() {
 	*x = TeamInvite{}
-	mi := &file_team_v1_team_proto_msgTypes[2]
+	mi := &file_team_v1_team_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -303,7 +443,7 @@ func (x *TeamInvite) String() string {
 func (*TeamInvite) ProtoMessage() {}
 
 func (x *TeamInvite) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[2]
+	mi := &file_team_v1_team_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -316,7 +456,7 @@ func (x *TeamInvite) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TeamInvite.ProtoReflect.Descriptor instead.
 func (*TeamInvite) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{2}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *TeamInvite) GetId() string {
@@ -417,7 +557,7 @@ type CreateTeamRequest struct {
 
 func (x *CreateTeamRequest) Reset() {
 	*x = CreateTeamRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[3]
+	mi := &file_team_v1_team_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -429,7 +569,7 @@ func (x *CreateTeamRequest) String() string {
 func (*CreateTeamRequest) ProtoMessage() {}
 
 func (x *CreateTeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[3]
+	mi := &file_team_v1_team_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +582,7 @@ func (x *CreateTeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTeamRequest.ProtoReflect.Descriptor instead.
 func (*CreateTeamRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{3}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreateTeamRequest) GetName() string {
@@ -545,7 +685,7 @@ type GetTeamRequest struct {
 
 func (x *GetTeamRequest) Reset() {
 	*x = GetTeamRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[4]
+	mi := &file_team_v1_team_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +697,7 @@ func (x *GetTeamRequest) String() string {
 func (*GetTeamRequest) ProtoMessage() {}
 
 func (x *GetTeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[4]
+	mi := &file_team_v1_team_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -570,7 +710,7 @@ func (x *GetTeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTeamRequest.ProtoReflect.Descriptor instead.
 func (*GetTeamRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{4}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetTeamRequest) GetTeamId() string {
@@ -601,7 +741,7 @@ type UpdateTeamRequest struct {
 
 func (x *UpdateTeamRequest) Reset() {
 	*x = UpdateTeamRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[5]
+	mi := &file_team_v1_team_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -613,7 +753,7 @@ func (x *UpdateTeamRequest) String() string {
 func (*UpdateTeamRequest) ProtoMessage() {}
 
 func (x *UpdateTeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[5]
+	mi := &file_team_v1_team_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -626,7 +766,7 @@ func (x *UpdateTeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTeamRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTeamRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{5}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateTeamRequest) GetTeamId() string {
@@ -729,7 +869,7 @@ type ListTeamsRequest struct {
 
 func (x *ListTeamsRequest) Reset() {
 	*x = ListTeamsRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[6]
+	mi := &file_team_v1_team_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -741,7 +881,7 @@ func (x *ListTeamsRequest) String() string {
 func (*ListTeamsRequest) ProtoMessage() {}
 
 func (x *ListTeamsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[6]
+	mi := &file_team_v1_team_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -754,7 +894,7 @@ func (x *ListTeamsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTeamsRequest.ProtoReflect.Descriptor instead.
 func (*ListTeamsRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{6}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListTeamsRequest) GetQ() string {
@@ -825,7 +965,7 @@ type ListTeamsResponse struct {
 
 func (x *ListTeamsResponse) Reset() {
 	*x = ListTeamsResponse{}
-	mi := &file_team_v1_team_proto_msgTypes[7]
+	mi := &file_team_v1_team_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -837,7 +977,7 @@ func (x *ListTeamsResponse) String() string {
 func (*ListTeamsResponse) ProtoMessage() {}
 
 func (x *ListTeamsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[7]
+	mi := &file_team_v1_team_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -850,7 +990,7 @@ func (x *ListTeamsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTeamsResponse.ProtoReflect.Descriptor instead.
 func (*ListTeamsResponse) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{7}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListTeamsResponse) GetItems() []*Team {
@@ -891,7 +1031,7 @@ type GetRosterRequest struct {
 
 func (x *GetRosterRequest) Reset() {
 	*x = GetRosterRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[8]
+	mi := &file_team_v1_team_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -903,7 +1043,7 @@ func (x *GetRosterRequest) String() string {
 func (*GetRosterRequest) ProtoMessage() {}
 
 func (x *GetRosterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[8]
+	mi := &file_team_v1_team_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -916,7 +1056,7 @@ func (x *GetRosterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRosterRequest.ProtoReflect.Descriptor instead.
 func (*GetRosterRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{8}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetRosterRequest) GetTeamId() string {
@@ -945,7 +1085,7 @@ type RosterList struct {
 
 func (x *RosterList) Reset() {
 	*x = RosterList{}
-	mi := &file_team_v1_team_proto_msgTypes[9]
+	mi := &file_team_v1_team_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -957,7 +1097,7 @@ func (x *RosterList) String() string {
 func (*RosterList) ProtoMessage() {}
 
 func (x *RosterList) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[9]
+	mi := &file_team_v1_team_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -970,7 +1110,7 @@ func (x *RosterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RosterList.ProtoReflect.Descriptor instead.
 func (*RosterList) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{9}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *RosterList) GetMembers() []*RosterMember {
@@ -1012,7 +1152,7 @@ type AddMemberRequest struct {
 
 func (x *AddMemberRequest) Reset() {
 	*x = AddMemberRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[10]
+	mi := &file_team_v1_team_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1024,7 +1164,7 @@ func (x *AddMemberRequest) String() string {
 func (*AddMemberRequest) ProtoMessage() {}
 
 func (x *AddMemberRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[10]
+	mi := &file_team_v1_team_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1037,7 +1177,7 @@ func (x *AddMemberRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddMemberRequest.ProtoReflect.Descriptor instead.
 func (*AddMemberRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{10}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AddMemberRequest) GetTeamId() string {
@@ -1072,7 +1212,7 @@ type UpdateRosterStatusRequest struct {
 
 func (x *UpdateRosterStatusRequest) Reset() {
 	*x = UpdateRosterStatusRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[11]
+	mi := &file_team_v1_team_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1084,7 +1224,7 @@ func (x *UpdateRosterStatusRequest) String() string {
 func (*UpdateRosterStatusRequest) ProtoMessage() {}
 
 func (x *UpdateRosterStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[11]
+	mi := &file_team_v1_team_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1097,7 +1237,7 @@ func (x *UpdateRosterStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRosterStatusRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRosterStatusRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{11}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateRosterStatusRequest) GetTeamId() string {
@@ -1132,7 +1272,7 @@ type UpdateTeamRoleRequest struct {
 
 func (x *UpdateTeamRoleRequest) Reset() {
 	*x = UpdateTeamRoleRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[12]
+	mi := &file_team_v1_team_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1144,7 +1284,7 @@ func (x *UpdateTeamRoleRequest) String() string {
 func (*UpdateTeamRoleRequest) ProtoMessage() {}
 
 func (x *UpdateTeamRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[12]
+	mi := &file_team_v1_team_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1157,7 +1297,7 @@ func (x *UpdateTeamRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTeamRoleRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTeamRoleRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{12}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *UpdateTeamRoleRequest) GetTeamId() string {
@@ -1193,7 +1333,7 @@ type ListInvitesRequest struct {
 
 func (x *ListInvitesRequest) Reset() {
 	*x = ListInvitesRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[13]
+	mi := &file_team_v1_team_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1205,7 +1345,7 @@ func (x *ListInvitesRequest) String() string {
 func (*ListInvitesRequest) ProtoMessage() {}
 
 func (x *ListInvitesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[13]
+	mi := &file_team_v1_team_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1218,7 +1358,7 @@ func (x *ListInvitesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListInvitesRequest.ProtoReflect.Descriptor instead.
 func (*ListInvitesRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{13}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListInvitesRequest) GetTeamId() string {
@@ -1261,7 +1401,7 @@ type InviteList struct {
 
 func (x *InviteList) Reset() {
 	*x = InviteList{}
-	mi := &file_team_v1_team_proto_msgTypes[14]
+	mi := &file_team_v1_team_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1273,7 +1413,7 @@ func (x *InviteList) String() string {
 func (*InviteList) ProtoMessage() {}
 
 func (x *InviteList) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[14]
+	mi := &file_team_v1_team_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1286,7 +1426,7 @@ func (x *InviteList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InviteList.ProtoReflect.Descriptor instead.
 func (*InviteList) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{14}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *InviteList) GetInvites() []*TeamInvite {
@@ -1329,7 +1469,7 @@ type CreateEmailInviteRequest struct {
 
 func (x *CreateEmailInviteRequest) Reset() {
 	*x = CreateEmailInviteRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[15]
+	mi := &file_team_v1_team_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1341,7 +1481,7 @@ func (x *CreateEmailInviteRequest) String() string {
 func (*CreateEmailInviteRequest) ProtoMessage() {}
 
 func (x *CreateEmailInviteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[15]
+	mi := &file_team_v1_team_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1354,7 +1494,7 @@ func (x *CreateEmailInviteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateEmailInviteRequest.ProtoReflect.Descriptor instead.
 func (*CreateEmailInviteRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{15}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CreateEmailInviteRequest) GetTeamId() string {
@@ -1395,7 +1535,7 @@ type InviteActionRequest struct {
 
 func (x *InviteActionRequest) Reset() {
 	*x = InviteActionRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[16]
+	mi := &file_team_v1_team_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1407,7 +1547,7 @@ func (x *InviteActionRequest) String() string {
 func (*InviteActionRequest) ProtoMessage() {}
 
 func (x *InviteActionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[16]
+	mi := &file_team_v1_team_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1420,7 +1560,7 @@ func (x *InviteActionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InviteActionRequest.ProtoReflect.Descriptor instead.
 func (*InviteActionRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{16}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *InviteActionRequest) GetInviteId() string {
@@ -1448,7 +1588,7 @@ type ListMyInvitesRequest struct {
 
 func (x *ListMyInvitesRequest) Reset() {
 	*x = ListMyInvitesRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[17]
+	mi := &file_team_v1_team_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1460,7 +1600,7 @@ func (x *ListMyInvitesRequest) String() string {
 func (*ListMyInvitesRequest) ProtoMessage() {}
 
 func (x *ListMyInvitesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[17]
+	mi := &file_team_v1_team_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1473,7 +1613,7 @@ func (x *ListMyInvitesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMyInvitesRequest.ProtoReflect.Descriptor instead.
 func (*ListMyInvitesRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{17}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListMyInvitesRequest) GetStatus() string {
@@ -1506,7 +1646,7 @@ type GetClubRequest struct {
 
 func (x *GetClubRequest) Reset() {
 	*x = GetClubRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[18]
+	mi := &file_team_v1_team_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1518,7 +1658,7 @@ func (x *GetClubRequest) String() string {
 func (*GetClubRequest) ProtoMessage() {}
 
 func (x *GetClubRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[18]
+	mi := &file_team_v1_team_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1531,7 +1671,7 @@ func (x *GetClubRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClubRequest.ProtoReflect.Descriptor instead.
 func (*GetClubRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{18}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetClubRequest) GetClubId() string {
@@ -1555,7 +1695,7 @@ type ClubStaff struct {
 
 func (x *ClubStaff) Reset() {
 	*x = ClubStaff{}
-	mi := &file_team_v1_team_proto_msgTypes[19]
+	mi := &file_team_v1_team_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1567,7 +1707,7 @@ func (x *ClubStaff) String() string {
 func (*ClubStaff) ProtoMessage() {}
 
 func (x *ClubStaff) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[19]
+	mi := &file_team_v1_team_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1580,7 +1720,7 @@ func (x *ClubStaff) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClubStaff.ProtoReflect.Descriptor instead.
 func (*ClubStaff) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{19}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ClubStaff) GetId() string {
@@ -1638,7 +1778,7 @@ type ClubSquad struct {
 
 func (x *ClubSquad) Reset() {
 	*x = ClubSquad{}
-	mi := &file_team_v1_team_proto_msgTypes[20]
+	mi := &file_team_v1_team_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1650,7 +1790,7 @@ func (x *ClubSquad) String() string {
 func (*ClubSquad) ProtoMessage() {}
 
 func (x *ClubSquad) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[20]
+	mi := &file_team_v1_team_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1663,7 +1803,7 @@ func (x *ClubSquad) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClubSquad.ProtoReflect.Descriptor instead.
 func (*ClubSquad) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{20}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ClubSquad) GetId() string {
@@ -1720,7 +1860,7 @@ type Club struct {
 
 func (x *Club) Reset() {
 	*x = Club{}
-	mi := &file_team_v1_team_proto_msgTypes[21]
+	mi := &file_team_v1_team_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1732,7 +1872,7 @@ func (x *Club) String() string {
 func (*Club) ProtoMessage() {}
 
 func (x *Club) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[21]
+	mi := &file_team_v1_team_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1745,7 +1885,7 @@ func (x *Club) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Club.ProtoReflect.Descriptor instead.
 func (*Club) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{21}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *Club) GetId() string {
@@ -1834,7 +1974,7 @@ type ClubStaffList struct {
 
 func (x *ClubStaffList) Reset() {
 	*x = ClubStaffList{}
-	mi := &file_team_v1_team_proto_msgTypes[22]
+	mi := &file_team_v1_team_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1846,7 +1986,7 @@ func (x *ClubStaffList) String() string {
 func (*ClubStaffList) ProtoMessage() {}
 
 func (x *ClubStaffList) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[22]
+	mi := &file_team_v1_team_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1859,7 +1999,7 @@ func (x *ClubStaffList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClubStaffList.ProtoReflect.Descriptor instead.
 func (*ClubStaffList) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{22}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ClubStaffList) GetItems() []*ClubStaff {
@@ -1885,7 +2025,7 @@ type UpdateClubRequest struct {
 
 func (x *UpdateClubRequest) Reset() {
 	*x = UpdateClubRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[23]
+	mi := &file_team_v1_team_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1897,7 +2037,7 @@ func (x *UpdateClubRequest) String() string {
 func (*UpdateClubRequest) ProtoMessage() {}
 
 func (x *UpdateClubRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[23]
+	mi := &file_team_v1_team_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1910,7 +2050,7 @@ func (x *UpdateClubRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateClubRequest.ProtoReflect.Descriptor instead.
 func (*UpdateClubRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{23}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *UpdateClubRequest) GetClubId() string {
@@ -1971,7 +2111,7 @@ type ClubProfileResponse struct {
 
 func (x *ClubProfileResponse) Reset() {
 	*x = ClubProfileResponse{}
-	mi := &file_team_v1_team_proto_msgTypes[24]
+	mi := &file_team_v1_team_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1983,7 +2123,7 @@ func (x *ClubProfileResponse) String() string {
 func (*ClubProfileResponse) ProtoMessage() {}
 
 func (x *ClubProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[24]
+	mi := &file_team_v1_team_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1996,7 +2136,7 @@ func (x *ClubProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClubProfileResponse.ProtoReflect.Descriptor instead.
 func (*ClubProfileResponse) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{24}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ClubProfileResponse) GetClub() *Club {
@@ -2019,7 +2159,7 @@ type CreateStaffContactRequest struct {
 
 func (x *CreateStaffContactRequest) Reset() {
 	*x = CreateStaffContactRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[25]
+	mi := &file_team_v1_team_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2031,7 +2171,7 @@ func (x *CreateStaffContactRequest) String() string {
 func (*CreateStaffContactRequest) ProtoMessage() {}
 
 func (x *CreateStaffContactRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[25]
+	mi := &file_team_v1_team_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2044,7 +2184,7 @@ func (x *CreateStaffContactRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateStaffContactRequest.ProtoReflect.Descriptor instead.
 func (*CreateStaffContactRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{25}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *CreateStaffContactRequest) GetTeamId() string {
@@ -2096,7 +2236,7 @@ type StaffContact struct {
 
 func (x *StaffContact) Reset() {
 	*x = StaffContact{}
-	mi := &file_team_v1_team_proto_msgTypes[26]
+	mi := &file_team_v1_team_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2108,7 +2248,7 @@ func (x *StaffContact) String() string {
 func (*StaffContact) ProtoMessage() {}
 
 func (x *StaffContact) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[26]
+	mi := &file_team_v1_team_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2121,7 +2261,7 @@ func (x *StaffContact) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StaffContact.ProtoReflect.Descriptor instead.
 func (*StaffContact) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{26}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *StaffContact) GetId() string {
@@ -2177,7 +2317,7 @@ type ListStaffContactsRequest struct {
 
 func (x *ListStaffContactsRequest) Reset() {
 	*x = ListStaffContactsRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[27]
+	mi := &file_team_v1_team_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2189,7 +2329,7 @@ func (x *ListStaffContactsRequest) String() string {
 func (*ListStaffContactsRequest) ProtoMessage() {}
 
 func (x *ListStaffContactsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[27]
+	mi := &file_team_v1_team_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2202,7 +2342,7 @@ func (x *ListStaffContactsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListStaffContactsRequest.ProtoReflect.Descriptor instead.
 func (*ListStaffContactsRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{27}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ListStaffContactsRequest) GetTeamId() string {
@@ -2238,7 +2378,7 @@ type StaffContactList struct {
 
 func (x *StaffContactList) Reset() {
 	*x = StaffContactList{}
-	mi := &file_team_v1_team_proto_msgTypes[28]
+	mi := &file_team_v1_team_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2250,7 +2390,7 @@ func (x *StaffContactList) String() string {
 func (*StaffContactList) ProtoMessage() {}
 
 func (x *StaffContactList) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[28]
+	mi := &file_team_v1_team_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2263,7 +2403,7 @@ func (x *StaffContactList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StaffContactList.ProtoReflect.Descriptor instead.
 func (*StaffContactList) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{28}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *StaffContactList) GetItems() []*StaffContact {
@@ -2305,7 +2445,7 @@ type CheckTeamAccessRequest struct {
 
 func (x *CheckTeamAccessRequest) Reset() {
 	*x = CheckTeamAccessRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[29]
+	mi := &file_team_v1_team_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2317,7 +2457,7 @@ func (x *CheckTeamAccessRequest) String() string {
 func (*CheckTeamAccessRequest) ProtoMessage() {}
 
 func (x *CheckTeamAccessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[29]
+	mi := &file_team_v1_team_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2330,7 +2470,7 @@ func (x *CheckTeamAccessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckTeamAccessRequest.ProtoReflect.Descriptor instead.
 func (*CheckTeamAccessRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{29}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *CheckTeamAccessRequest) GetTeamId() string {
@@ -2365,7 +2505,7 @@ type CheckClubAccessRequest struct {
 
 func (x *CheckClubAccessRequest) Reset() {
 	*x = CheckClubAccessRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[30]
+	mi := &file_team_v1_team_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2377,7 +2517,7 @@ func (x *CheckClubAccessRequest) String() string {
 func (*CheckClubAccessRequest) ProtoMessage() {}
 
 func (x *CheckClubAccessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[30]
+	mi := &file_team_v1_team_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2390,7 +2530,7 @@ func (x *CheckClubAccessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckClubAccessRequest.ProtoReflect.Descriptor instead.
 func (*CheckClubAccessRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{30}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *CheckClubAccessRequest) GetClubId() string {
@@ -2423,7 +2563,7 @@ type AccessDecision struct {
 
 func (x *AccessDecision) Reset() {
 	*x = AccessDecision{}
-	mi := &file_team_v1_team_proto_msgTypes[31]
+	mi := &file_team_v1_team_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2435,7 +2575,7 @@ func (x *AccessDecision) String() string {
 func (*AccessDecision) ProtoMessage() {}
 
 func (x *AccessDecision) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[31]
+	mi := &file_team_v1_team_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2448,7 +2588,7 @@ func (x *AccessDecision) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccessDecision.ProtoReflect.Descriptor instead.
 func (*AccessDecision) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{31}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *AccessDecision) GetAllowed() bool {
@@ -2469,7 +2609,7 @@ type GetTeamMembersRequest struct {
 
 func (x *GetTeamMembersRequest) Reset() {
 	*x = GetTeamMembersRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[32]
+	mi := &file_team_v1_team_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2481,7 +2621,7 @@ func (x *GetTeamMembersRequest) String() string {
 func (*GetTeamMembersRequest) ProtoMessage() {}
 
 func (x *GetTeamMembersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[32]
+	mi := &file_team_v1_team_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2494,7 +2634,7 @@ func (x *GetTeamMembersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTeamMembersRequest.ProtoReflect.Descriptor instead.
 func (*GetTeamMembersRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{32}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *GetTeamMembersRequest) GetTeamId() string {
@@ -2529,7 +2669,7 @@ type GetClubTeamsRequest struct {
 
 func (x *GetClubTeamsRequest) Reset() {
 	*x = GetClubTeamsRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[33]
+	mi := &file_team_v1_team_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2541,7 +2681,7 @@ func (x *GetClubTeamsRequest) String() string {
 func (*GetClubTeamsRequest) ProtoMessage() {}
 
 func (x *GetClubTeamsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[33]
+	mi := &file_team_v1_team_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2554,7 +2694,7 @@ func (x *GetClubTeamsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetClubTeamsRequest.ProtoReflect.Descriptor instead.
 func (*GetClubTeamsRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{33}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *GetClubTeamsRequest) GetClubId() string {
@@ -2590,7 +2730,7 @@ type ClubTeamsResponse struct {
 
 func (x *ClubTeamsResponse) Reset() {
 	*x = ClubTeamsResponse{}
-	mi := &file_team_v1_team_proto_msgTypes[34]
+	mi := &file_team_v1_team_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2602,7 +2742,7 @@ func (x *ClubTeamsResponse) String() string {
 func (*ClubTeamsResponse) ProtoMessage() {}
 
 func (x *ClubTeamsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[34]
+	mi := &file_team_v1_team_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2615,7 +2755,7 @@ func (x *ClubTeamsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClubTeamsResponse.ProtoReflect.Descriptor instead.
 func (*ClubTeamsResponse) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{34}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *ClubTeamsResponse) GetTeamIds() []string {
@@ -2655,7 +2795,7 @@ type AcceptInviteRequest struct {
 
 func (x *AcceptInviteRequest) Reset() {
 	*x = AcceptInviteRequest{}
-	mi := &file_team_v1_team_proto_msgTypes[35]
+	mi := &file_team_v1_team_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2667,7 +2807,7 @@ func (x *AcceptInviteRequest) String() string {
 func (*AcceptInviteRequest) ProtoMessage() {}
 
 func (x *AcceptInviteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_team_v1_team_proto_msgTypes[35]
+	mi := &file_team_v1_team_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2680,7 +2820,7 @@ func (x *AcceptInviteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AcceptInviteRequest.ProtoReflect.Descriptor instead.
 func (*AcceptInviteRequest) Descriptor() ([]byte, []int) {
-	return file_team_v1_team_proto_rawDescGZIP(), []int{35}
+	return file_team_v1_team_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *AcceptInviteRequest) GetInviteId() string {
@@ -2694,7 +2834,14 @@ var File_team_v1_team_proto protoreflect.FileDescriptor
 
 const file_team_v1_team_proto_rawDesc = "" +
 	"\n" +
-	"\x12team/v1/team.proto\x12\ateam.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x81\x05\n" +
+	"\x12team/v1/team.proto\x12\ateam.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"5\n" +
+	"\x18BatchGetUserTeamsRequest\x12\x19\n" +
+	"\buser_ids\x18\x01 \x03(\tR\auserIds\"?\n" +
+	"\tUserTeams\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\bteam_ids\x18\x02 \x03(\tR\ateamIds\"E\n" +
+	"\x19BatchGetUserTeamsResponse\x12(\n" +
+	"\x05users\x18\x01 \x03(\v2\x12.team.v1.UserTeamsR\x05users\"\x81\x05\n" +
 	"\x04Team\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2971,7 +3118,7 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x04 \x01(\x05R\x06offset\"2\n" +
 	"\x13AcceptInviteRequest\x12\x1b\n" +
-	"\tinvite_id\x18\x01 \x01(\tR\binviteId2\xf0\x12\n" +
+	"\tinvite_id\x18\x01 \x01(\tR\binviteId2\xcc\x13\n" +
 	"\vTeamService\x12]\n" +
 	"\rListMyInvites\x12\x1d.team.v1.ListMyInvitesRequest\x1a\x13.team.v1.InviteList\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/team-invites\x12s\n" +
 	"\rDeclineInvite\x12\x1c.team.v1.InviteActionRequest\x1a\x13.team.v1.TeamInvite\"/\x82\xd3\xe4\x93\x02):\x01*\"$/v1/team-invites/{invite_id}/decline\x12q\n" +
@@ -2986,7 +3133,8 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\x0fCheckTeamAccess\x12\x1f.team.v1.CheckTeamAccessRequest\x1a\x17.team.v1.AccessDecision\x12K\n" +
 	"\x0fCheckClubAccess\x12\x1f.team.v1.CheckClubAccessRequest\x1a\x17.team.v1.AccessDecision\x12E\n" +
 	"\x0eGetTeamMembers\x12\x1e.team.v1.GetTeamMembersRequest\x1a\x13.team.v1.RosterList\x12H\n" +
-	"\fGetClubTeams\x12\x1c.team.v1.GetClubTeamsRequest\x1a\x1a.team.v1.ClubTeamsResponse\x12M\n" +
+	"\fGetClubTeams\x12\x1c.team.v1.GetClubTeamsRequest\x1a\x1a.team.v1.ClubTeamsResponse\x12Z\n" +
+	"\x11BatchGetUserTeams\x12!.team.v1.BatchGetUserTeamsRequest\x1a\".team.v1.BatchGetUserTeamsResponse\x12M\n" +
 	"\n" +
 	"CreateTeam\x12\x1a.team.v1.CreateTeamRequest\x1a\r.team.v1.Team\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/teams\x12N\n" +
 	"\aGetTeam\x12\x17.team.v1.GetTeamRequest\x1a\r.team.v1.Team\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/teams/{team_id}\x12W\n" +
@@ -3014,116 +3162,122 @@ func file_team_v1_team_proto_rawDescGZIP() []byte {
 	return file_team_v1_team_proto_rawDescData
 }
 
-var file_team_v1_team_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_team_v1_team_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
 var file_team_v1_team_proto_goTypes = []any{
-	(*Team)(nil),                      // 0: team.v1.Team
-	(*RosterMember)(nil),              // 1: team.v1.RosterMember
-	(*TeamInvite)(nil),                // 2: team.v1.TeamInvite
-	(*CreateTeamRequest)(nil),         // 3: team.v1.CreateTeamRequest
-	(*GetTeamRequest)(nil),            // 4: team.v1.GetTeamRequest
-	(*UpdateTeamRequest)(nil),         // 5: team.v1.UpdateTeamRequest
-	(*ListTeamsRequest)(nil),          // 6: team.v1.ListTeamsRequest
-	(*ListTeamsResponse)(nil),         // 7: team.v1.ListTeamsResponse
-	(*GetRosterRequest)(nil),          // 8: team.v1.GetRosterRequest
-	(*RosterList)(nil),                // 9: team.v1.RosterList
-	(*AddMemberRequest)(nil),          // 10: team.v1.AddMemberRequest
-	(*UpdateRosterStatusRequest)(nil), // 11: team.v1.UpdateRosterStatusRequest
-	(*UpdateTeamRoleRequest)(nil),     // 12: team.v1.UpdateTeamRoleRequest
-	(*ListInvitesRequest)(nil),        // 13: team.v1.ListInvitesRequest
-	(*InviteList)(nil),                // 14: team.v1.InviteList
-	(*CreateEmailInviteRequest)(nil),  // 15: team.v1.CreateEmailInviteRequest
-	(*InviteActionRequest)(nil),       // 16: team.v1.InviteActionRequest
-	(*ListMyInvitesRequest)(nil),      // 17: team.v1.ListMyInvitesRequest
-	(*GetClubRequest)(nil),            // 18: team.v1.GetClubRequest
-	(*ClubStaff)(nil),                 // 19: team.v1.ClubStaff
-	(*ClubSquad)(nil),                 // 20: team.v1.ClubSquad
-	(*Club)(nil),                      // 21: team.v1.Club
-	(*ClubStaffList)(nil),             // 22: team.v1.ClubStaffList
-	(*UpdateClubRequest)(nil),         // 23: team.v1.UpdateClubRequest
-	(*ClubProfileResponse)(nil),       // 24: team.v1.ClubProfileResponse
-	(*CreateStaffContactRequest)(nil), // 25: team.v1.CreateStaffContactRequest
-	(*StaffContact)(nil),              // 26: team.v1.StaffContact
-	(*ListStaffContactsRequest)(nil),  // 27: team.v1.ListStaffContactsRequest
-	(*StaffContactList)(nil),          // 28: team.v1.StaffContactList
-	(*CheckTeamAccessRequest)(nil),    // 29: team.v1.CheckTeamAccessRequest
-	(*CheckClubAccessRequest)(nil),    // 30: team.v1.CheckClubAccessRequest
-	(*AccessDecision)(nil),            // 31: team.v1.AccessDecision
-	(*GetTeamMembersRequest)(nil),     // 32: team.v1.GetTeamMembersRequest
-	(*GetClubTeamsRequest)(nil),       // 33: team.v1.GetClubTeamsRequest
-	(*ClubTeamsResponse)(nil),         // 34: team.v1.ClubTeamsResponse
-	(*AcceptInviteRequest)(nil),       // 35: team.v1.AcceptInviteRequest
-	(*timestamppb.Timestamp)(nil),     // 36: google.protobuf.Timestamp
+	(*BatchGetUserTeamsRequest)(nil),  // 0: team.v1.BatchGetUserTeamsRequest
+	(*UserTeams)(nil),                 // 1: team.v1.UserTeams
+	(*BatchGetUserTeamsResponse)(nil), // 2: team.v1.BatchGetUserTeamsResponse
+	(*Team)(nil),                      // 3: team.v1.Team
+	(*RosterMember)(nil),              // 4: team.v1.RosterMember
+	(*TeamInvite)(nil),                // 5: team.v1.TeamInvite
+	(*CreateTeamRequest)(nil),         // 6: team.v1.CreateTeamRequest
+	(*GetTeamRequest)(nil),            // 7: team.v1.GetTeamRequest
+	(*UpdateTeamRequest)(nil),         // 8: team.v1.UpdateTeamRequest
+	(*ListTeamsRequest)(nil),          // 9: team.v1.ListTeamsRequest
+	(*ListTeamsResponse)(nil),         // 10: team.v1.ListTeamsResponse
+	(*GetRosterRequest)(nil),          // 11: team.v1.GetRosterRequest
+	(*RosterList)(nil),                // 12: team.v1.RosterList
+	(*AddMemberRequest)(nil),          // 13: team.v1.AddMemberRequest
+	(*UpdateRosterStatusRequest)(nil), // 14: team.v1.UpdateRosterStatusRequest
+	(*UpdateTeamRoleRequest)(nil),     // 15: team.v1.UpdateTeamRoleRequest
+	(*ListInvitesRequest)(nil),        // 16: team.v1.ListInvitesRequest
+	(*InviteList)(nil),                // 17: team.v1.InviteList
+	(*CreateEmailInviteRequest)(nil),  // 18: team.v1.CreateEmailInviteRequest
+	(*InviteActionRequest)(nil),       // 19: team.v1.InviteActionRequest
+	(*ListMyInvitesRequest)(nil),      // 20: team.v1.ListMyInvitesRequest
+	(*GetClubRequest)(nil),            // 21: team.v1.GetClubRequest
+	(*ClubStaff)(nil),                 // 22: team.v1.ClubStaff
+	(*ClubSquad)(nil),                 // 23: team.v1.ClubSquad
+	(*Club)(nil),                      // 24: team.v1.Club
+	(*ClubStaffList)(nil),             // 25: team.v1.ClubStaffList
+	(*UpdateClubRequest)(nil),         // 26: team.v1.UpdateClubRequest
+	(*ClubProfileResponse)(nil),       // 27: team.v1.ClubProfileResponse
+	(*CreateStaffContactRequest)(nil), // 28: team.v1.CreateStaffContactRequest
+	(*StaffContact)(nil),              // 29: team.v1.StaffContact
+	(*ListStaffContactsRequest)(nil),  // 30: team.v1.ListStaffContactsRequest
+	(*StaffContactList)(nil),          // 31: team.v1.StaffContactList
+	(*CheckTeamAccessRequest)(nil),    // 32: team.v1.CheckTeamAccessRequest
+	(*CheckClubAccessRequest)(nil),    // 33: team.v1.CheckClubAccessRequest
+	(*AccessDecision)(nil),            // 34: team.v1.AccessDecision
+	(*GetTeamMembersRequest)(nil),     // 35: team.v1.GetTeamMembersRequest
+	(*GetClubTeamsRequest)(nil),       // 36: team.v1.GetClubTeamsRequest
+	(*ClubTeamsResponse)(nil),         // 37: team.v1.ClubTeamsResponse
+	(*AcceptInviteRequest)(nil),       // 38: team.v1.AcceptInviteRequest
+	(*timestamppb.Timestamp)(nil),     // 39: google.protobuf.Timestamp
 }
 var file_team_v1_team_proto_depIdxs = []int32{
-	36, // 0: team.v1.Team.created_at:type_name -> google.protobuf.Timestamp
-	36, // 1: team.v1.Team.updated_at:type_name -> google.protobuf.Timestamp
-	36, // 2: team.v1.RosterMember.joined_at:type_name -> google.protobuf.Timestamp
-	36, // 3: team.v1.TeamInvite.created_at:type_name -> google.protobuf.Timestamp
-	36, // 4: team.v1.TeamInvite.updated_at:type_name -> google.protobuf.Timestamp
-	36, // 5: team.v1.TeamInvite.expires_at:type_name -> google.protobuf.Timestamp
-	0,  // 6: team.v1.ListTeamsResponse.items:type_name -> team.v1.Team
-	1,  // 7: team.v1.RosterList.members:type_name -> team.v1.RosterMember
-	2,  // 8: team.v1.InviteList.invites:type_name -> team.v1.TeamInvite
-	20, // 9: team.v1.Club.squads:type_name -> team.v1.ClubSquad
-	19, // 10: team.v1.Club.staff:type_name -> team.v1.ClubStaff
-	19, // 11: team.v1.ClubStaffList.items:type_name -> team.v1.ClubStaff
-	22, // 12: team.v1.UpdateClubRequest.staff:type_name -> team.v1.ClubStaffList
-	21, // 13: team.v1.ClubProfileResponse.club:type_name -> team.v1.Club
-	36, // 14: team.v1.StaffContact.created_at:type_name -> google.protobuf.Timestamp
-	26, // 15: team.v1.StaffContactList.items:type_name -> team.v1.StaffContact
-	17, // 16: team.v1.TeamService.ListMyInvites:input_type -> team.v1.ListMyInvitesRequest
-	16, // 17: team.v1.TeamService.DeclineInvite:input_type -> team.v1.InviteActionRequest
-	16, // 18: team.v1.TeamService.RevokeInvite:input_type -> team.v1.InviteActionRequest
-	16, // 19: team.v1.TeamService.ResendInvite:input_type -> team.v1.InviteActionRequest
-	18, // 20: team.v1.TeamService.GetClub:input_type -> team.v1.GetClubRequest
-	23, // 21: team.v1.TeamService.UpdateClub:input_type -> team.v1.UpdateClubRequest
-	4,  // 22: team.v1.TeamService.GetTeamClubProfile:input_type -> team.v1.GetTeamRequest
-	25, // 23: team.v1.TeamService.CreateStaffContact:input_type -> team.v1.CreateStaffContactRequest
-	27, // 24: team.v1.TeamService.ListStaffContacts:input_type -> team.v1.ListStaffContactsRequest
-	29, // 25: team.v1.TeamService.CheckTeamAccess:input_type -> team.v1.CheckTeamAccessRequest
-	30, // 26: team.v1.TeamService.CheckClubAccess:input_type -> team.v1.CheckClubAccessRequest
-	32, // 27: team.v1.TeamService.GetTeamMembers:input_type -> team.v1.GetTeamMembersRequest
-	33, // 28: team.v1.TeamService.GetClubTeams:input_type -> team.v1.GetClubTeamsRequest
-	3,  // 29: team.v1.TeamService.CreateTeam:input_type -> team.v1.CreateTeamRequest
-	4,  // 30: team.v1.TeamService.GetTeam:input_type -> team.v1.GetTeamRequest
-	5,  // 31: team.v1.TeamService.UpdateTeam:input_type -> team.v1.UpdateTeamRequest
-	6,  // 32: team.v1.TeamService.ListTeams:input_type -> team.v1.ListTeamsRequest
-	8,  // 33: team.v1.TeamService.GetRoster:input_type -> team.v1.GetRosterRequest
-	10, // 34: team.v1.TeamService.AddMember:input_type -> team.v1.AddMemberRequest
-	11, // 35: team.v1.TeamService.UpdateRosterStatus:input_type -> team.v1.UpdateRosterStatusRequest
-	12, // 36: team.v1.TeamService.UpdateTeamRole:input_type -> team.v1.UpdateTeamRoleRequest
-	13, // 37: team.v1.TeamService.ListInvites:input_type -> team.v1.ListInvitesRequest
-	15, // 38: team.v1.TeamService.CreateEmailInvite:input_type -> team.v1.CreateEmailInviteRequest
-	35, // 39: team.v1.TeamService.AcceptInvite:input_type -> team.v1.AcceptInviteRequest
-	14, // 40: team.v1.TeamService.ListMyInvites:output_type -> team.v1.InviteList
-	2,  // 41: team.v1.TeamService.DeclineInvite:output_type -> team.v1.TeamInvite
-	2,  // 42: team.v1.TeamService.RevokeInvite:output_type -> team.v1.TeamInvite
-	2,  // 43: team.v1.TeamService.ResendInvite:output_type -> team.v1.TeamInvite
-	21, // 44: team.v1.TeamService.GetClub:output_type -> team.v1.Club
-	21, // 45: team.v1.TeamService.UpdateClub:output_type -> team.v1.Club
-	24, // 46: team.v1.TeamService.GetTeamClubProfile:output_type -> team.v1.ClubProfileResponse
-	26, // 47: team.v1.TeamService.CreateStaffContact:output_type -> team.v1.StaffContact
-	28, // 48: team.v1.TeamService.ListStaffContacts:output_type -> team.v1.StaffContactList
-	31, // 49: team.v1.TeamService.CheckTeamAccess:output_type -> team.v1.AccessDecision
-	31, // 50: team.v1.TeamService.CheckClubAccess:output_type -> team.v1.AccessDecision
-	9,  // 51: team.v1.TeamService.GetTeamMembers:output_type -> team.v1.RosterList
-	34, // 52: team.v1.TeamService.GetClubTeams:output_type -> team.v1.ClubTeamsResponse
-	0,  // 53: team.v1.TeamService.CreateTeam:output_type -> team.v1.Team
-	0,  // 54: team.v1.TeamService.GetTeam:output_type -> team.v1.Team
-	0,  // 55: team.v1.TeamService.UpdateTeam:output_type -> team.v1.Team
-	7,  // 56: team.v1.TeamService.ListTeams:output_type -> team.v1.ListTeamsResponse
-	9,  // 57: team.v1.TeamService.GetRoster:output_type -> team.v1.RosterList
-	1,  // 58: team.v1.TeamService.AddMember:output_type -> team.v1.RosterMember
-	1,  // 59: team.v1.TeamService.UpdateRosterStatus:output_type -> team.v1.RosterMember
-	1,  // 60: team.v1.TeamService.UpdateTeamRole:output_type -> team.v1.RosterMember
-	14, // 61: team.v1.TeamService.ListInvites:output_type -> team.v1.InviteList
-	2,  // 62: team.v1.TeamService.CreateEmailInvite:output_type -> team.v1.TeamInvite
-	2,  // 63: team.v1.TeamService.AcceptInvite:output_type -> team.v1.TeamInvite
-	40, // [40:64] is the sub-list for method output_type
-	16, // [16:40] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	1,  // 0: team.v1.BatchGetUserTeamsResponse.users:type_name -> team.v1.UserTeams
+	39, // 1: team.v1.Team.created_at:type_name -> google.protobuf.Timestamp
+	39, // 2: team.v1.Team.updated_at:type_name -> google.protobuf.Timestamp
+	39, // 3: team.v1.RosterMember.joined_at:type_name -> google.protobuf.Timestamp
+	39, // 4: team.v1.TeamInvite.created_at:type_name -> google.protobuf.Timestamp
+	39, // 5: team.v1.TeamInvite.updated_at:type_name -> google.protobuf.Timestamp
+	39, // 6: team.v1.TeamInvite.expires_at:type_name -> google.protobuf.Timestamp
+	3,  // 7: team.v1.ListTeamsResponse.items:type_name -> team.v1.Team
+	4,  // 8: team.v1.RosterList.members:type_name -> team.v1.RosterMember
+	5,  // 9: team.v1.InviteList.invites:type_name -> team.v1.TeamInvite
+	23, // 10: team.v1.Club.squads:type_name -> team.v1.ClubSquad
+	22, // 11: team.v1.Club.staff:type_name -> team.v1.ClubStaff
+	22, // 12: team.v1.ClubStaffList.items:type_name -> team.v1.ClubStaff
+	25, // 13: team.v1.UpdateClubRequest.staff:type_name -> team.v1.ClubStaffList
+	24, // 14: team.v1.ClubProfileResponse.club:type_name -> team.v1.Club
+	39, // 15: team.v1.StaffContact.created_at:type_name -> google.protobuf.Timestamp
+	29, // 16: team.v1.StaffContactList.items:type_name -> team.v1.StaffContact
+	20, // 17: team.v1.TeamService.ListMyInvites:input_type -> team.v1.ListMyInvitesRequest
+	19, // 18: team.v1.TeamService.DeclineInvite:input_type -> team.v1.InviteActionRequest
+	19, // 19: team.v1.TeamService.RevokeInvite:input_type -> team.v1.InviteActionRequest
+	19, // 20: team.v1.TeamService.ResendInvite:input_type -> team.v1.InviteActionRequest
+	21, // 21: team.v1.TeamService.GetClub:input_type -> team.v1.GetClubRequest
+	26, // 22: team.v1.TeamService.UpdateClub:input_type -> team.v1.UpdateClubRequest
+	7,  // 23: team.v1.TeamService.GetTeamClubProfile:input_type -> team.v1.GetTeamRequest
+	28, // 24: team.v1.TeamService.CreateStaffContact:input_type -> team.v1.CreateStaffContactRequest
+	30, // 25: team.v1.TeamService.ListStaffContacts:input_type -> team.v1.ListStaffContactsRequest
+	32, // 26: team.v1.TeamService.CheckTeamAccess:input_type -> team.v1.CheckTeamAccessRequest
+	33, // 27: team.v1.TeamService.CheckClubAccess:input_type -> team.v1.CheckClubAccessRequest
+	35, // 28: team.v1.TeamService.GetTeamMembers:input_type -> team.v1.GetTeamMembersRequest
+	36, // 29: team.v1.TeamService.GetClubTeams:input_type -> team.v1.GetClubTeamsRequest
+	0,  // 30: team.v1.TeamService.BatchGetUserTeams:input_type -> team.v1.BatchGetUserTeamsRequest
+	6,  // 31: team.v1.TeamService.CreateTeam:input_type -> team.v1.CreateTeamRequest
+	7,  // 32: team.v1.TeamService.GetTeam:input_type -> team.v1.GetTeamRequest
+	8,  // 33: team.v1.TeamService.UpdateTeam:input_type -> team.v1.UpdateTeamRequest
+	9,  // 34: team.v1.TeamService.ListTeams:input_type -> team.v1.ListTeamsRequest
+	11, // 35: team.v1.TeamService.GetRoster:input_type -> team.v1.GetRosterRequest
+	13, // 36: team.v1.TeamService.AddMember:input_type -> team.v1.AddMemberRequest
+	14, // 37: team.v1.TeamService.UpdateRosterStatus:input_type -> team.v1.UpdateRosterStatusRequest
+	15, // 38: team.v1.TeamService.UpdateTeamRole:input_type -> team.v1.UpdateTeamRoleRequest
+	16, // 39: team.v1.TeamService.ListInvites:input_type -> team.v1.ListInvitesRequest
+	18, // 40: team.v1.TeamService.CreateEmailInvite:input_type -> team.v1.CreateEmailInviteRequest
+	38, // 41: team.v1.TeamService.AcceptInvite:input_type -> team.v1.AcceptInviteRequest
+	17, // 42: team.v1.TeamService.ListMyInvites:output_type -> team.v1.InviteList
+	5,  // 43: team.v1.TeamService.DeclineInvite:output_type -> team.v1.TeamInvite
+	5,  // 44: team.v1.TeamService.RevokeInvite:output_type -> team.v1.TeamInvite
+	5,  // 45: team.v1.TeamService.ResendInvite:output_type -> team.v1.TeamInvite
+	24, // 46: team.v1.TeamService.GetClub:output_type -> team.v1.Club
+	24, // 47: team.v1.TeamService.UpdateClub:output_type -> team.v1.Club
+	27, // 48: team.v1.TeamService.GetTeamClubProfile:output_type -> team.v1.ClubProfileResponse
+	29, // 49: team.v1.TeamService.CreateStaffContact:output_type -> team.v1.StaffContact
+	31, // 50: team.v1.TeamService.ListStaffContacts:output_type -> team.v1.StaffContactList
+	34, // 51: team.v1.TeamService.CheckTeamAccess:output_type -> team.v1.AccessDecision
+	34, // 52: team.v1.TeamService.CheckClubAccess:output_type -> team.v1.AccessDecision
+	12, // 53: team.v1.TeamService.GetTeamMembers:output_type -> team.v1.RosterList
+	37, // 54: team.v1.TeamService.GetClubTeams:output_type -> team.v1.ClubTeamsResponse
+	2,  // 55: team.v1.TeamService.BatchGetUserTeams:output_type -> team.v1.BatchGetUserTeamsResponse
+	3,  // 56: team.v1.TeamService.CreateTeam:output_type -> team.v1.Team
+	3,  // 57: team.v1.TeamService.GetTeam:output_type -> team.v1.Team
+	3,  // 58: team.v1.TeamService.UpdateTeam:output_type -> team.v1.Team
+	10, // 59: team.v1.TeamService.ListTeams:output_type -> team.v1.ListTeamsResponse
+	12, // 60: team.v1.TeamService.GetRoster:output_type -> team.v1.RosterList
+	4,  // 61: team.v1.TeamService.AddMember:output_type -> team.v1.RosterMember
+	4,  // 62: team.v1.TeamService.UpdateRosterStatus:output_type -> team.v1.RosterMember
+	4,  // 63: team.v1.TeamService.UpdateTeamRole:output_type -> team.v1.RosterMember
+	17, // 64: team.v1.TeamService.ListInvites:output_type -> team.v1.InviteList
+	5,  // 65: team.v1.TeamService.CreateEmailInvite:output_type -> team.v1.TeamInvite
+	5,  // 66: team.v1.TeamService.AcceptInvite:output_type -> team.v1.TeamInvite
+	42, // [42:67] is the sub-list for method output_type
+	17, // [17:42] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_team_v1_team_proto_init() }
@@ -3131,22 +3285,22 @@ func file_team_v1_team_proto_init() {
 	if File_team_v1_team_proto != nil {
 		return
 	}
-	file_team_v1_team_proto_msgTypes[0].OneofWrappers = []any{}
-	file_team_v1_team_proto_msgTypes[2].OneofWrappers = []any{}
 	file_team_v1_team_proto_msgTypes[3].OneofWrappers = []any{}
 	file_team_v1_team_proto_msgTypes[5].OneofWrappers = []any{}
-	file_team_v1_team_proto_msgTypes[13].OneofWrappers = []any{}
-	file_team_v1_team_proto_msgTypes[19].OneofWrappers = []any{}
-	file_team_v1_team_proto_msgTypes[20].OneofWrappers = []any{}
-	file_team_v1_team_proto_msgTypes[21].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[6].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[8].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[16].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[22].OneofWrappers = []any{}
 	file_team_v1_team_proto_msgTypes[23].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[24].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[26].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_team_v1_team_proto_rawDesc), len(file_team_v1_team_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   36,
+			NumMessages:   39,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

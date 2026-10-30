@@ -32,6 +32,7 @@ const (
 	TeamService_CheckClubAccess_FullMethodName    = "/team.v1.TeamService/CheckClubAccess"
 	TeamService_GetTeamMembers_FullMethodName     = "/team.v1.TeamService/GetTeamMembers"
 	TeamService_GetClubTeams_FullMethodName       = "/team.v1.TeamService/GetClubTeams"
+	TeamService_BatchGetUserTeams_FullMethodName  = "/team.v1.TeamService/BatchGetUserTeams"
 	TeamService_CreateTeam_FullMethodName         = "/team.v1.TeamService/CreateTeam"
 	TeamService_GetTeam_FullMethodName            = "/team.v1.TeamService/GetTeam"
 	TeamService_UpdateTeam_FullMethodName         = "/team.v1.TeamService/UpdateTeam"
@@ -63,6 +64,7 @@ type TeamServiceClient interface {
 	CheckClubAccess(ctx context.Context, in *CheckClubAccessRequest, opts ...grpc.CallOption) (*AccessDecision, error)
 	GetTeamMembers(ctx context.Context, in *GetTeamMembersRequest, opts ...grpc.CallOption) (*RosterList, error)
 	GetClubTeams(ctx context.Context, in *GetClubTeamsRequest, opts ...grpc.CallOption) (*ClubTeamsResponse, error)
+	BatchGetUserTeams(ctx context.Context, in *BatchGetUserTeamsRequest, opts ...grpc.CallOption) (*BatchGetUserTeamsResponse, error)
 	CreateTeam(ctx context.Context, in *CreateTeamRequest, opts ...grpc.CallOption) (*Team, error)
 	GetTeam(ctx context.Context, in *GetTeamRequest, opts ...grpc.CallOption) (*Team, error)
 	UpdateTeam(ctx context.Context, in *UpdateTeamRequest, opts ...grpc.CallOption) (*Team, error)
@@ -214,6 +216,16 @@ func (c *teamServiceClient) GetClubTeams(ctx context.Context, in *GetClubTeamsRe
 	return out, nil
 }
 
+func (c *teamServiceClient) BatchGetUserTeams(ctx context.Context, in *BatchGetUserTeamsRequest, opts ...grpc.CallOption) (*BatchGetUserTeamsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BatchGetUserTeamsResponse)
+	err := c.cc.Invoke(ctx, TeamService_BatchGetUserTeams_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *teamServiceClient) CreateTeam(ctx context.Context, in *CreateTeamRequest, opts ...grpc.CallOption) (*Team, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Team)
@@ -342,6 +354,7 @@ type TeamServiceServer interface {
 	CheckClubAccess(context.Context, *CheckClubAccessRequest) (*AccessDecision, error)
 	GetTeamMembers(context.Context, *GetTeamMembersRequest) (*RosterList, error)
 	GetClubTeams(context.Context, *GetClubTeamsRequest) (*ClubTeamsResponse, error)
+	BatchGetUserTeams(context.Context, *BatchGetUserTeamsRequest) (*BatchGetUserTeamsResponse, error)
 	CreateTeam(context.Context, *CreateTeamRequest) (*Team, error)
 	GetTeam(context.Context, *GetTeamRequest) (*Team, error)
 	UpdateTeam(context.Context, *UpdateTeamRequest) (*Team, error)
@@ -401,6 +414,9 @@ func (UnimplementedTeamServiceServer) GetTeamMembers(context.Context, *GetTeamMe
 }
 func (UnimplementedTeamServiceServer) GetClubTeams(context.Context, *GetClubTeamsRequest) (*ClubTeamsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetClubTeams not implemented")
+}
+func (UnimplementedTeamServiceServer) BatchGetUserTeams(context.Context, *BatchGetUserTeamsRequest) (*BatchGetUserTeamsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method BatchGetUserTeams not implemented")
 }
 func (UnimplementedTeamServiceServer) CreateTeam(context.Context, *CreateTeamRequest) (*Team, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateTeam not implemented")
@@ -690,6 +706,24 @@ func _TeamService_GetClubTeams_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamService_BatchGetUserTeams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BatchGetUserTeamsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).BatchGetUserTeams(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_BatchGetUserTeams_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).BatchGetUserTeams(ctx, req.(*BatchGetUserTeamsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TeamService_CreateTeam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTeamRequest)
 	if err := dec(in); err != nil {
@@ -946,6 +980,10 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetClubTeams",
 			Handler:    _TeamService_GetClubTeams_Handler,
+		},
+		{
+			MethodName: "BatchGetUserTeams",
+			Handler:    _TeamService_BatchGetUserTeams_Handler,
 		},
 		{
 			MethodName: "CreateTeam",
