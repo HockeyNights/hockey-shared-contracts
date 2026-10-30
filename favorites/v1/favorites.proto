@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package favorites.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/favorites/gen/go/v1;favoritesv1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Favorites API"
+    version: "1.0.0"
+    description: "Избранные сущности и игроки текущего пользователя."
+  }
+};
+
+service FavoritesService {
+  rpc ListFavorites(ListFavoritesRequest) returns (FavoritesList) {
+    option (google.api.http) = {get: "/v1/favorites"};
+  }
+  rpc AddFavorite(AddFavoriteRequest) returns (Favorite) {
+    option (google.api.http) = {post: "/v1/favorites" body: "*"};
+  }
+  rpc RemoveFavorite(RemoveFavoriteRequest) returns (RemoveFavoriteResponse) {
+    option (google.api.http) = {delete: "/v1/favorites/{favorite_id}"};
+  }
+  rpc GetPlayerFavorites(GetPlayerFavoritesRequest) returns (PlayerFavorites) {
+    option (google.api.http) = {get: "/v1/players/favorites"};
+  }
+  rpc UpdatePlayerFavorites(UpdatePlayerFavoritesRequest) returns (PlayerFavorites) {
+    option (google.api.http) = {patch: "/v1/players/favorites" body: "*"};
+  }
+}
+
+message ListFavoritesRequest {}
+message AddFavoriteRequest {
+  string type = 1;
+  string entity_id = 2;
+  string title = 3;
+  optional string href = 4;
+}
+message RemoveFavoriteRequest { string favorite_id = 1; }
+message RemoveFavoriteResponse {}
+message Favorite {
+  string id = 1;
+  string type = 2;
+  string entity_id = 3;
+  string title = 4;
+  string href = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+message FavoritesList { repeated Favorite items = 1; }
+message GetPlayerFavoritesRequest {}
+message UpdatePlayerFavoritesRequest {
+  repeated string player_ids = 1;
+}
+message PlayerFavorites {
+  repeated string player_ids = 1;
+  google.protobuf.Timestamp updated_at = 2;
+}

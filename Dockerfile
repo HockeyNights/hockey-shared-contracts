@@ -13,7 +13,9 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@${PROTOC_GEN_GO_VERS
 
 FROM alpine:3.22
 
-RUN apk add --no-cache protobuf protobuf-dev
+RUN apk add --no-cache protobuf protobuf-dev git \
+ && git clone https://github.com/bufbuild/protovalidate.git /opt/protovalidate \
+ && git -C /opt/protovalidate checkout c550962b283761cd5e7d333c7fe32183e6d282eb
 
 COPY --from=plugins /go/bin/protoc-gen-go /usr/local/bin/
 COPY --from=plugins /go/bin/protoc-gen-go-grpc /usr/local/bin/

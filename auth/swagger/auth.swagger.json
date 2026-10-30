@@ -7,8 +7,7 @@
   },
   "tags": [
     {
-      "name": "AuthService",
-      "description": "AuthService отвечает за регистрацию, вход и жизненный цикл сессий"
+      "name": "AuthService"
     }
   ],
   "consumes": [
@@ -172,8 +171,6 @@
     },
     "/v1/auth/password/reset-request": {
       "post": {
-        "summary": "Восстановление пароля: код на почту, затем смена по коду.",
-        "description": "Разделено на два вызова, а не «пришлите ссылку»: код короткий, его\nможно ввести на другом устройстве, и он не утекает в историю браузера\nи в реферер, как одноразовая ссылка.",
         "operationId": "AuthService_RequestPasswordReset",
         "responses": {
           "200": {
@@ -436,13 +433,11 @@
         },
         "expiresIn": {
           "type": "string",
-          "format": "int64",
-          "description": "Сколько секунд действует код."
+          "format": "int64"
         },
         "resendAfter": {
           "type": "string",
-          "format": "int64",
-          "description": "Через сколько секунд можно запросить код заново."
+          "format": "int64"
         }
       }
     },
@@ -495,8 +490,7 @@
       "type": "object"
     },
     "v1LogoutRequest": {
-      "type": "object",
-      "title": "сессия определяется по access-токену вызывающего"
+      "type": "object"
     },
     "v1LogoutResponse": {
       "type": "object"
@@ -581,14 +575,12 @@
           "type": "string"
         },
         "newPassword": {
-          "type": "string",
-          "description": "Те же границы, что и при регистрации. Верхняя не косметическая:\nbcrypt-совместимые реализации молча режут вход на 72 байтах, и хотя\nздесь argon2id, единое ограничение избавляет от расхождения, если\nалгоритм когда-нибудь сменится."
+          "type": "string"
         }
       }
     },
     "v1ResetPasswordResponse": {
-      "type": "object",
-      "description": "Токенов в ответе нет намеренно: смена пароля завершает все сессии, в том\nчисле ту, из которой её запросили. Клиент отправляет пользователя на\nобычный вход — так он сразу убеждается, что новый пароль работает."
+      "type": "object"
     },
     "v1TokenPair": {
       "type": "object",

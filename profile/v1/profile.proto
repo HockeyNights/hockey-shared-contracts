@@ -18,6 +18,8 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 service ProfileService {
+  // Internal only: returns no private profile fields and has no HTTP route.
+  rpc BatchGetProfileSummaries(BatchGetProfileSummariesRequest) returns (BatchGetProfileSummariesResponse);
   rpc CreateProfile(CreateProfileRequest) returns (Profile) {
     option (google.api.http) = {
       post: "/v1/profile"
@@ -53,6 +55,24 @@ service ProfileService {
   rpc DeleteAvatar(DeleteAvatarRequest) returns (Profile) {
     option (google.api.http) = {delete: "/v1/profile/avatar"};
   }
+}
+
+message BatchGetProfileSummariesRequest {
+  repeated string user_ids = 1 [(buf.validate.field).repeated = {
+    min_items: 1, max_items: 100, unique: true,
+    items: {string: {uuid: true}}
+  }];
+}
+
+message ProfileSummary {
+  string user_id = 1;
+  bool found = 2;
+  string display_name = 3;
+  string position = 4;
+}
+
+message BatchGetProfileSummariesResponse {
+  repeated ProfileSummary profiles = 1;
 }
 
 enum Grip {

@@ -7,7 +7,7 @@ DOCKER_PROTOC = docker run --rm \
 	$(IMAGE)
 
 APIS := $(shell find . -mindepth 3 -name '*.proto' -not -path './.protodeps/*' | cut -d/ -f2 | sort -u)
-INCLUDES = -I . -I .protodeps
+INCLUDES = -I . -I .protodeps -I /opt/protovalidate/proto/protovalidate
 
 SELECTABLE := generate check clean
 

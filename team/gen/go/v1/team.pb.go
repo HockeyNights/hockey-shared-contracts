@@ -25,21 +25,24 @@ const (
 )
 
 type Team struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
-	SkillLevel    string                 `protobuf:"bytes,4,opt,name=skill_level,json=skillLevel,proto3" json:"skill_level,omitempty"`
-	Description   *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	CaptainUserId string                 `protobuf:"bytes,6,opt,name=captain_user_id,json=captainUserId,proto3" json:"captain_user_id,omitempty"`
-	OwnerUserId   string                 `protobuf:"bytes,7,opt,name=owner_user_id,json=ownerUserId,proto3" json:"owner_user_id,omitempty"`
-	LeagueId      *string                `protobuf:"bytes,8,opt,name=league_id,json=leagueId,proto3,oneof" json:"league_id,omitempty"`
-	HomeArenaId   *string                `protobuf:"bytes,9,opt,name=home_arena_id,json=homeArenaId,proto3,oneof" json:"home_arena_id,omitempty"`
-	MemberIds     []string               `protobuf:"bytes,10,rep,name=member_ids,json=memberIds,proto3" json:"member_ids,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name             string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	City             string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
+	SkillLevel       string                 `protobuf:"bytes,4,opt,name=skill_level,json=skillLevel,proto3" json:"skill_level,omitempty"`
+	Description      *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	CaptainUserId    string                 `protobuf:"bytes,6,opt,name=captain_user_id,json=captainUserId,proto3" json:"captain_user_id,omitempty"`
+	OwnerUserId      string                 `protobuf:"bytes,7,opt,name=owner_user_id,json=ownerUserId,proto3" json:"owner_user_id,omitempty"`
+	LeagueId         *string                `protobuf:"bytes,8,opt,name=league_id,json=leagueId,proto3,oneof" json:"league_id,omitempty"`
+	HomeArenaId      *string                `protobuf:"bytes,9,opt,name=home_arena_id,json=homeArenaId,proto3,oneof" json:"home_arena_id,omitempty"`
+	MemberIds        []string               `protobuf:"bytes,10,rep,name=member_ids,json=memberIds,proto3" json:"member_ids,omitempty"`
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	ShortDescription *string                `protobuf:"bytes,13,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
+	LogoUrl          *string                `protobuf:"bytes,14,opt,name=logo_url,json=logoUrl,proto3,oneof" json:"logo_url,omitempty"`
+	ClubId           *string                `protobuf:"bytes,15,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *Team) Reset() {
@@ -156,6 +159,27 @@ func (x *Team) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Team) GetShortDescription() string {
+	if x != nil && x.ShortDescription != nil {
+		return *x.ShortDescription
+	}
+	return ""
+}
+
+func (x *Team) GetLogoUrl() string {
+	if x != nil && x.LogoUrl != nil {
+		return *x.LogoUrl
+	}
+	return ""
+}
+
+func (x *Team) GetClubId() string {
+	if x != nil && x.ClubId != nil {
+		return *x.ClubId
+	}
+	return ""
+}
+
 type RosterMember struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
@@ -259,6 +283,8 @@ type TeamInvite struct {
 	Status          string                 `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
 	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
+	ExpiresAt       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	TeamRole        string                 `protobuf:"bytes,11,opt,name=team_role,json=teamRole,proto3" json:"team_role,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -356,17 +382,37 @@ func (x *TeamInvite) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *TeamInvite) GetExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return nil
+}
+
+func (x *TeamInvite) GetTeamRole() string {
+	if x != nil {
+		return x.TeamRole
+	}
+	return ""
+}
+
 type CreateTeamRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	City          string                 `protobuf:"bytes,2,opt,name=city,proto3" json:"city,omitempty"`
-	SkillLevel    string                 `protobuf:"bytes,3,opt,name=skill_level,json=skillLevel,proto3" json:"skill_level,omitempty"`
-	Description   *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	CaptainUserId *string                `protobuf:"bytes,5,opt,name=captain_user_id,json=captainUserId,proto3,oneof" json:"captain_user_id,omitempty"`
-	LeagueId      *string                `protobuf:"bytes,6,opt,name=league_id,json=leagueId,proto3,oneof" json:"league_id,omitempty"`
-	HomeArenaId   *string                `protobuf:"bytes,7,opt,name=home_arena_id,json=homeArenaId,proto3,oneof" json:"home_arena_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Name             string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	City             string                 `protobuf:"bytes,2,opt,name=city,proto3" json:"city,omitempty"`
+	SkillLevel       string                 `protobuf:"bytes,3,opt,name=skill_level,json=skillLevel,proto3" json:"skill_level,omitempty"`
+	Description      *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	CaptainUserId    *string                `protobuf:"bytes,5,opt,name=captain_user_id,json=captainUserId,proto3,oneof" json:"captain_user_id,omitempty"`
+	LeagueId         *string                `protobuf:"bytes,6,opt,name=league_id,json=leagueId,proto3,oneof" json:"league_id,omitempty"`
+	HomeArenaId      *string                `protobuf:"bytes,7,opt,name=home_arena_id,json=homeArenaId,proto3,oneof" json:"home_arena_id,omitempty"`
+	ShortDescription *string                `protobuf:"bytes,8,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
+	LogoUrl          *string                `protobuf:"bytes,9,opt,name=logo_url,json=logoUrl,proto3,oneof" json:"logo_url,omitempty"`
+	PlayerIds        []string               `protobuf:"bytes,10,rep,name=player_ids,json=playerIds,proto3" json:"player_ids,omitempty"`
+	CoachIds         []string               `protobuf:"bytes,11,rep,name=coach_ids,json=coachIds,proto3" json:"coach_ids,omitempty"`
+	ClubId           *string                `protobuf:"bytes,12,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
+	IdempotencyKey   string                 `protobuf:"bytes,13,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CreateTeamRequest) Reset() {
@@ -448,6 +494,48 @@ func (x *CreateTeamRequest) GetHomeArenaId() string {
 	return ""
 }
 
+func (x *CreateTeamRequest) GetShortDescription() string {
+	if x != nil && x.ShortDescription != nil {
+		return *x.ShortDescription
+	}
+	return ""
+}
+
+func (x *CreateTeamRequest) GetLogoUrl() string {
+	if x != nil && x.LogoUrl != nil {
+		return *x.LogoUrl
+	}
+	return ""
+}
+
+func (x *CreateTeamRequest) GetPlayerIds() []string {
+	if x != nil {
+		return x.PlayerIds
+	}
+	return nil
+}
+
+func (x *CreateTeamRequest) GetCoachIds() []string {
+	if x != nil {
+		return x.CoachIds
+	}
+	return nil
+}
+
+func (x *CreateTeamRequest) GetClubId() string {
+	if x != nil && x.ClubId != nil {
+		return *x.ClubId
+	}
+	return ""
+}
+
+func (x *CreateTeamRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
 type GetTeamRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
@@ -493,15 +581,20 @@ func (x *GetTeamRequest) GetTeamId() string {
 }
 
 type UpdateTeamRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	City          *string                `protobuf:"bytes,3,opt,name=city,proto3,oneof" json:"city,omitempty"`
-	SkillLevel    *string                `protobuf:"bytes,4,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
-	Description   *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	CaptainUserId *string                `protobuf:"bytes,6,opt,name=captain_user_id,json=captainUserId,proto3,oneof" json:"captain_user_id,omitempty"`
-	LeagueId      *string                `protobuf:"bytes,7,opt,name=league_id,json=leagueId,proto3,oneof" json:"league_id,omitempty"`
-	HomeArenaId   *string                `protobuf:"bytes,8,opt,name=home_arena_id,json=homeArenaId,proto3,oneof" json:"home_arena_id,omitempty"`
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	TeamId           string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Name             *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	City             *string                `protobuf:"bytes,3,opt,name=city,proto3,oneof" json:"city,omitempty"`
+	SkillLevel       *string                `protobuf:"bytes,4,opt,name=skill_level,json=skillLevel,proto3,oneof" json:"skill_level,omitempty"`
+	Description      *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	CaptainUserId    *string                `protobuf:"bytes,6,opt,name=captain_user_id,json=captainUserId,proto3,oneof" json:"captain_user_id,omitempty"`
+	LeagueId         *string                `protobuf:"bytes,7,opt,name=league_id,json=leagueId,proto3,oneof" json:"league_id,omitempty"`
+	HomeArenaId      *string                `protobuf:"bytes,8,opt,name=home_arena_id,json=homeArenaId,proto3,oneof" json:"home_arena_id,omitempty"`
+	ShortDescription *string                `protobuf:"bytes,9,opt,name=short_description,json=shortDescription,proto3,oneof" json:"short_description,omitempty"`
+	LogoUrl          *string                `protobuf:"bytes,10,opt,name=logo_url,json=logoUrl,proto3,oneof" json:"logo_url,omitempty"`
+	ClubId           *string                `protobuf:"bytes,11,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
+	// Clear nullable fields explicitly; absent fields are left unchanged.
+	ClearFields   []string `protobuf:"bytes,12,rep,name=clear_fields,json=clearFields,proto3" json:"clear_fields,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -592,6 +685,34 @@ func (x *UpdateTeamRequest) GetHomeArenaId() string {
 	return ""
 }
 
+func (x *UpdateTeamRequest) GetShortDescription() string {
+	if x != nil && x.ShortDescription != nil {
+		return *x.ShortDescription
+	}
+	return ""
+}
+
+func (x *UpdateTeamRequest) GetLogoUrl() string {
+	if x != nil && x.LogoUrl != nil {
+		return *x.LogoUrl
+	}
+	return ""
+}
+
+func (x *UpdateTeamRequest) GetClubId() string {
+	if x != nil && x.ClubId != nil {
+		return *x.ClubId
+	}
+	return ""
+}
+
+func (x *UpdateTeamRequest) GetClearFields() []string {
+	if x != nil {
+		return x.ClearFields
+	}
+	return nil
+}
+
 type ListTeamsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Q             string                 `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty"`
@@ -600,6 +721,8 @@ type ListTeamsRequest struct {
 	UserId        string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
+	LeagueId      string                 `protobuf:"bytes,7,opt,name=league_id,json=leagueId,proto3" json:"league_id,omitempty"`
+	PlayerId      string                 `protobuf:"bytes,8,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"` // Alias for user_id; conflicting aliases are rejected.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -674,6 +797,20 @@ func (x *ListTeamsRequest) GetOffset() int32 {
 		return x.Offset
 	}
 	return 0
+}
+
+func (x *ListTeamsRequest) GetLeagueId() string {
+	if x != nil {
+		return x.LeagueId
+	}
+	return ""
+}
+
+func (x *ListTeamsRequest) GetPlayerId() string {
+	if x != nil {
+		return x.PlayerId
+	}
+	return ""
 }
 
 type ListTeamsResponse struct {
@@ -799,6 +936,9 @@ func (x *GetRosterRequest) GetIncludeRemoved() bool {
 type RosterList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Members       []*RosterMember        `protobuf:"bytes,1,rep,name=members,proto3" json:"members,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -840,10 +980,32 @@ func (x *RosterList) GetMembers() []*RosterMember {
 	return nil
 }
 
+func (x *RosterList) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *RosterList) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *RosterList) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type AddMemberRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TeamRole      string                 `protobuf:"bytes,3,opt,name=team_role,json=teamRole,proto3" json:"team_role,omitempty"` // player (default) or coach; never owner/captain/admin.
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -888,6 +1050,13 @@ func (x *AddMemberRequest) GetTeamId() string {
 func (x *AddMemberRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *AddMemberRequest) GetTeamRole() string {
+	if x != nil {
+		return x.TeamRole
 	}
 	return ""
 }
@@ -1015,6 +1184,9 @@ func (x *UpdateTeamRoleRequest) GetTeamRole() string {
 type ListInvitesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Status        *string                `protobuf:"bytes,2,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1056,9 +1228,33 @@ func (x *ListInvitesRequest) GetTeamId() string {
 	return ""
 }
 
+func (x *ListInvitesRequest) GetStatus() string {
+	if x != nil && x.Status != nil {
+		return *x.Status
+	}
+	return ""
+}
+
+func (x *ListInvitesRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListInvitesRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type InviteList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Invites       []*TeamInvite          `protobuf:"bytes,1,rep,name=invites,proto3" json:"invites,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1100,12 +1296,35 @@ func (x *InviteList) GetInvites() []*TeamInvite {
 	return nil
 }
 
+func (x *InviteList) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *InviteList) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *InviteList) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type CreateEmailInviteRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	TeamId         string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Email          string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	TeamRole       string                 `protobuf:"bytes,3,opt,name=team_role,json=teamRole,proto3" json:"team_role,omitempty"`
+	IdempotencyKey string                 `protobuf:"bytes,4,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *CreateEmailInviteRequest) Reset() {
@@ -1152,11 +1371,1330 @@ func (x *CreateEmailInviteRequest) GetEmail() string {
 	return ""
 }
 
+func (x *CreateEmailInviteRequest) GetTeamRole() string {
+	if x != nil {
+		return x.TeamRole
+	}
+	return ""
+}
+
+func (x *CreateEmailInviteRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+type InviteActionRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	InviteId       string                 `protobuf:"bytes,1,opt,name=invite_id,json=inviteId,proto3" json:"invite_id,omitempty"`
+	IdempotencyKey string                 `protobuf:"bytes,2,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *InviteActionRequest) Reset() {
+	*x = InviteActionRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InviteActionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InviteActionRequest) ProtoMessage() {}
+
+func (x *InviteActionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InviteActionRequest.ProtoReflect.Descriptor instead.
+func (*InviteActionRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *InviteActionRequest) GetInviteId() string {
+	if x != nil {
+		return x.InviteId
+	}
+	return ""
+}
+
+func (x *InviteActionRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+type ListMyInvitesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListMyInvitesRequest) Reset() {
+	*x = ListMyInvitesRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListMyInvitesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMyInvitesRequest) ProtoMessage() {}
+
+func (x *ListMyInvitesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMyInvitesRequest.ProtoReflect.Descriptor instead.
+func (*ListMyInvitesRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ListMyInvitesRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *ListMyInvitesRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListMyInvitesRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type GetClubRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ClubId        string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetClubRequest) Reset() {
+	*x = GetClubRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetClubRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetClubRequest) ProtoMessage() {}
+
+func (x *GetClubRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetClubRequest.ProtoReflect.Descriptor instead.
+func (*GetClubRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *GetClubRequest) GetClubId() string {
+	if x != nil {
+		return x.ClubId
+	}
+	return ""
+}
+
+type ClubStaff struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        *string                `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	Role          string                 `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
+	ContactEmail  *string                `protobuf:"bytes,5,opt,name=contact_email,json=contactEmail,proto3,oneof" json:"contact_email,omitempty"`
+	ContactPhone  *string                `protobuf:"bytes,6,opt,name=contact_phone,json=contactPhone,proto3,oneof" json:"contact_phone,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClubStaff) Reset() {
+	*x = ClubStaff{}
+	mi := &file_team_v1_team_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClubStaff) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClubStaff) ProtoMessage() {}
+
+func (x *ClubStaff) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClubStaff.ProtoReflect.Descriptor instead.
+func (*ClubStaff) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *ClubStaff) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ClubStaff) GetUserId() string {
+	if x != nil && x.UserId != nil {
+		return *x.UserId
+	}
+	return ""
+}
+
+func (x *ClubStaff) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *ClubStaff) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *ClubStaff) GetContactEmail() string {
+	if x != nil && x.ContactEmail != nil {
+		return *x.ContactEmail
+	}
+	return ""
+}
+
+func (x *ClubStaff) GetContactPhone() string {
+	if x != nil && x.ContactPhone != nil {
+		return *x.ContactPhone
+	}
+	return ""
+}
+
+type ClubSquad struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Level         string                 `protobuf:"bytes,3,opt,name=level,proto3" json:"level,omitempty"`
+	Season        *string                `protobuf:"bytes,4,opt,name=season,proto3,oneof" json:"season,omitempty"`
+	LinkedTeamId  *string                `protobuf:"bytes,5,opt,name=linked_team_id,json=linkedTeamId,proto3,oneof" json:"linked_team_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClubSquad) Reset() {
+	*x = ClubSquad{}
+	mi := &file_team_v1_team_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClubSquad) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClubSquad) ProtoMessage() {}
+
+func (x *ClubSquad) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClubSquad.ProtoReflect.Descriptor instead.
+func (*ClubSquad) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *ClubSquad) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ClubSquad) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ClubSquad) GetLevel() string {
+	if x != nil {
+		return x.Level
+	}
+	return ""
+}
+
+func (x *ClubSquad) GetSeason() string {
+	if x != nil && x.Season != nil {
+		return *x.Season
+	}
+	return ""
+}
+
+func (x *ClubSquad) GetLinkedTeamId() string {
+	if x != nil && x.LinkedTeamId != nil {
+		return *x.LinkedTeamId
+	}
+	return ""
+}
+
+type Club struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
+	Description   *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	ContactEmail  *string                `protobuf:"bytes,5,opt,name=contact_email,json=contactEmail,proto3,oneof" json:"contact_email,omitempty"`
+	ContactPhone  *string                `protobuf:"bytes,6,opt,name=contact_phone,json=contactPhone,proto3,oneof" json:"contact_phone,omitempty"`
+	HomeArenaId   *string                `protobuf:"bytes,7,opt,name=home_arena_id,json=homeArenaId,proto3,oneof" json:"home_arena_id,omitempty"`
+	LeagueIds     []string               `protobuf:"bytes,8,rep,name=league_ids,json=leagueIds,proto3" json:"league_ids,omitempty"`
+	TeamIds       []string               `protobuf:"bytes,9,rep,name=team_ids,json=teamIds,proto3" json:"team_ids,omitempty"`
+	Squads        []*ClubSquad           `protobuf:"bytes,10,rep,name=squads,proto3" json:"squads,omitempty"`
+	Staff         []*ClubStaff           `protobuf:"bytes,11,rep,name=staff,proto3" json:"staff,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Club) Reset() {
+	*x = Club{}
+	mi := &file_team_v1_team_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Club) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Club) ProtoMessage() {}
+
+func (x *Club) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Club.ProtoReflect.Descriptor instead.
+func (*Club) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *Club) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Club) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Club) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *Club) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *Club) GetContactEmail() string {
+	if x != nil && x.ContactEmail != nil {
+		return *x.ContactEmail
+	}
+	return ""
+}
+
+func (x *Club) GetContactPhone() string {
+	if x != nil && x.ContactPhone != nil {
+		return *x.ContactPhone
+	}
+	return ""
+}
+
+func (x *Club) GetHomeArenaId() string {
+	if x != nil && x.HomeArenaId != nil {
+		return *x.HomeArenaId
+	}
+	return ""
+}
+
+func (x *Club) GetLeagueIds() []string {
+	if x != nil {
+		return x.LeagueIds
+	}
+	return nil
+}
+
+func (x *Club) GetTeamIds() []string {
+	if x != nil {
+		return x.TeamIds
+	}
+	return nil
+}
+
+func (x *Club) GetSquads() []*ClubSquad {
+	if x != nil {
+		return x.Squads
+	}
+	return nil
+}
+
+func (x *Club) GetStaff() []*ClubStaff {
+	if x != nil {
+		return x.Staff
+	}
+	return nil
+}
+
+type ClubStaffList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*ClubStaff           `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClubStaffList) Reset() {
+	*x = ClubStaffList{}
+	mi := &file_team_v1_team_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClubStaffList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClubStaffList) ProtoMessage() {}
+
+func (x *ClubStaffList) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClubStaffList.ProtoReflect.Descriptor instead.
+func (*ClubStaffList) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ClubStaffList) GetItems() []*ClubStaff {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type UpdateClubRequest struct {
+	state        protoimpl.MessageState `protogen:"open.v1"`
+	ClubId       string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	Name         *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Description  *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	ContactEmail *string                `protobuf:"bytes,4,opt,name=contact_email,json=contactEmail,proto3,oneof" json:"contact_email,omitempty"`
+	ContactPhone *string                `protobuf:"bytes,5,opt,name=contact_phone,json=contactPhone,proto3,oneof" json:"contact_phone,omitempty"`
+	// Absent: unchanged; present with empty items: remove all contact staff.
+	Staff         *ClubStaffList `protobuf:"bytes,6,opt,name=staff,proto3" json:"staff,omitempty"`
+	ClearFields   []string       `protobuf:"bytes,7,rep,name=clear_fields,json=clearFields,proto3" json:"clear_fields,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateClubRequest) Reset() {
+	*x = UpdateClubRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateClubRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateClubRequest) ProtoMessage() {}
+
+func (x *UpdateClubRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateClubRequest.ProtoReflect.Descriptor instead.
+func (*UpdateClubRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *UpdateClubRequest) GetClubId() string {
+	if x != nil {
+		return x.ClubId
+	}
+	return ""
+}
+
+func (x *UpdateClubRequest) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
+func (x *UpdateClubRequest) GetDescription() string {
+	if x != nil && x.Description != nil {
+		return *x.Description
+	}
+	return ""
+}
+
+func (x *UpdateClubRequest) GetContactEmail() string {
+	if x != nil && x.ContactEmail != nil {
+		return *x.ContactEmail
+	}
+	return ""
+}
+
+func (x *UpdateClubRequest) GetContactPhone() string {
+	if x != nil && x.ContactPhone != nil {
+		return *x.ContactPhone
+	}
+	return ""
+}
+
+func (x *UpdateClubRequest) GetStaff() *ClubStaffList {
+	if x != nil {
+		return x.Staff
+	}
+	return nil
+}
+
+func (x *UpdateClubRequest) GetClearFields() []string {
+	if x != nil {
+		return x.ClearFields
+	}
+	return nil
+}
+
+type ClubProfileResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Club          *Club                  `protobuf:"bytes,1,opt,name=club,proto3" json:"club,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClubProfileResponse) Reset() {
+	*x = ClubProfileResponse{}
+	mi := &file_team_v1_team_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClubProfileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClubProfileResponse) ProtoMessage() {}
+
+func (x *ClubProfileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClubProfileResponse.ProtoReflect.Descriptor instead.
+func (*ClubProfileResponse) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ClubProfileResponse) GetClub() *Club {
+	if x != nil {
+		return x.Club
+	}
+	return nil
+}
+
+type CreateStaffContactRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	TeamId         string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Name           string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Email          string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	Message        string                 `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
+	IdempotencyKey string                 `protobuf:"bytes,5,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *CreateStaffContactRequest) Reset() {
+	*x = CreateStaffContactRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateStaffContactRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateStaffContactRequest) ProtoMessage() {}
+
+func (x *CreateStaffContactRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateStaffContactRequest.ProtoReflect.Descriptor instead.
+func (*CreateStaffContactRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *CreateStaffContactRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *CreateStaffContactRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateStaffContactRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *CreateStaffContactRequest) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CreateStaffContactRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
+}
+
+type StaffContact struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Message       string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StaffContact) Reset() {
+	*x = StaffContact{}
+	mi := &file_team_v1_team_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StaffContact) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StaffContact) ProtoMessage() {}
+
+func (x *StaffContact) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StaffContact.ProtoReflect.Descriptor instead.
+func (*StaffContact) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *StaffContact) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *StaffContact) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *StaffContact) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *StaffContact) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *StaffContact) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *StaffContact) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+type ListStaffContactsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListStaffContactsRequest) Reset() {
+	*x = ListStaffContactsRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListStaffContactsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListStaffContactsRequest) ProtoMessage() {}
+
+func (x *ListStaffContactsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListStaffContactsRequest.ProtoReflect.Descriptor instead.
+func (*ListStaffContactsRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ListStaffContactsRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *ListStaffContactsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListStaffContactsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type StaffContactList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*StaffContact        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StaffContactList) Reset() {
+	*x = StaffContactList{}
+	mi := &file_team_v1_team_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StaffContactList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StaffContactList) ProtoMessage() {}
+
+func (x *StaffContactList) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StaffContactList.ProtoReflect.Descriptor instead.
+func (*StaffContactList) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *StaffContactList) GetItems() []*StaffContact {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *StaffContactList) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *StaffContactList) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *StaffContactList) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type CheckTeamAccessRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Action        string                 `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckTeamAccessRequest) Reset() {
+	*x = CheckTeamAccessRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckTeamAccessRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckTeamAccessRequest) ProtoMessage() {}
+
+func (x *CheckTeamAccessRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckTeamAccessRequest.ProtoReflect.Descriptor instead.
+func (*CheckTeamAccessRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *CheckTeamAccessRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *CheckTeamAccessRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *CheckTeamAccessRequest) GetAction() string {
+	if x != nil {
+		return x.Action
+	}
+	return ""
+}
+
+type CheckClubAccessRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ClubId        string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Action        string                 `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckClubAccessRequest) Reset() {
+	*x = CheckClubAccessRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckClubAccessRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckClubAccessRequest) ProtoMessage() {}
+
+func (x *CheckClubAccessRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckClubAccessRequest.ProtoReflect.Descriptor instead.
+func (*CheckClubAccessRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *CheckClubAccessRequest) GetClubId() string {
+	if x != nil {
+		return x.ClubId
+	}
+	return ""
+}
+
+func (x *CheckClubAccessRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *CheckClubAccessRequest) GetAction() string {
+	if x != nil {
+		return x.Action
+	}
+	return ""
+}
+
+type AccessDecision struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Allowed       bool                   `protobuf:"varint,1,opt,name=allowed,proto3" json:"allowed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccessDecision) Reset() {
+	*x = AccessDecision{}
+	mi := &file_team_v1_team_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccessDecision) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccessDecision) ProtoMessage() {}
+
+func (x *AccessDecision) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccessDecision.ProtoReflect.Descriptor instead.
+func (*AccessDecision) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *AccessDecision) GetAllowed() bool {
+	if x != nil {
+		return x.Allowed
+	}
+	return false
+}
+
+type GetTeamMembersRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTeamMembersRequest) Reset() {
+	*x = GetTeamMembersRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTeamMembersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTeamMembersRequest) ProtoMessage() {}
+
+func (x *GetTeamMembersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTeamMembersRequest.ProtoReflect.Descriptor instead.
+func (*GetTeamMembersRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *GetTeamMembersRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *GetTeamMembersRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetTeamMembersRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type GetClubTeamsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ClubId        string                 `protobuf:"bytes,1,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetClubTeamsRequest) Reset() {
+	*x = GetClubTeamsRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetClubTeamsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetClubTeamsRequest) ProtoMessage() {}
+
+func (x *GetClubTeamsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetClubTeamsRequest.ProtoReflect.Descriptor instead.
+func (*GetClubTeamsRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetClubTeamsRequest) GetClubId() string {
+	if x != nil {
+		return x.ClubId
+	}
+	return ""
+}
+
+func (x *GetClubTeamsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetClubTeamsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ClubTeamsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamIds       []string               `protobuf:"bytes,1,rep,name=team_ids,json=teamIds,proto3" json:"team_ids,omitempty"`
+	Total         int64                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ClubTeamsResponse) Reset() {
+	*x = ClubTeamsResponse{}
+	mi := &file_team_v1_team_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ClubTeamsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClubTeamsResponse) ProtoMessage() {}
+
+func (x *ClubTeamsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClubTeamsResponse.ProtoReflect.Descriptor instead.
+func (*ClubTeamsResponse) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *ClubTeamsResponse) GetTeamIds() []string {
+	if x != nil {
+		return x.TeamIds
+	}
+	return nil
+}
+
+func (x *ClubTeamsResponse) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ClubTeamsResponse) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ClubTeamsResponse) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type AcceptInviteRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	InviteId      string                 `protobuf:"bytes,1,opt,name=invite_id,json=inviteId,proto3" json:"invite_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AcceptInviteRequest) Reset() {
+	*x = AcceptInviteRequest{}
+	mi := &file_team_v1_team_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AcceptInviteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AcceptInviteRequest) ProtoMessage() {}
+
+func (x *AcceptInviteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_team_v1_team_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AcceptInviteRequest.ProtoReflect.Descriptor instead.
+func (*AcceptInviteRequest) Descriptor() ([]byte, []int) {
+	return file_team_v1_team_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *AcceptInviteRequest) GetInviteId() string {
+	if x != nil {
+		return x.InviteId
+	}
+	return ""
+}
+
 var File_team_v1_team_proto protoreflect.FileDescriptor
 
 const file_team_v1_team_proto_rawDesc = "" +
 	"\n" +
-	"\x12team/v1/team.proto\x12\ateam.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xe2\x03\n" +
+	"\x12team/v1/team.proto\x12\ateam.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x81\x05\n" +
 	"\x04Team\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -1174,11 +2712,18 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x0e\n" +
+	"updated_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x120\n" +
+	"\x11short_description\x18\r \x01(\tH\x03R\x10shortDescription\x88\x01\x01\x12\x1e\n" +
+	"\blogo_url\x18\x0e \x01(\tH\x04R\alogoUrl\x88\x01\x01\x12\x1c\n" +
+	"\aclub_id\x18\x0f \x01(\tH\x05R\x06clubId\x88\x01\x01B\x0e\n" +
 	"\f_descriptionB\f\n" +
 	"\n" +
 	"_league_idB\x10\n" +
-	"\x0e_home_arena_id\"\xfa\x01\n" +
+	"\x0e_home_arena_idB\x14\n" +
+	"\x12_short_descriptionB\v\n" +
+	"\t_logo_urlB\n" +
+	"\n" +
+	"\b_club_id\"\xfa\x01\n" +
 	"\fRosterMember\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12!\n" +
@@ -1186,7 +2731,7 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\bposition\x18\x04 \x01(\tR\bposition\x12\x1b\n" +
 	"\tteam_role\x18\x05 \x01(\tR\bteamRole\x12#\n" +
 	"\rroster_status\x18\x06 \x01(\tR\frosterStatus\x127\n" +
-	"\tjoined_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\bjoinedAt\"\x8c\x03\n" +
+	"\tjoined_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\bjoinedAt\"\xe4\x03\n" +
 	"\n" +
 	"TeamInvite\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
@@ -1199,12 +2744,16 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12>\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampH\x03R\tupdatedAt\x88\x01\x01B\b\n" +
+	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampH\x03R\tupdatedAt\x88\x01\x01\x129\n" +
+	"\n" +
+	"expires_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12\x1b\n" +
+	"\tteam_role\x18\v \x01(\tR\bteamRoleB\b\n" +
 	"\x06_emailB\n" +
 	"\n" +
 	"\b_user_idB\x0f\n" +
 	"\r_display_nameB\r\n" +
-	"\v_updated_at\"\xbf\x02\n" +
+	"\v_updated_at\"\xc3\x04\n" +
 	"\x11CreateTeamRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04city\x18\x02 \x01(\tR\x04city\x12\x1f\n" +
@@ -1213,14 +2762,26 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\vdescription\x18\x04 \x01(\tH\x00R\vdescription\x88\x01\x01\x12+\n" +
 	"\x0fcaptain_user_id\x18\x05 \x01(\tH\x01R\rcaptainUserId\x88\x01\x01\x12 \n" +
 	"\tleague_id\x18\x06 \x01(\tH\x02R\bleagueId\x88\x01\x01\x12'\n" +
-	"\rhome_arena_id\x18\a \x01(\tH\x03R\vhomeArenaId\x88\x01\x01B\x0e\n" +
+	"\rhome_arena_id\x18\a \x01(\tH\x03R\vhomeArenaId\x88\x01\x01\x120\n" +
+	"\x11short_description\x18\b \x01(\tH\x04R\x10shortDescription\x88\x01\x01\x12\x1e\n" +
+	"\blogo_url\x18\t \x01(\tH\x05R\alogoUrl\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"player_ids\x18\n" +
+	" \x03(\tR\tplayerIds\x12\x1b\n" +
+	"\tcoach_ids\x18\v \x03(\tR\bcoachIds\x12\x1c\n" +
+	"\aclub_id\x18\f \x01(\tH\x06R\x06clubId\x88\x01\x01\x12'\n" +
+	"\x0fidempotency_key\x18\r \x01(\tR\x0eidempotencyKeyB\x0e\n" +
 	"\f_descriptionB\x12\n" +
 	"\x10_captain_user_idB\f\n" +
 	"\n" +
 	"_league_idB\x10\n" +
-	"\x0e_home_arena_id\")\n" +
+	"\x0e_home_arena_idB\x14\n" +
+	"\x12_short_descriptionB\v\n" +
+	"\t_logo_urlB\n" +
+	"\n" +
+	"\b_club_id\")\n" +
 	"\x0eGetTeamRequest\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\"\x89\x03\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\"\xcb\x04\n" +
 	"\x11UpdateTeamRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x17\n" +
@@ -1230,7 +2791,12 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\vdescription\x18\x05 \x01(\tH\x03R\vdescription\x88\x01\x01\x12+\n" +
 	"\x0fcaptain_user_id\x18\x06 \x01(\tH\x04R\rcaptainUserId\x88\x01\x01\x12 \n" +
 	"\tleague_id\x18\a \x01(\tH\x05R\bleagueId\x88\x01\x01\x12'\n" +
-	"\rhome_arena_id\x18\b \x01(\tH\x06R\vhomeArenaId\x88\x01\x01B\a\n" +
+	"\rhome_arena_id\x18\b \x01(\tH\x06R\vhomeArenaId\x88\x01\x01\x120\n" +
+	"\x11short_description\x18\t \x01(\tH\aR\x10shortDescription\x88\x01\x01\x12\x1e\n" +
+	"\blogo_url\x18\n" +
+	" \x01(\tH\bR\alogoUrl\x88\x01\x01\x12\x1c\n" +
+	"\aclub_id\x18\v \x01(\tH\tR\x06clubId\x88\x01\x01\x12!\n" +
+	"\fclear_fields\x18\f \x03(\tR\vclearFieldsB\a\n" +
 	"\x05_nameB\a\n" +
 	"\x05_cityB\x0e\n" +
 	"\f_skill_levelB\x0e\n" +
@@ -1238,7 +2804,11 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\x10_captain_user_idB\f\n" +
 	"\n" +
 	"_league_idB\x10\n" +
-	"\x0e_home_arena_id\"\x9c\x01\n" +
+	"\x0e_home_arena_idB\x14\n" +
+	"\x12_short_descriptionB\v\n" +
+	"\t_logo_urlB\n" +
+	"\n" +
+	"\b_club_id\"\xd6\x01\n" +
 	"\x10ListTeamsRequest\x12\f\n" +
 	"\x01q\x18\x01 \x01(\tR\x01q\x12\x12\n" +
 	"\x04city\x18\x02 \x01(\tR\x04city\x12\x1f\n" +
@@ -1246,7 +2816,9 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"skillLevel\x12\x17\n" +
 	"\auser_id\x18\x04 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x05 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x06 \x01(\x05R\x06offset\"|\n" +
+	"\x06offset\x18\x06 \x01(\x05R\x06offset\x12\x1b\n" +
+	"\tleague_id\x18\a \x01(\tR\bleagueId\x12\x1b\n" +
+	"\tplayer_id\x18\b \x01(\tR\bplayerId\"|\n" +
 	"\x11ListTeamsResponse\x12#\n" +
 	"\x05items\x18\x01 \x03(\v2\r.team.v1.TeamR\x05items\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
@@ -1254,13 +2826,17 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\x06offset\x18\x04 \x01(\x05R\x06offset\"T\n" +
 	"\x10GetRosterRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12'\n" +
-	"\x0finclude_removed\x18\x02 \x01(\bR\x0eincludeRemoved\"=\n" +
+	"\x0finclude_removed\x18\x02 \x01(\bR\x0eincludeRemoved\"\x81\x01\n" +
 	"\n" +
 	"RosterList\x12/\n" +
-	"\amembers\x18\x01 \x03(\v2\x15.team.v1.RosterMemberR\amembers\"D\n" +
+	"\amembers\x18\x01 \x03(\v2\x15.team.v1.RosterMemberR\amembers\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"a\n" +
 	"\x10AddMemberRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"r\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
+	"\tteam_role\x18\x03 \x01(\tR\bteamRole\"r\n" +
 	"\x19UpdateRosterStatusRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12#\n" +
@@ -1268,16 +2844,149 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\x15UpdateTeamRoleRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
-	"\tteam_role\x18\x03 \x01(\tR\bteamRole\"-\n" +
+	"\tteam_role\x18\x03 \x01(\tR\bteamRole\"\x83\x01\n" +
 	"\x12ListInvitesRequest\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\";\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
+	"\x06status\x18\x02 \x01(\tH\x00R\x06status\x88\x01\x01\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offsetB\t\n" +
+	"\a_status\"\x7f\n" +
 	"\n" +
 	"InviteList\x12-\n" +
-	"\ainvites\x18\x01 \x03(\v2\x13.team.v1.TeamInviteR\ainvites\"I\n" +
+	"\ainvites\x18\x01 \x03(\v2\x13.team.v1.TeamInviteR\ainvites\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"\x8f\x01\n" +
 	"\x18CreateEmailInviteRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email2\xfb\a\n" +
-	"\vTeamService\x12M\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1b\n" +
+	"\tteam_role\x18\x03 \x01(\tR\bteamRole\x12'\n" +
+	"\x0fidempotency_key\x18\x04 \x01(\tR\x0eidempotencyKey\"[\n" +
+	"\x13InviteActionRequest\x12\x1b\n" +
+	"\tinvite_id\x18\x01 \x01(\tR\binviteId\x12'\n" +
+	"\x0fidempotency_key\x18\x02 \x01(\tR\x0eidempotencyKey\"\\\n" +
+	"\x14ListMyInvitesRequest\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\")\n" +
+	"\x0eGetClubRequest\x12\x17\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\"\xf4\x01\n" +
+	"\tClubStaff\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1c\n" +
+	"\auser_id\x18\x02 \x01(\tH\x00R\x06userId\x88\x01\x01\x12!\n" +
+	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x12\n" +
+	"\x04role\x18\x04 \x01(\tR\x04role\x12(\n" +
+	"\rcontact_email\x18\x05 \x01(\tH\x01R\fcontactEmail\x88\x01\x01\x12(\n" +
+	"\rcontact_phone\x18\x06 \x01(\tH\x02R\fcontactPhone\x88\x01\x01B\n" +
+	"\n" +
+	"\b_user_idB\x10\n" +
+	"\x0e_contact_emailB\x10\n" +
+	"\x0e_contact_phone\"\xab\x01\n" +
+	"\tClubSquad\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05level\x18\x03 \x01(\tR\x05level\x12\x1b\n" +
+	"\x06season\x18\x04 \x01(\tH\x00R\x06season\x88\x01\x01\x12)\n" +
+	"\x0elinked_team_id\x18\x05 \x01(\tH\x01R\flinkedTeamId\x88\x01\x01B\t\n" +
+	"\a_seasonB\x11\n" +
+	"\x0f_linked_team_id\"\xb8\x03\n" +
+	"\x04Club\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04city\x18\x03 \x01(\tR\x04city\x12%\n" +
+	"\vdescription\x18\x04 \x01(\tH\x00R\vdescription\x88\x01\x01\x12(\n" +
+	"\rcontact_email\x18\x05 \x01(\tH\x01R\fcontactEmail\x88\x01\x01\x12(\n" +
+	"\rcontact_phone\x18\x06 \x01(\tH\x02R\fcontactPhone\x88\x01\x01\x12'\n" +
+	"\rhome_arena_id\x18\a \x01(\tH\x03R\vhomeArenaId\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"league_ids\x18\b \x03(\tR\tleagueIds\x12\x19\n" +
+	"\bteam_ids\x18\t \x03(\tR\ateamIds\x12*\n" +
+	"\x06squads\x18\n" +
+	" \x03(\v2\x12.team.v1.ClubSquadR\x06squads\x12(\n" +
+	"\x05staff\x18\v \x03(\v2\x12.team.v1.ClubStaffR\x05staffB\x0e\n" +
+	"\f_descriptionB\x10\n" +
+	"\x0e_contact_emailB\x10\n" +
+	"\x0e_contact_phoneB\x10\n" +
+	"\x0e_home_arena_id\"9\n" +
+	"\rClubStaffList\x12(\n" +
+	"\x05items\x18\x01 \x03(\v2\x12.team.v1.ClubStaffR\x05items\"\xce\x02\n" +
+	"\x11UpdateClubRequest\x12\x17\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12(\n" +
+	"\rcontact_email\x18\x04 \x01(\tH\x02R\fcontactEmail\x88\x01\x01\x12(\n" +
+	"\rcontact_phone\x18\x05 \x01(\tH\x03R\fcontactPhone\x88\x01\x01\x12,\n" +
+	"\x05staff\x18\x06 \x01(\v2\x16.team.v1.ClubStaffListR\x05staff\x12!\n" +
+	"\fclear_fields\x18\a \x03(\tR\vclearFieldsB\a\n" +
+	"\x05_nameB\x0e\n" +
+	"\f_descriptionB\x10\n" +
+	"\x0e_contact_emailB\x10\n" +
+	"\x0e_contact_phone\"8\n" +
+	"\x13ClubProfileResponse\x12!\n" +
+	"\x04club\x18\x01 \x01(\v2\r.team.v1.ClubR\x04club\"\xa1\x01\n" +
+	"\x19CreateStaffContactRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\x12\x18\n" +
+	"\amessage\x18\x04 \x01(\tR\amessage\x12'\n" +
+	"\x0fidempotency_key\x18\x05 \x01(\tR\x0eidempotencyKey\"\xb6\x01\n" +
+	"\fStaffContact\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\x12\x18\n" +
+	"\amessage\x18\x05 \x01(\tR\amessage\x129\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"a\n" +
+	"\x18ListStaffContactsRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"\x83\x01\n" +
+	"\x10StaffContactList\x12+\n" +
+	"\x05items\x18\x01 \x03(\v2\x15.team.v1.StaffContactR\x05items\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"b\n" +
+	"\x16CheckTeamAccessRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x16\n" +
+	"\x06action\x18\x03 \x01(\tR\x06action\"b\n" +
+	"\x16CheckClubAccessRequest\x12\x17\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x16\n" +
+	"\x06action\x18\x03 \x01(\tR\x06action\"*\n" +
+	"\x0eAccessDecision\x12\x18\n" +
+	"\aallowed\x18\x01 \x01(\bR\aallowed\"^\n" +
+	"\x15GetTeamMembersRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"\\\n" +
+	"\x13GetClubTeamsRequest\x12\x17\n" +
+	"\aclub_id\x18\x01 \x01(\tR\x06clubId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"r\n" +
+	"\x11ClubTeamsResponse\x12\x19\n" +
+	"\bteam_ids\x18\x01 \x03(\tR\ateamIds\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"2\n" +
+	"\x13AcceptInviteRequest\x12\x1b\n" +
+	"\tinvite_id\x18\x01 \x01(\tR\binviteId2\xf0\x12\n" +
+	"\vTeamService\x12]\n" +
+	"\rListMyInvites\x12\x1d.team.v1.ListMyInvitesRequest\x1a\x13.team.v1.InviteList\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/team-invites\x12s\n" +
+	"\rDeclineInvite\x12\x1c.team.v1.InviteActionRequest\x1a\x13.team.v1.TeamInvite\"/\x82\xd3\xe4\x93\x02):\x01*\"$/v1/team-invites/{invite_id}/decline\x12q\n" +
+	"\fRevokeInvite\x12\x1c.team.v1.InviteActionRequest\x1a\x13.team.v1.TeamInvite\".\x82\xd3\xe4\x93\x02(:\x01*\"#/v1/team-invites/{invite_id}/revoke\x12q\n" +
+	"\fResendInvite\x12\x1c.team.v1.InviteActionRequest\x1a\x13.team.v1.TeamInvite\".\x82\xd3\xe4\x93\x02(:\x01*\"#/v1/team-invites/{invite_id}/resend\x12N\n" +
+	"\aGetClub\x12\x17.team.v1.GetClubRequest\x1a\r.team.v1.Club\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/clubs/{club_id}\x12W\n" +
+	"\n" +
+	"UpdateClub\x12\x1a.team.v1.UpdateClubRequest\x1a\r.team.v1.Club\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*2\x13/v1/clubs/{club_id}\x12u\n" +
+	"\x12GetTeamClubProfile\x12\x17.team.v1.GetTeamRequest\x1a\x1c.team.v1.ClubProfileResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v1/teams/{team_id}/club-profile\x12}\n" +
+	"\x12CreateStaffContact\x12\".team.v1.CreateStaffContactRequest\x1a\x15.team.v1.StaffContact\",\x82\xd3\xe4\x93\x02&:\x01*\"!/v1/teams/{team_id}/staff-contact\x12|\n" +
+	"\x11ListStaffContacts\x12!.team.v1.ListStaffContactsRequest\x1a\x19.team.v1.StaffContactList\")\x82\xd3\xe4\x93\x02#\x12!/v1/teams/{team_id}/staff-contact\x12K\n" +
+	"\x0fCheckTeamAccess\x12\x1f.team.v1.CheckTeamAccessRequest\x1a\x17.team.v1.AccessDecision\x12K\n" +
+	"\x0fCheckClubAccess\x12\x1f.team.v1.CheckClubAccessRequest\x1a\x17.team.v1.AccessDecision\x12E\n" +
+	"\x0eGetTeamMembers\x12\x1e.team.v1.GetTeamMembersRequest\x1a\x13.team.v1.RosterList\x12H\n" +
+	"\fGetClubTeams\x12\x1c.team.v1.GetClubTeamsRequest\x1a\x1a.team.v1.ClubTeamsResponse\x12M\n" +
 	"\n" +
 	"CreateTeam\x12\x1a.team.v1.CreateTeamRequest\x1a\r.team.v1.Team\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/teams\x12N\n" +
 	"\aGetTeam\x12\x17.team.v1.GetTeamRequest\x1a\r.team.v1.Team\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/teams/{team_id}\x12W\n" +
@@ -1289,7 +2998,8 @@ const file_team_v1_team_proto_rawDesc = "" +
 	"\x12UpdateRosterStatus\x12\".team.v1.UpdateRosterStatusRequest\x1a\x15.team.v1.RosterMember\"/\x82\xd3\xe4\x93\x02):\x01*2$/v1/teams/{team_id}/roster/{user_id}\x12w\n" +
 	"\x0eUpdateTeamRole\x12\x1e.team.v1.UpdateTeamRoleRequest\x1a\x15.team.v1.RosterMember\".\x82\xd3\xe4\x93\x02(:\x01*2#/v1/teams/{team_id}/roles/{user_id}\x12d\n" +
 	"\vListInvites\x12\x1b.team.v1.ListInvitesRequest\x1a\x13.team.v1.InviteList\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/teams/{team_id}/invites\x12s\n" +
-	"\x11CreateEmailInvite\x12!.team.v1.CreateEmailInviteRequest\x1a\x13.team.v1.TeamInvite\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1/teams/{team_id}/invitesB\xa3\x01\x92AY\x12W\n" +
+	"\x11CreateEmailInvite\x12!.team.v1.CreateEmailInviteRequest\x1a\x13.team.v1.TeamInvite\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1/teams/{team_id}/invites\x12q\n" +
+	"\fAcceptInvite\x12\x1c.team.v1.AcceptInviteRequest\x1a\x13.team.v1.TeamInvite\".\x82\xd3\xe4\x93\x02(:\x01*\"#/v1/team-invites/{invite_id}/acceptB\xa3\x01\x92AY\x12W\n" +
 	"\x15HockeyNights Team API\x127Команды, состав и приглашения.2\x051.0.0ZEgithub.com/HockeyNights/hockey-shared-contracts/team/gen/go/v1;teamv1b\x06proto3"
 
 var (
@@ -1304,7 +3014,7 @@ func file_team_v1_team_proto_rawDescGZIP() []byte {
 	return file_team_v1_team_proto_rawDescData
 }
 
-var file_team_v1_team_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_team_v1_team_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_team_v1_team_proto_goTypes = []any{
 	(*Team)(nil),                      // 0: team.v1.Team
 	(*RosterMember)(nil),              // 1: team.v1.RosterMember
@@ -1322,42 +3032,98 @@ var file_team_v1_team_proto_goTypes = []any{
 	(*ListInvitesRequest)(nil),        // 13: team.v1.ListInvitesRequest
 	(*InviteList)(nil),                // 14: team.v1.InviteList
 	(*CreateEmailInviteRequest)(nil),  // 15: team.v1.CreateEmailInviteRequest
-	(*timestamppb.Timestamp)(nil),     // 16: google.protobuf.Timestamp
+	(*InviteActionRequest)(nil),       // 16: team.v1.InviteActionRequest
+	(*ListMyInvitesRequest)(nil),      // 17: team.v1.ListMyInvitesRequest
+	(*GetClubRequest)(nil),            // 18: team.v1.GetClubRequest
+	(*ClubStaff)(nil),                 // 19: team.v1.ClubStaff
+	(*ClubSquad)(nil),                 // 20: team.v1.ClubSquad
+	(*Club)(nil),                      // 21: team.v1.Club
+	(*ClubStaffList)(nil),             // 22: team.v1.ClubStaffList
+	(*UpdateClubRequest)(nil),         // 23: team.v1.UpdateClubRequest
+	(*ClubProfileResponse)(nil),       // 24: team.v1.ClubProfileResponse
+	(*CreateStaffContactRequest)(nil), // 25: team.v1.CreateStaffContactRequest
+	(*StaffContact)(nil),              // 26: team.v1.StaffContact
+	(*ListStaffContactsRequest)(nil),  // 27: team.v1.ListStaffContactsRequest
+	(*StaffContactList)(nil),          // 28: team.v1.StaffContactList
+	(*CheckTeamAccessRequest)(nil),    // 29: team.v1.CheckTeamAccessRequest
+	(*CheckClubAccessRequest)(nil),    // 30: team.v1.CheckClubAccessRequest
+	(*AccessDecision)(nil),            // 31: team.v1.AccessDecision
+	(*GetTeamMembersRequest)(nil),     // 32: team.v1.GetTeamMembersRequest
+	(*GetClubTeamsRequest)(nil),       // 33: team.v1.GetClubTeamsRequest
+	(*ClubTeamsResponse)(nil),         // 34: team.v1.ClubTeamsResponse
+	(*AcceptInviteRequest)(nil),       // 35: team.v1.AcceptInviteRequest
+	(*timestamppb.Timestamp)(nil),     // 36: google.protobuf.Timestamp
 }
 var file_team_v1_team_proto_depIdxs = []int32{
-	16, // 0: team.v1.Team.created_at:type_name -> google.protobuf.Timestamp
-	16, // 1: team.v1.Team.updated_at:type_name -> google.protobuf.Timestamp
-	16, // 2: team.v1.RosterMember.joined_at:type_name -> google.protobuf.Timestamp
-	16, // 3: team.v1.TeamInvite.created_at:type_name -> google.protobuf.Timestamp
-	16, // 4: team.v1.TeamInvite.updated_at:type_name -> google.protobuf.Timestamp
-	0,  // 5: team.v1.ListTeamsResponse.items:type_name -> team.v1.Team
-	1,  // 6: team.v1.RosterList.members:type_name -> team.v1.RosterMember
-	2,  // 7: team.v1.InviteList.invites:type_name -> team.v1.TeamInvite
-	3,  // 8: team.v1.TeamService.CreateTeam:input_type -> team.v1.CreateTeamRequest
-	4,  // 9: team.v1.TeamService.GetTeam:input_type -> team.v1.GetTeamRequest
-	5,  // 10: team.v1.TeamService.UpdateTeam:input_type -> team.v1.UpdateTeamRequest
-	6,  // 11: team.v1.TeamService.ListTeams:input_type -> team.v1.ListTeamsRequest
-	8,  // 12: team.v1.TeamService.GetRoster:input_type -> team.v1.GetRosterRequest
-	10, // 13: team.v1.TeamService.AddMember:input_type -> team.v1.AddMemberRequest
-	11, // 14: team.v1.TeamService.UpdateRosterStatus:input_type -> team.v1.UpdateRosterStatusRequest
-	12, // 15: team.v1.TeamService.UpdateTeamRole:input_type -> team.v1.UpdateTeamRoleRequest
-	13, // 16: team.v1.TeamService.ListInvites:input_type -> team.v1.ListInvitesRequest
-	15, // 17: team.v1.TeamService.CreateEmailInvite:input_type -> team.v1.CreateEmailInviteRequest
-	0,  // 18: team.v1.TeamService.CreateTeam:output_type -> team.v1.Team
-	0,  // 19: team.v1.TeamService.GetTeam:output_type -> team.v1.Team
-	0,  // 20: team.v1.TeamService.UpdateTeam:output_type -> team.v1.Team
-	7,  // 21: team.v1.TeamService.ListTeams:output_type -> team.v1.ListTeamsResponse
-	9,  // 22: team.v1.TeamService.GetRoster:output_type -> team.v1.RosterList
-	1,  // 23: team.v1.TeamService.AddMember:output_type -> team.v1.RosterMember
-	1,  // 24: team.v1.TeamService.UpdateRosterStatus:output_type -> team.v1.RosterMember
-	1,  // 25: team.v1.TeamService.UpdateTeamRole:output_type -> team.v1.RosterMember
-	14, // 26: team.v1.TeamService.ListInvites:output_type -> team.v1.InviteList
-	2,  // 27: team.v1.TeamService.CreateEmailInvite:output_type -> team.v1.TeamInvite
-	18, // [18:28] is the sub-list for method output_type
-	8,  // [8:18] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	36, // 0: team.v1.Team.created_at:type_name -> google.protobuf.Timestamp
+	36, // 1: team.v1.Team.updated_at:type_name -> google.protobuf.Timestamp
+	36, // 2: team.v1.RosterMember.joined_at:type_name -> google.protobuf.Timestamp
+	36, // 3: team.v1.TeamInvite.created_at:type_name -> google.protobuf.Timestamp
+	36, // 4: team.v1.TeamInvite.updated_at:type_name -> google.protobuf.Timestamp
+	36, // 5: team.v1.TeamInvite.expires_at:type_name -> google.protobuf.Timestamp
+	0,  // 6: team.v1.ListTeamsResponse.items:type_name -> team.v1.Team
+	1,  // 7: team.v1.RosterList.members:type_name -> team.v1.RosterMember
+	2,  // 8: team.v1.InviteList.invites:type_name -> team.v1.TeamInvite
+	20, // 9: team.v1.Club.squads:type_name -> team.v1.ClubSquad
+	19, // 10: team.v1.Club.staff:type_name -> team.v1.ClubStaff
+	19, // 11: team.v1.ClubStaffList.items:type_name -> team.v1.ClubStaff
+	22, // 12: team.v1.UpdateClubRequest.staff:type_name -> team.v1.ClubStaffList
+	21, // 13: team.v1.ClubProfileResponse.club:type_name -> team.v1.Club
+	36, // 14: team.v1.StaffContact.created_at:type_name -> google.protobuf.Timestamp
+	26, // 15: team.v1.StaffContactList.items:type_name -> team.v1.StaffContact
+	17, // 16: team.v1.TeamService.ListMyInvites:input_type -> team.v1.ListMyInvitesRequest
+	16, // 17: team.v1.TeamService.DeclineInvite:input_type -> team.v1.InviteActionRequest
+	16, // 18: team.v1.TeamService.RevokeInvite:input_type -> team.v1.InviteActionRequest
+	16, // 19: team.v1.TeamService.ResendInvite:input_type -> team.v1.InviteActionRequest
+	18, // 20: team.v1.TeamService.GetClub:input_type -> team.v1.GetClubRequest
+	23, // 21: team.v1.TeamService.UpdateClub:input_type -> team.v1.UpdateClubRequest
+	4,  // 22: team.v1.TeamService.GetTeamClubProfile:input_type -> team.v1.GetTeamRequest
+	25, // 23: team.v1.TeamService.CreateStaffContact:input_type -> team.v1.CreateStaffContactRequest
+	27, // 24: team.v1.TeamService.ListStaffContacts:input_type -> team.v1.ListStaffContactsRequest
+	29, // 25: team.v1.TeamService.CheckTeamAccess:input_type -> team.v1.CheckTeamAccessRequest
+	30, // 26: team.v1.TeamService.CheckClubAccess:input_type -> team.v1.CheckClubAccessRequest
+	32, // 27: team.v1.TeamService.GetTeamMembers:input_type -> team.v1.GetTeamMembersRequest
+	33, // 28: team.v1.TeamService.GetClubTeams:input_type -> team.v1.GetClubTeamsRequest
+	3,  // 29: team.v1.TeamService.CreateTeam:input_type -> team.v1.CreateTeamRequest
+	4,  // 30: team.v1.TeamService.GetTeam:input_type -> team.v1.GetTeamRequest
+	5,  // 31: team.v1.TeamService.UpdateTeam:input_type -> team.v1.UpdateTeamRequest
+	6,  // 32: team.v1.TeamService.ListTeams:input_type -> team.v1.ListTeamsRequest
+	8,  // 33: team.v1.TeamService.GetRoster:input_type -> team.v1.GetRosterRequest
+	10, // 34: team.v1.TeamService.AddMember:input_type -> team.v1.AddMemberRequest
+	11, // 35: team.v1.TeamService.UpdateRosterStatus:input_type -> team.v1.UpdateRosterStatusRequest
+	12, // 36: team.v1.TeamService.UpdateTeamRole:input_type -> team.v1.UpdateTeamRoleRequest
+	13, // 37: team.v1.TeamService.ListInvites:input_type -> team.v1.ListInvitesRequest
+	15, // 38: team.v1.TeamService.CreateEmailInvite:input_type -> team.v1.CreateEmailInviteRequest
+	35, // 39: team.v1.TeamService.AcceptInvite:input_type -> team.v1.AcceptInviteRequest
+	14, // 40: team.v1.TeamService.ListMyInvites:output_type -> team.v1.InviteList
+	2,  // 41: team.v1.TeamService.DeclineInvite:output_type -> team.v1.TeamInvite
+	2,  // 42: team.v1.TeamService.RevokeInvite:output_type -> team.v1.TeamInvite
+	2,  // 43: team.v1.TeamService.ResendInvite:output_type -> team.v1.TeamInvite
+	21, // 44: team.v1.TeamService.GetClub:output_type -> team.v1.Club
+	21, // 45: team.v1.TeamService.UpdateClub:output_type -> team.v1.Club
+	24, // 46: team.v1.TeamService.GetTeamClubProfile:output_type -> team.v1.ClubProfileResponse
+	26, // 47: team.v1.TeamService.CreateStaffContact:output_type -> team.v1.StaffContact
+	28, // 48: team.v1.TeamService.ListStaffContacts:output_type -> team.v1.StaffContactList
+	31, // 49: team.v1.TeamService.CheckTeamAccess:output_type -> team.v1.AccessDecision
+	31, // 50: team.v1.TeamService.CheckClubAccess:output_type -> team.v1.AccessDecision
+	9,  // 51: team.v1.TeamService.GetTeamMembers:output_type -> team.v1.RosterList
+	34, // 52: team.v1.TeamService.GetClubTeams:output_type -> team.v1.ClubTeamsResponse
+	0,  // 53: team.v1.TeamService.CreateTeam:output_type -> team.v1.Team
+	0,  // 54: team.v1.TeamService.GetTeam:output_type -> team.v1.Team
+	0,  // 55: team.v1.TeamService.UpdateTeam:output_type -> team.v1.Team
+	7,  // 56: team.v1.TeamService.ListTeams:output_type -> team.v1.ListTeamsResponse
+	9,  // 57: team.v1.TeamService.GetRoster:output_type -> team.v1.RosterList
+	1,  // 58: team.v1.TeamService.AddMember:output_type -> team.v1.RosterMember
+	1,  // 59: team.v1.TeamService.UpdateRosterStatus:output_type -> team.v1.RosterMember
+	1,  // 60: team.v1.TeamService.UpdateTeamRole:output_type -> team.v1.RosterMember
+	14, // 61: team.v1.TeamService.ListInvites:output_type -> team.v1.InviteList
+	2,  // 62: team.v1.TeamService.CreateEmailInvite:output_type -> team.v1.TeamInvite
+	2,  // 63: team.v1.TeamService.AcceptInvite:output_type -> team.v1.TeamInvite
+	40, // [40:64] is the sub-list for method output_type
+	16, // [16:40] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_team_v1_team_proto_init() }
@@ -1369,13 +3135,18 @@ func file_team_v1_team_proto_init() {
 	file_team_v1_team_proto_msgTypes[2].OneofWrappers = []any{}
 	file_team_v1_team_proto_msgTypes[3].OneofWrappers = []any{}
 	file_team_v1_team_proto_msgTypes[5].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[13].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[19].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[20].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[21].OneofWrappers = []any{}
+	file_team_v1_team_proto_msgTypes[23].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_team_v1_team_proto_rawDesc), len(file_team_v1_team_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
