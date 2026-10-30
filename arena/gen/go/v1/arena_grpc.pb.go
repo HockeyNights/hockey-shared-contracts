@@ -31,8 +31,14 @@ const (
 	ArenaService_UpdateIceListing_FullMethodName          = "/arena.v1.ArenaService/UpdateIceListing"
 	ArenaService_CreateIceSlot_FullMethodName             = "/arena.v1.ArenaService/CreateIceSlot"
 	ArenaService_UpdateIceSlot_FullMethodName             = "/arena.v1.ArenaService/UpdateIceSlot"
+	ArenaService_CreateIceBookingRequest_FullMethodName   = "/arena.v1.ArenaService/CreateIceBookingRequest"
+	ArenaService_ListArenaBookingRequests_FullMethodName  = "/arena.v1.ArenaService/ListArenaBookingRequests"
+	ArenaService_UpdateIceBookingRequest_FullMethodName   = "/arena.v1.ArenaService/UpdateIceBookingRequest"
+	ArenaService_ListMyIceAgreements_FullMethodName       = "/arena.v1.ArenaService/ListMyIceAgreements"
 	ArenaService_ArenaExists_FullMethodName               = "/arena.v1.ArenaService/ArenaExists"
 	ArenaService_SetArenaPartnerMembership_FullMethodName = "/arena.v1.ArenaService/SetArenaPartnerMembership"
+	ArenaService_GetIceAgreement_FullMethodName           = "/arena.v1.ArenaService/GetIceAgreement"
+	ArenaService_UseIceAgreement_FullMethodName           = "/arena.v1.ArenaService/UseIceAgreement"
 )
 
 // ArenaServiceClient is the client API for ArenaService service.
@@ -52,9 +58,15 @@ type ArenaServiceClient interface {
 	UpdateIceListing(ctx context.Context, in *UpdateIceListingRequest, opts ...grpc.CallOption) (*IceListing, error)
 	CreateIceSlot(ctx context.Context, in *CreateIceSlotRequest, opts ...grpc.CallOption) (*IceSlot, error)
 	UpdateIceSlot(ctx context.Context, in *UpdateIceSlotRequest, opts ...grpc.CallOption) (*IceSlot, error)
+	CreateIceBookingRequest(ctx context.Context, in *CreateIceBookingRequestRequest, opts ...grpc.CallOption) (*IceBookingRequest, error)
+	ListArenaBookingRequests(ctx context.Context, in *ListArenaBookingRequestsRequest, opts ...grpc.CallOption) (*IceBookingRequestList, error)
+	UpdateIceBookingRequest(ctx context.Context, in *UpdateIceBookingRequestRequest, opts ...grpc.CallOption) (*IceBookingRequest, error)
+	ListMyIceAgreements(ctx context.Context, in *ListMyIceAgreementsRequest, opts ...grpc.CallOption) (*IceAgreementList, error)
 	// Service-to-service methods. They intentionally have no HTTP annotations.
 	ArenaExists(ctx context.Context, in *ArenaExistsRequest, opts ...grpc.CallOption) (*ArenaExistsResponse, error)
 	SetArenaPartnerMembership(ctx context.Context, in *SetArenaPartnerMembershipRequest, opts ...grpc.CallOption) (*ArenaPartnerMembership, error)
+	GetIceAgreement(ctx context.Context, in *GetIceAgreementRequest, opts ...grpc.CallOption) (*IceAgreement, error)
+	UseIceAgreement(ctx context.Context, in *UseIceAgreementRequest, opts ...grpc.CallOption) (*IceAgreement, error)
 }
 
 type arenaServiceClient struct {
@@ -185,6 +197,46 @@ func (c *arenaServiceClient) UpdateIceSlot(ctx context.Context, in *UpdateIceSlo
 	return out, nil
 }
 
+func (c *arenaServiceClient) CreateIceBookingRequest(ctx context.Context, in *CreateIceBookingRequestRequest, opts ...grpc.CallOption) (*IceBookingRequest, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IceBookingRequest)
+	err := c.cc.Invoke(ctx, ArenaService_CreateIceBookingRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *arenaServiceClient) ListArenaBookingRequests(ctx context.Context, in *ListArenaBookingRequestsRequest, opts ...grpc.CallOption) (*IceBookingRequestList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IceBookingRequestList)
+	err := c.cc.Invoke(ctx, ArenaService_ListArenaBookingRequests_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *arenaServiceClient) UpdateIceBookingRequest(ctx context.Context, in *UpdateIceBookingRequestRequest, opts ...grpc.CallOption) (*IceBookingRequest, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IceBookingRequest)
+	err := c.cc.Invoke(ctx, ArenaService_UpdateIceBookingRequest_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *arenaServiceClient) ListMyIceAgreements(ctx context.Context, in *ListMyIceAgreementsRequest, opts ...grpc.CallOption) (*IceAgreementList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IceAgreementList)
+	err := c.cc.Invoke(ctx, ArenaService_ListMyIceAgreements_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *arenaServiceClient) ArenaExists(ctx context.Context, in *ArenaExistsRequest, opts ...grpc.CallOption) (*ArenaExistsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ArenaExistsResponse)
@@ -199,6 +251,26 @@ func (c *arenaServiceClient) SetArenaPartnerMembership(ctx context.Context, in *
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ArenaPartnerMembership)
 	err := c.cc.Invoke(ctx, ArenaService_SetArenaPartnerMembership_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *arenaServiceClient) GetIceAgreement(ctx context.Context, in *GetIceAgreementRequest, opts ...grpc.CallOption) (*IceAgreement, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IceAgreement)
+	err := c.cc.Invoke(ctx, ArenaService_GetIceAgreement_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *arenaServiceClient) UseIceAgreement(ctx context.Context, in *UseIceAgreementRequest, opts ...grpc.CallOption) (*IceAgreement, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IceAgreement)
+	err := c.cc.Invoke(ctx, ArenaService_UseIceAgreement_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -222,9 +294,15 @@ type ArenaServiceServer interface {
 	UpdateIceListing(context.Context, *UpdateIceListingRequest) (*IceListing, error)
 	CreateIceSlot(context.Context, *CreateIceSlotRequest) (*IceSlot, error)
 	UpdateIceSlot(context.Context, *UpdateIceSlotRequest) (*IceSlot, error)
+	CreateIceBookingRequest(context.Context, *CreateIceBookingRequestRequest) (*IceBookingRequest, error)
+	ListArenaBookingRequests(context.Context, *ListArenaBookingRequestsRequest) (*IceBookingRequestList, error)
+	UpdateIceBookingRequest(context.Context, *UpdateIceBookingRequestRequest) (*IceBookingRequest, error)
+	ListMyIceAgreements(context.Context, *ListMyIceAgreementsRequest) (*IceAgreementList, error)
 	// Service-to-service methods. They intentionally have no HTTP annotations.
 	ArenaExists(context.Context, *ArenaExistsRequest) (*ArenaExistsResponse, error)
 	SetArenaPartnerMembership(context.Context, *SetArenaPartnerMembershipRequest) (*ArenaPartnerMembership, error)
+	GetIceAgreement(context.Context, *GetIceAgreementRequest) (*IceAgreement, error)
+	UseIceAgreement(context.Context, *UseIceAgreementRequest) (*IceAgreement, error)
 	mustEmbedUnimplementedArenaServiceServer()
 }
 
@@ -271,11 +349,29 @@ func (UnimplementedArenaServiceServer) CreateIceSlot(context.Context, *CreateIce
 func (UnimplementedArenaServiceServer) UpdateIceSlot(context.Context, *UpdateIceSlotRequest) (*IceSlot, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateIceSlot not implemented")
 }
+func (UnimplementedArenaServiceServer) CreateIceBookingRequest(context.Context, *CreateIceBookingRequestRequest) (*IceBookingRequest, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateIceBookingRequest not implemented")
+}
+func (UnimplementedArenaServiceServer) ListArenaBookingRequests(context.Context, *ListArenaBookingRequestsRequest) (*IceBookingRequestList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListArenaBookingRequests not implemented")
+}
+func (UnimplementedArenaServiceServer) UpdateIceBookingRequest(context.Context, *UpdateIceBookingRequestRequest) (*IceBookingRequest, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateIceBookingRequest not implemented")
+}
+func (UnimplementedArenaServiceServer) ListMyIceAgreements(context.Context, *ListMyIceAgreementsRequest) (*IceAgreementList, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListMyIceAgreements not implemented")
+}
 func (UnimplementedArenaServiceServer) ArenaExists(context.Context, *ArenaExistsRequest) (*ArenaExistsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ArenaExists not implemented")
 }
 func (UnimplementedArenaServiceServer) SetArenaPartnerMembership(context.Context, *SetArenaPartnerMembershipRequest) (*ArenaPartnerMembership, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetArenaPartnerMembership not implemented")
+}
+func (UnimplementedArenaServiceServer) GetIceAgreement(context.Context, *GetIceAgreementRequest) (*IceAgreement, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetIceAgreement not implemented")
+}
+func (UnimplementedArenaServiceServer) UseIceAgreement(context.Context, *UseIceAgreementRequest) (*IceAgreement, error) {
+	return nil, status.Error(codes.Unimplemented, "method UseIceAgreement not implemented")
 }
 func (UnimplementedArenaServiceServer) mustEmbedUnimplementedArenaServiceServer() {}
 func (UnimplementedArenaServiceServer) testEmbeddedByValue()                      {}
@@ -514,6 +610,78 @@ func _ArenaService_UpdateIceSlot_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArenaService_CreateIceBookingRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateIceBookingRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).CreateIceBookingRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_CreateIceBookingRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).CreateIceBookingRequest(ctx, req.(*CreateIceBookingRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArenaService_ListArenaBookingRequests_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListArenaBookingRequestsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).ListArenaBookingRequests(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_ListArenaBookingRequests_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).ListArenaBookingRequests(ctx, req.(*ListArenaBookingRequestsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArenaService_UpdateIceBookingRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateIceBookingRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).UpdateIceBookingRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_UpdateIceBookingRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).UpdateIceBookingRequest(ctx, req.(*UpdateIceBookingRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArenaService_ListMyIceAgreements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMyIceAgreementsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).ListMyIceAgreements(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_ListMyIceAgreements_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).ListMyIceAgreements(ctx, req.(*ListMyIceAgreementsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArenaService_ArenaExists_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ArenaExistsRequest)
 	if err := dec(in); err != nil {
@@ -546,6 +714,42 @@ func _ArenaService_SetArenaPartnerMembership_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArenaServiceServer).SetArenaPartnerMembership(ctx, req.(*SetArenaPartnerMembershipRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArenaService_GetIceAgreement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetIceAgreementRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).GetIceAgreement(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_GetIceAgreement_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).GetIceAgreement(ctx, req.(*GetIceAgreementRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArenaService_UseIceAgreement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UseIceAgreementRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArenaServiceServer).UseIceAgreement(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArenaService_UseIceAgreement_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArenaServiceServer).UseIceAgreement(ctx, req.(*UseIceAgreementRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -606,12 +810,36 @@ var ArenaService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArenaService_UpdateIceSlot_Handler,
 		},
 		{
+			MethodName: "CreateIceBookingRequest",
+			Handler:    _ArenaService_CreateIceBookingRequest_Handler,
+		},
+		{
+			MethodName: "ListArenaBookingRequests",
+			Handler:    _ArenaService_ListArenaBookingRequests_Handler,
+		},
+		{
+			MethodName: "UpdateIceBookingRequest",
+			Handler:    _ArenaService_UpdateIceBookingRequest_Handler,
+		},
+		{
+			MethodName: "ListMyIceAgreements",
+			Handler:    _ArenaService_ListMyIceAgreements_Handler,
+		},
+		{
 			MethodName: "ArenaExists",
 			Handler:    _ArenaService_ArenaExists_Handler,
 		},
 		{
 			MethodName: "SetArenaPartnerMembership",
 			Handler:    _ArenaService_SetArenaPartnerMembership_Handler,
+		},
+		{
+			MethodName: "GetIceAgreement",
+			Handler:    _ArenaService_GetIceAgreement_Handler,
+		},
+		{
+			MethodName: "UseIceAgreement",
+			Handler:    _ArenaService_UseIceAgreement_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

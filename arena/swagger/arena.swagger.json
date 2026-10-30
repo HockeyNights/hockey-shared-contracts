@@ -149,6 +149,36 @@
         ]
       }
     },
+    "/v1/arenas/{arenaId}/ice-booking-requests": {
+      "get": {
+        "operationId": "ArenaService_ListArenaBookingRequests",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceBookingRequestList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "arenaId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
     "/v1/arenas/{arenaId}/listings": {
       "get": {
         "operationId": "ArenaService_ListArenaListings",
@@ -280,6 +310,76 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/ice-booking-requests": {
+      "post": {
+        "operationId": "ArenaService_CreateIceBookingRequest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceBookingRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateIceBookingRequestRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ArenaService"
+        ]
+      }
+    },
+    "/v1/ice-booking-requests/{bookingId}": {
+      "patch": {
+        "operationId": "ArenaService_UpdateIceBookingRequest",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceBookingRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ArenaServiceUpdateIceBookingRequestBody"
+            }
           }
         ],
         "tags": [
@@ -455,6 +555,28 @@
           "ArenaService"
         ]
       }
+    },
+    "/v1/me/ice-agreements": {
+      "get": {
+        "operationId": "ArenaService_ListMyIceAgreements",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IceAgreementList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ArenaService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -498,6 +620,23 @@
         },
         "visible": {
           "type": "boolean"
+        }
+      }
+    },
+    "ArenaServiceUpdateIceBookingRequestBody": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "chatId": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "declineReason": {
+          "type": "string"
         }
       }
     },
@@ -688,6 +827,35 @@
         }
       }
     },
+    "v1CreateIceBookingRequestRequest": {
+      "type": "object",
+      "properties": {
+        "arenaId": {
+          "type": "string"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "organizerUserId": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "headcount": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreateIceListingRequest": {
       "type": "object",
       "properties": {
@@ -745,6 +913,195 @@
           "type": "string"
         },
         "resourceId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1IceAgreement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "bookingId": {
+          "type": "string"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "arenaName": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "slotLabel": {
+          "type": "string"
+        },
+        "priceRub": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bookingStatus": {
+          "type": "string"
+        },
+        "poolStatus": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "linkedEventId": {
+          "type": "string"
+        },
+        "arenaPhone": {
+          "type": "string"
+        },
+        "requesterPhone": {
+          "type": "string"
+        },
+        "headcount": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "confirmationCode": {
+          "type": "string"
+        },
+        "chatId": {
+          "type": "string"
+        },
+        "arenaContactUserId": {
+          "type": "string"
+        },
+        "organizerUserId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1IceAgreementList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1IceAgreement"
+          }
+        }
+      }
+    },
+    "v1IceBookingRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "arenaId": {
+          "type": "string"
+        },
+        "arenaName": {
+          "type": "string"
+        },
+        "slotId": {
+          "type": "string"
+        },
+        "slotLabel": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "externalUrl": {
+          "type": "string"
+        },
+        "confirmationCode": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "requester": {
+          "$ref": "#/definitions/v1IceBookingRequester"
+        },
+        "headcount": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "priceRub": {
+          "type": "string",
+          "format": "int64"
+        },
+        "paymentDueAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "chatId": {
+          "type": "string"
+        },
+        "declineReason": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endsAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1IceBookingRequestList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1IceBookingRequest"
+          }
+        }
+      }
+    },
+    "v1IceBookingRequester": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "teamName": {
+          "type": "string"
+        },
+        "chatType": {
           "type": "string"
         }
       }

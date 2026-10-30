@@ -186,6 +186,8 @@ type Event struct {
 	ClubId               *string                `protobuf:"bytes,22,opt,name=club_id,json=clubId,proto3,oneof" json:"club_id,omitempty"`
 	CreatedAt            *timestamppb.Timestamp `protobuf:"bytes,23,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt            *timestamppb.Timestamp `protobuf:"bytes,24,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	IceBookingId         *string                `protobuf:"bytes,25,opt,name=ice_booking_id,json=iceBookingId,proto3,oneof" json:"ice_booking_id,omitempty"`
+	IceAgreementId       *string                `protobuf:"bytes,26,opt,name=ice_agreement_id,json=iceAgreementId,proto3,oneof" json:"ice_agreement_id,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -388,6 +390,20 @@ func (x *Event) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Event) GetIceBookingId() string {
+	if x != nil && x.IceBookingId != nil {
+		return *x.IceBookingId
+	}
+	return ""
+}
+
+func (x *Event) GetIceAgreementId() string {
+	if x != nil && x.IceAgreementId != nil {
+		return *x.IceAgreementId
+	}
+	return ""
+}
+
 type EventList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Items         []*Event               `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
@@ -559,6 +575,7 @@ type CreateEventRequest struct {
 	ArenaName            *string                `protobuf:"bytes,15,opt,name=arena_name,json=arenaName,proto3,oneof" json:"arena_name,omitempty"`
 	OrganizerDisplayName *string                `protobuf:"bytes,16,opt,name=organizer_display_name,json=organizerDisplayName,proto3,oneof" json:"organizer_display_name,omitempty"`
 	OrganizerPhone       *string                `protobuf:"bytes,17,opt,name=organizer_phone,json=organizerPhone,proto3,oneof" json:"organizer_phone,omitempty"`
+	IceAgreementId       *string                `protobuf:"bytes,18,opt,name=ice_agreement_id,json=iceAgreementId,proto3,oneof" json:"ice_agreement_id,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -708,6 +725,13 @@ func (x *CreateEventRequest) GetOrganizerDisplayName() string {
 func (x *CreateEventRequest) GetOrganizerPhone() string {
 	if x != nil && x.OrganizerPhone != nil {
 		return *x.OrganizerPhone
+	}
+	return ""
+}
+
+func (x *CreateEventRequest) GetIceAgreementId() string {
+	if x != nil && x.IceAgreementId != nil {
+		return *x.IceAgreementId
 	}
 	return ""
 }
@@ -3185,7 +3209,8 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\x06status\x18\x04 \x01(\tR\x06status\x129\n" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x0f\n" +
-	"\r_display_name\"\xc7\t\n" +
+	"\r_display_name\"\xc9\n" +
+	"\n" +
 	"\x05Event\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x14\n" +
@@ -3214,7 +3239,10 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x17 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x18 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\r\n" +
+	"updated_at\x18\x18 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12)\n" +
+	"\x0eice_booking_id\x18\x19 \x01(\tH\n" +
+	"R\ficeBookingId\x88\x01\x01\x12-\n" +
+	"\x10ice_agreement_id\x18\x1a \x01(\tH\vR\x0eiceAgreementId\x88\x01\x01B\r\n" +
 	"\v_arena_nameB\n" +
 	"\n" +
 	"\b_team_idB\x13\n" +
@@ -3226,7 +3254,9 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\x17_organizer_display_nameB\x12\n" +
 	"\x10_organizer_phoneB\n" +
 	"\n" +
-	"\b_club_id\"y\n" +
+	"\b_club_idB\x11\n" +
+	"\x0f_ice_booking_idB\x13\n" +
+	"\x11_ice_agreement_id\"y\n" +
 	"\tEventList\x12(\n" +
 	"\x05items\x18\x01 \x03(\v2\x12.training.v1.EventR\x05items\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x03R\x05total\x12\x14\n" +
@@ -3244,7 +3274,7 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\b_team_idB\n" +
 	"\n" +
 	"\b_club_idB\x0f\n" +
-	"\r_access_scope\"\xf1\x06\n" +
+	"\r_access_scope\"\xb5\a\n" +
 	"\x12CreateEventRequest\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x127\n" +
@@ -3264,7 +3294,8 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\n" +
 	"arena_name\x18\x0f \x01(\tH\x06R\tarenaName\x88\x01\x01\x129\n" +
 	"\x16organizer_display_name\x18\x10 \x01(\tH\aR\x14organizerDisplayName\x88\x01\x01\x12,\n" +
-	"\x0forganizer_phone\x18\x11 \x01(\tH\bR\x0eorganizerPhone\x88\x01\x01B\n" +
+	"\x0forganizer_phone\x18\x11 \x01(\tH\bR\x0eorganizerPhone\x88\x01\x01\x12-\n" +
+	"\x10ice_agreement_id\x18\x12 \x01(\tH\tR\x0eiceAgreementId\x88\x01\x01B\n" +
 	"\n" +
 	"\b_team_idB\x13\n" +
 	"\x11_price_per_playerB\x0f\n" +
@@ -3275,7 +3306,8 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\t_districtB\r\n" +
 	"\v_arena_nameB\x19\n" +
 	"\x17_organizer_display_nameB\x12\n" +
-	"\x10_organizer_phone\",\n" +
+	"\x10_organizer_phoneB\x13\n" +
+	"\x11_ice_agreement_id\",\n" +
 	"\x0fGetEventRequest\x12\x19\n" +
 	"\bevent_id\x18\x01 \x01(\tR\aeventId\"\xe8\b\n" +
 	"\x12UpdateEventRequest\x12\x19\n" +

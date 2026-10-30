@@ -1753,6 +1753,946 @@ func (x *ArenaPartnerMembership) GetUserId() string {
 	return ""
 }
 
+type IceBookingRequester struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Kind          string                 `protobuf:"bytes,1,opt,name=kind,proto3" json:"kind,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	Phone         *string                `protobuf:"bytes,4,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
+	TeamId        *string                `protobuf:"bytes,5,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	TeamName      *string                `protobuf:"bytes,6,opt,name=team_name,json=teamName,proto3,oneof" json:"team_name,omitempty"`
+	ChatType      string                 `protobuf:"bytes,7,opt,name=chat_type,json=chatType,proto3" json:"chat_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IceBookingRequester) Reset() {
+	*x = IceBookingRequester{}
+	mi := &file_arena_v1_arena_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IceBookingRequester) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IceBookingRequester) ProtoMessage() {}
+
+func (x *IceBookingRequester) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IceBookingRequester.ProtoReflect.Descriptor instead.
+func (*IceBookingRequester) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *IceBookingRequester) GetKind() string {
+	if x != nil {
+		return x.Kind
+	}
+	return ""
+}
+
+func (x *IceBookingRequester) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *IceBookingRequester) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *IceBookingRequester) GetPhone() string {
+	if x != nil && x.Phone != nil {
+		return *x.Phone
+	}
+	return ""
+}
+
+func (x *IceBookingRequester) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
+	}
+	return ""
+}
+
+func (x *IceBookingRequester) GetTeamName() string {
+	if x != nil && x.TeamName != nil {
+		return *x.TeamName
+	}
+	return ""
+}
+
+func (x *IceBookingRequester) GetChatType() string {
+	if x != nil {
+		return x.ChatType
+	}
+	return ""
+}
+
+type IceBookingRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ArenaId          string                 `protobuf:"bytes,2,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	ArenaName        string                 `protobuf:"bytes,3,opt,name=arena_name,json=arenaName,proto3" json:"arena_name,omitempty"`
+	SlotId           *string                `protobuf:"bytes,4,opt,name=slot_id,json=slotId,proto3,oneof" json:"slot_id,omitempty"`
+	SlotLabel        *string                `protobuf:"bytes,5,opt,name=slot_label,json=slotLabel,proto3,oneof" json:"slot_label,omitempty"`
+	Status           string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	ExternalUrl      string                 `protobuf:"bytes,7,opt,name=external_url,json=externalUrl,proto3" json:"external_url,omitempty"`
+	ConfirmationCode string                 `protobuf:"bytes,8,opt,name=confirmation_code,json=confirmationCode,proto3" json:"confirmation_code,omitempty"`
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Requester        *IceBookingRequester   `protobuf:"bytes,11,opt,name=requester,proto3" json:"requester,omitempty"`
+	Headcount        *string                `protobuf:"bytes,12,opt,name=headcount,proto3,oneof" json:"headcount,omitempty"`
+	Purpose          *string                `protobuf:"bytes,13,opt,name=purpose,proto3,oneof" json:"purpose,omitempty"`
+	Comment          *string                `protobuf:"bytes,14,opt,name=comment,proto3,oneof" json:"comment,omitempty"`
+	PriceRub         *int64                 `protobuf:"varint,15,opt,name=price_rub,json=priceRub,proto3,oneof" json:"price_rub,omitempty"`
+	PaymentDueAt     *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=payment_due_at,json=paymentDueAt,proto3,oneof" json:"payment_due_at,omitempty"`
+	ChatId           *string                `protobuf:"bytes,17,opt,name=chat_id,json=chatId,proto3,oneof" json:"chat_id,omitempty"`
+	DeclineReason    *string                `protobuf:"bytes,18,opt,name=decline_reason,json=declineReason,proto3,oneof" json:"decline_reason,omitempty"`
+	StartsAt         *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=starts_at,json=startsAt,proto3,oneof" json:"starts_at,omitempty"`
+	EndsAt           *timestamppb.Timestamp `protobuf:"bytes,20,opt,name=ends_at,json=endsAt,proto3,oneof" json:"ends_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *IceBookingRequest) Reset() {
+	*x = IceBookingRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IceBookingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IceBookingRequest) ProtoMessage() {}
+
+func (x *IceBookingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IceBookingRequest.ProtoReflect.Descriptor instead.
+func (*IceBookingRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *IceBookingRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetArenaName() string {
+	if x != nil {
+		return x.ArenaName
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetSlotId() string {
+	if x != nil && x.SlotId != nil {
+		return *x.SlotId
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetSlotLabel() string {
+	if x != nil && x.SlotLabel != nil {
+		return *x.SlotLabel
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetExternalUrl() string {
+	if x != nil {
+		return x.ExternalUrl
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetConfirmationCode() string {
+	if x != nil {
+		return x.ConfirmationCode
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *IceBookingRequest) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *IceBookingRequest) GetRequester() *IceBookingRequester {
+	if x != nil {
+		return x.Requester
+	}
+	return nil
+}
+
+func (x *IceBookingRequest) GetHeadcount() string {
+	if x != nil && x.Headcount != nil {
+		return *x.Headcount
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetPurpose() string {
+	if x != nil && x.Purpose != nil {
+		return *x.Purpose
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetComment() string {
+	if x != nil && x.Comment != nil {
+		return *x.Comment
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetPriceRub() int64 {
+	if x != nil && x.PriceRub != nil {
+		return *x.PriceRub
+	}
+	return 0
+}
+
+func (x *IceBookingRequest) GetPaymentDueAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.PaymentDueAt
+	}
+	return nil
+}
+
+func (x *IceBookingRequest) GetChatId() string {
+	if x != nil && x.ChatId != nil {
+		return *x.ChatId
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetDeclineReason() string {
+	if x != nil && x.DeclineReason != nil {
+		return *x.DeclineReason
+	}
+	return ""
+}
+
+func (x *IceBookingRequest) GetStartsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartsAt
+	}
+	return nil
+}
+
+func (x *IceBookingRequest) GetEndsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndsAt
+	}
+	return nil
+}
+
+type IceBookingRequestList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*IceBookingRequest   `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IceBookingRequestList) Reset() {
+	*x = IceBookingRequestList{}
+	mi := &file_arena_v1_arena_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IceBookingRequestList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IceBookingRequestList) ProtoMessage() {}
+
+func (x *IceBookingRequestList) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IceBookingRequestList.ProtoReflect.Descriptor instead.
+func (*IceBookingRequestList) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *IceBookingRequestList) GetItems() []*IceBookingRequest {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type CreateIceBookingRequestRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ArenaId         string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	SlotId          *string                `protobuf:"bytes,2,opt,name=slot_id,json=slotId,proto3,oneof" json:"slot_id,omitempty"`
+	ContactPhone    *string                `protobuf:"bytes,3,opt,name=contact_phone,json=contactPhone,proto3,oneof" json:"contact_phone,omitempty"`
+	Comment         *string                `protobuf:"bytes,4,opt,name=comment,proto3,oneof" json:"comment,omitempty"`
+	OrganizerUserId *string                `protobuf:"bytes,5,opt,name=organizer_user_id,json=organizerUserId,proto3,oneof" json:"organizer_user_id,omitempty"`
+	TeamId          *string                `protobuf:"bytes,6,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	Headcount       *string                `protobuf:"bytes,7,opt,name=headcount,proto3,oneof" json:"headcount,omitempty"`
+	Purpose         *string                `protobuf:"bytes,8,opt,name=purpose,proto3,oneof" json:"purpose,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *CreateIceBookingRequestRequest) Reset() {
+	*x = CreateIceBookingRequestRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateIceBookingRequestRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateIceBookingRequestRequest) ProtoMessage() {}
+
+func (x *CreateIceBookingRequestRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateIceBookingRequestRequest.ProtoReflect.Descriptor instead.
+func (*CreateIceBookingRequestRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *CreateIceBookingRequestRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *CreateIceBookingRequestRequest) GetSlotId() string {
+	if x != nil && x.SlotId != nil {
+		return *x.SlotId
+	}
+	return ""
+}
+
+func (x *CreateIceBookingRequestRequest) GetContactPhone() string {
+	if x != nil && x.ContactPhone != nil {
+		return *x.ContactPhone
+	}
+	return ""
+}
+
+func (x *CreateIceBookingRequestRequest) GetComment() string {
+	if x != nil && x.Comment != nil {
+		return *x.Comment
+	}
+	return ""
+}
+
+func (x *CreateIceBookingRequestRequest) GetOrganizerUserId() string {
+	if x != nil && x.OrganizerUserId != nil {
+		return *x.OrganizerUserId
+	}
+	return ""
+}
+
+func (x *CreateIceBookingRequestRequest) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
+	}
+	return ""
+}
+
+func (x *CreateIceBookingRequestRequest) GetHeadcount() string {
+	if x != nil && x.Headcount != nil {
+		return *x.Headcount
+	}
+	return ""
+}
+
+func (x *CreateIceBookingRequestRequest) GetPurpose() string {
+	if x != nil && x.Purpose != nil {
+		return *x.Purpose
+	}
+	return ""
+}
+
+type ListArenaBookingRequestsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArenaId       string                 `protobuf:"bytes,1,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListArenaBookingRequestsRequest) Reset() {
+	*x = ListArenaBookingRequestsRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListArenaBookingRequestsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListArenaBookingRequestsRequest) ProtoMessage() {}
+
+func (x *ListArenaBookingRequestsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListArenaBookingRequestsRequest.ProtoReflect.Descriptor instead.
+func (*ListArenaBookingRequestsRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ListArenaBookingRequestsRequest) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+type UpdateIceBookingRequestRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	BookingId     string                 `protobuf:"bytes,1,opt,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty"`
+	Status        *string                `protobuf:"bytes,2,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	ChatId        *string                `protobuf:"bytes,3,opt,name=chat_id,json=chatId,proto3,oneof" json:"chat_id,omitempty"`
+	Comment       *string                `protobuf:"bytes,4,opt,name=comment,proto3,oneof" json:"comment,omitempty"`
+	DeclineReason *string                `protobuf:"bytes,5,opt,name=decline_reason,json=declineReason,proto3,oneof" json:"decline_reason,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateIceBookingRequestRequest) Reset() {
+	*x = UpdateIceBookingRequestRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateIceBookingRequestRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateIceBookingRequestRequest) ProtoMessage() {}
+
+func (x *UpdateIceBookingRequestRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateIceBookingRequestRequest.ProtoReflect.Descriptor instead.
+func (*UpdateIceBookingRequestRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *UpdateIceBookingRequestRequest) GetBookingId() string {
+	if x != nil {
+		return x.BookingId
+	}
+	return ""
+}
+
+func (x *UpdateIceBookingRequestRequest) GetStatus() string {
+	if x != nil && x.Status != nil {
+		return *x.Status
+	}
+	return ""
+}
+
+func (x *UpdateIceBookingRequestRequest) GetChatId() string {
+	if x != nil && x.ChatId != nil {
+		return *x.ChatId
+	}
+	return ""
+}
+
+func (x *UpdateIceBookingRequestRequest) GetComment() string {
+	if x != nil && x.Comment != nil {
+		return *x.Comment
+	}
+	return ""
+}
+
+func (x *UpdateIceBookingRequestRequest) GetDeclineReason() string {
+	if x != nil && x.DeclineReason != nil {
+		return *x.DeclineReason
+	}
+	return ""
+}
+
+type IceAgreement struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	BookingId          string                 `protobuf:"bytes,2,opt,name=booking_id,json=bookingId,proto3" json:"booking_id,omitempty"`
+	ArenaId            string                 `protobuf:"bytes,3,opt,name=arena_id,json=arenaId,proto3" json:"arena_id,omitempty"`
+	ArenaName          string                 `protobuf:"bytes,4,opt,name=arena_name,json=arenaName,proto3" json:"arena_name,omitempty"`
+	StartsAt           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=starts_at,json=startsAt,proto3" json:"starts_at,omitempty"`
+	EndsAt             *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=ends_at,json=endsAt,proto3" json:"ends_at,omitempty"`
+	SlotLabel          *string                `protobuf:"bytes,7,opt,name=slot_label,json=slotLabel,proto3,oneof" json:"slot_label,omitempty"`
+	PriceRub           *int64                 `protobuf:"varint,8,opt,name=price_rub,json=priceRub,proto3,oneof" json:"price_rub,omitempty"`
+	BookingStatus      string                 `protobuf:"bytes,9,opt,name=booking_status,json=bookingStatus,proto3" json:"booking_status,omitempty"`
+	PoolStatus         string                 `protobuf:"bytes,10,opt,name=pool_status,json=poolStatus,proto3" json:"pool_status,omitempty"`
+	Purpose            *string                `protobuf:"bytes,11,opt,name=purpose,proto3,oneof" json:"purpose,omitempty"`
+	LinkedEventId      *string                `protobuf:"bytes,12,opt,name=linked_event_id,json=linkedEventId,proto3,oneof" json:"linked_event_id,omitempty"`
+	ArenaPhone         *string                `protobuf:"bytes,13,opt,name=arena_phone,json=arenaPhone,proto3,oneof" json:"arena_phone,omitempty"`
+	RequesterPhone     *string                `protobuf:"bytes,14,opt,name=requester_phone,json=requesterPhone,proto3,oneof" json:"requester_phone,omitempty"`
+	Headcount          *string                `protobuf:"bytes,15,opt,name=headcount,proto3,oneof" json:"headcount,omitempty"`
+	Comment            *string                `protobuf:"bytes,16,opt,name=comment,proto3,oneof" json:"comment,omitempty"`
+	ConfirmationCode   *string                `protobuf:"bytes,17,opt,name=confirmation_code,json=confirmationCode,proto3,oneof" json:"confirmation_code,omitempty"`
+	ChatId             *string                `protobuf:"bytes,18,opt,name=chat_id,json=chatId,proto3,oneof" json:"chat_id,omitempty"`
+	ArenaContactUserId *string                `protobuf:"bytes,19,opt,name=arena_contact_user_id,json=arenaContactUserId,proto3,oneof" json:"arena_contact_user_id,omitempty"`
+	OrganizerUserId    string                 `protobuf:"bytes,20,opt,name=organizer_user_id,json=organizerUserId,proto3" json:"organizer_user_id,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *IceAgreement) Reset() {
+	*x = IceAgreement{}
+	mi := &file_arena_v1_arena_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IceAgreement) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IceAgreement) ProtoMessage() {}
+
+func (x *IceAgreement) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IceAgreement.ProtoReflect.Descriptor instead.
+func (*IceAgreement) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *IceAgreement) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetBookingId() string {
+	if x != nil {
+		return x.BookingId
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetArenaId() string {
+	if x != nil {
+		return x.ArenaId
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetArenaName() string {
+	if x != nil {
+		return x.ArenaName
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetStartsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartsAt
+	}
+	return nil
+}
+
+func (x *IceAgreement) GetEndsAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndsAt
+	}
+	return nil
+}
+
+func (x *IceAgreement) GetSlotLabel() string {
+	if x != nil && x.SlotLabel != nil {
+		return *x.SlotLabel
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetPriceRub() int64 {
+	if x != nil && x.PriceRub != nil {
+		return *x.PriceRub
+	}
+	return 0
+}
+
+func (x *IceAgreement) GetBookingStatus() string {
+	if x != nil {
+		return x.BookingStatus
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetPoolStatus() string {
+	if x != nil {
+		return x.PoolStatus
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetPurpose() string {
+	if x != nil && x.Purpose != nil {
+		return *x.Purpose
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetLinkedEventId() string {
+	if x != nil && x.LinkedEventId != nil {
+		return *x.LinkedEventId
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetArenaPhone() string {
+	if x != nil && x.ArenaPhone != nil {
+		return *x.ArenaPhone
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetRequesterPhone() string {
+	if x != nil && x.RequesterPhone != nil {
+		return *x.RequesterPhone
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetHeadcount() string {
+	if x != nil && x.Headcount != nil {
+		return *x.Headcount
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetComment() string {
+	if x != nil && x.Comment != nil {
+		return *x.Comment
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetConfirmationCode() string {
+	if x != nil && x.ConfirmationCode != nil {
+		return *x.ConfirmationCode
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetChatId() string {
+	if x != nil && x.ChatId != nil {
+		return *x.ChatId
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetArenaContactUserId() string {
+	if x != nil && x.ArenaContactUserId != nil {
+		return *x.ArenaContactUserId
+	}
+	return ""
+}
+
+func (x *IceAgreement) GetOrganizerUserId() string {
+	if x != nil {
+		return x.OrganizerUserId
+	}
+	return ""
+}
+
+type IceAgreementList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*IceAgreement        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IceAgreementList) Reset() {
+	*x = IceAgreementList{}
+	mi := &file_arena_v1_arena_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IceAgreementList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IceAgreementList) ProtoMessage() {}
+
+func (x *IceAgreementList) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IceAgreementList.ProtoReflect.Descriptor instead.
+func (*IceAgreementList) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *IceAgreementList) GetItems() []*IceAgreement {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type ListMyIceAgreementsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListMyIceAgreementsRequest) Reset() {
+	*x = ListMyIceAgreementsRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListMyIceAgreementsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListMyIceAgreementsRequest) ProtoMessage() {}
+
+func (x *ListMyIceAgreementsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListMyIceAgreementsRequest.ProtoReflect.Descriptor instead.
+func (*ListMyIceAgreementsRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{32}
+}
+
+type GetIceAgreementRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	AgreementId     string                 `protobuf:"bytes,1,opt,name=agreement_id,json=agreementId,proto3" json:"agreement_id,omitempty"`
+	OrganizerUserId string                 `protobuf:"bytes,2,opt,name=organizer_user_id,json=organizerUserId,proto3" json:"organizer_user_id,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetIceAgreementRequest) Reset() {
+	*x = GetIceAgreementRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetIceAgreementRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetIceAgreementRequest) ProtoMessage() {}
+
+func (x *GetIceAgreementRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetIceAgreementRequest.ProtoReflect.Descriptor instead.
+func (*GetIceAgreementRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetIceAgreementRequest) GetAgreementId() string {
+	if x != nil {
+		return x.AgreementId
+	}
+	return ""
+}
+
+func (x *GetIceAgreementRequest) GetOrganizerUserId() string {
+	if x != nil {
+		return x.OrganizerUserId
+	}
+	return ""
+}
+
+type UseIceAgreementRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	AgreementId     string                 `protobuf:"bytes,1,opt,name=agreement_id,json=agreementId,proto3" json:"agreement_id,omitempty"`
+	OrganizerUserId string                 `protobuf:"bytes,2,opt,name=organizer_user_id,json=organizerUserId,proto3" json:"organizer_user_id,omitempty"`
+	EventId         string                 `protobuf:"bytes,3,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *UseIceAgreementRequest) Reset() {
+	*x = UseIceAgreementRequest{}
+	mi := &file_arena_v1_arena_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UseIceAgreementRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UseIceAgreementRequest) ProtoMessage() {}
+
+func (x *UseIceAgreementRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_arena_v1_arena_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UseIceAgreementRequest.ProtoReflect.Descriptor instead.
+func (*UseIceAgreementRequest) Descriptor() ([]byte, []int) {
+	return file_arena_v1_arena_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *UseIceAgreementRequest) GetAgreementId() string {
+	if x != nil {
+		return x.AgreementId
+	}
+	return ""
+}
+
+func (x *UseIceAgreementRequest) GetOrganizerUserId() string {
+	if x != nil {
+		return x.OrganizerUserId
+	}
+	return ""
+}
+
+func (x *UseIceAgreementRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
 var File_arena_v1_arena_proto protoreflect.FileDescriptor
 
 const file_arena_v1_arena_proto_rawDesc = "" +
@@ -1962,7 +2902,158 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\aenabled\x18\x03 \x01(\bR\aenabled\"L\n" +
 	"\x16ArenaPartnerMembership\x12\x19\n" +
 	"\barena_id\x18\x01 \x01(\tR\aarenaId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId2\xce\v\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\x81\x02\n" +
+	"\x13IceBookingRequester\x12\x12\n" +
+	"\x04kind\x18\x01 \x01(\tR\x04kind\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12!\n" +
+	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12\x19\n" +
+	"\x05phone\x18\x04 \x01(\tH\x00R\x05phone\x88\x01\x01\x12\x1c\n" +
+	"\ateam_id\x18\x05 \x01(\tH\x01R\x06teamId\x88\x01\x01\x12 \n" +
+	"\tteam_name\x18\x06 \x01(\tH\x02R\bteamName\x88\x01\x01\x12\x1b\n" +
+	"\tchat_type\x18\a \x01(\tR\bchatTypeB\b\n" +
+	"\x06_phoneB\n" +
+	"\n" +
+	"\b_team_idB\f\n" +
+	"\n" +
+	"_team_name\"\xe1\a\n" +
+	"\x11IceBookingRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x19\n" +
+	"\barena_id\x18\x02 \x01(\tR\aarenaId\x12\x1d\n" +
+	"\n" +
+	"arena_name\x18\x03 \x01(\tR\tarenaName\x12\x1c\n" +
+	"\aslot_id\x18\x04 \x01(\tH\x00R\x06slotId\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"slot_label\x18\x05 \x01(\tH\x01R\tslotLabel\x88\x01\x01\x12\x16\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12!\n" +
+	"\fexternal_url\x18\a \x01(\tR\vexternalUrl\x12+\n" +
+	"\x11confirmation_code\x18\b \x01(\tR\x10confirmationCode\x129\n" +
+	"\n" +
+	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12;\n" +
+	"\trequester\x18\v \x01(\v2\x1d.arena.v1.IceBookingRequesterR\trequester\x12!\n" +
+	"\theadcount\x18\f \x01(\tH\x02R\theadcount\x88\x01\x01\x12\x1d\n" +
+	"\apurpose\x18\r \x01(\tH\x03R\apurpose\x88\x01\x01\x12\x1d\n" +
+	"\acomment\x18\x0e \x01(\tH\x04R\acomment\x88\x01\x01\x12 \n" +
+	"\tprice_rub\x18\x0f \x01(\x03H\x05R\bpriceRub\x88\x01\x01\x12E\n" +
+	"\x0epayment_due_at\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampH\x06R\fpaymentDueAt\x88\x01\x01\x12\x1c\n" +
+	"\achat_id\x18\x11 \x01(\tH\aR\x06chatId\x88\x01\x01\x12*\n" +
+	"\x0edecline_reason\x18\x12 \x01(\tH\bR\rdeclineReason\x88\x01\x01\x12<\n" +
+	"\tstarts_at\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampH\tR\bstartsAt\x88\x01\x01\x128\n" +
+	"\aends_at\x18\x14 \x01(\v2\x1a.google.protobuf.TimestampH\n" +
+	"R\x06endsAt\x88\x01\x01B\n" +
+	"\n" +
+	"\b_slot_idB\r\n" +
+	"\v_slot_labelB\f\n" +
+	"\n" +
+	"_headcountB\n" +
+	"\n" +
+	"\b_purposeB\n" +
+	"\n" +
+	"\b_commentB\f\n" +
+	"\n" +
+	"_price_rubB\x11\n" +
+	"\x0f_payment_due_atB\n" +
+	"\n" +
+	"\b_chat_idB\x11\n" +
+	"\x0f_decline_reasonB\f\n" +
+	"\n" +
+	"_starts_atB\n" +
+	"\n" +
+	"\b_ends_at\"J\n" +
+	"\x15IceBookingRequestList\x121\n" +
+	"\x05items\x18\x01 \x03(\v2\x1b.arena.v1.IceBookingRequestR\x05items\"\x99\x03\n" +
+	"\x1eCreateIceBookingRequestRequest\x12\x19\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\x12\x1c\n" +
+	"\aslot_id\x18\x02 \x01(\tH\x00R\x06slotId\x88\x01\x01\x12(\n" +
+	"\rcontact_phone\x18\x03 \x01(\tH\x01R\fcontactPhone\x88\x01\x01\x12\x1d\n" +
+	"\acomment\x18\x04 \x01(\tH\x02R\acomment\x88\x01\x01\x12/\n" +
+	"\x11organizer_user_id\x18\x05 \x01(\tH\x03R\x0forganizerUserId\x88\x01\x01\x12\x1c\n" +
+	"\ateam_id\x18\x06 \x01(\tH\x04R\x06teamId\x88\x01\x01\x12!\n" +
+	"\theadcount\x18\a \x01(\tH\x05R\theadcount\x88\x01\x01\x12\x1d\n" +
+	"\apurpose\x18\b \x01(\tH\x06R\apurpose\x88\x01\x01B\n" +
+	"\n" +
+	"\b_slot_idB\x10\n" +
+	"\x0e_contact_phoneB\n" +
+	"\n" +
+	"\b_commentB\x14\n" +
+	"\x12_organizer_user_idB\n" +
+	"\n" +
+	"\b_team_idB\f\n" +
+	"\n" +
+	"_headcountB\n" +
+	"\n" +
+	"\b_purpose\"<\n" +
+	"\x1fListArenaBookingRequestsRequest\x12\x19\n" +
+	"\barena_id\x18\x01 \x01(\tR\aarenaId\"\xfb\x01\n" +
+	"\x1eUpdateIceBookingRequestRequest\x12\x1d\n" +
+	"\n" +
+	"booking_id\x18\x01 \x01(\tR\tbookingId\x12\x1b\n" +
+	"\x06status\x18\x02 \x01(\tH\x00R\x06status\x88\x01\x01\x12\x1c\n" +
+	"\achat_id\x18\x03 \x01(\tH\x01R\x06chatId\x88\x01\x01\x12\x1d\n" +
+	"\acomment\x18\x04 \x01(\tH\x02R\acomment\x88\x01\x01\x12*\n" +
+	"\x0edecline_reason\x18\x05 \x01(\tH\x03R\rdeclineReason\x88\x01\x01B\t\n" +
+	"\a_statusB\n" +
+	"\n" +
+	"\b_chat_idB\n" +
+	"\n" +
+	"\b_commentB\x11\n" +
+	"\x0f_decline_reason\"\xc0\a\n" +
+	"\fIceAgreement\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
+	"\n" +
+	"booking_id\x18\x02 \x01(\tR\tbookingId\x12\x19\n" +
+	"\barena_id\x18\x03 \x01(\tR\aarenaId\x12\x1d\n" +
+	"\n" +
+	"arena_name\x18\x04 \x01(\tR\tarenaName\x127\n" +
+	"\tstarts_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\bstartsAt\x123\n" +
+	"\aends_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x06endsAt\x12\"\n" +
+	"\n" +
+	"slot_label\x18\a \x01(\tH\x00R\tslotLabel\x88\x01\x01\x12 \n" +
+	"\tprice_rub\x18\b \x01(\x03H\x01R\bpriceRub\x88\x01\x01\x12%\n" +
+	"\x0ebooking_status\x18\t \x01(\tR\rbookingStatus\x12\x1f\n" +
+	"\vpool_status\x18\n" +
+	" \x01(\tR\n" +
+	"poolStatus\x12\x1d\n" +
+	"\apurpose\x18\v \x01(\tH\x02R\apurpose\x88\x01\x01\x12+\n" +
+	"\x0flinked_event_id\x18\f \x01(\tH\x03R\rlinkedEventId\x88\x01\x01\x12$\n" +
+	"\varena_phone\x18\r \x01(\tH\x04R\n" +
+	"arenaPhone\x88\x01\x01\x12,\n" +
+	"\x0frequester_phone\x18\x0e \x01(\tH\x05R\x0erequesterPhone\x88\x01\x01\x12!\n" +
+	"\theadcount\x18\x0f \x01(\tH\x06R\theadcount\x88\x01\x01\x12\x1d\n" +
+	"\acomment\x18\x10 \x01(\tH\aR\acomment\x88\x01\x01\x120\n" +
+	"\x11confirmation_code\x18\x11 \x01(\tH\bR\x10confirmationCode\x88\x01\x01\x12\x1c\n" +
+	"\achat_id\x18\x12 \x01(\tH\tR\x06chatId\x88\x01\x01\x126\n" +
+	"\x15arena_contact_user_id\x18\x13 \x01(\tH\n" +
+	"R\x12arenaContactUserId\x88\x01\x01\x12*\n" +
+	"\x11organizer_user_id\x18\x14 \x01(\tR\x0forganizerUserIdB\r\n" +
+	"\v_slot_labelB\f\n" +
+	"\n" +
+	"_price_rubB\n" +
+	"\n" +
+	"\b_purposeB\x12\n" +
+	"\x10_linked_event_idB\x0e\n" +
+	"\f_arena_phoneB\x12\n" +
+	"\x10_requester_phoneB\f\n" +
+	"\n" +
+	"_headcountB\n" +
+	"\n" +
+	"\b_commentB\x14\n" +
+	"\x12_confirmation_codeB\n" +
+	"\n" +
+	"\b_chat_idB\x18\n" +
+	"\x16_arena_contact_user_id\"@\n" +
+	"\x10IceAgreementList\x12,\n" +
+	"\x05items\x18\x01 \x03(\v2\x16.arena.v1.IceAgreementR\x05items\"\x1c\n" +
+	"\x1aListMyIceAgreementsRequest\"g\n" +
+	"\x16GetIceAgreementRequest\x12!\n" +
+	"\fagreement_id\x18\x01 \x01(\tR\vagreementId\x12*\n" +
+	"\x11organizer_user_id\x18\x02 \x01(\tR\x0forganizerUserId\"\x82\x01\n" +
+	"\x16UseIceAgreementRequest\x12!\n" +
+	"\fagreement_id\x18\x01 \x01(\tR\vagreementId\x12*\n" +
+	"\x11organizer_user_id\x18\x02 \x01(\tR\x0forganizerUserId\x12\x19\n" +
+	"\bevent_id\x18\x03 \x01(\tR\aeventId2\x9a\x11\n" +
 	"\fArenaService\x12R\n" +
 	"\n" +
 	"ListArenas\x12\x1b.arena.v1.ListArenasRequest\x1a\x13.arena.v1.ArenaList\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
@@ -1977,9 +3068,15 @@ const file_arena_v1_arena_proto_rawDesc = "" +
 	"\x10CreateIceListing\x12!.arena.v1.CreateIceListingRequest\x1a\x14.arena.v1.IceListing\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/ice-listings\x12u\n" +
 	"\x10UpdateIceListing\x12!.arena.v1.UpdateIceListingRequest\x1a\x14.arena.v1.IceListing\"(\x82\xd3\xe4\x93\x02\":\x01*2\x1d/v1/ice-listings/{listing_id}\x12\\\n" +
 	"\rCreateIceSlot\x12\x1e.arena.v1.CreateIceSlotRequest\x1a\x11.arena.v1.IceSlot\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/ice-slots\x12f\n" +
-	"\rUpdateIceSlot\x12\x1e.arena.v1.UpdateIceSlotRequest\x1a\x11.arena.v1.IceSlot\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*2\x17/v1/ice-slots/{slot_id}\x12J\n" +
+	"\rUpdateIceSlot\x12\x1e.arena.v1.UpdateIceSlotRequest\x1a\x11.arena.v1.IceSlot\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*2\x17/v1/ice-slots/{slot_id}\x12\x85\x01\n" +
+	"\x17CreateIceBookingRequest\x12(.arena.v1.CreateIceBookingRequestRequest\x1a\x1b.arena.v1.IceBookingRequest\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/ice-booking-requests\x12\x9a\x01\n" +
+	"\x18ListArenaBookingRequests\x12).arena.v1.ListArenaBookingRequestsRequest\x1a\x1f.arena.v1.IceBookingRequestList\"2\x82\xd3\xe4\x93\x02,\x12*/v1/arenas/{arena_id}/ice-booking-requests\x12\x92\x01\n" +
+	"\x17UpdateIceBookingRequest\x12(.arena.v1.UpdateIceBookingRequestRequest\x1a\x1b.arena.v1.IceBookingRequest\"0\x82\xd3\xe4\x93\x02*:\x01*2%/v1/ice-booking-requests/{booking_id}\x12v\n" +
+	"\x13ListMyIceAgreements\x12$.arena.v1.ListMyIceAgreementsRequest\x1a\x1a.arena.v1.IceAgreementList\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/me/ice-agreements\x12J\n" +
 	"\vArenaExists\x12\x1c.arena.v1.ArenaExistsRequest\x1a\x1d.arena.v1.ArenaExistsResponse\x12i\n" +
-	"\x19SetArenaPartnerMembership\x12*.arena.v1.SetArenaPartnerMembershipRequest\x1a .arena.v1.ArenaPartnerMembershipB\xe3\x01\x92A\x96\x01\x12\x93\x01\n" +
+	"\x19SetArenaPartnerMembership\x12*.arena.v1.SetArenaPartnerMembershipRequest\x1a .arena.v1.ArenaPartnerMembership\x12K\n" +
+	"\x0fGetIceAgreement\x12 .arena.v1.GetIceAgreementRequest\x1a\x16.arena.v1.IceAgreement\x12K\n" +
+	"\x0fUseIceAgreement\x12 .arena.v1.UseIceAgreementRequest\x1a\x16.arena.v1.IceAgreementB\xe3\x01\x92A\x96\x01\x12\x93\x01\n" +
 	"\x16HockeyNights Arena API\x12rКаталог арен, расписание льда и объявления о доступных слотах.2\x051.0.0ZGgithub.com/HockeyNights/hockey-shared-contracts/arena/gen/go/v1;arenav1b\x06proto3"
 
 var (
@@ -1994,7 +3091,7 @@ func file_arena_v1_arena_proto_rawDescGZIP() []byte {
 	return file_arena_v1_arena_proto_rawDescData
 }
 
-var file_arena_v1_arena_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_arena_v1_arena_proto_msgTypes = make([]protoimpl.MessageInfo, 35)
 var file_arena_v1_arena_proto_goTypes = []any{
 	(*Arena)(nil),                            // 0: arena.v1.Arena
 	(*ListArenasRequest)(nil),                // 1: arena.v1.ListArenasRequest
@@ -2020,63 +3117,96 @@ var file_arena_v1_arena_proto_goTypes = []any{
 	(*ArenaExistsResponse)(nil),              // 21: arena.v1.ArenaExistsResponse
 	(*SetArenaPartnerMembershipRequest)(nil), // 22: arena.v1.SetArenaPartnerMembershipRequest
 	(*ArenaPartnerMembership)(nil),           // 23: arena.v1.ArenaPartnerMembership
-	(*structpb.Struct)(nil),                  // 24: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),            // 25: google.protobuf.Timestamp
+	(*IceBookingRequester)(nil),              // 24: arena.v1.IceBookingRequester
+	(*IceBookingRequest)(nil),                // 25: arena.v1.IceBookingRequest
+	(*IceBookingRequestList)(nil),            // 26: arena.v1.IceBookingRequestList
+	(*CreateIceBookingRequestRequest)(nil),   // 27: arena.v1.CreateIceBookingRequestRequest
+	(*ListArenaBookingRequestsRequest)(nil),  // 28: arena.v1.ListArenaBookingRequestsRequest
+	(*UpdateIceBookingRequestRequest)(nil),   // 29: arena.v1.UpdateIceBookingRequestRequest
+	(*IceAgreement)(nil),                     // 30: arena.v1.IceAgreement
+	(*IceAgreementList)(nil),                 // 31: arena.v1.IceAgreementList
+	(*ListMyIceAgreementsRequest)(nil),       // 32: arena.v1.ListMyIceAgreementsRequest
+	(*GetIceAgreementRequest)(nil),           // 33: arena.v1.GetIceAgreementRequest
+	(*UseIceAgreementRequest)(nil),           // 34: arena.v1.UseIceAgreementRequest
+	(*structpb.Struct)(nil),                  // 35: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),            // 36: google.protobuf.Timestamp
 }
 var file_arena_v1_arena_proto_depIdxs = []int32{
-	24, // 0: arena.v1.Arena.source_meta:type_name -> google.protobuf.Struct
+	35, // 0: arena.v1.Arena.source_meta:type_name -> google.protobuf.Struct
 	0,  // 1: arena.v1.ArenaList.items:type_name -> arena.v1.Arena
 	5,  // 2: arena.v1.ArenaResourceList.items:type_name -> arena.v1.ArenaResource
-	25, // 3: arena.v1.IceSlot.starts_at:type_name -> google.protobuf.Timestamp
-	25, // 4: arena.v1.IceSlot.ends_at:type_name -> google.protobuf.Timestamp
-	24, // 5: arena.v1.IceSlot.source_meta:type_name -> google.protobuf.Struct
+	36, // 3: arena.v1.IceSlot.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 4: arena.v1.IceSlot.ends_at:type_name -> google.protobuf.Timestamp
+	35, // 5: arena.v1.IceSlot.source_meta:type_name -> google.protobuf.Struct
 	11, // 6: arena.v1.IceSlotList.items:type_name -> arena.v1.IceSlot
-	25, // 7: arena.v1.CreateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
-	25, // 8: arena.v1.CreateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
-	25, // 9: arena.v1.UpdateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
-	25, // 10: arena.v1.UpdateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
-	25, // 11: arena.v1.IceListing.starts_at:type_name -> google.protobuf.Timestamp
-	25, // 12: arena.v1.IceListing.ends_at:type_name -> google.protobuf.Timestamp
-	25, // 13: arena.v1.IceListing.created_at:type_name -> google.protobuf.Timestamp
-	25, // 14: arena.v1.IceListing.updated_at:type_name -> google.protobuf.Timestamp
+	36, // 7: arena.v1.CreateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 8: arena.v1.CreateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
+	36, // 9: arena.v1.UpdateIceSlotRequest.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 10: arena.v1.UpdateIceSlotRequest.ends_at:type_name -> google.protobuf.Timestamp
+	36, // 11: arena.v1.IceListing.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 12: arena.v1.IceListing.ends_at:type_name -> google.protobuf.Timestamp
+	36, // 13: arena.v1.IceListing.created_at:type_name -> google.protobuf.Timestamp
+	36, // 14: arena.v1.IceListing.updated_at:type_name -> google.protobuf.Timestamp
 	15, // 15: arena.v1.IceListingList.items:type_name -> arena.v1.IceListing
-	25, // 16: arena.v1.CreateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
-	25, // 17: arena.v1.CreateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
-	25, // 18: arena.v1.UpdateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
-	25, // 19: arena.v1.UpdateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
-	1,  // 20: arena.v1.ArenaService.ListArenas:input_type -> arena.v1.ListArenasRequest
-	3,  // 21: arena.v1.ArenaService.GetArena:input_type -> arena.v1.GetArenaRequest
-	4,  // 22: arena.v1.ArenaService.ListArenaSlots:input_type -> arena.v1.ListArenaSlotsRequest
-	7,  // 23: arena.v1.ArenaService.ListArenaResources:input_type -> arena.v1.ListArenaResourcesRequest
-	8,  // 24: arena.v1.ArenaService.CreateArenaResource:input_type -> arena.v1.CreateArenaResourceRequest
-	9,  // 25: arena.v1.ArenaService.ListArenaListings:input_type -> arena.v1.ListArenaListingsRequest
-	10, // 26: arena.v1.ArenaService.UpdateArena:input_type -> arena.v1.UpdateArenaRequest
-	17, // 27: arena.v1.ArenaService.ListIceListings:input_type -> arena.v1.ListIceListingsRequest
-	18, // 28: arena.v1.ArenaService.CreateIceListing:input_type -> arena.v1.CreateIceListingRequest
-	19, // 29: arena.v1.ArenaService.UpdateIceListing:input_type -> arena.v1.UpdateIceListingRequest
-	13, // 30: arena.v1.ArenaService.CreateIceSlot:input_type -> arena.v1.CreateIceSlotRequest
-	14, // 31: arena.v1.ArenaService.UpdateIceSlot:input_type -> arena.v1.UpdateIceSlotRequest
-	20, // 32: arena.v1.ArenaService.ArenaExists:input_type -> arena.v1.ArenaExistsRequest
-	22, // 33: arena.v1.ArenaService.SetArenaPartnerMembership:input_type -> arena.v1.SetArenaPartnerMembershipRequest
-	2,  // 34: arena.v1.ArenaService.ListArenas:output_type -> arena.v1.ArenaList
-	0,  // 35: arena.v1.ArenaService.GetArena:output_type -> arena.v1.Arena
-	12, // 36: arena.v1.ArenaService.ListArenaSlots:output_type -> arena.v1.IceSlotList
-	6,  // 37: arena.v1.ArenaService.ListArenaResources:output_type -> arena.v1.ArenaResourceList
-	5,  // 38: arena.v1.ArenaService.CreateArenaResource:output_type -> arena.v1.ArenaResource
-	16, // 39: arena.v1.ArenaService.ListArenaListings:output_type -> arena.v1.IceListingList
-	0,  // 40: arena.v1.ArenaService.UpdateArena:output_type -> arena.v1.Arena
-	16, // 41: arena.v1.ArenaService.ListIceListings:output_type -> arena.v1.IceListingList
-	15, // 42: arena.v1.ArenaService.CreateIceListing:output_type -> arena.v1.IceListing
-	15, // 43: arena.v1.ArenaService.UpdateIceListing:output_type -> arena.v1.IceListing
-	11, // 44: arena.v1.ArenaService.CreateIceSlot:output_type -> arena.v1.IceSlot
-	11, // 45: arena.v1.ArenaService.UpdateIceSlot:output_type -> arena.v1.IceSlot
-	21, // 46: arena.v1.ArenaService.ArenaExists:output_type -> arena.v1.ArenaExistsResponse
-	23, // 47: arena.v1.ArenaService.SetArenaPartnerMembership:output_type -> arena.v1.ArenaPartnerMembership
-	34, // [34:48] is the sub-list for method output_type
-	20, // [20:34] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	36, // 16: arena.v1.CreateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 17: arena.v1.CreateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
+	36, // 18: arena.v1.UpdateIceListingRequest.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 19: arena.v1.UpdateIceListingRequest.ends_at:type_name -> google.protobuf.Timestamp
+	36, // 20: arena.v1.IceBookingRequest.created_at:type_name -> google.protobuf.Timestamp
+	36, // 21: arena.v1.IceBookingRequest.updated_at:type_name -> google.protobuf.Timestamp
+	24, // 22: arena.v1.IceBookingRequest.requester:type_name -> arena.v1.IceBookingRequester
+	36, // 23: arena.v1.IceBookingRequest.payment_due_at:type_name -> google.protobuf.Timestamp
+	36, // 24: arena.v1.IceBookingRequest.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 25: arena.v1.IceBookingRequest.ends_at:type_name -> google.protobuf.Timestamp
+	25, // 26: arena.v1.IceBookingRequestList.items:type_name -> arena.v1.IceBookingRequest
+	36, // 27: arena.v1.IceAgreement.starts_at:type_name -> google.protobuf.Timestamp
+	36, // 28: arena.v1.IceAgreement.ends_at:type_name -> google.protobuf.Timestamp
+	30, // 29: arena.v1.IceAgreementList.items:type_name -> arena.v1.IceAgreement
+	1,  // 30: arena.v1.ArenaService.ListArenas:input_type -> arena.v1.ListArenasRequest
+	3,  // 31: arena.v1.ArenaService.GetArena:input_type -> arena.v1.GetArenaRequest
+	4,  // 32: arena.v1.ArenaService.ListArenaSlots:input_type -> arena.v1.ListArenaSlotsRequest
+	7,  // 33: arena.v1.ArenaService.ListArenaResources:input_type -> arena.v1.ListArenaResourcesRequest
+	8,  // 34: arena.v1.ArenaService.CreateArenaResource:input_type -> arena.v1.CreateArenaResourceRequest
+	9,  // 35: arena.v1.ArenaService.ListArenaListings:input_type -> arena.v1.ListArenaListingsRequest
+	10, // 36: arena.v1.ArenaService.UpdateArena:input_type -> arena.v1.UpdateArenaRequest
+	17, // 37: arena.v1.ArenaService.ListIceListings:input_type -> arena.v1.ListIceListingsRequest
+	18, // 38: arena.v1.ArenaService.CreateIceListing:input_type -> arena.v1.CreateIceListingRequest
+	19, // 39: arena.v1.ArenaService.UpdateIceListing:input_type -> arena.v1.UpdateIceListingRequest
+	13, // 40: arena.v1.ArenaService.CreateIceSlot:input_type -> arena.v1.CreateIceSlotRequest
+	14, // 41: arena.v1.ArenaService.UpdateIceSlot:input_type -> arena.v1.UpdateIceSlotRequest
+	27, // 42: arena.v1.ArenaService.CreateIceBookingRequest:input_type -> arena.v1.CreateIceBookingRequestRequest
+	28, // 43: arena.v1.ArenaService.ListArenaBookingRequests:input_type -> arena.v1.ListArenaBookingRequestsRequest
+	29, // 44: arena.v1.ArenaService.UpdateIceBookingRequest:input_type -> arena.v1.UpdateIceBookingRequestRequest
+	32, // 45: arena.v1.ArenaService.ListMyIceAgreements:input_type -> arena.v1.ListMyIceAgreementsRequest
+	20, // 46: arena.v1.ArenaService.ArenaExists:input_type -> arena.v1.ArenaExistsRequest
+	22, // 47: arena.v1.ArenaService.SetArenaPartnerMembership:input_type -> arena.v1.SetArenaPartnerMembershipRequest
+	33, // 48: arena.v1.ArenaService.GetIceAgreement:input_type -> arena.v1.GetIceAgreementRequest
+	34, // 49: arena.v1.ArenaService.UseIceAgreement:input_type -> arena.v1.UseIceAgreementRequest
+	2,  // 50: arena.v1.ArenaService.ListArenas:output_type -> arena.v1.ArenaList
+	0,  // 51: arena.v1.ArenaService.GetArena:output_type -> arena.v1.Arena
+	12, // 52: arena.v1.ArenaService.ListArenaSlots:output_type -> arena.v1.IceSlotList
+	6,  // 53: arena.v1.ArenaService.ListArenaResources:output_type -> arena.v1.ArenaResourceList
+	5,  // 54: arena.v1.ArenaService.CreateArenaResource:output_type -> arena.v1.ArenaResource
+	16, // 55: arena.v1.ArenaService.ListArenaListings:output_type -> arena.v1.IceListingList
+	0,  // 56: arena.v1.ArenaService.UpdateArena:output_type -> arena.v1.Arena
+	16, // 57: arena.v1.ArenaService.ListIceListings:output_type -> arena.v1.IceListingList
+	15, // 58: arena.v1.ArenaService.CreateIceListing:output_type -> arena.v1.IceListing
+	15, // 59: arena.v1.ArenaService.UpdateIceListing:output_type -> arena.v1.IceListing
+	11, // 60: arena.v1.ArenaService.CreateIceSlot:output_type -> arena.v1.IceSlot
+	11, // 61: arena.v1.ArenaService.UpdateIceSlot:output_type -> arena.v1.IceSlot
+	25, // 62: arena.v1.ArenaService.CreateIceBookingRequest:output_type -> arena.v1.IceBookingRequest
+	26, // 63: arena.v1.ArenaService.ListArenaBookingRequests:output_type -> arena.v1.IceBookingRequestList
+	25, // 64: arena.v1.ArenaService.UpdateIceBookingRequest:output_type -> arena.v1.IceBookingRequest
+	31, // 65: arena.v1.ArenaService.ListMyIceAgreements:output_type -> arena.v1.IceAgreementList
+	21, // 66: arena.v1.ArenaService.ArenaExists:output_type -> arena.v1.ArenaExistsResponse
+	23, // 67: arena.v1.ArenaService.SetArenaPartnerMembership:output_type -> arena.v1.ArenaPartnerMembership
+	30, // 68: arena.v1.ArenaService.GetIceAgreement:output_type -> arena.v1.IceAgreement
+	30, // 69: arena.v1.ArenaService.UseIceAgreement:output_type -> arena.v1.IceAgreement
+	50, // [50:70] is the sub-list for method output_type
+	30, // [30:50] is the sub-list for method input_type
+	30, // [30:30] is the sub-list for extension type_name
+	30, // [30:30] is the sub-list for extension extendee
+	0,  // [0:30] is the sub-list for field type_name
 }
 
 func init() { file_arena_v1_arena_proto_init() }
@@ -2092,13 +3222,18 @@ func file_arena_v1_arena_proto_init() {
 	file_arena_v1_arena_proto_msgTypes[15].OneofWrappers = []any{}
 	file_arena_v1_arena_proto_msgTypes[18].OneofWrappers = []any{}
 	file_arena_v1_arena_proto_msgTypes[19].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[24].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[25].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[27].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[29].OneofWrappers = []any{}
+	file_arena_v1_arena_proto_msgTypes[30].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_arena_v1_arena_proto_rawDesc), len(file_arena_v1_arena_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   35,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

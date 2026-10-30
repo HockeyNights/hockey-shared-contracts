@@ -523,6 +523,138 @@ func local_request_ArenaService_UpdateIceSlot_0(ctx context.Context, marshaler r
 	return msg, metadata, err
 }
 
+func request_ArenaService_CreateIceBookingRequest_0(ctx context.Context, marshaler runtime.Marshaler, client ArenaServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateIceBookingRequestRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.CreateIceBookingRequest(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArenaService_CreateIceBookingRequest_0(ctx context.Context, marshaler runtime.Marshaler, server ArenaServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateIceBookingRequestRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CreateIceBookingRequest(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ArenaService_ListArenaBookingRequests_0(ctx context.Context, marshaler runtime.Marshaler, client ArenaServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListArenaBookingRequestsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["arena_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "arena_id")
+	}
+	protoReq.ArenaId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListArenaBookingRequests(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArenaService_ListArenaBookingRequests_0(ctx context.Context, marshaler runtime.Marshaler, server ArenaServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListArenaBookingRequestsRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["arena_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "arena_id")
+	}
+	protoReq.ArenaId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "arena_id", err)
+	}
+	msg, err := server.ListArenaBookingRequests(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ArenaService_UpdateIceBookingRequest_0(ctx context.Context, marshaler runtime.Marshaler, client ArenaServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateIceBookingRequestRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["booking_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "booking_id")
+	}
+	protoReq.BookingId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "booking_id", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.UpdateIceBookingRequest(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArenaService_UpdateIceBookingRequest_0(ctx context.Context, marshaler runtime.Marshaler, server ArenaServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateIceBookingRequestRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["booking_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "booking_id")
+	}
+	protoReq.BookingId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "booking_id", err)
+	}
+	msg, err := server.UpdateIceBookingRequest(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_ArenaService_ListMyIceAgreements_0(ctx context.Context, marshaler runtime.Marshaler, client ArenaServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListMyIceAgreementsRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListMyIceAgreements(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ArenaService_ListMyIceAgreements_0(ctx context.Context, marshaler runtime.Marshaler, server ArenaServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListMyIceAgreementsRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.ListMyIceAgreements(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterArenaServiceHandlerServer registers the http handlers for service ArenaService to "mux".
 // UnaryRPC     :call ArenaServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -769,6 +901,86 @@ func RegisterArenaServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_ArenaService_UpdateIceSlot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ArenaService_CreateIceBookingRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/arena.v1.ArenaService/CreateIceBookingRequest", runtime.WithHTTPPathPattern("/v1/ice-booking-requests"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArenaService_CreateIceBookingRequest_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_CreateIceBookingRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ArenaService_ListArenaBookingRequests_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/arena.v1.ArenaService/ListArenaBookingRequests", runtime.WithHTTPPathPattern("/v1/arenas/{arena_id}/ice-booking-requests"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArenaService_ListArenaBookingRequests_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_ListArenaBookingRequests_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_ArenaService_UpdateIceBookingRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/arena.v1.ArenaService/UpdateIceBookingRequest", runtime.WithHTTPPathPattern("/v1/ice-booking-requests/{booking_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArenaService_UpdateIceBookingRequest_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_UpdateIceBookingRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ArenaService_ListMyIceAgreements_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/arena.v1.ArenaService/ListMyIceAgreements", runtime.WithHTTPPathPattern("/v1/me/ice-agreements"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ArenaService_ListMyIceAgreements_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_ListMyIceAgreements_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 
 	return nil
 }
@@ -1013,35 +1225,111 @@ func RegisterArenaServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_ArenaService_UpdateIceSlot_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_ArenaService_CreateIceBookingRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/arena.v1.ArenaService/CreateIceBookingRequest", runtime.WithHTTPPathPattern("/v1/ice-booking-requests"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArenaService_CreateIceBookingRequest_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_CreateIceBookingRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ArenaService_ListArenaBookingRequests_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/arena.v1.ArenaService/ListArenaBookingRequests", runtime.WithHTTPPathPattern("/v1/arenas/{arena_id}/ice-booking-requests"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArenaService_ListArenaBookingRequests_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_ListArenaBookingRequests_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPatch, pattern_ArenaService_UpdateIceBookingRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/arena.v1.ArenaService/UpdateIceBookingRequest", runtime.WithHTTPPathPattern("/v1/ice-booking-requests/{booking_id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArenaService_UpdateIceBookingRequest_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_UpdateIceBookingRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ArenaService_ListMyIceAgreements_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/arena.v1.ArenaService/ListMyIceAgreements", runtime.WithHTTPPathPattern("/v1/me/ice-agreements"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ArenaService_ListMyIceAgreements_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ArenaService_ListMyIceAgreements_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_ArenaService_ListArenas_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "arenas"}, ""))
-	pattern_ArenaService_GetArena_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
-	pattern_ArenaService_ListArenaSlots_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "slots"}, ""))
-	pattern_ArenaService_ListArenaResources_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "resources"}, ""))
-	pattern_ArenaService_CreateArenaResource_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "resources"}, ""))
-	pattern_ArenaService_ListArenaListings_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "listings"}, ""))
-	pattern_ArenaService_UpdateArena_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
-	pattern_ArenaService_ListIceListings_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
-	pattern_ArenaService_CreateIceListing_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
-	pattern_ArenaService_UpdateIceListing_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-listings", "listing_id"}, ""))
-	pattern_ArenaService_CreateIceSlot_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-slots"}, ""))
-	pattern_ArenaService_UpdateIceSlot_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-slots", "slot_id"}, ""))
+	pattern_ArenaService_ListArenas_0               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "arenas"}, ""))
+	pattern_ArenaService_GetArena_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
+	pattern_ArenaService_ListArenaSlots_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "slots"}, ""))
+	pattern_ArenaService_ListArenaResources_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "resources"}, ""))
+	pattern_ArenaService_CreateArenaResource_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "resources"}, ""))
+	pattern_ArenaService_ListArenaListings_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "listings"}, ""))
+	pattern_ArenaService_UpdateArena_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "arenas", "arena_id"}, ""))
+	pattern_ArenaService_ListIceListings_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
+	pattern_ArenaService_CreateIceListing_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-listings"}, ""))
+	pattern_ArenaService_UpdateIceListing_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-listings", "listing_id"}, ""))
+	pattern_ArenaService_CreateIceSlot_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-slots"}, ""))
+	pattern_ArenaService_UpdateIceSlot_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-slots", "slot_id"}, ""))
+	pattern_ArenaService_CreateIceBookingRequest_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "ice-booking-requests"}, ""))
+	pattern_ArenaService_ListArenaBookingRequests_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "arenas", "arena_id", "ice-booking-requests"}, ""))
+	pattern_ArenaService_UpdateIceBookingRequest_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "ice-booking-requests", "booking_id"}, ""))
+	pattern_ArenaService_ListMyIceAgreements_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "me", "ice-agreements"}, ""))
 )
 
 var (
-	forward_ArenaService_ListArenas_0          = runtime.ForwardResponseMessage
-	forward_ArenaService_GetArena_0            = runtime.ForwardResponseMessage
-	forward_ArenaService_ListArenaSlots_0      = runtime.ForwardResponseMessage
-	forward_ArenaService_ListArenaResources_0  = runtime.ForwardResponseMessage
-	forward_ArenaService_CreateArenaResource_0 = runtime.ForwardResponseMessage
-	forward_ArenaService_ListArenaListings_0   = runtime.ForwardResponseMessage
-	forward_ArenaService_UpdateArena_0         = runtime.ForwardResponseMessage
-	forward_ArenaService_ListIceListings_0     = runtime.ForwardResponseMessage
-	forward_ArenaService_CreateIceListing_0    = runtime.ForwardResponseMessage
-	forward_ArenaService_UpdateIceListing_0    = runtime.ForwardResponseMessage
-	forward_ArenaService_CreateIceSlot_0       = runtime.ForwardResponseMessage
-	forward_ArenaService_UpdateIceSlot_0       = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenas_0               = runtime.ForwardResponseMessage
+	forward_ArenaService_GetArena_0                 = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenaSlots_0           = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenaResources_0       = runtime.ForwardResponseMessage
+	forward_ArenaService_CreateArenaResource_0      = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenaListings_0        = runtime.ForwardResponseMessage
+	forward_ArenaService_UpdateArena_0              = runtime.ForwardResponseMessage
+	forward_ArenaService_ListIceListings_0          = runtime.ForwardResponseMessage
+	forward_ArenaService_CreateIceListing_0         = runtime.ForwardResponseMessage
+	forward_ArenaService_UpdateIceListing_0         = runtime.ForwardResponseMessage
+	forward_ArenaService_CreateIceSlot_0            = runtime.ForwardResponseMessage
+	forward_ArenaService_UpdateIceSlot_0            = runtime.ForwardResponseMessage
+	forward_ArenaService_CreateIceBookingRequest_0  = runtime.ForwardResponseMessage
+	forward_ArenaService_ListArenaBookingRequests_0 = runtime.ForwardResponseMessage
+	forward_ArenaService_UpdateIceBookingRequest_0  = runtime.ForwardResponseMessage
+	forward_ArenaService_ListMyIceAgreements_0      = runtime.ForwardResponseMessage
 )

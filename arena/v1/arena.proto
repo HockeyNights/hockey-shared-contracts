@@ -55,10 +55,24 @@ service ArenaService {
   rpc UpdateIceSlot(UpdateIceSlotRequest) returns (IceSlot) {
     option (google.api.http) = {patch: "/v1/ice-slots/{slot_id}" body: "*"};
   }
+  rpc CreateIceBookingRequest(CreateIceBookingRequestRequest) returns (IceBookingRequest) {
+    option (google.api.http) = {post: "/v1/ice-booking-requests" body: "*"};
+  }
+  rpc ListArenaBookingRequests(ListArenaBookingRequestsRequest) returns (IceBookingRequestList) {
+    option (google.api.http) = {get: "/v1/arenas/{arena_id}/ice-booking-requests"};
+  }
+  rpc UpdateIceBookingRequest(UpdateIceBookingRequestRequest) returns (IceBookingRequest) {
+    option (google.api.http) = {patch: "/v1/ice-booking-requests/{booking_id}" body: "*"};
+  }
+  rpc ListMyIceAgreements(ListMyIceAgreementsRequest) returns (IceAgreementList) {
+    option (google.api.http) = {get: "/v1/me/ice-agreements"};
+  }
 
   // Service-to-service methods. They intentionally have no HTTP annotations.
   rpc ArenaExists(ArenaExistsRequest) returns (ArenaExistsResponse);
   rpc SetArenaPartnerMembership(SetArenaPartnerMembershipRequest) returns (ArenaPartnerMembership);
+  rpc GetIceAgreement(GetIceAgreementRequest) returns (IceAgreement);
+  rpc UseIceAgreement(UseIceAgreementRequest) returns (IceAgreement);
 }
 
 message Arena {
@@ -207,3 +221,80 @@ message ArenaPartnerMembership {
   string arena_id = 1;
   string user_id = 2;
 }
+
+message IceBookingRequester {
+  string kind = 1;
+  string user_id = 2;
+  string display_name = 3;
+  optional string phone = 4;
+  optional string team_id = 5;
+  optional string team_name = 6;
+  string chat_type = 7;
+}
+message IceBookingRequest {
+  string id = 1;
+  string arena_id = 2;
+  string arena_name = 3;
+  optional string slot_id = 4;
+  optional string slot_label = 5;
+  string status = 6;
+  string external_url = 7;
+  string confirmation_code = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  IceBookingRequester requester = 11;
+  optional string headcount = 12;
+  optional string purpose = 13;
+  optional string comment = 14;
+  optional int64 price_rub = 15;
+  optional google.protobuf.Timestamp payment_due_at = 16;
+  optional string chat_id = 17;
+  optional string decline_reason = 18;
+  optional google.protobuf.Timestamp starts_at = 19;
+  optional google.protobuf.Timestamp ends_at = 20;
+}
+message IceBookingRequestList { repeated IceBookingRequest items = 1; }
+message CreateIceBookingRequestRequest {
+  string arena_id = 1;
+  optional string slot_id = 2;
+  optional string contact_phone = 3;
+  optional string comment = 4;
+  optional string organizer_user_id = 5;
+  optional string team_id = 6;
+  optional string headcount = 7;
+  optional string purpose = 8;
+}
+message ListArenaBookingRequestsRequest { string arena_id = 1; }
+message UpdateIceBookingRequestRequest {
+  string booking_id = 1;
+  optional string status = 2;
+  optional string chat_id = 3;
+  optional string comment = 4;
+  optional string decline_reason = 5;
+}
+message IceAgreement {
+  string id = 1;
+  string booking_id = 2;
+  string arena_id = 3;
+  string arena_name = 4;
+  google.protobuf.Timestamp starts_at = 5;
+  google.protobuf.Timestamp ends_at = 6;
+  optional string slot_label = 7;
+  optional int64 price_rub = 8;
+  string booking_status = 9;
+  string pool_status = 10;
+  optional string purpose = 11;
+  optional string linked_event_id = 12;
+  optional string arena_phone = 13;
+  optional string requester_phone = 14;
+  optional string headcount = 15;
+  optional string comment = 16;
+  optional string confirmation_code = 17;
+  optional string chat_id = 18;
+  optional string arena_contact_user_id = 19;
+  string organizer_user_id = 20;
+}
+message IceAgreementList { repeated IceAgreement items = 1; }
+message ListMyIceAgreementsRequest {}
+message GetIceAgreementRequest { string agreement_id = 1; string organizer_user_id = 2; }
+message UseIceAgreementRequest { string agreement_id = 1; string organizer_user_id = 2; string event_id = 3; }
