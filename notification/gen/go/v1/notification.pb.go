@@ -741,6 +741,198 @@ func (*SendEmailResponse) Descriptor() ([]byte, []int) {
 	return file_notification_v1_notification_proto_rawDescGZIP(), []int{11}
 }
 
+type CreateNotificationRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	EventId         string                 `protobuf:"bytes,2,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Type            string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Title           string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	Body            string                 `protobuf:"bytes,5,opt,name=body,proto3" json:"body,omitempty"`
+	RelatedEntityId string                 `protobuf:"bytes,6,opt,name=related_entity_id,json=relatedEntityId,proto3" json:"related_entity_id,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *CreateNotificationRequest) Reset() {
+	*x = CreateNotificationRequest{}
+	mi := &file_notification_v1_notification_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateNotificationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateNotificationRequest) ProtoMessage() {}
+
+func (x *CreateNotificationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_notification_v1_notification_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateNotificationRequest.ProtoReflect.Descriptor instead.
+func (*CreateNotificationRequest) Descriptor() ([]byte, []int) {
+	return file_notification_v1_notification_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *CreateNotificationRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *CreateNotificationRequest) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *CreateNotificationRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *CreateNotificationRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateNotificationRequest) GetBody() string {
+	if x != nil {
+		return x.Body
+	}
+	return ""
+}
+
+func (x *CreateNotificationRequest) GetRelatedEntityId() string {
+	if x != nil {
+		return x.RelatedEntityId
+	}
+	return ""
+}
+
+type Notification struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId          string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	EventId         string                 `protobuf:"bytes,3,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	Type            string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Title           string                 `protobuf:"bytes,5,opt,name=title,proto3" json:"title,omitempty"`
+	Body            string                 `protobuf:"bytes,6,opt,name=body,proto3" json:"body,omitempty"`
+	RelatedEntityId string                 `protobuf:"bytes,7,opt,name=related_entity_id,json=relatedEntityId,proto3" json:"related_entity_id,omitempty"`
+	ReadAt          *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=read_at,json=readAt,proto3" json:"read_at,omitempty"`
+	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Notification) Reset() {
+	*x = Notification{}
+	mi := &file_notification_v1_notification_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Notification) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Notification) ProtoMessage() {}
+
+func (x *Notification) ProtoReflect() protoreflect.Message {
+	mi := &file_notification_v1_notification_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Notification.ProtoReflect.Descriptor instead.
+func (*Notification) Descriptor() ([]byte, []int) {
+	return file_notification_v1_notification_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *Notification) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Notification) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *Notification) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *Notification) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Notification) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Notification) GetBody() string {
+	if x != nil {
+		return x.Body
+	}
+	return ""
+}
+
+func (x *Notification) GetRelatedEntityId() string {
+	if x != nil {
+		return x.RelatedEntityId
+	}
+	return ""
+}
+
+func (x *Notification) GetReadAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ReadAt
+	}
+	return nil
+}
+
+func (x *Notification) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
 var File_notification_v1_notification_proto protoreflect.FileDescriptor
 
 const file_notification_v1_notification_proto_rawDesc = "" +
@@ -796,14 +988,34 @@ const file_notification_v1_notification_proto_rawDesc = "" +
 	"\tDataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x13\n" +
-	"\x11SendEmailResponse*X\n" +
+	"\x11SendEmailResponse\"\xf7\x01\n" +
+	"\x19CreateNotificationRequest\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12#\n" +
+	"\bevent_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aeventId\x12\x1d\n" +
+	"\x04type\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18@R\x04type\x12 \n" +
+	"\x05title\x18\x04 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xc8\x01R\x05title\x12\x1c\n" +
+	"\x04body\x18\x05 \x01(\tB\b\xbaH\x05r\x03\x18\xd0\x0fR\x04body\x123\n" +
+	"\x11related_entity_id\x18\x06 \x01(\tB\a\xbaH\x04r\x02\x18@R\x0frelatedEntityId\"\xac\x02\n" +
+	"\fNotification\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x19\n" +
+	"\bevent_id\x18\x03 \x01(\tR\aeventId\x12\x12\n" +
+	"\x04type\x18\x04 \x01(\tR\x04type\x12\x14\n" +
+	"\x05title\x18\x05 \x01(\tR\x05title\x12\x12\n" +
+	"\x04body\x18\x06 \x01(\tR\x04body\x12*\n" +
+	"\x11related_entity_id\x18\a \x01(\tR\x0frelatedEntityId\x123\n" +
+	"\aread_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x06readAt\x129\n" +
+	"\n" +
+	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt*X\n" +
 	"\aChannel\x12\x17\n" +
 	"\x13CHANNEL_UNSPECIFIED\x10\x00\x12\x11\n" +
 	"\rCHANNEL_EMAIL\x10\x01\x12\x0f\n" +
 	"\vCHANNEL_SMS\x10\x02\x12\x10\n" +
-	"\fCHANNEL_PUSH\x10\x032\xd3\x06\n" +
+	"\fCHANNEL_PUSH\x10\x032\xb4\a\n" +
 	"\x13NotificationService\x12R\n" +
-	"\tSendEmail\x12!.notification.v1.SendEmailRequest\x1a\".notification.v1.SendEmailResponse\x12t\n" +
+	"\tSendEmail\x12!.notification.v1.SendEmailRequest\x1a\".notification.v1.SendEmailResponse\x12_\n" +
+	"\x12CreateNotification\x12*.notification.v1.CreateNotificationRequest\x1a\x1d.notification.v1.Notification\x12t\n" +
 	"\x0eCreateTemplate\x12&.notification.v1.CreateTemplateRequest\x1a\x19.notification.v1.Template\"\x1f\x82\xd3\xe4\x93\x02\x19:\btemplate\"\r/v1/templates\x12\x83\x01\n" +
 	"\x0eUpdateTemplate\x12&.notification.v1.UpdateTemplateRequest\x1a\x19.notification.v1.Template\".\x82\xd3\xe4\x93\x02(:\btemplate\x1a\x1c/v1/templates/{template.key}\x12j\n" +
 	"\vGetTemplate\x12#.notification.v1.GetTemplateRequest\x1a\x19.notification.v1.Template\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/templates/{key}\x12u\n" +
@@ -825,29 +1037,31 @@ func file_notification_v1_notification_proto_rawDescGZIP() []byte {
 }
 
 var file_notification_v1_notification_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_notification_v1_notification_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_notification_v1_notification_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_notification_v1_notification_proto_goTypes = []any{
-	(Channel)(0),                   // 0: notification.v1.Channel
-	(*Template)(nil),               // 1: notification.v1.Template
-	(*CreateTemplateRequest)(nil),  // 2: notification.v1.CreateTemplateRequest
-	(*UpdateTemplateRequest)(nil),  // 3: notification.v1.UpdateTemplateRequest
-	(*GetTemplateRequest)(nil),     // 4: notification.v1.GetTemplateRequest
-	(*ListTemplatesRequest)(nil),   // 5: notification.v1.ListTemplatesRequest
-	(*ListTemplatesResponse)(nil),  // 6: notification.v1.ListTemplatesResponse
-	(*DeleteTemplateRequest)(nil),  // 7: notification.v1.DeleteTemplateRequest
-	(*DeleteTemplateResponse)(nil), // 8: notification.v1.DeleteTemplateResponse
-	(*RenderTemplateRequest)(nil),  // 9: notification.v1.RenderTemplateRequest
-	(*RenderTemplateResponse)(nil), // 10: notification.v1.RenderTemplateResponse
-	(*SendEmailRequest)(nil),       // 11: notification.v1.SendEmailRequest
-	(*SendEmailResponse)(nil),      // 12: notification.v1.SendEmailResponse
-	nil,                            // 13: notification.v1.RenderTemplateRequest.DataEntry
-	nil,                            // 14: notification.v1.SendEmailRequest.DataEntry
-	(*timestamppb.Timestamp)(nil),  // 15: google.protobuf.Timestamp
+	(Channel)(0),                      // 0: notification.v1.Channel
+	(*Template)(nil),                  // 1: notification.v1.Template
+	(*CreateTemplateRequest)(nil),     // 2: notification.v1.CreateTemplateRequest
+	(*UpdateTemplateRequest)(nil),     // 3: notification.v1.UpdateTemplateRequest
+	(*GetTemplateRequest)(nil),        // 4: notification.v1.GetTemplateRequest
+	(*ListTemplatesRequest)(nil),      // 5: notification.v1.ListTemplatesRequest
+	(*ListTemplatesResponse)(nil),     // 6: notification.v1.ListTemplatesResponse
+	(*DeleteTemplateRequest)(nil),     // 7: notification.v1.DeleteTemplateRequest
+	(*DeleteTemplateResponse)(nil),    // 8: notification.v1.DeleteTemplateResponse
+	(*RenderTemplateRequest)(nil),     // 9: notification.v1.RenderTemplateRequest
+	(*RenderTemplateResponse)(nil),    // 10: notification.v1.RenderTemplateResponse
+	(*SendEmailRequest)(nil),          // 11: notification.v1.SendEmailRequest
+	(*SendEmailResponse)(nil),         // 12: notification.v1.SendEmailResponse
+	(*CreateNotificationRequest)(nil), // 13: notification.v1.CreateNotificationRequest
+	(*Notification)(nil),              // 14: notification.v1.Notification
+	nil,                               // 15: notification.v1.RenderTemplateRequest.DataEntry
+	nil,                               // 16: notification.v1.SendEmailRequest.DataEntry
+	(*timestamppb.Timestamp)(nil),     // 17: google.protobuf.Timestamp
 }
 var file_notification_v1_notification_proto_depIdxs = []int32{
 	0,  // 0: notification.v1.Template.channel:type_name -> notification.v1.Channel
-	15, // 1: notification.v1.Template.created_at:type_name -> google.protobuf.Timestamp
-	15, // 2: notification.v1.Template.updated_at:type_name -> google.protobuf.Timestamp
+	17, // 1: notification.v1.Template.created_at:type_name -> google.protobuf.Timestamp
+	17, // 2: notification.v1.Template.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 3: notification.v1.CreateTemplateRequest.template:type_name -> notification.v1.Template
 	1,  // 4: notification.v1.UpdateTemplateRequest.template:type_name -> notification.v1.Template
 	0,  // 5: notification.v1.GetTemplateRequest.channel:type_name -> notification.v1.Channel
@@ -855,27 +1069,31 @@ var file_notification_v1_notification_proto_depIdxs = []int32{
 	1,  // 7: notification.v1.ListTemplatesResponse.templates:type_name -> notification.v1.Template
 	0,  // 8: notification.v1.DeleteTemplateRequest.channel:type_name -> notification.v1.Channel
 	0,  // 9: notification.v1.RenderTemplateRequest.channel:type_name -> notification.v1.Channel
-	13, // 10: notification.v1.RenderTemplateRequest.data:type_name -> notification.v1.RenderTemplateRequest.DataEntry
-	14, // 11: notification.v1.SendEmailRequest.data:type_name -> notification.v1.SendEmailRequest.DataEntry
-	11, // 12: notification.v1.NotificationService.SendEmail:input_type -> notification.v1.SendEmailRequest
-	2,  // 13: notification.v1.NotificationService.CreateTemplate:input_type -> notification.v1.CreateTemplateRequest
-	3,  // 14: notification.v1.NotificationService.UpdateTemplate:input_type -> notification.v1.UpdateTemplateRequest
-	4,  // 15: notification.v1.NotificationService.GetTemplate:input_type -> notification.v1.GetTemplateRequest
-	5,  // 16: notification.v1.NotificationService.ListTemplates:input_type -> notification.v1.ListTemplatesRequest
-	7,  // 17: notification.v1.NotificationService.DeleteTemplate:input_type -> notification.v1.DeleteTemplateRequest
-	9,  // 18: notification.v1.NotificationService.RenderTemplate:input_type -> notification.v1.RenderTemplateRequest
-	12, // 19: notification.v1.NotificationService.SendEmail:output_type -> notification.v1.SendEmailResponse
-	1,  // 20: notification.v1.NotificationService.CreateTemplate:output_type -> notification.v1.Template
-	1,  // 21: notification.v1.NotificationService.UpdateTemplate:output_type -> notification.v1.Template
-	1,  // 22: notification.v1.NotificationService.GetTemplate:output_type -> notification.v1.Template
-	6,  // 23: notification.v1.NotificationService.ListTemplates:output_type -> notification.v1.ListTemplatesResponse
-	8,  // 24: notification.v1.NotificationService.DeleteTemplate:output_type -> notification.v1.DeleteTemplateResponse
-	10, // 25: notification.v1.NotificationService.RenderTemplate:output_type -> notification.v1.RenderTemplateResponse
-	19, // [19:26] is the sub-list for method output_type
-	12, // [12:19] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	15, // 10: notification.v1.RenderTemplateRequest.data:type_name -> notification.v1.RenderTemplateRequest.DataEntry
+	16, // 11: notification.v1.SendEmailRequest.data:type_name -> notification.v1.SendEmailRequest.DataEntry
+	17, // 12: notification.v1.Notification.read_at:type_name -> google.protobuf.Timestamp
+	17, // 13: notification.v1.Notification.created_at:type_name -> google.protobuf.Timestamp
+	11, // 14: notification.v1.NotificationService.SendEmail:input_type -> notification.v1.SendEmailRequest
+	13, // 15: notification.v1.NotificationService.CreateNotification:input_type -> notification.v1.CreateNotificationRequest
+	2,  // 16: notification.v1.NotificationService.CreateTemplate:input_type -> notification.v1.CreateTemplateRequest
+	3,  // 17: notification.v1.NotificationService.UpdateTemplate:input_type -> notification.v1.UpdateTemplateRequest
+	4,  // 18: notification.v1.NotificationService.GetTemplate:input_type -> notification.v1.GetTemplateRequest
+	5,  // 19: notification.v1.NotificationService.ListTemplates:input_type -> notification.v1.ListTemplatesRequest
+	7,  // 20: notification.v1.NotificationService.DeleteTemplate:input_type -> notification.v1.DeleteTemplateRequest
+	9,  // 21: notification.v1.NotificationService.RenderTemplate:input_type -> notification.v1.RenderTemplateRequest
+	12, // 22: notification.v1.NotificationService.SendEmail:output_type -> notification.v1.SendEmailResponse
+	14, // 23: notification.v1.NotificationService.CreateNotification:output_type -> notification.v1.Notification
+	1,  // 24: notification.v1.NotificationService.CreateTemplate:output_type -> notification.v1.Template
+	1,  // 25: notification.v1.NotificationService.UpdateTemplate:output_type -> notification.v1.Template
+	1,  // 26: notification.v1.NotificationService.GetTemplate:output_type -> notification.v1.Template
+	6,  // 27: notification.v1.NotificationService.ListTemplates:output_type -> notification.v1.ListTemplatesResponse
+	8,  // 28: notification.v1.NotificationService.DeleteTemplate:output_type -> notification.v1.DeleteTemplateResponse
+	10, // 29: notification.v1.NotificationService.RenderTemplate:output_type -> notification.v1.RenderTemplateResponse
+	22, // [22:30] is the sub-list for method output_type
+	14, // [14:22] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_notification_v1_notification_proto_init() }
@@ -889,7 +1107,7 @@ func file_notification_v1_notification_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_notification_v1_notification_proto_rawDesc), len(file_notification_v1_notification_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   14,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
