@@ -20,6 +20,8 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 service NotificationService {
   rpc SendEmail(SendEmailRequest) returns (SendEmailResponse);
 
+  rpc CreateNotification(CreateNotificationRequest) returns (Notification);
+
   rpc CreateTemplate(CreateTemplateRequest) returns (Template) {
     option (google.api.http) = {
       post: "/v1/templates"
@@ -146,3 +148,24 @@ message SendEmailRequest {
 }
 
 message SendEmailResponse {}
+
+message CreateNotificationRequest {
+  string user_id = 1 [(buf.validate.field).string.uuid = true];
+  string event_id = 2 [(buf.validate.field).string.uuid = true];
+  string type = 3 [(buf.validate.field).string = {min_len: 1 max_len: 64}];
+  string title = 4 [(buf.validate.field).string = {min_len: 1 max_len: 200}];
+  string body = 5 [(buf.validate.field).string.max_len = 2000];
+  string related_entity_id = 6 [(buf.validate.field).string.max_len = 64];
+}
+
+message Notification {
+  string id = 1;
+  string user_id = 2;
+  string event_id = 3;
+  string type = 4;
+  string title = 5;
+  string body = 6;
+  string related_entity_id = 7;
+  google.protobuf.Timestamp read_at = 8;
+  google.protobuf.Timestamp created_at = 9;
+}
