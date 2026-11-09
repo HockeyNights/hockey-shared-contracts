@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	NotificationService_SendEmail_FullMethodName      = "/notification.v1.NotificationService/SendEmail"
-	NotificationService_CreateTemplate_FullMethodName = "/notification.v1.NotificationService/CreateTemplate"
-	NotificationService_UpdateTemplate_FullMethodName = "/notification.v1.NotificationService/UpdateTemplate"
-	NotificationService_GetTemplate_FullMethodName    = "/notification.v1.NotificationService/GetTemplate"
-	NotificationService_ListTemplates_FullMethodName  = "/notification.v1.NotificationService/ListTemplates"
-	NotificationService_DeleteTemplate_FullMethodName = "/notification.v1.NotificationService/DeleteTemplate"
-	NotificationService_RenderTemplate_FullMethodName = "/notification.v1.NotificationService/RenderTemplate"
+	NotificationService_SendEmail_FullMethodName          = "/notification.v1.NotificationService/SendEmail"
+	NotificationService_CreateNotification_FullMethodName = "/notification.v1.NotificationService/CreateNotification"
+	NotificationService_CreateTemplate_FullMethodName     = "/notification.v1.NotificationService/CreateTemplate"
+	NotificationService_UpdateTemplate_FullMethodName     = "/notification.v1.NotificationService/UpdateTemplate"
+	NotificationService_GetTemplate_FullMethodName        = "/notification.v1.NotificationService/GetTemplate"
+	NotificationService_ListTemplates_FullMethodName      = "/notification.v1.NotificationService/ListTemplates"
+	NotificationService_DeleteTemplate_FullMethodName     = "/notification.v1.NotificationService/DeleteTemplate"
+	NotificationService_RenderTemplate_FullMethodName     = "/notification.v1.NotificationService/RenderTemplate"
 )
 
 // NotificationServiceClient is the client API for NotificationService service.
@@ -33,6 +34,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotificationServiceClient interface {
 	SendEmail(ctx context.Context, in *SendEmailRequest, opts ...grpc.CallOption) (*SendEmailResponse, error)
+	CreateNotification(ctx context.Context, in *CreateNotificationRequest, opts ...grpc.CallOption) (*Notification, error)
 	CreateTemplate(ctx context.Context, in *CreateTemplateRequest, opts ...grpc.CallOption) (*Template, error)
 	UpdateTemplate(ctx context.Context, in *UpdateTemplateRequest, opts ...grpc.CallOption) (*Template, error)
 	GetTemplate(ctx context.Context, in *GetTemplateRequest, opts ...grpc.CallOption) (*Template, error)
@@ -53,6 +55,16 @@ func (c *notificationServiceClient) SendEmail(ctx context.Context, in *SendEmail
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SendEmailResponse)
 	err := c.cc.Invoke(ctx, NotificationService_SendEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *notificationServiceClient) CreateNotification(ctx context.Context, in *CreateNotificationRequest, opts ...grpc.CallOption) (*Notification, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Notification)
+	err := c.cc.Invoke(ctx, NotificationService_CreateNotification_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -124,6 +136,7 @@ func (c *notificationServiceClient) RenderTemplate(ctx context.Context, in *Rend
 // for forward compatibility.
 type NotificationServiceServer interface {
 	SendEmail(context.Context, *SendEmailRequest) (*SendEmailResponse, error)
+	CreateNotification(context.Context, *CreateNotificationRequest) (*Notification, error)
 	CreateTemplate(context.Context, *CreateTemplateRequest) (*Template, error)
 	UpdateTemplate(context.Context, *UpdateTemplateRequest) (*Template, error)
 	GetTemplate(context.Context, *GetTemplateRequest) (*Template, error)
@@ -142,6 +155,9 @@ type UnimplementedNotificationServiceServer struct{}
 
 func (UnimplementedNotificationServiceServer) SendEmail(context.Context, *SendEmailRequest) (*SendEmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendEmail not implemented")
+}
+func (UnimplementedNotificationServiceServer) CreateNotification(context.Context, *CreateNotificationRequest) (*Notification, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateNotification not implemented")
 }
 func (UnimplementedNotificationServiceServer) CreateTemplate(context.Context, *CreateTemplateRequest) (*Template, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTemplate not implemented")
@@ -196,6 +212,24 @@ func _NotificationService_SendEmail_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NotificationServiceServer).SendEmail(ctx, req.(*SendEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NotificationService_CreateNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateNotificationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NotificationServiceServer).CreateNotification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NotificationService_CreateNotification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NotificationServiceServer).CreateNotification(ctx, req.(*CreateNotificationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -318,6 +352,10 @@ var NotificationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendEmail",
 			Handler:    _NotificationService_SendEmail_Handler,
+		},
+		{
+			MethodName: "CreateNotification",
+			Handler:    _NotificationService_CreateNotification_Handler,
 		},
 		{
 			MethodName: "CreateTemplate",
