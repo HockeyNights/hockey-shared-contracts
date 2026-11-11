@@ -59,6 +59,12 @@ service TrainingService {
   rpc UpdateEventRsvp(UpdateEventRsvpRequest) returns (EventRsvp) {
     option (google.api.http) = {post: "/v1/events/{event_id}/rsvp" body: "*"};
   }
+  rpc GetEventLines(GetEventLinesRequest) returns (EventLines) {
+    option (google.api.http) = {get: "/v1/events/{event_id}/lines"};
+  }
+  rpc UpdateEventLines(UpdateEventLinesRequest) returns (EventLines) {
+    option (google.api.http) = {put: "/v1/events/{event_id}/lines" body: "*"};
+  }
   rpc GetTrainingLineup(GetTrainingLineupRequest) returns (TrainingLineup) {
     option (google.api.http) = {get: "/v1/teams/{team_id}/training-lineup/{event_id}"};
   }
@@ -279,6 +285,31 @@ message LineupAssignment {
   optional int32 line = 4;
   optional string display_name = 5;
   optional string event_id = 6;
+}
+
+// Звено (пятёрка) события. slots: ключи lw, c, rw, ld, rd; значение — user_id.
+// Свободная позиция — ключ отсутствует.
+message EventLine {
+  string id = 1;
+  int32 number = 2;
+  string jersey_color = 3;
+  map<string, string> slots = 4;
+}
+
+// goalies: ключи starter, backup; значение — user_id.
+message EventLines {
+  string event_id = 1;
+  string team_id = 2;
+  map<string, string> goalies = 3;
+  repeated EventLine lines = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message GetEventLinesRequest { string event_id = 1; }
+message UpdateEventLinesRequest {
+  string event_id = 1;
+  map<string, string> goalies = 2;
+  repeated EventLine lines = 3;
 }
 
 message TrainingLineup { repeated LineupAssignment assignments = 1; }
