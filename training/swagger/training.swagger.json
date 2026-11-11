@@ -741,6 +741,72 @@
         ]
       }
     },
+    "/v1/events/{eventId}/lines": {
+      "get": {
+        "operationId": "TrainingService_GetEventLines",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1EventLines"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      },
+      "put": {
+        "operationId": "TrainingService_UpdateEventLines",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1EventLines"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TrainingServiceUpdateEventLinesBody"
+            }
+          }
+        ],
+        "tags": [
+          "TrainingService"
+        ]
+      }
+    },
     "/v1/events/{eventId}/roster-status": {
       "get": {
         "operationId": "TrainingService_GetRosterStatus",
@@ -1188,6 +1254,24 @@
         }
       }
     },
+    "TrainingServiceUpdateEventLinesBody": {
+      "type": "object",
+      "properties": {
+        "goalies": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1EventLine"
+          }
+        }
+      }
+    },
     "TrainingServiceUpdateEventRsvpBody": {
       "type": "object",
       "properties": {
@@ -1463,6 +1547,57 @@
           "type": "string"
         }
       }
+    },
+    "v1EventLine": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "jerseyColor": {
+          "type": "string"
+        },
+        "slots": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Звено (пятёрка) события. slots: ключи lw, c, rw, ld, rd; значение — user_id.\nСвободная позиция — ключ отсутствует."
+    },
+    "v1EventLines": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "goalies": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1EventLine"
+          }
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "goalies: ключи starter, backup; значение — user_id."
     },
     "v1EventList": {
       "type": "object",

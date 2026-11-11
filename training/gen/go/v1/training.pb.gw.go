@@ -641,6 +641,90 @@ func local_request_TrainingService_UpdateEventRsvp_0(ctx context.Context, marsha
 	return msg, metadata, err
 }
 
+func request_TrainingService_GetEventLines_0(ctx context.Context, marshaler runtime.Marshaler, client TrainingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetEventLinesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["event_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "event_id")
+	}
+	protoReq.EventId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "event_id", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetEventLines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_TrainingService_GetEventLines_0(ctx context.Context, marshaler runtime.Marshaler, server TrainingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetEventLinesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["event_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "event_id")
+	}
+	protoReq.EventId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "event_id", err)
+	}
+	msg, err := server.GetEventLines(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_TrainingService_UpdateEventLines_0(ctx context.Context, marshaler runtime.Marshaler, client TrainingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateEventLinesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["event_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "event_id")
+	}
+	protoReq.EventId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "event_id", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.UpdateEventLines(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_TrainingService_UpdateEventLines_0(ctx context.Context, marshaler runtime.Marshaler, server TrainingServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateEventLinesRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	val, ok := pathParams["event_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "event_id")
+	}
+	protoReq.EventId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "event_id", err)
+	}
+	msg, err := server.UpdateEventLines(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_TrainingService_GetTrainingLineup_0(ctx context.Context, marshaler runtime.Marshaler, client TrainingServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetTrainingLineupRequest
@@ -1501,6 +1585,46 @@ func RegisterTrainingServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		}
 		forward_TrainingService_UpdateEventRsvp_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_TrainingService_GetEventLines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/training.v1.TrainingService/GetEventLines", runtime.WithHTTPPathPattern("/v1/events/{event_id}/lines"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TrainingService_GetEventLines_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_TrainingService_GetEventLines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_TrainingService_UpdateEventLines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/training.v1.TrainingService/UpdateEventLines", runtime.WithHTTPPathPattern("/v1/events/{event_id}/lines"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TrainingService_UpdateEventLines_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_TrainingService_UpdateEventLines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_TrainingService_GetTrainingLineup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1979,6 +2103,40 @@ func RegisterTrainingServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		}
 		forward_TrainingService_UpdateEventRsvp_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_TrainingService_GetEventLines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/training.v1.TrainingService/GetEventLines", runtime.WithHTTPPathPattern("/v1/events/{event_id}/lines"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TrainingService_GetEventLines_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_TrainingService_GetEventLines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_TrainingService_UpdateEventLines_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/training.v1.TrainingService/UpdateEventLines", runtime.WithHTTPPathPattern("/v1/events/{event_id}/lines"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TrainingService_UpdateEventLines_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_TrainingService_UpdateEventLines_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodGet, pattern_TrainingService_GetTrainingLineup_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2167,6 +2325,8 @@ var (
 	pattern_TrainingService_GetRosterStatus_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "events", "event_id", "roster-status"}, ""))
 	pattern_TrainingService_GetEventRsvp_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "events", "event_id", "rsvp"}, ""))
 	pattern_TrainingService_UpdateEventRsvp_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "events", "event_id", "rsvp"}, ""))
+	pattern_TrainingService_GetEventLines_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "events", "event_id", "lines"}, ""))
+	pattern_TrainingService_UpdateEventLines_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "events", "event_id", "lines"}, ""))
 	pattern_TrainingService_GetTrainingLineup_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "teams", "team_id", "training-lineup", "event_id"}, ""))
 	pattern_TrainingService_ReplaceTrainingLineup_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "teams", "team_id", "training-lineup", "event_id"}, ""))
 	pattern_TrainingService_ListTrainingDrafts_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "clubs", "club_id", "training-drafts"}, ""))
@@ -2194,6 +2354,8 @@ var (
 	forward_TrainingService_GetRosterStatus_0           = runtime.ForwardResponseMessage
 	forward_TrainingService_GetEventRsvp_0              = runtime.ForwardResponseMessage
 	forward_TrainingService_UpdateEventRsvp_0           = runtime.ForwardResponseMessage
+	forward_TrainingService_GetEventLines_0             = runtime.ForwardResponseMessage
+	forward_TrainingService_UpdateEventLines_0          = runtime.ForwardResponseMessage
 	forward_TrainingService_GetTrainingLineup_0         = runtime.ForwardResponseMessage
 	forward_TrainingService_ReplaceTrainingLineup_0     = runtime.ForwardResponseMessage
 	forward_TrainingService_ListTrainingDrafts_0        = runtime.ForwardResponseMessage
