@@ -1,0 +1,405 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HockeyNights Notification API",
+    "description": "Внутренний сервис доставки. Отправка писем по шаблонам и управление самими шаблонами.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "NotificationService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/templates": {
+      "get": {
+        "operationId": "NotificationService_ListTemplates",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListTemplatesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CHANNEL_UNSPECIFIED",
+              "CHANNEL_EMAIL",
+              "CHANNEL_SMS",
+              "CHANNEL_PUSH"
+            ],
+            "default": "CHANNEL_UNSPECIFIED"
+          },
+          {
+            "name": "product",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      },
+      "post": {
+        "operationId": "NotificationService_CreateTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Template"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "template",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1Template"
+            }
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
+    "/v1/templates/{key}": {
+      "get": {
+        "operationId": "NotificationService_GetTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Template"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CHANNEL_UNSPECIFIED",
+              "CHANNEL_EMAIL",
+              "CHANNEL_SMS",
+              "CHANNEL_PUSH"
+            ],
+            "default": "CHANNEL_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      },
+      "delete": {
+        "operationId": "NotificationService_DeleteTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "channel",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CHANNEL_UNSPECIFIED",
+              "CHANNEL_EMAIL",
+              "CHANNEL_SMS",
+              "CHANNEL_PUSH"
+            ],
+            "default": "CHANNEL_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
+    "/v1/templates/{key}:render": {
+      "post": {
+        "operationId": "NotificationService_RenderTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RenderTemplateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NotificationServiceRenderTemplateBody"
+            }
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
+    "/v1/templates/{template.key}": {
+      "put": {
+        "operationId": "NotificationService_UpdateTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Template"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "template.key",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "template",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "channel": {
+                  "$ref": "#/definitions/v1Channel"
+                },
+                "product": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "bodyText": {
+                  "type": "string"
+                },
+                "bodyHtml": {
+                  "type": "string"
+                },
+                "builtin": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "NotificationServiceRenderTemplateBody": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/v1Channel"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Channel": {
+      "type": "string",
+      "enum": [
+        "CHANNEL_UNSPECIFIED",
+        "CHANNEL_EMAIL",
+        "CHANNEL_SMS",
+        "CHANNEL_PUSH"
+      ],
+      "default": "CHANNEL_UNSPECIFIED"
+    },
+    "v1DeleteTemplateResponse": {
+      "type": "object"
+    },
+    "v1ListTemplatesResponse": {
+      "type": "object",
+      "properties": {
+        "templates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Template"
+          }
+        }
+      }
+    },
+    "v1RenderTemplateResponse": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "bodyText": {
+          "type": "string"
+        },
+        "bodyHtml": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Template": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "channel": {
+          "$ref": "#/definitions/v1Channel"
+        },
+        "product": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "bodyText": {
+          "type": "string"
+        },
+        "bodyHtml": {
+          "type": "string"
+        },
+        "builtin": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

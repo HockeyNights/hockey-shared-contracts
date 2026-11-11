@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package league.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/league/gen/go/v1;leaguev1";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: { title: "HockeyNights League API" version: "1.0.0" description: "Каталог и кабинет любительских лиг." }
+};
+
+service LeagueService {
+  rpc ListLeagues(ListLeaguesRequest) returns (LeagueList) { option (google.api.http) = {get: "/v1/leagues"}; }
+  rpc GetLeague(GetLeagueRequest) returns (League) { option (google.api.http) = {get: "/v1/leagues/{league_id}"}; }
+  rpc UpdateLeagueProfile(UpdateLeagueProfileRequest) returns (League) { option (google.api.http) = {patch: "/v1/leagues/{league_id}/profile" body: "*"}; }
+  rpc ListStandings(LeagueIdRequest) returns (LeagueStandingList) { option (google.api.http) = {get: "/v1/leagues/{league_id}/standings"}; }
+  rpc UpdateStanding(UpdateStandingRequest) returns (LeagueStanding) { option (google.api.http) = {patch: "/v1/leagues/{league_id}/standings" body: "*"}; }
+  rpc ListSchedule(LeagueIdRequest) returns (LeagueScheduleList) { option (google.api.http) = {get: "/v1/leagues/{league_id}/schedule"}; }
+  rpc CreateScheduleItem(CreateScheduleItemRequest) returns (LeagueScheduleItem) { option (google.api.http) = {post: "/v1/leagues/{league_id}/schedule" body: "*"}; }
+  rpc UpdateScheduleItem(UpdateScheduleItemRequest) returns (LeagueScheduleItem) { option (google.api.http) = {patch: "/v1/leagues/{league_id}/schedule/{schedule_id}" body: "*"}; }
+  rpc ImportScheduleCsv(ImportScheduleCsvRequest) returns (ScheduleImportResult) { option (google.api.http) = {post: "/v1/leagues/{league_id}/schedule-import" body: "*"}; }
+  rpc ListSeasons(LeagueIdRequest) returns (LeagueSeasonList) { option (google.api.http) = {get: "/v1/leagues/{league_id}/seasons"}; }
+  rpc ListDivisions(ListDivisionsRequest) returns (LeagueDivisionList) { option (google.api.http) = {get: "/v1/leagues/{league_id}/divisions"}; }
+  rpc ListApplications(ListApplicationsRequest) returns (LeagueApplicationList) { option (google.api.http) = {get: "/v1/leagues/{league_id}/applications"}; }
+  rpc CreateApplication(CreateApplicationRequest) returns (LeagueApplication) { option (google.api.http) = {post: "/v1/leagues/{league_id}/applications" body: "*"}; }
+  rpc ReviewApplication(ReviewApplicationRequest) returns (LeagueApplication) { option (google.api.http) = {patch: "/v1/leagues/{league_id}/applications/{application_id}" body: "*"}; }
+  rpc ListPosts(LeagueIdRequest) returns (LeaguePostList) { option (google.api.http) = {get: "/v1/leagues/{league_id}/posts"}; }
+  rpc CreatePost(CreatePostRequest) returns (LeaguePost) { option (google.api.http) = {post: "/v1/leagues/{league_id}/posts" body: "*"}; }
+  rpc GetAnalytics(LeagueIdRequest) returns (LeagueAnalytics) { option (google.api.http) = {get: "/v1/leagues/{league_id}/analytics"}; }
+
+  // Internal service-to-service methods have no HTTP annotations.
+  rpc LeagueExists(LeagueExistsRequest) returns (LeagueExistsResponse);
+  rpc SetLeaguePartnerMembership(SetLeaguePartnerMembershipRequest) returns (LeaguePartnerMembership);
+  rpc UpsertLeagueCatalog(UpsertLeagueCatalogRequest) returns (League);
+}
+
+message League {
+  string id = 1;
+  string name = 2;
+  string region = 3;
+  optional string level = 4;
+  optional string website_url = 5;
+  string integration_status = 6;
+  google.protobuf.Struct source_meta = 7;
+  bool visible = 8;
+  optional string description = 9;
+  optional string contact_email = 10;
+  optional string contact_phone = 11;
+  optional string rules_summary = 12;
+  optional string recruiting_status = 13;
+  optional string moderation_status = 14;
+}
+message LeagueList { repeated League items = 1; }
+message ListLeaguesRequest { string q = 1; string region = 2; string level = 3; string recruiting_status = 4; }
+message GetLeagueRequest { string league_id = 1; }
+message LeagueIdRequest { string league_id = 1; }
+message UpdateLeagueProfileRequest {
+  string league_id = 1;
+  optional string name = 2;
+  optional string region = 3;
+  optional string level = 4;
+  optional string website_url = 5;
+  optional string description = 6;
+  optional string contact_email = 7;
+  optional string contact_phone = 8;
+  optional string rules_summary = 9;
+  optional string recruiting_status = 10;
+}
+message LeagueStanding {
+  string league_id = 1;
+  string team_name = 2;
+  int32 games_played = 3;
+  int32 wins = 4;
+  int32 losses = 5;
+  int32 points = 6;
+}
+message LeagueStandingList { repeated LeagueStanding items = 1; }
+message UpdateStandingRequest {
+  string league_id = 1;
+  string team_name = 2;
+  int32 games_played = 3;
+  int32 wins = 4;
+  int32 losses = 5;
+  int32 points = 6;
+}
+message LeagueScheduleItem {
+  string id = 1;
+  string league_id = 2;
+  string home_team = 3;
+  string away_team = 4;
+  google.protobuf.Timestamp starts_at = 5;
+  optional string arena_name = 6;
+  optional int32 home_score = 7;
+  optional int32 away_score = 8;
+  optional string status = 9;
+}
+message LeagueScheduleList { repeated LeagueScheduleItem items = 1; }
+message CreateScheduleItemRequest {
+  string league_id = 1;
+  string home_team = 2;
+  string away_team = 3;
+  google.protobuf.Timestamp starts_at = 4;
+  optional string arena_name = 5;
+  optional int32 home_score = 6;
+  optional int32 away_score = 7;
+  optional string status = 8;
+}
+message UpdateScheduleItemRequest {
+  string league_id = 1;
+  string schedule_id = 2;
+  optional string home_team = 3;
+  optional string away_team = 4;
+  optional google.protobuf.Timestamp starts_at = 5;
+  optional string arena_name = 6;
+  optional int32 home_score = 7;
+  optional int32 away_score = 8;
+  optional string status = 9;
+}
+message ImportScheduleCsvRequest { string league_id = 1; string csv_text = 2; }
+message ScheduleImportResult { string league_id = 1; string source = 2; int32 imported_count = 3; int32 skipped_count = 4; optional string message = 5; }
+message LeagueSeason { string id = 1; string league_id = 2; string name = 3; string status = 4; }
+message LeagueSeasonList { repeated LeagueSeason items = 1; }
+message LeagueDivision { string id = 1; string league_id = 2; string season_id = 3; string name = 4; string level = 5; }
+message LeagueDivisionList { repeated LeagueDivision items = 1; }
+message ListDivisionsRequest { string league_id = 1; optional string season_id = 2; }
+message LeagueApplication {
+  string id = 1;
+  string league_id = 2;
+  string season_id = 3;
+  optional string division_id = 4;
+  string team_name = 5;
+  string captain_name = 6;
+  string contact_email = 7;
+  optional string team_id = 8;
+  string status = 9;
+  optional string review_comment = 10;
+  google.protobuf.Timestamp created_at = 11;
+}
+message LeagueApplicationList { repeated LeagueApplication items = 1; }
+message ListApplicationsRequest { string league_id = 1; optional string team_id = 2; }
+message CreateApplicationRequest {
+  string league_id = 1;
+  string season_id = 2;
+  optional string division_id = 3;
+  string team_id = 4;
+  string team_name = 5;
+  string captain_name = 6;
+  string contact_email = 7;
+}
+message ReviewApplicationRequest { string league_id = 1; string application_id = 2; string status = 3; optional string review_comment = 4; }
+message LeaguePost { string id = 1; string league_id = 2; string title = 3; string body = 4; bool pinned = 5; google.protobuf.Timestamp published_at = 6; }
+message LeaguePostList { repeated LeaguePost items = 1; }
+message CreatePostRequest { string league_id = 1; string title = 2; string body = 3; bool pinned = 4; }
+message LeagueAnalytics { string league_id = 1; int64 profile_views = 2; int64 applications_total = 3; int64 applications_pending = 4; int64 applications_approved = 5; optional string top_division_name = 6; double conversion_rate = 7; }
+message LeagueExistsRequest { string league_id = 1; }
+message LeagueExistsResponse { bool exists = 1; }
+message SetLeaguePartnerMembershipRequest { string league_id = 1; string user_id = 2; bool enabled = 3; }
+message LeaguePartnerMembership { string league_id = 1; string user_id = 2; }
+message UpsertLeagueCatalogRequest {
+  optional string league_id = 1;
+  string name = 2;
+  string region = 3;
+  optional string level = 4;
+  optional string website_url = 5;
+  optional string description = 6;
+  bool visible = 7;
+  string moderation_status = 8;
+  optional string recruiting_status = 9;
+  google.protobuf.Struct source_meta = 10;
+}

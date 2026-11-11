@@ -1,0 +1,742 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HockeyNights Shop API",
+    "description": "Каталог магазинов и marketplace.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "ShopService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/marketplace": {
+      "get": {
+        "operationId": "ShopService_GetMarketPlaceFeed",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetMarketPlaceFeedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "shopId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "inStockOnly",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "position",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    },
+    "/v1/product-offers": {
+      "get": {
+        "operationId": "ShopService_ListProductOffers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListProductOffersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    },
+    "/v1/shops": {
+      "get": {
+        "operationId": "ShopService_ListShops",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListShopsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    },
+    "/v1/shops/{shopId}/products": {
+      "post": {
+        "operationId": "ShopService_CreateShopProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ProductOffer"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShopServiceCreateShopProductBody"
+            }
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    },
+    "/v1/shops/{shopId}/products/{productId}": {
+      "patch": {
+        "operationId": "ShopService_UpdateShopProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ProductOffer"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShopServiceUpdateShopProductBody"
+            }
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    },
+    "/v1/shops/{shopId}/profile": {
+      "patch": {
+        "operationId": "ShopService_UpdateShopPartnerProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Shop"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShopServiceUpdateShopPartnerProfileBody"
+            }
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    },
+    "/v1/shops/{shopId}/promos": {
+      "get": {
+        "operationId": "ShopService_ListShopPromos",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListShopPromosResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      },
+      "post": {
+        "operationId": "ShopService_CreateShopPromo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ShopPromo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "shopId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShopServiceCreateShopPromoBody"
+            }
+          }
+        ],
+        "tags": [
+          "ShopService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ShopServiceCreateShopProductBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "externalUrl": {
+          "type": "string"
+        },
+        "recommendedPositions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendedLevels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "ShopServiceCreateShopPromoBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "discountPercent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "targetPositions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ShopServiceUpdateShopPartnerProfileBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "deliveryInfo": {
+          "type": "string"
+        },
+        "pickupInfo": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ShopServiceUpdateShopProductBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "externalUrl": {
+          "type": "string"
+        },
+        "recommendedPositions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendedLevels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "imageUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetMarketPlaceFeedResponse": {
+      "type": "object",
+      "properties": {
+        "spotlightShops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MarketplaceShopSpotlight"
+          }
+        },
+        "listings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1MarketplaceProductListing"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1ListProductOffersResponse": {
+      "type": "object",
+      "properties": {
+        "offers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ProductOffer"
+          }
+        }
+      }
+    },
+    "v1ListShopPromosResponse": {
+      "type": "object",
+      "properties": {
+        "promos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1ShopPromo"
+          }
+        }
+      }
+    },
+    "v1ListShopsResponse": {
+      "type": "object",
+      "properties": {
+        "shops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Shop"
+          }
+        }
+      }
+    },
+    "v1MarketplaceProductListing": {
+      "type": "object",
+      "properties": {
+        "offer": {
+          "$ref": "#/definitions/v1ProductOffer"
+        },
+        "shopId": {
+          "type": "string"
+        },
+        "shopName": {
+          "type": "string"
+        },
+        "shopCity": {
+          "type": "string"
+        },
+        "shopAdTier": {
+          "type": "string"
+        },
+        "shopAdPriority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isPromoted": {
+          "type": "boolean"
+        },
+        "promoDiscount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1MarketplaceShopSpotlight": {
+      "type": "object",
+      "properties": {
+        "shop": {
+          "$ref": "#/definitions/v1Shop"
+        },
+        "promoTitle": {
+          "type": "string"
+        },
+        "promoDiscount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ProductOffer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "shopId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "externalUrl": {
+          "type": "string"
+        },
+        "recommendedPositions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendedLevels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "moderationStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Shop": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "partnerStatus": {
+          "type": "string"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "deliveryInfo": {
+          "type": "string"
+        },
+        "pickupInfo": {
+          "type": "string"
+        },
+        "moderationStatus": {
+          "type": "string"
+        },
+        "adTier": {
+          "type": "string"
+        },
+        "adPriority": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ShopPromo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "shopId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "discountPercent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "targetPositions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

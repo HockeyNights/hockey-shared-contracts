@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package mail.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/mail/gen/go/v1;mailv1";
+
+service MailService {
+  rpc SendEmail(SendEmailRequest) returns (SendEmailResponse) {
+    option (google.api.http) = {
+      post: "/mail.MailService/SendEmail"
+      body: "*"
+    };
+  }
+
+  rpc SendTemplateEmail(SendTemplateEmailRequest) returns (SendEmailResponse) {
+    option (google.api.http) = {
+      post: "/mail.MailService/SendTemplateEmail"
+      body: "*"
+    };
+  }
+
+  rpc GetEmail(GetEmailRequest) returns (GetEmailResponse) {
+    option (google.api.http) = {
+      post: "/mail.MailService/GetEmail"
+      body: "*"
+    };
+  }
+
+  rpc CreateTemplate(CreateTemplateRequest) returns (CreateTemplateResponse) {
+    option (google.api.http) = {
+      post: "/mail.MailService/CreateTemplate"
+      body: "*"
+    };
+  }
+
+  rpc GetTemplate(GetTemplateRequest) returns (GetTemplateResponse) {
+    option (google.api.http) = {
+      post: "/mail.MailService/GetTemplate"
+      body: "*"
+    };
+  }
+}
+
+message SendEmailRequest {
+  string from = 1;
+  repeated string to = 2;
+  string subject = 3;
+  string text_body = 4;
+  string html_body = 5;
+}
+
+message SendTemplateEmailRequest {
+  string from = 1;
+  repeated string to = 2;
+  string template_code = 3;
+  map<string, string> variables = 4;
+}
+
+message SendEmailResponse {
+  string email_id = 1;
+  string status = 2;
+}
+
+message GetEmailRequest {
+  string email_id = 1;
+}
+
+message GetEmailResponse {
+  EmailMessage email = 1;
+}
+
+message EmailMessage {
+  string id = 1;
+  repeated string to = 2;
+  string from = 3;
+  string subject = 4;
+  string text_body = 5;
+  string html_body = 6;
+  string status = 7;
+  int32 attempts = 8;
+  int32 max_attempts = 9;
+  string last_error = 10;
+  string queued_at = 11;
+  string sent_at = 12;
+  string created_at = 13;
+  string updated_at = 14;
+  string template_code = 15;
+  map<string, string> variables = 16;
+}
+
+message CreateTemplateRequest {
+  string code = 1;
+  string name = 2;
+  string from = 3;
+  string subject_template = 4;
+  string text_body_template = 5;
+  string html_body_template = 6;
+}
+
+message CreateTemplateResponse {
+  EmailTemplate template = 1;
+}
+
+message GetTemplateRequest {
+  string code = 1;
+}
+
+message GetTemplateResponse {
+  EmailTemplate template = 1;
+}
+
+message EmailTemplate {
+  string id = 1;
+  string code = 2;
+  string name = 3;
+  string from = 4;
+  string subject_template = 5;
+  string text_body_template = 6;
+  string html_body_template = 7;
+  string created_at = 8;
+  string updated_at = 9;
+}

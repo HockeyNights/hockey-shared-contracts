@@ -1,0 +1,1183 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HockeyNights League API",
+    "description": "Каталог и кабинет любительских лиг.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "LeagueService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/leagues": {
+      "get": {
+        "operationId": "LeagueService_ListLeagues",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recruitingStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}": {
+      "get": {
+        "operationId": "LeagueService_GetLeague",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1League"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/analytics": {
+      "get": {
+        "operationId": "LeagueService_GetAnalytics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueAnalytics"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/applications": {
+      "get": {
+        "operationId": "LeagueService_ListApplications",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueApplicationList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      },
+      "post": {
+        "operationId": "LeagueService_CreateApplication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueApplication"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceCreateApplicationBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/applications/{applicationId}": {
+      "patch": {
+        "operationId": "LeagueService_ReviewApplication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueApplication"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceReviewApplicationBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/divisions": {
+      "get": {
+        "operationId": "LeagueService_ListDivisions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueDivisionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "seasonId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/posts": {
+      "get": {
+        "operationId": "LeagueService_ListPosts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeaguePostList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      },
+      "post": {
+        "operationId": "LeagueService_CreatePost",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeaguePost"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceCreatePostBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/profile": {
+      "patch": {
+        "operationId": "LeagueService_UpdateLeagueProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1League"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceUpdateLeagueProfileBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/schedule": {
+      "get": {
+        "operationId": "LeagueService_ListSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueScheduleList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      },
+      "post": {
+        "operationId": "LeagueService_CreateScheduleItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueScheduleItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceCreateScheduleItemBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/schedule-import": {
+      "post": {
+        "operationId": "LeagueService_ImportScheduleCsv",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ScheduleImportResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceImportScheduleCsvBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/schedule/{scheduleId}": {
+      "patch": {
+        "operationId": "LeagueService_UpdateScheduleItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueScheduleItem"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceUpdateScheduleItemBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/seasons": {
+      "get": {
+        "operationId": "LeagueService_ListSeasons",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueSeasonList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    },
+    "/v1/leagues/{leagueId}/standings": {
+      "get": {
+        "operationId": "LeagueService_ListStandings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueStandingList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      },
+      "patch": {
+        "operationId": "LeagueService_UpdateStanding",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LeagueStanding"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "leagueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LeagueServiceUpdateStandingBody"
+            }
+          }
+        ],
+        "tags": [
+          "LeagueService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "LeagueServiceCreateApplicationBody": {
+      "type": "object",
+      "properties": {
+        "seasonId": {
+          "type": "string"
+        },
+        "divisionId": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "teamName": {
+          "type": "string"
+        },
+        "captainName": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        }
+      }
+    },
+    "LeagueServiceCreatePostBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "pinned": {
+          "type": "boolean"
+        }
+      }
+    },
+    "LeagueServiceCreateScheduleItemBody": {
+      "type": "object",
+      "properties": {
+        "homeTeam": {
+          "type": "string"
+        },
+        "awayTeam": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "arenaName": {
+          "type": "string"
+        },
+        "homeScore": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "awayScore": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "LeagueServiceImportScheduleCsvBody": {
+      "type": "object",
+      "properties": {
+        "csvText": {
+          "type": "string"
+        }
+      }
+    },
+    "LeagueServiceReviewApplicationBody": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "reviewComment": {
+          "type": "string"
+        }
+      }
+    },
+    "LeagueServiceUpdateLeagueProfileBody": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "rulesSummary": {
+          "type": "string"
+        },
+        "recruitingStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "LeagueServiceUpdateScheduleItemBody": {
+      "type": "object",
+      "properties": {
+        "homeTeam": {
+          "type": "string"
+        },
+        "awayTeam": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "arenaName": {
+          "type": "string"
+        },
+        "homeScore": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "awayScore": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "LeagueServiceUpdateStandingBody": {
+      "type": "object",
+      "properties": {
+        "teamName": {
+          "type": "string"
+        },
+        "gamesPlayed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "wins": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "losses": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "points": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1League": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "integrationStatus": {
+          "type": "string"
+        },
+        "sourceMeta": {
+          "type": "object"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactPhone": {
+          "type": "string"
+        },
+        "rulesSummary": {
+          "type": "string"
+        },
+        "recruitingStatus": {
+          "type": "string"
+        },
+        "moderationStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LeagueAnalytics": {
+      "type": "object",
+      "properties": {
+        "leagueId": {
+          "type": "string"
+        },
+        "profileViews": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applicationsTotal": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applicationsPending": {
+          "type": "string",
+          "format": "int64"
+        },
+        "applicationsApproved": {
+          "type": "string",
+          "format": "int64"
+        },
+        "topDivisionName": {
+          "type": "string"
+        },
+        "conversionRate": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "v1LeagueApplication": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "leagueId": {
+          "type": "string"
+        },
+        "seasonId": {
+          "type": "string"
+        },
+        "divisionId": {
+          "type": "string"
+        },
+        "teamName": {
+          "type": "string"
+        },
+        "captainName": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "teamId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "reviewComment": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1LeagueApplicationList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LeagueApplication"
+          }
+        }
+      }
+    },
+    "v1LeagueDivision": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "leagueId": {
+          "type": "string"
+        },
+        "seasonId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LeagueDivisionList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LeagueDivision"
+          }
+        }
+      }
+    },
+    "v1LeagueList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1League"
+          }
+        }
+      }
+    },
+    "v1LeaguePost": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "leagueId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "pinned": {
+          "type": "boolean"
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1LeaguePostList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LeaguePost"
+          }
+        }
+      }
+    },
+    "v1LeagueScheduleItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "leagueId": {
+          "type": "string"
+        },
+        "homeTeam": {
+          "type": "string"
+        },
+        "awayTeam": {
+          "type": "string"
+        },
+        "startsAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "arenaName": {
+          "type": "string"
+        },
+        "homeScore": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "awayScore": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LeagueScheduleList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LeagueScheduleItem"
+          }
+        }
+      }
+    },
+    "v1LeagueSeason": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "leagueId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LeagueSeasonList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LeagueSeason"
+          }
+        }
+      }
+    },
+    "v1LeagueStanding": {
+      "type": "object",
+      "properties": {
+        "leagueId": {
+          "type": "string"
+        },
+        "teamName": {
+          "type": "string"
+        },
+        "gamesPlayed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "wins": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "losses": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "points": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1LeagueStandingList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LeagueStanding"
+          }
+        }
+      }
+    },
+    "v1ScheduleImportResult": {
+      "type": "object",
+      "properties": {
+        "leagueId": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "importedCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "skippedCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

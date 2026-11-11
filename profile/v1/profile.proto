@@ -1,0 +1,396 @@
+syntax = "proto3";
+
+package profile.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/HockeyNights/hockey-shared-contracts/profile/gen/go/v1;profilev1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "HockeyNights Profile API"
+    version: "1.0.0"
+    description: "Профиль пользователя: имя, фамилия, отчество."
+  }
+};
+
+service ProfileService {
+  // Internal only: returns no private profile fields and has no HTTP route.
+  rpc BatchGetProfileSummaries(BatchGetProfileSummariesRequest) returns (BatchGetProfileSummariesResponse);
+  rpc ListPlayers(ListPlayersRequest) returns (ListPlayersResponse) {
+    option (google.api.http) = {get: "/v1/players"};
+  }
+  rpc GetPlayer(GetPlayerRequest) returns (PublicPlayerView) {
+    option (google.api.http) = {get: "/v1/players/{user_id}"};
+  }
+  rpc GetProfileSettings(GetProfileSettingsRequest) returns (ProfileSettings) {
+    option (google.api.http) = {get: "/v1/profile/settings"};
+  }
+  rpc UpdateNotificationPreferences(UpdateNotificationPreferencesRequest) returns (ProfileSettings) {
+    option (google.api.http) = {patch: "/v1/profile/notification-preferences" body: "patch"};
+  }
+  rpc UpdatePrivacy(UpdatePrivacyRequest) returns (ProfileSettings) {
+    option (google.api.http) = {patch: "/v1/profile/privacy" body: "patch"};
+  }
+  rpc CreateVerificationRequest(CreateVerificationRequestRequest) returns (VerificationRequest) {
+    option (google.api.http) = {post: "/v1/verification-requests" body: "*"};
+  }
+  rpc ReviewVerificationRequest(ReviewVerificationRequestRequest) returns (VerificationRequest) {
+    option (google.api.http) = {patch: "/v1/verification-requests/{request_id}" body: "*"};
+  }
+  rpc CreateProfile(CreateProfileRequest) returns (Profile) {
+    option (google.api.http) = {
+      post: "/v1/profile"
+      body: "*"
+    };
+  }
+
+  rpc GetProfile(GetProfileRequest) returns (Profile) {
+    option (google.api.http) = {get: "/v1/profile" additional_bindings: {get: "/v1/profile/me"}};
+  }
+
+  rpc UpdateProfile(UpdateProfileRequest) returns (Profile) {
+    option (google.api.http) = {
+      put: "/v1/profile"
+      body: "*"
+      additional_bindings: {put: "/v1/profile/me" body: "*"}
+    };
+  }
+
+  rpc RequestAvatarUpload(RequestAvatarUploadRequest) returns (RequestAvatarUploadResponse) {
+    option (google.api.http) = {
+      post: "/v1/profile/avatar:upload"
+      body: "*"
+    };
+  }
+
+  rpc SetAvatar(SetAvatarRequest) returns (Profile) {
+    option (google.api.http) = {
+      put: "/v1/profile/avatar"
+      body: "*"
+    };
+  }
+
+  rpc DeleteAvatar(DeleteAvatarRequest) returns (Profile) {
+    option (google.api.http) = {delete: "/v1/profile/avatar"};
+  }
+}
+
+message BatchGetProfileSummariesRequest {
+  repeated string user_ids = 1 [(buf.validate.field).repeated = {
+    min_items: 1, max_items: 100, unique: true,
+    items: {string: {uuid: true}}
+  }];
+}
+
+message ProfileSummary {
+  string user_id = 1;
+  bool found = 2;
+  string display_name = 3;
+  string position = 4;
+}
+
+message BatchGetProfileSummariesResponse {
+  repeated ProfileSummary profiles = 1;
+}
+
+message ListPlayersRequest {
+  string q = 1;
+  string position = 2;
+  string skill_level = 3;
+  string district = 4;
+  bool goalie_only = 5;
+  bool verified = 6;
+  string team_id = 7;
+  string city = 8;
+  int32 limit = 9;
+  string cursor = 10;
+}
+
+message ContactInfo {
+  string phone = 1;
+  string email = 2;
+  string telegram = 3;
+  string max_messenger = 4;
+}
+
+message PlayerCard {
+  string user_id = 1;
+  string full_name = 2;
+  string display_name = 3;
+  string avatar_url = 4;
+  string city = 5;
+  string district = 6;
+  string metro = 7;
+  string position = 8;
+  string skill_level = 9;
+  string bio = 10;
+  string verification_status = 11;
+  repeated string team_ids = 12;
+  ContactInfo contacts = 13;
+  string birth_date = 14;
+  int32 height_cm = 15;
+  int32 weight_kg = 16;
+  repeated string achievements = 17;
+  repeated string availability = 18;
+  int32 player_index = 19;
+  int32 profile_completeness = 20;
+  int32 karma_score = 21;
+}
+
+message ListPlayersResponse {
+  repeated PlayerCard players = 1;
+  string next_cursor = 2;
+}
+
+message GetPlayerRequest { string user_id = 1; }
+
+message PublicPlayerView {
+  PlayerCard player = 1;
+  string visibility = 2;
+  bool contacts_visible = 3;
+  ContactInfo visible_contacts = 4;
+  bool participation_history_visible = 5;
+  bool calendar_visible = 6;
+  map<string, bool> visible_fields = 7;
+}
+
+message FieldPrivacy {
+  string birth_date = 1;
+  string city = 2;
+  string height_weight = 3;
+  string position = 4;
+  string skill_level = 5;
+  string teams = 6;
+  string bio = 7;
+  string achievements = 8;
+  string participation_history = 9;
+  string calendar = 10;
+  string phone = 11;
+  string email = 12;
+  string telegram = 13;
+  string max_messenger = 14;
+}
+
+message PrivacySettings {
+  string profile_visibility = 1;
+  bool show_contacts = 2;
+  bool show_participation_history = 3;
+  string calendar_visibility = 4;
+  FieldPrivacy fields = 5;
+  bool personal_data_processing_consent = 6;
+  google.protobuf.Timestamp personal_data_consent_at = 7;
+}
+
+message NotificationPreferences {
+  bool in_app = 1;
+  bool email = 2;
+  bool push = 3;
+  bool max_messenger = 4;
+  bool team_events = 5;
+  bool goalkeeper_sos = 6;
+  bool event_reminders = 7;
+}
+
+message SubscriptionState {
+  string plan_id = 1;
+  string status = 2;
+  google.protobuf.Timestamp current_period_ends_at = 3;
+  repeated string entitlements = 4;
+}
+
+message ProfileSettings {
+  NotificationPreferences notification_preferences = 1;
+  PrivacySettings privacy = 2;
+  SubscriptionState subscription = 3;
+}
+
+message GetProfileSettingsRequest {}
+message UpdateNotificationPreferencesRequest { google.protobuf.Struct patch = 1; }
+message UpdatePrivacyRequest { google.protobuf.Struct patch = 1; }
+message CreateVerificationRequestRequest {}
+message ReviewVerificationRequestRequest {
+  string request_id = 1;
+  string status = 2;
+}
+message VerificationRequest {
+  string request_id = 1;
+  string status = 2;
+  string method = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+enum Grip {
+  GRIP_UNSPECIFIED = 0;
+  GRIP_LEFT = 1;
+  GRIP_RIGHT = 2;
+}
+
+enum Position {
+  POSITION_UNSPECIFIED = 0;
+  POSITION_FORWARD = 1;
+  POSITION_DEFENDER = 2;
+  POSITION_GOALIE = 3;
+}
+
+message Profile {
+  string user_id = 1;
+
+  string first_name = 2;
+  string middle_name = 3;
+  string last_name = 4;
+
+  string city = 5 [(buf.validate.field).string.max_len = 100];
+
+  string birth_date = 6 [(buf.validate.field).string = {
+    pattern: "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+  }];
+
+  int32 height_cm = 7 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 250
+  }];
+
+  int32 weight_kg = 8 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 200
+  }];
+
+  Grip grip = 9 [(buf.validate.field).enum.defined_only = true];
+
+  Position position = 10 [(buf.validate.field).enum.defined_only = true];
+
+  string level = 11 [(buf.validate.field).string.max_len = 50];
+
+  int32 skill_index = 12 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 10
+  }];
+
+  string avatar_url = 13;
+
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp updated_at = 15;
+  string district = 16;
+  string metro = 17;
+  string bio = 18;
+  ContactInfo contacts = 19;
+  repeated string availability = 20;
+  repeated string achievements = 21;
+  string verification_status = 22;
+  repeated string team_ids = 23;
+}
+
+message RequestAvatarUploadRequest {}
+
+message RequestAvatarUploadResponse {
+  string upload_url = 1;
+  string key = 2;
+  google.protobuf.Timestamp expires_at = 3;
+}
+
+message SetAvatarRequest {
+  string key = 1 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 200
+  }];
+}
+
+message DeleteAvatarRequest {}
+
+message CreateProfileRequest {
+  string first_name = 1 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string middle_name = 2 [(buf.validate.field).string.max_len = 100];
+
+  string last_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string city = 4 [(buf.validate.field).string.max_len = 100];
+
+  string birth_date = 5 [(buf.validate.field).string = {
+    pattern: "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+  }];
+
+  int32 height_cm = 6 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 250
+  }];
+
+  int32 weight_kg = 7 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 200
+  }];
+
+  Grip grip = 8 [(buf.validate.field).enum.defined_only = true];
+
+  Position position = 9 [(buf.validate.field).enum.defined_only = true];
+
+  string level = 10 [(buf.validate.field).string.max_len = 50];
+
+  int32 skill_index = 11 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 10
+  }];
+
+}
+
+message GetProfileRequest {}
+
+message UpdateProfileRequest {
+  string first_name = 1 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string middle_name = 2 [(buf.validate.field).string.max_len = 100];
+
+  string last_name = 3 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 100
+  }];
+
+  string city = 4 [(buf.validate.field).string.max_len = 100];
+
+  string birth_date = 5 [(buf.validate.field).string = {
+    pattern: "^$|^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+  }];
+
+  int32 height_cm = 6 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 250
+  }];
+
+  int32 weight_kg = 7 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 200
+  }];
+
+  Grip grip = 8 [(buf.validate.field).enum.defined_only = true];
+
+  Position position = 9 [(buf.validate.field).enum.defined_only = true];
+
+  string level = 10 [(buf.validate.field).string.max_len = 50];
+
+  int32 skill_index = 11 [(buf.validate.field).int32 = {
+    gte: 0
+    lte: 10
+  }];
+
+  string district = 12;
+  string metro = 13;
+  string bio = 14;
+  ContactInfo contacts = 15;
+  repeated string availability = 16;
+  repeated string achievements = 17;
+
+}
