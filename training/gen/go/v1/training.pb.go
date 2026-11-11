@@ -2165,7 +2165,7 @@ type EventLines struct {
 	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	Goalies       map[string]string      `protobuf:"bytes,3,rep,name=goalies,proto3" json:"goalies,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	Lines         []*EventLine           `protobuf:"bytes,4,rep,name=lines,proto3" json:"lines,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3719,18 +3719,19 @@ const file_training_v1_training_proto_rawDesc = "" +
 	"\n" +
 	"SlotsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xa5\x02\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb9\x02\n" +
 	"\n" +
 	"EventLines\x12\x19\n" +
 	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12>\n" +
 	"\agoalies\x18\x03 \x03(\v2$.training.v1.EventLines.GoaliesEntryR\agoalies\x12,\n" +
-	"\x05lines\x18\x04 \x03(\v2\x16.training.v1.EventLineR\x05lines\x129\n" +
+	"\x05lines\x18\x04 \x03(\v2\x16.training.v1.EventLineR\x05lines\x12>\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x1a:\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tupdatedAt\x88\x01\x01\x1a:\n" +
 	"\fGoaliesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"1\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\r\n" +
+	"\v_updated_at\"1\n" +
 	"\x14GetEventLinesRequest\x12\x19\n" +
 	"\bevent_id\x18\x01 \x01(\tR\aeventId\"\xeb\x01\n" +
 	"\x17UpdateEventLinesRequest\x12\x19\n" +
@@ -4086,6 +4087,7 @@ func file_training_v1_training_proto_init() {
 	file_training_v1_training_proto_msgTypes[21].OneofWrappers = []any{}
 	file_training_v1_training_proto_msgTypes[22].OneofWrappers = []any{}
 	file_training_v1_training_proto_msgTypes[23].OneofWrappers = []any{}
+	file_training_v1_training_proto_msgTypes[25].OneofWrappers = []any{}
 	file_training_v1_training_proto_msgTypes[31].OneofWrappers = []any{}
 	file_training_v1_training_proto_msgTypes[32].OneofWrappers = []any{}
 	file_training_v1_training_proto_msgTypes[34].OneofWrappers = []any{}

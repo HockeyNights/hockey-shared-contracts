@@ -302,7 +302,7 @@ message EventLines {
   string team_id = 2;
   map<string, string> goalies = 3;
   repeated EventLine lines = 4;
-  google.protobuf.Timestamp updated_at = 5;
+  optional google.protobuf.Timestamp updated_at = 5;
 }
 
 message GetEventLinesRequest { string event_id = 1; }
